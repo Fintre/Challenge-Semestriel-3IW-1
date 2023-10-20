@@ -14,7 +14,7 @@ https://www.figma.com/file/VZ6JcXidOjeFgCRnowHem2/GoFindMe?type=design&node-id=0
 Trello :
 https://trello.com/b/9XwC3n2g/gofindme
 ### MCD
-<img src="MCD.jpg" alt="MCD">
+![MCD](https://raw.githubusercontent.com/Fintre/Challenge-Semestriel-3IW-1/main/media/images/MCD.png)
 
 
 
