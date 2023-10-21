@@ -1,0 +1,19 @@
+/categories:
+  controller: Categories
+  action: categories
+
+/media:
+  controller: Media
+  action: media
+
+/comments:
+  controller: Comments
+  action: comments
+
+/page:
+  controller: Post
+  action: page
+
+/settings:
+  controller: SiteSettings
+  action: settings
