@@ -4,9 +4,11 @@ namespace App\Controllers;
 class Media
 {
 
-    public function contenu(): void
+    public function media(): void
     {
-        echo "Mon contenu";
+        echo "Mes medias";
     }
+
+
 
 }
