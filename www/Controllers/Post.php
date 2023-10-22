@@ -30,15 +30,18 @@ class Post {
 
     // Getter and Setter
 
-    public function save() {
+    public function save(): void
+    {
         echo "save the post";
     }
 
-    public function update() {
+    public function update(): void
+    {
         echo "update the post";
     }
 
-    public function delete() {
+    public function delete(): void
+    {
         echo "delete the post";
     }
 
