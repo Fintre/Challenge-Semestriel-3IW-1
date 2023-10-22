@@ -17,3 +17,7 @@
 /settings:
   controller: SiteSettings
   action: settings
+
+/user:
+  controller: User
+  action: user
