@@ -1,18 +1,18 @@
-/categories:
+/categorie/add:
   controller: Categories
-  action: categories
+  action: newCategorie
 
-/media:
-  controller: Media
-  action: media
+/media/add:
+  controller: Medias
+  action: newMedia
 
 /comments:
   controller: Comments
   action: comments
 
-/page:
-  controller: Post
-  action: page
+/post/add:
+  controller: Posts
+  action: newPost
 
 /settings:
   controller: SiteSettings
