@@ -1,13 +1,34 @@
 <?php
 
 namespace App\Controllers;
+
+use App\Core\View;
+
 class User
 {
 
-    public function user(): void
+    public function allUsers(): void
     {
-        echo "Les utilisateurs";
+        echo "tous les utilisateurs";
     }
+
+    public function newUser(): void
+    {
+        $newUser = new View("User/newuser", "front");
+    }
+
+    public function edit($userId): void
+    {
+        $editUser = new View("User/edituser", "front");
+    }
+
+
+    public function delete($userId): void
+    {
+        echo "Supprimmer un utilisateur";
+    }
+
+
 
 
 
