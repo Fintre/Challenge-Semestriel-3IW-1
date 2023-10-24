@@ -23,7 +23,7 @@ class User
     }
 
 
-    public function delete($userId): void
+    public function delete(): void
     {
         echo "Supprimmer un utilisateur";
     }
