@@ -8,16 +8,19 @@ use App\Models\Media;
 class Medias
 {
 
-    public function medias(): void
+    public function allmedias(): void
     {
-        // recuperer la liste des medias de l'utilisateur et renvoyer la view qui affiche les posts
-
         echo "Mes medias";
     }
 
     public function newMedia()
     {
-        $myView = new View("Media/new-media", "front");
+        $myView = new View("Media/newmedia", "front");
+    }
+
+    public function editMedia()
+    {
+        $myView = new View("Media/editmedia", "front");
     }
     public function save(): void
     {

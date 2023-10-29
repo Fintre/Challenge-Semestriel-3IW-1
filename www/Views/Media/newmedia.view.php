@@ -1,8 +1,11 @@
-<h2>Mes Catégories</h2>
-<form action="new-categorie.view.php" method="post">
+<h2>Mes medias</h2>
+<form action="newmedia.view.php" method="post">
 
-    <label>Nom</label>
-    <input name="name" id="name" type="text" />
+    <label>Nom du contenu</label>
+    <input name="title" id="title" type="text" />
+
+    <label>Type de contenu</label>
+    <input name="type" id="type" type="text" /></p>
 
     <label>Description</label>
     <input name="description" id="description" type="text" /></p>

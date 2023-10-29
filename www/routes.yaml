@@ -1,10 +1,26 @@
-/categorie/add:
+/categorie:
+  controller: Categories
+  action: allCategories
+
+/categorie/add-new-categorie:
   controller: Categories
   action: newCategorie
 
-/media/add:
+/categorie/edit-categorie:
+  controller: Categories
+  action: editCategorie
+
+/media:
+  controller: Medias
+  action: allMedias
+
+/media/add-new-media:
   controller: Medias
   action: newMedia
+
+/media/edit-media:
+  controller: Medias
+  action: editMedia
 
 /comments:
   controller: Comments

@@ -7,17 +7,21 @@ use App\Models\Categorie;
 class Categories
 {
 
-    public function categories(): void
+    public function allcategories(): void
     {
-        // recuperer la liste des categories de l'utilisateur et renvoyer la view qui affiche les posts
-
         echo "Mes categories";
     }
 
     public function newCategorie()
     {
-        $myView = new View("Categories/new-categorie", "front");
+        $myView = new View("Categories/newcategorie", "front");
     }
+
+    public function editcategorie(): void
+    {
+        $myView = new View("Categories/editcategorie", "front");
+    }
+
     public function save(): void
     {
         echo "save the categorie";
