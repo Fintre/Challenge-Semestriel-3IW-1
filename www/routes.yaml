@@ -38,6 +38,10 @@
   controller: User
   action: allUsers
 
+/user/delete-user:
+  controller: User
+  action: delete
+
 /user/add-new-user:
   controller: User
   action: newUser
