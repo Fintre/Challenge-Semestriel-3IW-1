@@ -3,7 +3,7 @@
 ## Description
 ### Choix du thème
 Notre projet pour le Challenge-Semestriel 2023 est de créer un Content Management Framework (**CMF**)
-Ce CMF aura pour thématique la prestation de service, mettre en évidence les commerciaux tel que la pâtisserie ou 
+Ce CMF aura pour thématique la prestation de service, mettre en évidence les commerciaux tel que la pâtisserie ou
 le coiffeur du quartier.
 
 ## Lancement du projet
@@ -16,5 +16,9 @@ https://trello.com/b/9XwC3n2g/gofindme
 ### MCD
 ![MCD](https://raw.githubusercontent.com/Fintre/Challenge-Semestriel-3IW-1/main/media/images/MCD.png)
 
+Commandes a suivre avant de lancer le projet :
 
+docker compose build
+docker compose up -d
+docker compose down
 
