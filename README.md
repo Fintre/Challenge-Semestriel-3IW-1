@@ -22,3 +22,8 @@ docker compose build
 docker compose up -d
 docker compose down
 
+CHAQUE FOIS AVANT DE COMMENCER A FAIRE DES MODIF :
+
+git pull
+sur votre branche : git merge main (comme ça vous avez les dernieres modif sur votre branche et evite les conflicts apres)
+
