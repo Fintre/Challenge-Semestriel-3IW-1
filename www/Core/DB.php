@@ -10,7 +10,7 @@ class DB
     {
         //connexion à la bdd via pdo
         try{
-            $this->pdo = new \PDO("pgsql:host=postgres;dbname=gfm;charset=utf8", "gofindme", "gfmpwd");
+            $this->pdo = new \PDO("pgsql:host=postgres;port=5432;dbname=gfm;user=gofindme;password=gfmpwd");
         }catch (\PDOException $e) {
             echo "Erreur SQL : ".$e->getMessage();
         }

@@ -1,3 +1,7 @@
+/:
+  controller: Main
+  action: home
+
 /categorie:
   controller: Categories
   action: allCategories
