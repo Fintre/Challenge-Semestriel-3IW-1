@@ -5,7 +5,7 @@ class Categorie
 {
     protected $name;
     protected $description;
-    protected $createAt;
+    protected $createdAt;
     protected $updatedAt;
     protected $isDeleted;
     protected $id;
@@ -63,7 +63,7 @@ class Categorie
      */
     public function getCreateAt()
     {
-        return $this->createAt;
+        return $this->createdAt;
     }
 
     /**
