@@ -12,6 +12,11 @@ RUN apt-get update -y && apt-get install -y libpng-dev libfreetype6-dev libyaml-
 RUN  docker-php-ext-configure gd --with-freetype
 RUN  docker-php-ext-install gd
 
+RUN apt-get update && apt-get install -y \
+    npm
+
+RUN npm install -g sass
+
 RUN pecl install yamL
 
 RUN usermod -u 1000 www-data
