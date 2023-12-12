@@ -53,3 +53,7 @@
 /user/edit-user:
   controller: User
   action: edit
+
+/login:
+  controller: login
+  action: connexion

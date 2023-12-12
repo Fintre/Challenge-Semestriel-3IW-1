@@ -5,7 +5,7 @@ class View
     private String $templateName;
     private String $viewName;
 
-    public function __construct(string $viewName, string $templateName = "back")
+    public function __construct(string $viewName, string $templateName = "front")
     {
         $this->setViewName($viewName);
         $this->setTemplateName($templateName);
