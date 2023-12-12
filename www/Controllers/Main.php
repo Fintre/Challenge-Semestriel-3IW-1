@@ -12,6 +12,8 @@ class Main
         $myUser->setFirstname("YVEs");
         $myUser->setLastname("Skrzypczyk   ");
         $myUser->setEmail("Y.skrzypczyk@gmail.com");
+        $myUser->setUsername("Yves.Skrrr");
+        $myUser->setRoles("admin");
         $myUser->setPwd("Test1234");
         $myUser->save();
 

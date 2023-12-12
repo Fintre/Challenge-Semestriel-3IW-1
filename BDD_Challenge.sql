@@ -7,8 +7,8 @@ SET search_path = public;
 CREATE TABLE "gfm_categorie" (
   "id" serial NOT NULL,
   "description" varchar(255) NOT NULL,
-  "createdAt" timestamp DEFAULT current_timestamp NOT NULL,
-  "updatedAt" timestamp DEFAULT current_timestamp,
+  "createdat" timestamp DEFAULT current_timestamp NOT NULL,
+  "updatedat" timestamp DEFAULT current_timestamp,
   "isDeleted" smallint NOT NULL DEFAULT 0
 );
 
@@ -16,8 +16,8 @@ CREATE TABLE "gfm_categorie" (
 CREATE TABLE "gfm_comment" (
   "id" serial NOT NULL,
   "commentText" varchar(255) NOT NULL,
-  "createdAt" timestamp DEFAULT current_timestamp NOT NULL,
-  "updatedAt" timestamp DEFAULT current_timestamp,
+  "createdat" timestamp DEFAULT current_timestamp NOT NULL,
+  "updatedat" timestamp DEFAULT current_timestamp,
   "user_id" int NOT NULL,
   "post_id" int NOT NULL
 );
@@ -28,8 +28,8 @@ CREATE TABLE "gfm_media" (
   "tag" varchar(15) NOT NULL,
   "filepath" varchar(100) NOT NULL,
   "description" varchar(255) NOT NULL,
-  "createdAt" timestamp DEFAULT current_timestamp NOT NULL,
-  "updatedAt" timestamp DEFAULT current_timestamp,
+  "createdat" timestamp DEFAULT current_timestamp NOT NULL,
+  "updatedat" timestamp DEFAULT current_timestamp,
   "isDeleted" smallint NOT NULL DEFAULT 0,
   "post_id" int NOT NULL
 );
@@ -44,8 +44,8 @@ CREATE TABLE "gfm_post" (
   "slug" varchar(20) NOT NULL,
   "published" smallint NOT NULL DEFAULT 0,
   "isDeleted" smallint NOT NULL DEFAULT 0,
-  "createdAt" timestamp DEFAULT current_timestamp NOT NULL,
-  "updatedAt" timestamp DEFAULT current_timestamp,
+  "createdat" timestamp DEFAULT current_timestamp NOT NULL,
+  "updatedat" timestamp DEFAULT current_timestamp,
   "user_id" int NOT NULL,
   "siteSetting_id" int NOT NULL
 );
@@ -55,8 +55,8 @@ CREATE TABLE "gfm_siteSetting" (
   "id" serial NOT NULL,
   "clé" int NOT NULL,
   "valeur" varchar(255) NOT NULL,
-  "createdAt" timestamp DEFAULT current_timestamp NOT NULL,
-  "updatedAt" timestamp DEFAULT current_timestamp,
+  "createdat" timestamp DEFAULT current_timestamp NOT NULL,
+  "updatedat" timestamp DEFAULT current_timestamp,
   "isDeleted" smallint NOT NULL DEFAULT 0
 );
 
@@ -67,11 +67,11 @@ CREATE TABLE "gfm_user" (
   "lastname" varchar(50) NOT NULL,
   "email" varchar(320) NOT NULL,
   "username" varchar(25) NOT NULL,
-  "password" varchar(255) NOT NULL,
+  "pwd" varchar(255) NOT NULL,
   "status" smallint NOT NULL DEFAULT 0,
   "roles" varchar(15) NOT NULL,
-  "createdAt" timestamp DEFAULT current_timestamp NOT NULL,
-  "updatedAt" timestamp DEFAULT current_timestamp,
+  "createdat" timestamp DEFAULT current_timestamp NOT NULL,
+  "updatedat" timestamp DEFAULT current_timestamp
 );
 
 -- Index pour les tables déchargées
