@@ -12,13 +12,24 @@ class Main
         $myUser->setFirstname("YVEs");
         $myUser->setLastname("Skrzypczyk   ");
         $myUser->setEmail("Y.skrzypczyk@gmail.com");
+<<<<<<< HEAD
+=======
+        $myUser->setUsername("Yves.Skrrr");
+        $myUser->setRoles("admin");
+>>>>>>> main
         $myUser->setPwd("Test1234");
         $myUser->save();
 
 
+<<<<<<< HEAD
         /*$myUser = User::populate(1);
         $myUser->setLastname("titi");
         $myUser->save();*/
+=======
+        $myUser = User::populate(1);
+        $myUser->setLastname("titi");
+        $myUser->save();
+>>>>>>> main
 
 
 
