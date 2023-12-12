@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Core\View;
-
+// use App\Models\User;
 class User
 {
 
@@ -22,6 +22,7 @@ class User
         $editUser = new View("User/edituser", "front");
     }
 
+    
 
     public function delete(): void
     {

@@ -53,3 +53,9 @@
 /user/edit-user:
   controller: User
   action: edit
+
+/register:
+  controller: Security
+  action: register
+
+
