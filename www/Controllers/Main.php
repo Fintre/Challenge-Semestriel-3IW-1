@@ -1,4 +1,4 @@
-<?php/*
+<?php
 namespace App\Controllers;
 use App\Core\View;
 use App\Models\User;
@@ -30,4 +30,4 @@ class Main
     {
         $myView = new View("Main/aboutus", "front");
     }
-}*/
+}
