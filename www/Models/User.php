@@ -7,13 +7,9 @@ class User extends DB
     private ?int $id = null;
     protected string $firstname;
     protected string $lastname;
-<<<<<<< HEAD
-    protected string $email;
-=======
     protected string $username;
     protected string $email;
     protected string $roles;
->>>>>>> main
     protected string $pwd;
     protected int $status;
     protected int $isDeleted;
@@ -144,10 +140,6 @@ class User extends DB
     {
         $this->isDeleted = $isDeleted;
     }
-<<<<<<< HEAD
-
-
-=======
     public function getUsername(): string
     {
         return $this->username;
@@ -172,5 +164,4 @@ class User extends DB
     {
         $this->roles = $roles;
     }
->>>>>>> main
 }
