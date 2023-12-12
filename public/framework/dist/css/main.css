@@ -1,0 +1,83 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&family=Roboto:wght@100;300;400;700;900&display=swap");
+/* Couleurs */
+/* Variables css */
+:root {
+  /* Couleurs */
+  --white: #fff;
+  --black: #000;
+  --grey: #101828;
+  --grey-darker: #010204;
+  --blue: #4169E1;
+  --blue-darker: #214cce;
+  --green: #A8E141;
+  --red: #dc3545;
+  --red-darker: #bd2130;
+  /* Typos */
+  --headers-font: Lato, sans-serif;
+  --text-font: Roboto, sans-serif;
+  /* Transitions */
+  --transition-duration: 0.3s;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+.button {
+  --bg-color: var(--blue);
+  --bg-hover-color: var(--white);
+  --bg-hover-border-color: var(--blue);
+  --bg-text-color: var(--white);
+  --bg-text-hover-color: var(--blue);
+  --bg-border-color: var(--blue);
+  display: inline-block;
+  padding: 0.375rem 1.5rem;
+  border-radius: 1.875rem;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  font-family: var(--text-font);
+  font-weight: 600;
+  font-size: 0.75rem;
+  line-height: 1.125rem;
+  background-color: var(--bg-color);
+  color: var(--bg-text-color);
+  transition: all var(--transition-duration);
+  /* Modificateurs de couleur */
+  /* Modificateurs de taille */
+}
+.button:hover {
+  background-color: var(--bg-hover-color);
+  color: var(--bg-text-hover-color);
+  border: 1px solid var(--bg-hover-border-color);
+}
+.button-primary {
+  --bg-color: var(--blue);
+  --bg-hover-color: var(--white);
+  --bg-hover-border-color: var(--blue);
+  --bg-text-hover-color: var(--blue);
+}
+.button-secondary {
+  --bg-color: var(--green);
+  --bg-hover-color: var(--white);
+  --bg-hover-border-color: var(--green);
+  --bg-text-hover-color: var(--green);
+}
+.button-danger {
+  --bg-color: var(--red);
+  --bg-hover-color: var(--white);
+  --bg-hover-border-color: var(--red);
+  --bg-text-hover-color: var(--red);
+}
+.button-lg {
+  padding: 0.625rem 2rem;
+  font-size: 1rem;
+}
+.button-sm {
+  font-size: 0.875rem;
+  line-height: 1rem;
+  padding: 0.25rem 1rem;
+  font-size: 0.625rem;
+}
+
+/*# sourceMappingURL=main.css.map */
