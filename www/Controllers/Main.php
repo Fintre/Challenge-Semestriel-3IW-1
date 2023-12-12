@@ -1,4 +1,4 @@
-<?php
+<?php/*
 namespace App\Controllers;
 use App\Core\View;
 use App\Models\User;
@@ -16,9 +16,9 @@ class Main
         $myUser->save();
 
 
-        /*$myUser = User::populate(1);
+        $myUser = User::populate(1);
         $myUser->setLastname("titi");
-        $myUser->save();*/
+        $myUser->save();
 
 
 
@@ -30,4 +30,4 @@ class Main
     {
         $myView = new View("Main/aboutus", "front");
     }
-}
+}*/
