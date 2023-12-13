@@ -12,6 +12,7 @@ class User
         echo "tous les utilisateurs";
     }
 
+    
     public function newUser(): void
     {
         $newUser = new View("User/newuser", "front");
