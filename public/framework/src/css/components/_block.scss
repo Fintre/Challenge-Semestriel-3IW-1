@@ -1,0 +1,44 @@
+.block-line-search {
+  display: inline-block;
+  margin: 50px auto;
+  border-radius: var(--border-radius-std);
+  box-shadow: var(--box-shadow-base);
+  padding: 17px 19px;
+  align-items: flex-start;
+  width: 500px;
+  .search-input {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-family: 'Lato', sans-serif;
+  }
+}
+
+.block-card {
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  border-radius: var(--border-radius-std);
+  box-shadow: var(--box-shadow-base);
+  padding: 20px;
+
+  &-media {
+    &-img {
+      padding-right: 15px;
+      img {
+        width: 100px;
+        height: auto;
+        border-radius: var(--border-radius-std);
+      }
+    }
+    &-property {
+      padding-right: 15px;
+    }
+    &-value {
+      padding-right: 15px;
+    }
+    svg {
+      width: 80%;
+    }
+  }
+}
