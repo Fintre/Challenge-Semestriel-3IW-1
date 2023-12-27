@@ -7,7 +7,6 @@ class Main
     // public function home(): void
     // {
 
-
     //     $myUser = new User();
     //     $myUser->setFirstname("YVEs");
     //     $myUser->setLastname("Skrzypczyk   ");
@@ -21,6 +20,7 @@ class Main
     //     $myUser = User::populate(1);
     //     $myUser->setLastname("titi");
     //     $myUser->save();
+
 
 
 
