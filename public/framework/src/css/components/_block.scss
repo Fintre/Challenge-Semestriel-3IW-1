@@ -22,7 +22,6 @@
   box-shadow: var(--box-shadow-base);
   padding: 20px;
   position: relative;
-
   &-media {
     &-img {
       padding-right: 15px;
@@ -33,7 +32,6 @@
         border-radius: var(--border-radius-std);
       }
     }
-
     &-desc {
       display: flex;
       flex-direction: column;
@@ -49,9 +47,7 @@
       }
     }
   }
-
   &-modified {
-    position: absolute;
     top: 10px;
     right: 10px;
 
@@ -60,45 +56,116 @@
       height: 22px;
     }
   }
-
-  &.block-card-custom-page.color {
+  &.block-card-custom-page {
     border: 1px solid var(--green);
     display: inline-flex;
     flex-direction: column;
+    padding: 5px 20px;
     text-align: center;
-
-    .block-card-custom-page-color-wrapper {
-      display: inline-flex;
-      margin-top: 10px;
-
-      .block-card-custom-page-text {
-        align-items: center;
-        display: flex;
-        flex-direction: column;
-        border: 1px solid var(--grey);
-        border-radius: var(--border-radius-std);
-        margin-right: 10px;
-        padding: 5px;
-        input[type="color"] {
-          border-radius: var(--border-radius-light);
-          border: none;
-          width: 25px;
+    &.color {
+      .block-card-custom-page-color-wrapper {
+        display: inline-flex;
+        margin-top: 10px;
+        .block-card-custom-page-text {
+          align-items: center;
+          display: flex;
+          flex-direction: column;
+          border: 1px solid var(--grey);
+          border-radius: var(--border-radius-std);
+          margin-right: 10px;
+          padding: 5px;
+          input[type="color"] {
+            border: none;
+            border-radius: var(--border-radius-hard);
+            box-shadow: var(--box-shadow-base);
+            height: 25px;
+            width: 30px;
+          }
+        }
+        .block-card-custom-page-background {
+          align-items: center;
+          display: flex;
+          flex-direction: column;
+          border: 1px solid var(--grey);
+          border-radius: var(--border-radius-std);
+          padding: 5px;
+          input[type="color"] {
+            border: none;
+            border-radius: var(--border-radius-hard);
+            box-shadow: var(--box-shadow-base);
+            height: 25px;
+            width: 30px;
+          }
         }
       }
-
-      .block-card-custom-page-background {
-        align-items: center;
-        display: flex;
-        flex-direction: column;
+    }
+  }
+  &.block-card-custom-page.info {
+    .block-card-custom-page-info-property {
+      text-align: left;
+      padding: 10px 0 10px 0;
+      .block-card-custom-page-info-value {
         border: 1px solid var(--grey);
-        border-radius: var(--border-radius-std);
-        padding: 5px;
-        input[type="color"] {
-          border-radius: var(--border-radius-light);
-          border: none;
-          width: 25px;
+        border-radius: var(--border-radius-hard);
+        margin-left: 15px;
+        padding: 5px 20px;
+      }
+    }
+  }
+  &.block-card-custom-page.media {
+    border: 1px solid var(--blue);
+    .block-card-custom-page-media-property {
+      text-align: left;
+      padding: 10px 0 10px 0;
+    }
+    .block-card-custom-page-media-value {
+      border: 1px solid var(--grey);
+      border-radius: 15px;
+      margin-left: 15px;
+      padding: 5px 20px;
+    }
+  }
+  &.block-card-custom-page.typo {
+    border: 1px solid var(--blue);
+    .block-card-custom-page-typo-property {
+      text-align: left;
+      padding: 10px 0 10px 0;
+      .block-card-custom-page-typo-value {
+        border: 1px solid var(--grey);
+        border-radius: 15px;
+        margin-left: 15px;
+        padding: 5px 20px;
+      }
+      .block-card-custom-page-typo-wrapper {
+        .block-card-custom-page-typo-property {
+          display: flex;
+          flex-direction: column;
+          .block-card-custom-page-typo-value {
+            border: 1px solid var(--grey);
+            border-radius: 15px;
+            margin-left: 15px;
+            padding: 5px 20px;
+          }
+        }
+      }
+    }
+  }
+  &.block-card-comment {
+    .block-card-comment-desc-wrapper {
+      display: flex;
+      .block-card-comment-desc {
+        padding-right: 15px;
+        &.approved {
+          color: #FF6C02;
+        }
+        &.spam {
+          color: var(--red);
+        }
+        &.bin {
+          color: var(--red);
         }
       }
     }
   }
 }
+
