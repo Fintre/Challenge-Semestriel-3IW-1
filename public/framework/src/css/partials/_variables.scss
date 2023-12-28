@@ -4,7 +4,7 @@ $primary-black: #000;
 $gfm-secondary-green: #A8E141;
 $gfm-accent-blue: #4169E1;
 $red: #dc3545;
-$gfm-primary-grey: #101828;
+$gfm-primary-grey: #cbcdd1;
 
 /* Variables css */
 :root {
@@ -25,4 +25,12 @@ $gfm-primary-grey: #101828;
 
 	/* Transitions */
 	--transition-duration: 0.3s;
+
+	/* Border-radius */
+	--border-radius-std: 10px;
+	--border-radius-light: 5px;
+	--border-radius-hard: 15px;
+
+	/* Box-shadow */
+	--box-shadow-base: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
