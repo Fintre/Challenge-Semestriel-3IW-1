@@ -7,15 +7,10 @@ use App\Models\Post;
 class Posts
 {
 
-    public function posts(): void
+    public function allPosts(): void
     {
-        // recuperer la liste des posts de l'utilisateur et renvoyer la view qui affiche les posts
-        echo "Mes posts";
-    }
+        $myView = new View("Post/post", "back");
 
-    public function newPost()
-    {
-        $myView = new View("Post/new-post", "front");
     }
 
     public function save(): void

@@ -7,8 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Template Back</title>
     <style>
-        <?php include "_back.tpl.scss";?>
-        <?php include "_global.scss";?>
+        <?php include $this->css;?>
     </style>
 </head>
 <body>
@@ -54,7 +53,7 @@
                 </div>
             </div>
         </section>
-        <section class="section2-page-content global">
+        <section class="section2-page-content">
         <?php include $this->viewName;?>
         </section>
     </main>

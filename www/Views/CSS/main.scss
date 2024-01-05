@@ -1,6 +1,7 @@
-@import "partials/variable";
-@import "partials/global";
+@import "partials/functions.scss";
+@import "partials/global.scss";
+@import "partials/variable.scss";
 
-@import "components/Templates/back.tpl";
-@import "components/Post/post";
-
+@import "components/Templates/back.tpl.scss";
+@import "components/Post/post.scss";
+@import "components/Media/_media.scss";

@@ -18,21 +18,14 @@
   controller: Medias
   action: allMedias
 
-/media/add-new-media:
-  controller: Medias
-  action: newMedia
-
-/media/edit-media:
-  controller: Medias
-  action: editMedia
-
 /comments:
   controller: Comments
   action: comments
 
-/post/add:
+
+/post:
   controller: Posts
-  action: newPost
+  action: allPosts
 
 /settings:
   controller: SiteSettings
