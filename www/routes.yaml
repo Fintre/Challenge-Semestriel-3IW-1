@@ -57,3 +57,7 @@
 /login:
   controller: login
   action: connexion
+
+/posts:
+  controller: posts
+  action: posts
