@@ -9,7 +9,7 @@
     <title>Template Front</title>
 </head>
 <body>
-<h1>Template Front</h1>
+<h1 class="one">Template Front</h1>
 
 <?php include $this->viewName;?>
 

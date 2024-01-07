@@ -55,8 +55,8 @@
   action: edit
 
 /login:
-  controller: login
-  action: connexion
+  controller: Security
+  action: login
 
 /posts:
   controller: posts

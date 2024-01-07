@@ -10,7 +10,8 @@ class Posts
     public function posts(): void
     {
         // recuperer la liste des posts de l'utilisateur et renvoyer la view qui affiche les posts
-        echo "Mes posts";
+        //echo "Mes posts";
+        $newUser = new View("Post/all-post", "back");
     }
 
     public function newPost()
