@@ -17,9 +17,25 @@ class Main
     //     $myUser->save();
 
 
+<<<<<<< HEAD
     //     $myUser = User::populate(1);
     //     $myUser->setLastname("titi");
     //     $myUser->save();
+=======
+        $myUser = new User();
+        $myUser->setFirstname("YVEs");
+        $myUser->setLastname("Skrzypczyk   ");
+        $myUser->setUsername("yskr");
+        $myUser->setEmail("Y.skrzypczyk@gmail.com");
+        $myUser->setPwd("Test1234");
+        $myUser->setRoles("role");
+        $myUser->setStatus(1);
+        /*$myUser->save();*/
+
+        /*$myUser = User::populate(1);
+        $myUser->setLastname("titi");
+        $myUser->save();*/
+>>>>>>> main
 
 
 
