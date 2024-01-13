@@ -1,0 +1,43 @@
+.themes {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-self: stretch;
+    border-radius: var(--border-radius-std);
+    box-shadow: var(--box-shadow-base);
+    padding: 20px;
+    gap: 20px;
+    width: 300px;
+    height: 300px;
+    flex-shrink: 0;
+    &.themes-card {
+        img {
+            width: 100%;
+            flex: 1 0 0;
+            align-self: stretch;
+            background: cover no-repeat;
+        }
+
+        &-active {
+            display: flex;
+            height: 40px;
+            padding: 0px 24px;
+            align-items: center;
+            gap: 50px;
+            flex-shrink: 0;
+            align-self: stretch;
+            background: var(--gfm-secondary-green);
+        }
+
+        &-inactive {
+            display: flex;
+            height: 40px;
+            padding: 0px 24px;
+            align-items: center;
+            gap: 50px;
+            flex-shrink: 0;
+            align-self: stretch;
+            background: var(--primary-white);
+        }
+    }
+}
