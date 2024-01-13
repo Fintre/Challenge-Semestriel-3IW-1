@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&family=Roboto:wght@100;300;400;700;900&display=swap");
 .foo {
   display: flex;
   background-color: white;
@@ -30,7 +31,31 @@ h1 {
 
 h2 {
   font-size: 36px;
-  color: red;
+  margin: 0;
+  padding: 15px;
+}
+
+h3 {
+  font-size: 20px;
+}
+
+.section1-status-tab {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  margin-left: 30px;
+}
+.section1-status-tab .status-tab {
+  color: black;
+}
+.section1-status-tab .status-tab ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  list-style-type: none;
+}
+.section1-status-tab .status-tab ul li {
+  margin-right: 25px;
 }
 
 .site-template-back-header {
