@@ -46,3 +46,15 @@
 /user/edit-user:
   controller: User
   action: edit
+
+/login:
+  controller: Security
+  action: login
+
+/login/logout:
+  controller: Security
+  action: logout
+
+/login/register:
+  controller: Security
+  action: register
