@@ -62,3 +62,7 @@
 /login/register:
   controller: Security
   action: register
+
+/login/recover-password:
+  controller: Security
+  action: forgetPassword

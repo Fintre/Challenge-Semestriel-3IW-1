@@ -21,10 +21,5 @@
         </nav>
     </div>
 </header>
-<main>
-    <section class="section2-page-content">
-        <?php include $this->viewName;?>
-    </section>
-</main>
-</body>
+<?php include $this->viewName;?>
 </html>

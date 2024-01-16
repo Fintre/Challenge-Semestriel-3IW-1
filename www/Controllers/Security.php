@@ -10,7 +10,7 @@ class Security
     {
         $form = new \App\Forms\Connexion();
         $myView = new View("Security/login", "neutral");
-        \App\Core\FormGenerator::generateForm($form);
+        //\App\Core\FormGenerator::generateForm($form);
         //include(__DIR__ . '/../Views/votre_vue.php');
     }
     public function logout(): void
@@ -26,6 +26,12 @@ class Security
         $myView = new View("Security/register", "back");
         \App\Core\FormGenerator::generateForm($form);
         echo "Ma page d'inscription";
+    }
+
+    public function forgetPassword(): void
+    {
+        $form = new \App\Forms\RecoverPassword();
+        $myView = new View("Security/forgetPassword", "neutral");
     }
 
 }
