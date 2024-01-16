@@ -10,5 +10,6 @@
 <body>
 <h2>Mes pages</h2>
 <!-- contenu de ma page ici !-->
+>>>>>>> main:www/Views/components/Post/post.view.php
 </body>
 </html>

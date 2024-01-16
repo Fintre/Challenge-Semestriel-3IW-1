@@ -9,7 +9,10 @@ class Posts
 
     public function allPosts(): void
     {
-        $myView = new View("Post/post", "back");
+        // recuperer la liste des posts de l'utilisateur et renvoyer la view qui affiche les posts
+        //echo "Mes posts";
+        $newUser = new View("Post/all-post", "back");
+    }
 
     }
 
