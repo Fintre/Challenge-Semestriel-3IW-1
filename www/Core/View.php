@@ -11,7 +11,7 @@ class View
     private String $viewName;
     private String $css;
 
-    public function __construct(string $viewName, string $templateName = "back")
+    public function __construct(string $viewName, string $templateName = "front")
     {
         $compiler = new Compiler();
         $outputCss = $compiler->compileFile('Views/CSS/main.scss')->getCss();

@@ -167,5 +167,124 @@
       }
     }
   }
+
+  .block-card-form {
+    display: flex;
+    padding: 8px 8px;
+    align-items: flex-start;
+    gap: rem(5);
+
+    &-text{
+      display: flex;
+      width: rem(400);
+      height: auto;
+      padding: rem(4) rem(4);
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+      &.date {
+        font-size: rem(12);
+        font-family: var(--text-font);
+        align-self: stretch;
+        color: var(--blue);
+      }
+      &.name {
+        font-size: rem(20);
+        font-family: var(--text-font);
+        align-self: stretch;
+        color: var(--black);
+      }
+    }
+
+    svg{
+      display: flex;
+      width: 56px;
+      padding: 4px;
+      justify-content: flex-end;
+      align-items: flex-start;
+      gap: 10px;
+      align-self: stretch;
+      stroke-width: 2px;
+      stroke: #000;
+    }
+  }
 }
+.block-card-dashboard {
+  display: inline-flex;
+  flex-direction: column;
+  position: relative;
+  padding: rem(16);
+  gap: rem(16);
+
+  .block-card-dashboard-total {
+      display: flex;
+      width: auto;
+      height: auto;
+      padding: rem(16);
+      align-items: flex-start;
+      gap: rem(16);
+      border-radius: rem(15);
+      background: var(--white);
+      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+      &.blue {
+        border: 1px solid var(--blue);
+      }
+      &.green {
+        border: 1px solid var(--green);
+      }
+      &.black {
+        border: 1px solid var(--black);
+      }
+
+      img{
+        display: flex;
+        width: 50px;
+        height: 50px;
+        padding: rem(4);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: rem(4);
+        flex-shrink: 0;
+      }
+
+      &-text {
+        display: flex;
+        padding: 4px 16px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        flex: 1 0 0;
+        align-self: stretch;
+        justify-content: center;
+
+        .title {
+            display: flex;
+            height: 12px;
+            flex-direction: column;
+            justify-content: center;
+            font-size: rem(16);
+            letter-spacing: rem(1.6);
+            font-family: var(--text-font);
+            align-self: stretch;
+            color: rgba(0, 0, 0, 0.75);
+        }
+
+        .number {
+            display: flex;
+            height: 24px;
+            flex-direction: column;
+            justify-content: center;
+            font-size: rem(16);
+            letter-spacing: rem(1.6);
+            font-family: var(--text-font);
+            align-self: stretch;
+            color: var(--black);
+        }
+      }
+
+    }
+}
+
+
+
 

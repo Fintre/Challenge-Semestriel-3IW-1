@@ -2,6 +2,10 @@
   controller: Main
   action: home
 
+/design-guide:
+  controller: DesignGuide
+  action: index
+
 /categorie:
   controller: Categories
   action: allCategories
@@ -46,3 +50,19 @@
 /user/edit-user:
   controller: User
   action: edit
+
+/login:
+  controller: Security
+  action: login
+
+/login/logout:
+  controller: Security
+  action: logout
+
+/login/register:
+  controller: Security
+  action: register
+
+/login/recover-password:
+  controller: Security
+  action: forgetPassword

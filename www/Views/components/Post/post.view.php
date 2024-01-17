@@ -8,6 +8,7 @@
     <title>Mes pages</title>
 </head>
 <body>
+<<<<<<< HEAD
     <header id="header" class="post-header">
         <h2>Mes pages</h2>
     </header>
@@ -26,5 +27,10 @@
 
 
     <!-- contenu de ma page ici !-->
+=======
+<h2>Mes pages</h2>
+<!-- contenu de ma page ici !-->
+>>>>>>> main:www/Views/components/Post/post.view.php
+>>>>>>> main
 </body>
 </html>
