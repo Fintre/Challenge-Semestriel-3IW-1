@@ -5,12 +5,12 @@ namespace App\Controllers;
 use App\Core\View;
 use App\Models\Media;
 
-class Medias
+class Comments
 {
 
-    public function allMedias(): void
+    public function allComments(): void
     {
-        $myView = new View("Media/media", "back");
+        $myView = new View("Comment/comment", "back");
     }
 
     public function save(): void
