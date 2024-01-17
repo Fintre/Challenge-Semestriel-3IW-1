@@ -65,10 +65,11 @@ CREATE TABLE "gfm_user" (
   "id" serial NOT NULL,
   "firstname" varchar(25) NOT NULL,
   "lastname" varchar(50) NOT NULL,
-  "email" varchar(320) NOT NULL,
+  "email" varchar(320) NOT NULL UNIQUE,
   "username" varchar(25) NOT NULL,
   "pwd" varchar(255) NOT NULL,
   "status" smallint NOT NULL DEFAULT 0,
+  "img_path" varchar(255),
   "roles" varchar(15) NOT NULL,
   "createdat" timestamp DEFAULT current_timestamp NOT NULL,
   "updatedat" timestamp DEFAULT current_timestamp

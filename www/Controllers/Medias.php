@@ -10,18 +10,9 @@ class Medias
 
     public function allmedias(): void
     {
-        echo "Mes medias";
+        $myView = new View("Media/media", "back");
     }
 
-    public function newMedia()
-    {
-        $myView = new View("Media/newmedia", "front");
-    }
-
-    public function editMedia()
-    {
-        $myView = new View("Media/editmedia", "front");
-    }
     public function save(): void
     {
         echo "save the media";
