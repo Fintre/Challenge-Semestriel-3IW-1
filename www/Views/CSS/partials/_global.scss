@@ -1,5 +1,5 @@
 body {
-  background: #cbcdd1;
+  background-color: rgba(16, 24, 40, 0.08);
   font-family: "Lato", sans-serif;
   margin: 0;
   display: flex;
@@ -20,7 +20,37 @@ h1 {
 
 h2 {
   font-size: 36px;
-  color: red;
+  margin: 0;
+  padding: 15px;
 }
 
+h3 {
+  font-size: 20px;
+}
 
+.page-content {
+  flex-direction: column;
+}
+
+.section1-status-tab {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  margin-left: 30px;
+  .status-tab {
+    color: black;
+    ul {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      list-style-type: none;
+      li {
+        margin-right: 25px;
+        a {
+          color: black;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
