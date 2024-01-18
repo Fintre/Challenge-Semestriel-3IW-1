@@ -10,7 +10,7 @@ class Posts
     public function allPosts(): void
     {
         $myView = new View("Post/post", "back");
-
+    }
 
     public function save(): void
     {
