@@ -14,7 +14,6 @@ class Posts
         $newUser = new View("Post/all-post", "back");
     }
 
-    }
 
     public function save(): void
     {
