@@ -34,13 +34,13 @@
             <td>user1</td>
             <td>user@gmail.com</td>
             <td>admin</td>
-            <td><i class="fa fa-trash" aria-hidden="true"></i></td>
+            <td><i class="fa fa-times" aria-hidden="true"></i></td>
         </tr>
         <tr>
             <td>user2</td>
             <td>user@gmail.com</td>
             <td>admin</td>
-            <td><i class="fa fa-delete" aria-hidden="true"></i></td>
+            <td><i class="fa fa-times" aria-hidden="true"></i></td>
         </tr>
         </tbody>
     </table>

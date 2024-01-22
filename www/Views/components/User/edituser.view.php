@@ -23,12 +23,12 @@
         </div>
         <div class="col-6">
             <h1>Mes pages</h1>
-            <div>
+            <!--<div>
                 <?php
-                $connexionForm = new EditUser();
-                echo $connexionForm->renderForm();
+                /*$connexionForm = new EditUser();
+                echo $connexionForm->renderForm();*/
                 ?>
-            </div>
+            </div>-->
         </div>
     </div>
 </body>
