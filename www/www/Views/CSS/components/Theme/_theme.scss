@@ -1,0 +1,38 @@
+.bo-title {
+    display: flex;
+    padding: 0px 16px;
+    align-items: center;
+    gap: rem(50);
+    align-self: stretch;
+
+    &.text {
+        color: var(--blue);
+    }
+
+    &.total {
+        display: flex;
+        padding: rem(15);
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        border-radius: 15px;
+        background: var(--blue);
+
+        &-text {
+            color: var(--black);
+            text-align: center;
+            font-size: 20px;
+            font-family: var(--text-font);
+        }
+    }
+}
+
+.bo-content {
+    display: flex;
+    padding: 0px 16px;
+    align-items: flex-start;
+    align-content: flex-start;
+    gap: 16px 32px;
+    align-self: stretch;
+    flex-wrap: wrap;
+}
