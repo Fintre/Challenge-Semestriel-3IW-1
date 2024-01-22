@@ -67,3 +67,25 @@
   controller: Security
   action: forgetPassword
 
+<<<<<<< HEAD
+=======
+/login/get-code:
+  controller: Security
+  action: getCode
+
+/login/init-password:
+  controller: Security
+  action: initPassword
+
+/articles:
+  controller: Articles
+  action: allArticles
+
+/articles/add-article:
+  controller: Articles
+  action: addArticles
+
+/articles/edit-article:
+  controller: Articles
+  action: editArticles
+>>>>>>> Soumaya

@@ -4,19 +4,28 @@ use App\Core\View;
 use App\Models\User;
 class Main
 {
+<<<<<<< HEAD
      public function home(): void
      {
+=======
+    public function home(): void
+    {
+>>>>>>> Soumaya
 
-    //     $myUser = new User();
-    //     $myUser->setFirstname("YVEs");
-    //     $myUser->setLastname("Skrzypczyk   ");
-    //     $myUser->setEmail("Y.skrzypczyk@gmail.com");
-    //     $myUser->setUsername("Yves.Skrrr");
-    //     $myUser->setRoles("admin");
-    //     $myUser->setPwd("Test1234");
-    //     $myUser->save();
+         $myUser = new User();
+         $myUser->setFirstname("YVEs");
+         $myUser->setLastname("Skrzypczyk   ");
+         $myUser->setEmail("Y.skrzypczyk@gmail.com");
+         $myUser->setUsername("Yves.Skrrr");
+         $myUser->setRoles("admin");
+         $myUser->setPwd("Test1234");
+         $myUser->save();
 
+         $myUser = User::populate(1);
+         $myUser->setLastname("titi");
+         $myUser->save();
 
+<<<<<<< HEAD
     //     $myUser = User::populate(1);
     //     $myUser->setLastname("titi");
     //     $myUser->save();
@@ -33,3 +42,13 @@ class Main
     //     $myView = new View("Main/aboutus", "front");
     }
 }
+=======
+         $myView = new View("Main/home", "back");
+     }
+
+     public function aboutUs(): void
+     {
+         $myView = new View("Main/aboutus", "front");
+     }
+}
+>>>>>>> Soumaya
