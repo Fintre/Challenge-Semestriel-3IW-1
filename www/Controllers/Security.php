@@ -51,8 +51,8 @@ class Security
     public function login(): void
     {
         $form = new \App\Forms\Connexion();
-        $myView = new View("Security/register", "back");
-        \App\Core\FormGenerator::generateForm($form);
+        $myView = new View("Security/login", "neutral");
+        //\App\Core\FormGenerator::generateForm($form);
     }
 
     public function forgetPassword(): void
