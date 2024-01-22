@@ -73,7 +73,30 @@ class DB
         return $queryPrepared->fetch(); //pour récupérer le résultat de la requête (un seul enregistrement)
 
     }
+    public function delete(array $data)
+    {
+        // Use the getOneBy function to find the record to delete
+        $recordToDelete = $this->getOneBy($data);
 
+        if (!$recordToDelete) {
+            // The record to delete doesn't exist
+            return false;
+        }
+
+        // Build the DELETE SQL statement
+        $sql = "DELETE FROM " . $this->table . " WHERE ";
+        foreach ($data as $column => $value) {
+            $sql .= " " . $column . "=:" . $column . " AND";
+        }
+        $sql = substr($sql, 0, -3); // Remove the last AND
+
+        // Prepare and execute the DELETE query
+        $queryPrepared = $this->pdo->prepare($sql);
+        $queryPrepared->execute($data);
+
+        // Check if the record was successfully deleted
+        return $queryPrepared->rowCount() > 0;
+    }
 }
 
 

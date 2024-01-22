@@ -25,7 +25,7 @@ class Main
 
 
 
-    //     $myView = new View("Main/home", "back");
+     $myView = new View("Main/home", "back");
     // }
 
     // public function aboutUs(): void

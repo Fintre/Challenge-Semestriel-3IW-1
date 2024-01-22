@@ -24,7 +24,7 @@
 
 /comments:
   controller: Comments
-  action: comments
+  action: allComments
 
 
 /post:
@@ -51,6 +51,10 @@
   controller: User
   action: edit
 
+/register:
+  controller: Security
+  action: register
+
 /login:
   controller: Security
   action: login
@@ -59,10 +63,7 @@
   controller: Security
   action: logout
 
-/login/register:
-  controller: Security
-  action: register
-
 /login/recover-password:
   controller: Security
   action: forgetPassword
+

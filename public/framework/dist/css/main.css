@@ -411,4 +411,104 @@ body {
   background: var(--white);
 }
 
+.card {
+  display: inline-block;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--white);
+  border: 1px solid var(--black);
+  padding: 1rem 1.5rem;
+}
+.card-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: stretch;
+  font-size: 2rem;
+  font-family: var(--headers-font);
+  text-align: center;
+  color: var(--black);
+}
+.card-avis {
+  display: flex;
+  padding: 0.5rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+  border-bottom: 1px solid var(--black);
+}
+.card-avis-elements {
+  display: flex;
+  padding: 0rem 0.25rem;
+  justify-content: center;
+  align-items: center;
+}
+.card-avis-elements img {
+  width: 4.375rem;
+  height: 4.375rem;
+  border-radius: 4.375rem;
+}
+.card-avis-elements.text {
+  display: flex;
+  padding: 0.5rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+}
+.card-avis-elements.text-name {
+  font-size: 1rem;
+  font-family: var(--headers-font);
+  text-align: left;
+  color: var(--black);
+}
+.card-avis-elements.text-avis {
+  font-size: 0.75rem;
+  font-family: var(--text-font);
+  text-align: left;
+  color: rgba(0, 0, 0, 0.75);
+}
+.card-button {
+  display: flex;
+  padding: 1rem;
+  justify-content: center;
+  align-items: center;
+  align-self: stretch;
+}
+
+.accordion-container {
+  display: flex;
+  padding: 0.5rem;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  align-self: stretch;
+  width: 400px;
+}
+.accordion-container a {
+  text-decoration: none;
+}
+.accordion-container .accordion {
+  display: flex;
+  padding: 8px;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+  border-bottom: 1px solid var(--black);
+}
+.accordion-container .accordion-title {
+  font-size: 1.25rem;
+  font-family: var(--text-font);
+  color: var(--black);
+}
+.accordion-container .accordion-icon {
+  width: 30px;
+  height: 30px;
+  background-image: url("../../assets/icons/fleche-accordion-open.svg");
+}
+.accordion-container .accordion:hover {
+  background-color: rgba(65, 105, 225, 0.4);
+}
+
 /*# sourceMappingURL=main.css.map */
