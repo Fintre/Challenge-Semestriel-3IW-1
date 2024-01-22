@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&family=Roboto:wght@100;300;400;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&family=Roboto:wght@100;300;400;700;900&display=swap");
 .foo {
   display: flex;
   background-color: white;
@@ -32,6 +33,48 @@ h1 {
 h2 {
   font-size: 36px;
   color: red;
+}
+
+.grid .col-1 {
+  width: 8.3333333333%;
+}
+.grid .col-2 {
+  width: 16.6666666667%;
+}
+.grid .col-3 {
+  width: 25%;
+}
+.grid .col-4 {
+  width: 33.3333333333%;
+}
+.grid .col-5 {
+  width: 41.6666666667%;
+}
+.grid .col-6 {
+  width: 50%;
+}
+.grid .col-7 {
+  width: 58.3333333333%;
+}
+.grid .col-8 {
+  width: 66.6666666667%;
+}
+.grid .col-9 {
+  width: 75%;
+}
+.grid .col-10 {
+  width: 83.3333333333%;
+}
+.grid .col-11 {
+  width: 91.6666666667%;
+}
+.grid .col-12 {
+  width: 100%;
+}
+.grid .row {
+  display: flex;
+  justify-content: space-around;
+  background-color: white;
 }
 
 .site-template-back-header {
@@ -416,6 +459,7 @@ form input {
   margin: 5px;
   border-radius: 5px;
   width: 50%;
+  padding: 5px;
 }
 
 .central {
@@ -423,6 +467,53 @@ form input {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+}
+
+h1 {
+  white-space: normal;
+  line-height: 1.2;
+  padding-left: 0.9375rem;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+.no-border {
+  border: none;
+}
+
+.container {
+  margin: 1.5625rem;
+}
+
+.responsive-table {
+  text-align: center;
+  border-radius: 0.625rem;
+  border: none;
+}
+
+.responsive-th {
+  border: none;
+  border-radius: 0.625rem;
+  background-color: black;
+}
+
+.responsive-tb {
+  border: none;
+  border-radius: 0.625rem;
+  background-color: black;
+}
+
+/* Tableau des utilisateurs*/
+/* Styles pour les lignes paires */
+.even-row {
+  background-color: #f2f2f2;
+}
+
+/* Styles pour les lignes impaires */
+.odd-row {
+  background-color: black;
 }
 
 /*# sourceMappingURL=main.css.map */

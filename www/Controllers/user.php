@@ -9,7 +9,7 @@ class User
 
     public function allUsers(): void
     {
-        echo "tous les utilisateurs";
+        $newUser = new View("User/allusers", "back");
     }
 
     public function newUser(): void
@@ -19,7 +19,7 @@ class User
 
     public function edit(): void
     {
-        $editUser = new View("User/edituser", "front");
+        $editUser = new View("User/edituser", "back");
     }
 
 

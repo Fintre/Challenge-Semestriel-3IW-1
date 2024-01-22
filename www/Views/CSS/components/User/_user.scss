@@ -1,0 +1,45 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&family=Roboto:wght@100;300;400;700;900&display=swap");
+
+@function rem($pxValue) {
+  @return ($pxValue / 16) * 1rem;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+.no-border {
+  border: none;
+}
+
+.container {
+  margin: rem(25);
+}
+
+.responsive-table{
+  text-align: center;
+  border-radius: rem(10);
+  border: none;
+}
+
+.responsive-th{
+  border: none;
+  border-radius: rem(10);
+  background-color: black;
+}
+
+.responsive-tb{
+  border: none;
+  border-radius: rem(10);
+  background-color: black;
+}
+
+/* Tableau des utilisateurs*/
+/* Styles pour les lignes paires */
+.even-row {
+  background-color: #f2f2f2;
+}
+/* Styles pour les lignes impaires */
+.odd-row {
+  background-color: black;
+}

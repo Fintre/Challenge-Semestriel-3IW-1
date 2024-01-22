@@ -19,7 +19,7 @@
                 $connexionForm = new Connexion();
                 echo $connexionForm->renderForm(); ?>
             </div>
-            <div><a href="#">Mot de passe oublié ?</a></div>
+            <div><a href="/login/recover-password" data-controller="Security" data-action="forgetPassword">Mot de passe oublié ?</a></div>
         </div>
     </section>
 

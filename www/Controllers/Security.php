@@ -18,20 +18,30 @@ class Security
         $form = new \App\Forms\Connexion();
         $myView = new View("Security/logout", "back");
         \App\Core\FormGenerator::generateForm($form);
-        echo "Ma page de déconnexion";
     }
     public function register(): void
     {
         $form = new \App\Forms\Connexion();
         $myView = new View("Security/register", "back");
         \App\Core\FormGenerator::generateForm($form);
-        echo "Ma page d'inscription";
     }
 
     public function forgetPassword(): void
     {
         $form = new \App\Forms\RecoverPassword();
         $myView = new View("Security/forgetPassword", "neutral");
+    }
+
+    public function getCode(): void
+    {
+        $form = new \App\Forms\GetCode();
+        $myView = new View("Security/getCode", "neutral");
+    }
+
+    public function initPassword(): void
+    {
+        $form = new \App\Forms\InitPassword();
+        $myView = new View("Security/initPassword", "neutral");
     }
 
 }

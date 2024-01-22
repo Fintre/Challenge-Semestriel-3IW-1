@@ -1,8 +1,10 @@
-@import "partials/functions.scss";
-@import "partials/global.scss";
-@import "partials/variable.scss";
+@import "partials/functions";
+@import "partials/global";
+@import "partials/variable";
+@import "partials/grid";
 
 @import "components/Templates/back.tpl.scss";
 @import "components/Post/post.scss";
 @import "components/Media/_media.scss";
 @import "components/Security/security";
+@import "components/User/user";
