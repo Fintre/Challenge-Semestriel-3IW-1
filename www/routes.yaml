@@ -67,8 +67,6 @@
   controller: Security
   action: forgetPassword
 
-<<<<<<< HEAD
-=======
 /login/get-code:
   controller: Security
   action: getCode
@@ -88,4 +86,4 @@
 /articles/edit-article:
   controller: Articles
   action: editArticles
->>>>>>> Soumaya
+
