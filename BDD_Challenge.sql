@@ -42,6 +42,7 @@ CREATE TABLE "gfm_post" (
   "type" varchar(40) NOT NULL,
   "description" varchar(255) NOT NULL,
   "slug" varchar(20) NOT NULL,
+  "theme" varchar(40) NOT NULL,
   "published" smallint NOT NULL DEFAULT 0,
   "isDeleted" smallint NOT NULL DEFAULT 0,
   "createdat" timestamp DEFAULT current_timestamp NOT NULL,
