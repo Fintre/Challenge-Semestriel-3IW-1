@@ -22,6 +22,11 @@ $gfm-primary-grey: #cbcdd1;
   /* Transitions */
   --transition-duration: 0.3s;
 
+
+
+  --headers-font: #{$font2};
+  --text-font: #{$font1};
+
   /* Border-radius */
   --border-radius-std: 10px;
   --border-radius-light: 5px;
