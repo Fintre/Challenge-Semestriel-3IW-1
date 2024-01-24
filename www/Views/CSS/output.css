@@ -37,29 +37,27 @@
 }
 
 body {
-  background-color: rgba(16, 24, 40, 0.08);
+  background-color: var(--white);
   font-family: "Roboto", sans-serif;
   margin: 0;
   display: flex;
   flex-direction: column;
+  height: inherit;
 }
 
 main {
   display: flex;
   flex-direction: row;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
 }
 
 h1 {
   line-height: 0;
-  padding-left: 15px;
 }
 
 h2 {
   font-size: 36px;
   margin: 0;
-  padding: 15px;
 }
 
 h3 {
@@ -174,84 +172,83 @@ h3 {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 100vw;
+  padding: 0rem 1rem;
+  max-height: 2.8125rem;
 }
 
 .profil-button {
   display: flex;
   align-items: flex-end;
 }
+.profil-button img {
+  width: 2.5rem;
+}
 
 .section1-sidebar {
   display: flex;
-  width: 20rem;
-}
-
-.sb-menu {
-  display: flex;
   flex-direction: column;
-  width: inherit;
+  width: 25rem;
+  padding: 1.5rem 0.5rem;
   background: #fff;
-  overflow-y: auto;
   box-sizing: border-box;
   border-right: 2px solid #4169E1;
 }
-
-.sb-logo {
+.section1-sidebar .sb-logo {
   display: flex;
-  padding: 1rem;
+  padding: 0.5rem;
   height: fit-content;
   justify-content: center;
   align-items: flex-start;
+}
+.section1-sidebar .sb-logo img {
+  width: 9.375rem;
+  height: 100%;
+}
+.section1-sidebar .accordion-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.125rem;
+  align-self: stretch;
+  margin: 16px;
+}
+.section1-sidebar .accordion-container a {
+  text-decoration: none;
+}
+.section1-sidebar .accordion-container .accordion {
+  display: flex;
+  padding: 4px;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+  border-bottom: 1px solid var(--black);
+}
+.section1-sidebar .accordion-container .accordion-title {
+  font-size: 1rem;
+  font-family: var(--text-font);
+  color: var(--black);
+}
+.section1-sidebar .accordion-container .accordion-icon {
+  width: 30px;
+  height: 30px;
+  background-image: url(/Views/CSS/assets/fleche-accordion-open.svg);
+}
+.section1-sidebar .accordion-container .accordion:hover {
+  background-color: rgba(65, 105, 225, 0.4);
 }
 
 .section2-page-content {
   display: flex;
   flex-direction: column;
-  width: inherit;
-  height: inherit;
-  background: rgba(255, 255, 255, 0.584);
+  width: 100%;
+  background: rgba(16, 24, 40, 0.08);
   padding: 16px;
 }
 
 .sb-menu-navigation {
   display: flex;
   flex-direction: column;
-  height: inherit;
   justify-content: center;
-}
-
-.accordion-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  align-self: stretch;
-  margin: 4px 24px;
-}
-.accordion-container a {
-  text-decoration: none;
-}
-.accordion-container .accordion {
-  display: flex;
-  padding: 8px;
-  justify-content: space-between;
-  align-items: center;
-  align-self: stretch;
-  border-bottom: 1px solid var(--black);
-}
-.accordion-container .accordion-title {
-  font-size: 1.25rem;
-  font-family: var(--text-font);
-  color: var(--black);
-}
-.accordion-container .accordion-icon {
-  width: 30px;
-  height: 30px;
-  background-image: url(Views/CSS/assets/fleche-accordion-open.svg);
-}
-.accordion-container .accordion:hover {
-  background-color: rgba(65, 105, 225, 0.4);
 }
 
 .section3-information-page {
