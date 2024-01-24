@@ -3,16 +3,15 @@
 namespace App\Controllers;
 
 use App\Core\View;
-// use App\Models\User;
+
 class User
 {
 
     public function allUsers(): void
     {
-        echo "tous les utilisateurs";
+        $newUser = new View("User/allusers", "back");
     }
 
-    
     public function newUser(): void
     {
         $newUser = new View("User/newuser", "front");
@@ -20,18 +19,13 @@ class User
 
     public function edit(): void
     {
-        $editUser = new View("User/edituser", "front");
+        $editUser = new View("User/edituser", "back");
     }
 
-    
 
     public function delete(): void
     {
         echo "Supprimmer un utilisateur";
     }
-
-
-
-
 
 }

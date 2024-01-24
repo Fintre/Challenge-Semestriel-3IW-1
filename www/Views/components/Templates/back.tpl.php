@@ -32,24 +32,44 @@
                     </nav>
                 </div>
                 <div class="sb-menu-navigation" >
-                    <menu>
-                        <li>
-                            <button>
-                                page 1
-                            </button>
-                        </li>
-                        <li>
-                            <button>
-                                page 2
-                            </button>
-                        </li>
-                        <li>
-                            <button>
-                                page 3
-                            </button>
-                        </li>
-                    </menu>
-                    <!-- Menu de navigation, liste des pages !-->
+                    <div class="accordion-container">
+                        <a href="" class="accordion">
+                            <div class="accordion-title">Tableau de bord</div>
+                            <div class="accordion-icon"></div>
+                        </a>
+                        <a href="" class="accordion">
+                            <div class="accordion-title">Pages</div>
+                            <div class="accordion-icon"></div>
+                        </a>
+                        <a href="" class="accordion">
+                            <div class="accordion-title">Média</div>
+                            <div class="accordion-icon"></div>
+                        </a>
+                        <a href="" class="accordion">
+                            <div class="accordion-title">Articles</div>
+                            <div class="accordion-icon"> </div>
+                        </a>
+                        <a href="" class="accordion">
+                            <div class="accordion-title">Commentaires</div>
+                            <div class="accordion-icon"> </div>
+                        </a>
+                        <a href="" class="accordion">
+                            <div class="accordion-title">Avis</div>
+                            <div class="accordion-icon"> </div>
+                        </a>
+                        <a href="" class="accordion">
+                            <div class="accordion-title">Apparence</div>
+                            <div class="accordion-icon"> </div>
+                        </a>
+                        <a href="" class="accordion">
+                            <div class="accordion-title">Utilisateurs</div>
+                            <div class="accordion-icon"> </div>
+                        </a>
+                        <a href="" class="accordion">
+                            <div class="accordion-title">Réglages</div>
+                            <div class="accordion-icon"> </div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>

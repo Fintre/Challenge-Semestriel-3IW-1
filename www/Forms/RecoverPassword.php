@@ -14,7 +14,6 @@ class RecoverPassword
                 "class"=>"form"
             ],
             "inputs"=>[
-                "login"=>["type"=>"text", "class"=>"input-form" , "placeholder"=>"prénom", "minlen"=>2, "required"=>true, "error"=>"Le nom d'utilisateur est incorrect"],
                 "email"=>["type"=>"email", "class"=>"input-form", "placeholder"=>"email", "required"=>true, "error"=>"Votre email est incorrect"],
                 "Connexion"=>["type"=>"submit", "class"=>"form button button-primary", "value"=>"Connexion", "placeholder"=>"Connexion", "required"=>true]
             ]
