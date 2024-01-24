@@ -1,24 +1,16 @@
 <?php
 namespace App\Core;
 
-require_once __DIR__."/../Shared/scssphp-1.12.0/scss.inc.php";
-
-use ScssPhp\ScssPhp\Compiler;
 
 class View
 {
     private String $templateName;
     private String $viewName;
-    private String $css;
 
-    public function __construct(string $viewName, string $templateName = "front")
+    public function __construct(string $viewName, string $templateName = "back")
     {
-        $compiler = new Compiler();
-        $outputCss = $compiler->compileFile('Views/CSS/main.scss')->getCss();
-        $this->setCss($outputCss);
         $this->setViewName($viewName);
         $this->setTemplateName($templateName);
-
     }
 
     /**
@@ -45,9 +37,13 @@ class View
         $this->viewName = "Views/components/".$viewName.".view.php";
     }
 
-    public function setCss(string $css): void
+    public function includeComponent(string $component, array $config, array $data = []): void
     {
-        $this->css = $css;
+        if(!file_exists("Views/Components/".$component.".php"))
+        {
+            die("Le composant Views/Components/".$component.".php n'existe pas");
+        }
+        include "Views/Components/".$component.".php";
     }
 
     public function __destruct()
