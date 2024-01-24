@@ -9,18 +9,18 @@ class Connexion
             "config"=> [
                         "method"=>"POST",
                         "action"=>"",
-                        //"submit"=>"Connexion",
-                        "class"=>"form"
+                        "submit"=>"Se connecter",
+                        "class"=>"form",
+                        "id"=>"form-login"
                      ],
             "inputs"=>[
-                "Firstname"=>["type"=>"text", "class"=>"input-form" , "placeholder"=>"prénom", "minlen"=>2, "required"=>true, "error"=>"Le nom d'utilisateur est incorrect"],
-                "Password"=>["type"=>"password", "class"=>"input-form", "placeholder"=>"mot de passe", "required"=>true, "error"=>"Votre mot de passe est incorrect"],
-                "Connexion"=>["type"=>"submit", "class"=>"form button button-primary", "value"=>"Connexion", "placeholder"=>"Connexion", "required"=>true]
-            ]
+                "email"=>["type"=>"email", "class"=>"input-form", "placeholder"=>"Email", "required"=>true, "error"=>"Le format de l'email est incorrect"],
+                "pwd"=>["type"=>"password", "class"=>"input-form", "placeholder"=>"Mot de passe", "required"=>true, "error"=>"Votre mot de passe doit faire plus de 8 caractères avec minuscule et chiffre"],
+                ]
         ];
     }
 
-    public function renderForm(): string
+    /*public function renderForm(): string
     {
         $formConfig = $this->getConfig();
 
@@ -42,6 +42,6 @@ class Connexion
         $formHtml .= '</div>';
 
         return $formHtml;
-    }
+    }*/
 
 }

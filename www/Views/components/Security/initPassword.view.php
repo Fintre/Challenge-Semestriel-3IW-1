@@ -17,8 +17,8 @@
         <div class="central">Veuillez reinitialiser votre mot de passe</div>
         <div>
             <?php
-            $connexionForm = new InitPassword();
-            echo $connexionForm->renderForm(); ?>
+            /*$connexionForm = new InitPassword();
+            echo $connexionForm->renderForm(); */?>
         </div>
     </div>
 </section>
