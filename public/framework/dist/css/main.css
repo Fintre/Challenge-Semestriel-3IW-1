@@ -477,4 +477,38 @@ body {
   align-self: stretch;
 }
 
+.accordion-container {
+  display: flex;
+  padding: 0.5rem;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  align-self: stretch;
+  width: 400px;
+}
+.accordion-container a {
+  text-decoration: none;
+}
+.accordion-container .accordion {
+  display: flex;
+  padding: 8px;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+  border-bottom: 1px solid var(--black);
+}
+.accordion-container .accordion-title {
+  font-size: 1.25rem;
+  font-family: var(--text-font);
+  color: var(--black);
+}
+.accordion-container .accordion-icon {
+  width: 30px;
+  height: 30px;
+  background-image: url("../../assets/icons/fleche-accordion-open.svg");
+}
+.accordion-container .accordion:hover {
+  background-color: rgba(65, 105, 225, 0.4);
+}
+
 /*# sourceMappingURL=main.css.map */

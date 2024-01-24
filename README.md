@@ -24,6 +24,8 @@ docker compose down
 
 CHAQUE FOIS AVANT DE COMMENCER A FAIRE DES MODIF :
 
-git pull
-sur votre branche : git merge main (comme ça vous avez les dernieres modif sur votre branche et evite les conflicts apres)
+IMPORTANT :
 
+-> Git pull avant de faire des modifs
+-> Faire des nouvelles branches feature ou fix pour chaque modif ou fix (on ne travaille plus chacun sur sa branche)
+-> faire des pull request sur main ! Sans merge sur main manuellement !

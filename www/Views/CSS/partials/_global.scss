@@ -37,15 +37,19 @@ h3 {
   flex-direction: column;
   width: 60%;
   margin-left: 30px;
+
   .status-tab {
     color: black;
+
     ul {
       display: flex;
       flex-direction: row;
       justify-content: space-around;
       list-style-type: none;
+
       li {
         margin-right: 25px;
+
         a {
           color: black;
           text-decoration: none;
