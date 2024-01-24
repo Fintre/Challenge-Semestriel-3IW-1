@@ -25,11 +25,11 @@ class Main
 
 
 
-    //     $myView = new View("Main/home", "back");
-    // }
+         $myView = new View("Main/home", "back");
+     }
 
-    // public function aboutUs(): void
-    // {
-    //     $myView = new View("Main/aboutus", "front");
+     public function aboutUs(): void
+     {
+         $myView = new View("Main/aboutus", "front");
     }
 }
