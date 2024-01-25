@@ -14,7 +14,7 @@ class User
 
     public function newUser(): void
     {
-        $newUser = new View("User/newuser", "front");
+        $newUser = new View("User/newuser", "back");
     }
 
     public function edit(): void

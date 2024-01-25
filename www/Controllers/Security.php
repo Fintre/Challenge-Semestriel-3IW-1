@@ -2,10 +2,21 @@
 
 namespace App\Controllers;
 use App\Core\View;
+use App\Core\Verificator;
+use App\Forms\UserInsert;
 use App\Models\User;
 
 class Security
 {
+
+    public function login(): void
+    {
+        $formLogin = new Connexion();
+        $configLogin = $formLogin->getConfig();
+
+        $myView = new View("Security/login", "back");
+        $myView->assign("configFormLogin", $configLogin);
+    }
 
     public function register(): void
     {
@@ -30,7 +41,7 @@ class Security
             }
         }
 
-        $myView = new View("Security/register", "front");
+        $myView = new View("components/Security/register", "back");
         $myView->assign("configForm", $config);
         $myView->assign("errorsForm", $errors);
 
@@ -41,14 +52,7 @@ class Security
         $myView = new View("Security/logout", "back");
         \App\Core\FormGenerator::generateForm($form);
     }
-    public function login(): void
-    {
-        $formLogin = new Connexion();
-        $configLogin = $formLogin->getConfig();
 
-        $myView = new View("Security/login", "front");
-        $myView->assign("configFormLogin", $configLogin);
-    }
 
     public function forgetPassword(): void
     {

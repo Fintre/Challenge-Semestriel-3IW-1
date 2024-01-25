@@ -10,7 +10,8 @@ class UserInsert
                         "method"=>"POST",
                         "action"=>"register",
                         "submit"=>"S'inscrire",
-                        "class"=>"form"
+                        "class"=>"form",
+                        "id"=>"form-register"
                      ],
             "inputs"=>[
                 "firstname"=>["type"=>"string","name" => "prenom", "class"=>"input-form" , "placeholder"=>"prénom", "minlen"=>2, "required"=>true, "error"=>"Le prénom doit faire plus de 2 caractères"],
