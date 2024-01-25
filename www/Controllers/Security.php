@@ -25,6 +25,7 @@ class Security
                 $user->setLastname($_REQUEST['lastname']);
                 $user->setEmail($_REQUEST['email']);
                 $user->setPwd($_REQUEST['pwd']);
+                $user->setRoles($_REQUEST['role']);
                 $user->save(); //ajouter toutes les données dans la base de données
             }
         }
