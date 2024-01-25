@@ -15,9 +15,9 @@
         <div class="my-box">
             <div><h1>Connexion</h1></div>
             <div>
-                <?php
-                $connexionForm = new Connexion();
-                echo $connexionForm->renderForm(); ?>
+                <?php $this->includeComponent("form", $configFormLogin);
+                /*$connexionForm = new Connexion();
+                echo $connexionForm->renderForm(); */?>
             </div>
             <div><a href="/login/recover-password" data-controller="Security" data-action="forgetPassword">Mot de passe oublié ?</a></div>
         </div>

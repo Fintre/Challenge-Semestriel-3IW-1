@@ -5,6 +5,7 @@
 </head>
 <body>
     <h1>Créer un utilisateur</h1>
-        <!-- Formulaire de création d'utilisateur -->
+    Insérer le formulaire d'inscription
+    <?php $this->includeComponent("form", $configForm, $errorsForm);?>
 </body>
 </html>
