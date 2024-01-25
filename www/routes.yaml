@@ -44,8 +44,8 @@
   action: delete
 
 /user/add-new-user:
-  controller: User
-  action: newUser
+  controller: Security
+  action: register
 
 /user/edit-user:
   controller: User

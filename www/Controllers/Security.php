@@ -41,7 +41,7 @@ class Security
             }
         }
 
-        $myView = new View("components/Security/register", "back");
+        $myView = new View("User/newuser", "back");
         $myView->assign("configForm", $config);
         $myView->assign("errorsForm", $errors);
 
