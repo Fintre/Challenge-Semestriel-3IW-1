@@ -34,7 +34,9 @@
             <td>user1</td>
             <td>user@gmail.com</td>
             <td>admin</td>
-            <td><i class="fa fa-times" aria-hidden="true"></i></td>
+            <td>
+                <a href="#"><i class="fa fa-times" aria-hidden="true"></i></a>
+                <!--<button class="button button-danger">x<i class="fa fa-times" aria-hidden="true"></i></button>--></td>
         </tr>
         <tr>
             <td>user2</td>
