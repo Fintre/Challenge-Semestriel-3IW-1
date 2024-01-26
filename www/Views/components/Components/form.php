@@ -27,5 +27,5 @@
 
     <?php endforeach;?>
 
-    <input type="submit" value="<?= $config["config"]["submit"]??"Envoyer" ?>">
+    <input class="<?= $submitButtonClass??"" ?>" type="submit" value="<?= $config["config"]["submit"]??"Envoyer" ?>" >
 </form>

@@ -3,8 +3,9 @@
 namespace App\Controllers;
 use App\Core\View;
 use App\Core\Verificator;
-use App\Forms\UserInsert;
+use App\Forms\AddUser;
 use App\Models\User;
+use App\Forms\Connexion;
 
 class Security
 {
@@ -20,7 +21,7 @@ class Security
 
     public function register(): void
     {
-        $form = new UserInsert();
+        $form = new AddUser();
         $config = $form->getConfig();
 
         $errors = [];
@@ -34,6 +35,7 @@ class Security
                 $user = new User();
                 $user->setFirstname($_REQUEST['firstname']);
                 $user->setLastname($_REQUEST['lastname']);
+                $user->setUsername($_REQUEST['username']);
                 $user->setEmail($_REQUEST['email']);
                 $user->setPwd($_REQUEST['pwd']);
                 $user->setRoles($_REQUEST['role']);
@@ -41,16 +43,14 @@ class Security
             }
         }
 
-        $myView = new View("User/newuser", "back");
+        $myView = new View("Security/register", "neutral");
         $myView->assign("configForm", $config);
         $myView->assign("errorsForm", $errors);
 
     }
     public function logout(): void
     {
-        $form = new \App\Forms\Connexion();
-        $myView = new View("Security/logout", "back");
-        \App\Core\FormGenerator::generateForm($form);
+        echo "Déconnexion";
     }
 
 

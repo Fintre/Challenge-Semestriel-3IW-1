@@ -8,7 +8,7 @@ class Connexion
         return [
             "config"=> [
                         "method"=>"POST",
-                        "action"=>"",
+                        "action"=>"connexion",
                         "submit"=>"Se connecter",
                         "class"=>"form",
                         "id"=>"form-login"
@@ -20,28 +20,5 @@ class Connexion
         ];
     }
 
-    /*public function renderForm(): string
-    {
-        $formConfig = $this->getConfig();
-
-        $formHtml = '<div>';
-        $formHtml .= '<form method="' . $formConfig['config']['method'] . '" action="' . $formConfig['config']['action'] . '" class="' . $formConfig['config']['class'] . '">';
-
-        foreach ($formConfig['inputs'] as $inputName => $inputConfig) {
-            $formHtml .= '<input type="' . $inputConfig['type'] . '" class="' . $inputConfig['class'] . '" placeholder="' . $inputConfig['placeholder'] . '"';
-
-            if ($inputConfig['required']) {
-                $formHtml .= ' required';
-            }
-
-            $formHtml .= '>';
-        }
-
-        //$formHtml .= '<input type="submit" value="' . $formConfig['config']['submit'] . '">';
-        $formHtml .= '</form>';
-        $formHtml .= '</div>';
-
-        return $formHtml;
-    }*/
 
 }

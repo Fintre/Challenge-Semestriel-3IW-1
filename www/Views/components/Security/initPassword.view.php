@@ -16,9 +16,7 @@
         <div><h1>Réinitialiser mon mot de passe</h1></div>
         <div class="central">Veuillez reinitialiser votre mot de passe</div>
         <div>
-            <?php
-            /*$connexionForm = new InitPassword();
-            echo $connexionForm->renderForm(); */?>
+
         </div>
     </div>
 </section>
