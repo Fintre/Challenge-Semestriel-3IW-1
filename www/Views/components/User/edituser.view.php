@@ -16,8 +16,7 @@
         <div class=" grid col-6"><h1>Informations personnelles</h1>
             <div>
                 <?php
-                $connexionForm = new EditUser();
-                echo $connexionForm->renderForm();
+                $connexionForm = new EditUser()
                 ?>
             </div>
         </div>

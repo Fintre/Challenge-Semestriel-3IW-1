@@ -24,13 +24,13 @@ class Verificator
                 if($input["type"]=="password" && !self::checkPassword($data[$name])){ //Est-ce que le password est valide
                     $errors[]="Password incorrect";
                 }
-                if($input["name"]=="prenom" && !self::checkName($data[$name])){ //Est-ce que le prenom est valide
+                if($name == "firstname" && !self::checkName($data[$name])){ //Est-ce que le prenom est valide
                     $errors[]="Prenom incorrect";
                 }
-                if($input["name"]=="nom" && !self::checkName($data[$name])){ //Est-ce que le nom est valide
+                if($name == "lastname" && !self::checkName($data[$name])){ //Est-ce que le nom est valide
                     $errors[]="Nom incorrect";
                 }
-                if($input["name"]=="username" && !self::checkUsername($data[$name])){ //Est-ce que le username est valide
+                if($name == "username" && !self::checkUsername($data[$name])){ //Est-ce que le username est valide
                     $errors[]="Username incorrect";
                 }
             }
