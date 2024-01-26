@@ -82,3 +82,15 @@
   controller: Articles
   action: editArticles
 
+/blogs:
+  controller: Blogs
+  action: allBlogs
+
+/blogs/add-blog:
+  controller: Blogs
+  action: addBlogs
+
+/blogs/edit-blog:
+  controller: Blogs
+  action: editBlogs
+

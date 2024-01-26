@@ -11,7 +11,7 @@ class Articles
         $newUser = new View("Articles/allArticles", "back");
     }
 
-    public function EditArticle(): void
+    public function editArticles(): void
     {
         $newUser = new View("Articles/editArticles", "back");
     }

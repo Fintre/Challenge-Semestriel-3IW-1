@@ -11,24 +11,20 @@
     <title>Éditer un utilisateur</title>
 </head>
 <body>
-<div class="central"><h1>Mon profil</h1></div>
-    <div class="row">
-        <div class=" grid col-6"><h1>Informations personnelles</h1>
-            <div>
-                <?php
-                $connexionForm = new EditUser()
-                ?>
-            </div>
-        </div>
-        <div class="col-6">
-            <h1>Mes pages</h1>
-            <!--<div>
-                <?php
-                /*$connexionForm = new EditUser();
-                echo $connexionForm->renderForm();*/
-                ?>
-            </div>-->
+<h1>Mon profil</h1>
+<section class="edit-form">
+    <div class=" grid col-6"><h1>Informations personnelles</h1>
+        <div>
+            <?php
+            $connexionForm = new EditUser();
+            echo $connexionForm->renderForm();
+            ?>
+
         </div>
     </div>
+</section>
+<section class="my-pages">
+<h1>Mes pages</h1>
+</section>
 </body>
 </html>
