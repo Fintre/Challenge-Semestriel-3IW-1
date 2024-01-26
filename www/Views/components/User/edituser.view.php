@@ -19,6 +19,7 @@
             $connexionForm = new EditUser();
             echo $connexionForm->renderForm();
             ?>
+
         </div>
     </div>
 </section>

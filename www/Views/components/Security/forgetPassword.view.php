@@ -16,9 +16,7 @@
         <div><h1>Récuperer mon mot de passe</h1></div>
         <div class="central">Insérer votre login ou e-mail pour obtenir un code de récupération pour changer le mot de passe.</div>
         <div>
-            <?php
-            $connexionForm = new RecoverPassword();
-            echo $connexionForm->renderForm(); ?>
+
         </div>
         <div><a href="#">Renvoyer le code</a></div>
     </div>

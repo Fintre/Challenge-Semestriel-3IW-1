@@ -16,9 +16,7 @@
         <div><h1>Récuperer mon mot de passe</h1></div>
         <div class="central">Insérer le code que vous avez réçu par e-mail</div>
         <div>
-            <?php
-            $connexionForm = new GetCode();
-            echo $connexionForm->renderForm(); ?>
+
         </div>
     </div>
 </section>

@@ -26,7 +26,6 @@
   controller: Comments
   action: allComments
 
-
 /post:
   controller: Posts
   action: allPosts
@@ -43,17 +42,13 @@
   controller: User
   action: delete
 
-/user/add-new-user:
-  controller: User
-  action: newUser
+/register:
+  controller: Security
+  action: register
 
 /user/edit-user:
   controller: User
   action: edit
-
-/register:
-  controller: Security
-  action: register
 
 /login:
   controller: Security

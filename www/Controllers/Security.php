@@ -2,58 +2,84 @@
 
 namespace App\Controllers;
 use App\Core\View;
+use App\Core\Verificator;
+use App\Forms\AddUser;
 use App\Models\User;
+use App\Forms\Connexion;
+use App\Forms\Login;
 
 class Security
 {
 
+    public function login(): void
+    {
+        $formLogin = new Login();
+        $configLogin = $formLogin->getConfig();
+        $errorsLogin = [];
+
+        // Vérifier si le formulaire a été soumis
+        if ($_SERVER["REQUEST_METHOD"] === $configLogin["config"]["method"]) {
+            $verificator = new Verificator();
+            if ($verificator->checkForm($configLogin, $_REQUEST, $errorsLogin)) {
+                // Récupérer les données du formulaire
+                $email = $_REQUEST['email'];
+                $password = $_REQUEST['pwd'];
+
+                // Créer une instance du modèle User et vérifier les identifiants
+                $userModel = new User();
+                $user = $userModel->checkUserCredentials($email, $password);
+
+                if ($user) {
+                    // Authentification réussie
+                    session_start();
+                    $_SESSION['user'] = $user; // Stocker les informations de l'utilisateur dans la session
+                } else {
+                    // Échec de l'authentification
+                    $errorsLogin[] = 'Email ou mot de passe incorrect';
+                }
+            }
+        }
+
+        // Préparer la vue avec les données du formulaire et les erreurs
+        $myView = new View("Security/login", "neutral");
+        $myView->assign("configForm", $configLogin);
+        $myView->assign("errorsForm", $errorsLogin);
+    }
+
     public function register(): void
     {
+        $form = new AddUser();
+        $config = $form->getConfig();
 
-        //creer une instance userinsert -> envoyer a la vue pour affichage -> la vue peut l'afficher
-        $form = new \App\Forms\UserInsert();
-        $myView = new View("Security/register", "front");
-        \App\Core\FormGenerator::generateForm($form);
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $errors = [];
 
-            $lastname = $_POST['firstname'];
-            $firstname = $_POST['lastname'];
-            $email = $_POST['email'];
-            $username = $_POST['username'];
-            $pwd = $_POST['pwd'];
-            $user = new User();
-            $user->setFirstname($firstname);
-            $user->setLastname($lastname);
-            $user->setEmail($email);
-            $user->setUsername($username);
-            $user->setRoles("role1");
-            $user->setPwd($pwd);
-            $user->save();
-
-            $myView = new View("Main/home", "back");
-
+        // Est ce que le formulaire a été soumis
+        if( $_SERVER["REQUEST_METHOD"] == $config["config"]["method"] )
+        {
+            // Ensuite est-ce que les données sont OK
+            $verificator = new Verificator();
+            if($verificator->checkForm($config, $_REQUEST, $errors)){
+                $user = new User();
+                $user->setFirstname($_REQUEST['firstname']);
+                $user->setLastname($_REQUEST['lastname']);
+                $user->setUsername($_REQUEST['username']);
+                $user->setEmail($_REQUEST['email']);
+                $user->setPwd($_REQUEST['pwd']);
+                $user->setRoles($_REQUEST['role']);
+                $user->save(); //ajouter toutes les données dans la base de données
+            }
         }
-        
-        // include(__DIR__ . '/../Views/register.view.php');
 
-        $form = new \App\Forms\Connexion();
-        $myView = new View("Security/login", "neutral");
-        //\App\Core\FormGenerator::generateForm($form);
-        //include(__DIR__ . '/../Views/votre_vue.php');
+        $myView = new View("Security/register", "neutral");
+        $myView->assign("configForm", $config);
+        $myView->assign("errorsForm", $errors);
 
     }
     public function logout(): void
     {
-        $form = new \App\Forms\Connexion();
-        $myView = new View("Security/logout", "back");
-        \App\Core\FormGenerator::generateForm($form);
+        echo "Déconnexion";
     }
-    public function login(): void
-    {
-        $form = new \App\Forms\Connexion();
-        $myView = new View("Security/login", "neutral");
-        //\App\Core\FormGenerator::generateForm($form);
-    }
+
 
     public function forgetPassword(): void
     {

@@ -97,6 +97,16 @@ class DB
         // Check if the record was successfully deleted
         return $queryPrepared->rowCount() > 0;
     }
+
+    public function checkUserCredentials(string $email, string $password): ?object
+    {
+        $user = $this->getOneBy(['email' => $email], 'object');
+        if ($user && password_verify($password, $user->getPwd())) {
+            return $user;
+        }
+        return null;
+    }
+
 }
 
 
