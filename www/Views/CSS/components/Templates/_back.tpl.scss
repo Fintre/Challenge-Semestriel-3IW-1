@@ -20,61 +20,62 @@
 .section1-sidebar {
   display: flex;
   flex-direction: column;
+  height: 100vh;
   width: rem(400);
   padding: rem(24) rem(8);
   background: #fff;
   box-sizing: border-box;
   border-right: 2px solid #4169E1;
-
-    .sb-logo {
-      display: flex;
-      padding: rem(8);
-      height: fit-content;
-      justify-content: center;
-      align-items: flex-start;
-
-      img {
-          width: rem(150);
-          height: 100%;
-      }
+  .sb-logo {
+    display: flex;
+    padding: rem(8);
+    height: fit-content;
+    justify-content: center;
+    align-items: flex-start;
+    img {
+      width: rem(150);
+      height: 100%;
     }
-
-    .accordion-container {
+  }
+  .accordion-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: rem(2);
+    align-self: stretch;
+    margin: 16px;
+    a{
+        text-decoration: none;
+    }
+    .accordion {
       display: flex;
-      flex-direction: column;
+      padding: 4px;
+      justify-content: space-between;
       align-items: center;
-      gap: rem(2);
       align-self: stretch;
-      margin: 16px;
+      border-bottom: 1px solid var(--black);
 
-      a{
-          text-decoration: none;
+      &-title {
+          font-size: rem(16);
+          font-family: var(--text-font);
+          color: var(--black);
       }
 
-      .accordion {
-          display: flex;
-          padding: 4px;
-          justify-content: space-between;
-          align-items: center;
-          align-self: stretch;
-          border-bottom: 1px solid var(--black);
-
-          &-title {
-              font-size: rem(16);
-              font-family: var(--text-font);
-              color: var(--black);
-          }
-
-          &-icon {
-              width: 30px;
-              height: 30px;
-              background-image: url(/Views/CSS/assets/fleche-accordion-open.svg);
-          }
-          &:hover {
-              background-color: rgba(65, 105, 225, 0.4);
-          }
+      &-icon {
+          width: 30px;
+          height: 30px;
+          background-image: url(/Views/CSS/assets/fleche-accordion-open.svg);
+      }
+      &:hover {
+          background-color: rgba(65, 105, 225, 0.4);
       }
     }
+  }
+  .sb-menu-navigation {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 }
 
 .section2-page-content {
@@ -83,11 +84,5 @@
   width: 100%;
   background:  rgba(16, 24, 40, 0.08);
   padding: 16px;
-}
-
-.sb-menu-navigation {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 

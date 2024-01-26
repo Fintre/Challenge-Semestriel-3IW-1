@@ -31,6 +31,10 @@
   controller: Posts
   action: allPosts
 
+/post/add-post:
+  controller: Posts
+  action: newPosts
+
 /settings:
   controller: SiteSettings
   action: settings

@@ -240,7 +240,7 @@ class Post
             "Type: " . $this->type . "\n" .
             "Published: " . $this->published . "\n" .
             "IsDeleted: " . $this->isDeleted . "\n" .
-            "Created At: " . $this->createdAt . "\n" .
+            "Created At: " . $this->createAt . "\n" .
             "Updated At: " . $this->updatedAt . "\n" .
             "User ID: " . $this->userId . "\n" .
             "Site Setting ID: " . $this->siteSettingId . "\n";
