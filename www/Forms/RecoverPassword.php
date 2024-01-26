@@ -9,7 +9,7 @@ class RecoverPassword
         return [
             "config"=> [
                 "method"=>"POST",
-                "action"=>"recover-pwd",
+                "action"=>"",
                 "submit"=>"Envoyer",
                 "class"=>"form"
             ],

@@ -10,7 +10,7 @@ class InitPassword
             "config"=> [
                 "method"=>"POST",
                 "action"=>"",
-                //"submit"=>"Connexion",
+                "submit"=>"Changer le mot de passe",
                 "class"=>"form"
             ],
             "inputs"=>[

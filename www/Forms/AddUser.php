@@ -8,7 +8,7 @@ class AddUser
         return [
             "config"=> [
                         "method"=>"POST",
-                        "action"=>"connexion",
+                        "action"=>"login",
                         "submit"=>"Ajouter Utilisateur",
                         "class"=>"form",
                         "id"=>"form-register"
@@ -20,7 +20,7 @@ class AddUser
                 "email"=>["type"=>"email","name"=>"email", "class"=>"input-form", "placeholder"=>"email", "required"=>true, "error"=>"Le format de l'email est incorrect"],
                 "pwd"=>["type"=>"password","name"=>"pwd", "class"=>"input-form", "placeholder"=>"mot de passe", "required"=>true, "error"=>"Votre mot de passe doit faire plus de 8 caractères avec minuscule et chiffre"],
                 "pwdConfirm"=>["type"=>"password", "class"=>"input-form", "confirm"=>"pwd" ,"placeholder"=>"confirmation", "required"=>true, "error"=>"Votre mot de passe de confirmation ne correspond pas"],
-                "role"=>["type"=>"select", "class"=>"input-form", "options"=>["admin"=>"admin", "user"=>"user"], "required"=>true, "error"=>"Veuillez choisir un rôle"],
+                "role"=>["type"=>"select", "class"=>"input-form", "options"=>["admin"=>"admin", "user"=>"user"], "placeholder"=>"role", "required"=>true, "error"=>"Veuillez choisir un rôle"],
             ]
         ];
     }

@@ -42,7 +42,7 @@
   controller: User
   action: delete
 
-/user/add-new-user:
+/register:
   controller: Security
   action: register
 
