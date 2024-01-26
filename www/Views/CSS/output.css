@@ -1,4 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&family=Roboto:wght@100;300;400;700;900&display=swap");
+.foo {
+  display: flex;
+  background-color: white;
+}
+
+.bar {
+  display: flex;
+  background-color: white;
+}
+
 /* Couleurs */
 /* Variables css */
 :root {
@@ -294,70 +304,6 @@ h3 {
   margin-right: 0;
 }
 
-.section5-page-add {
-  display: flex;
-  justify-content: space-around;
-}
-
-.section1-new-post-container .form-group {
-  background-color: white;
-  display: flex;
-  margin: 1.25rem auto;
-  border-radius: 0.625rem;
-  box-shadow: 0rem 0.25rem 0.25rem 0rem rgba(0, 0, 0, 0.25);
-  padding: 1.0625rem 1.1875rem;
-  align-items: flex-start;
-  width: 31.25rem;
-}
-.section1-new-post-container .form-group textarea {
-  border: none;
-  outline: none;
-  width: 100%;
-  font-family: "Roboto", sans-serif;
-  font-weight: bold;
-}
-.section2-page-add {
-  display: flex;
-  justify-content: space-around;
-}
-
-.block-card {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  border-radius: var(--border-radius-std);
-  box-shadow: var(--box-shadow-base);
-  padding: 20px;
-  position: relative;
-}
-.block-card .block-card-custom-page {
-  border: 1px solid var(--green);
-  display: inline-flex;
-  flex-direction: column;
-  padding: 5px 20px;
-  text-align: center;
-}
-.block-card .block-card-custom-page.color .block-card-custom-page-color-wrapper {
-  display: inline-flex;
-  margin-top: 10px;
-}
-.block-card .block-card-custom-page.color .block-card-custom-page-color-wrapper .block-card-custom-page-text {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  border: 1px solid var(--grey);
-  border-radius: var(--border-radius-std);
-  margin-right: 10px;
-  padding: 5px;
-}
-.block-card .block-card-custom-page.color .block-card-custom-page-color-wrapper .block-card-custom-page-text input[type=color] {
-  border: none;
-  border-radius: var(--border-radius-hard);
-  box-shadow: var(--box-shadow-base);
-  height: 25px;
-  width: 30px;
-}
-
 .my-box {
   display: flex;
   flex-direction: column;
@@ -384,29 +330,10 @@ form input {
   padding: 5px;
 }
 
-.central {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
 h1 {
   white-space: normal;
   line-height: 1.2;
   padding-left: 0.9375rem;
-}
-
-body {
-  font-family: "Roboto", sans-serif;
-}
-
-.no-border {
-  border: none;
-}
-
-.container {
-  margin: 1.5625rem;
 }
 
 .responsive-table {
@@ -426,15 +353,97 @@ body {
   background-color: black;
 }
 
-/* Tableau des utilisateurs*/
-/* Styles pour les lignes paires */
-.even-row {
-  background-color: #f2f2f2;
+.no-border {
+  border: none;
 }
 
-/* Styles pour les lignes impaires */
-.odd-row {
-  background-color: black;
+.container {
+  margin: 0 auto;
+  max-width: 1170px;
+  position: relative;
+}
+
+.fix-right {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: end;
+}
+
+a {
+  text-decoration: none;
+}
+
+.link-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  list-style: none;
+  font-size: 1.25rem;
+}
+
+.my-blogs {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.my-blogs .article-text {
+  height: 6.25rem;
+  overflow: scroll;
+}
+.my-blogs .one-blog {
+  background-color: white;
+  border-radius: 0.625rem;
+  margin-top: 0.9375rem;
+  padding: 0.625rem;
+}
+.my-blogs .one-blog .blog-text {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.my-blogs .one-blog .blog-text .text-content {
+  margin-left: 0.9375rem;
+  height: 6.25rem;
+  overflow: scroll;
+}
+.my-blogs .one-blog .blog-date {
+  height: 8%;
+}
+
+.edit-icon {
+  text-align: end;
+}
+.edit-icon > a {
+  margin-left: 0.625rem;
+}
+
+.link-danger {
+  color: red;
+}
+
+.link-primary {
+  color: #214cce;
+}
+
+.blog-text {
+  width: 80%;
+}
+
+.blog-date {
+  text-align: start;
+  margin-top: 0.625rem;
+  color: #869df3;
+}
+
+.blog-title {
+  text-align: start;
+  margin-bottom: 0.625rem;
+}
+
+.blog-image {
+  border-radius: 0.625rem;
 }
 
 /*# sourceMappingURL=output.css.map */
