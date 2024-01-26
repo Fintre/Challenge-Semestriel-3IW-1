@@ -1,8 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&family=Roboto:wght@100;300;400;700;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&family=Roboto:wght@100;300;400;700;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&family=Roboto:wght@100;300;400;700;900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&family=Roboto:wght@100;300;400;700;900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,800;1,400;1,800&display=auto");
 .foo {
   display: flex;
   background-color: white;
@@ -690,16 +688,19 @@ a {
   flex-direction: row;
   justify-content: space-around;
   list-style: none;
+  font-size: 1.25rem;
 }
 
 .my-blogs {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 .my-blogs .one-blog {
   background-color: white;
   border-radius: 0.625rem;
+  margin-top: 0.9375rem;
+  padding: 0.625rem;
 }
 .my-blogs .one-blog .blog-text {
   height: 92%;
@@ -713,48 +714,34 @@ a {
   border-radius: 0.625rem;
 }
 
-/*.filters{
-  display: flex;
-  flex-direction: column;
-  background-color: var(--white);
-  padding: 2rem;
-  border-radius: 0.625rem;
-  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
-  height: 100%;
-             position: relative;
-  top: 0;
-  transition: all 0.3s;
-  &:hover {
-    top: -0.625rem;
-    box-shadow: 0 0 1.5rem rgba(0, 0, 0, 0.2);
-  }
+.edit-icon {
+  text-align: end;
+}
+.edit-icon > a {
+  margin-left: 0.625rem;
+}
 
-  & h1 {
-    margin: 0;
-    font-size: 1.5rem;
-    text-align: left;
-    font-weight: 400;
-  }
-  & h2 {
-    margin: 0;
-    font-size: 2rem;
-    & small {
-      font-weight: 400;
-    }
-  }
-  & ul {
-    padding: 2rem 0 2rem 2rem;
-    margin: 1.25rem 0;
-    border-top: solid thin lightgrey;
-    border-bottom: solid thin lightgrey;
-    //list-style-image: url("../images/checklist.svg");
-  }
-  & li {
-    margin-bottom: 1em;
-  }
-  & li:last-child {
-    margin: 0;
-  }
-}*/
+.link-danger {
+  color: red;
+}
+
+.link-primary {
+  color: #214cce;
+}
+
+.blog-text {
+  width: 80%;
+}
+
+.blog-date {
+  text-align: start;
+  margin-top: 0.625rem;
+  color: #869df3;
+}
+
+.blog-title {
+  text-align: start;
+  margin-bottom: 0.625rem;
+}
 
 /*# sourceMappingURL=main.css.map */
