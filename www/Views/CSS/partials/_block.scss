@@ -1,16 +1,17 @@
 .block-line-search {
   background-color: white;
-  display: inline-block;
-  margin: 50px auto;
-  border-radius: var(--border-radius-std);
-  box-shadow: var(--box-shadow-base);
-  padding: 17px 19px;
+  display: flex;
+  margin: rem(50) auto;
+  border-radius: rem(10);
+  box-shadow: rem(0) rem(4) rem(4) rem(0) rgba(0, 0, 0, 0.25);
+  padding: rem(17) rem(19);
   align-items: flex-start;
-  width: 500px;
+  width: rem(500);
   .search-input {
     border: none;
     outline: none;
     width: 100%;
-    font-family: 'Lato', sans-serif;
+    font-family: $font1;
   }
 }
+
