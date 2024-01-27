@@ -9,18 +9,18 @@
     <link rel="stylesheet" type="text/css" href="/Views/CSS/output.css">
 </head>
 <body>
-    <header id="header" class="site-template-back-header">
-        <h3>Mon site</h3>
+    <header id="header" class="back-office-header">
+        <p>Mon site</p>
         <div class="profil-button">
-                <a href="#" class="site-profil-logo">
-                   <img src="/Views/CSS/assets/GoFindMe_profil.png" alt="profil">
-                </a>
+            <a href="#" class="site-profil-logo">
+               <img src="/Views/CSS/assets/GoFindMe_profil.png" alt="profil">
+            </a>
         </div>
     </header>
-    <main>
-        <section class="section2-page-content">
+    <main class="back-office-content">
         <?php include $this->viewName;?>
-        </section>
     </main>
+    </div>
 </body>
+
 </html>
