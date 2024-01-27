@@ -12,7 +12,6 @@ body {
 
 main {
   display: flex;
-
 }
 
 h1 {
@@ -21,6 +20,7 @@ h1 {
 
 h2 {
   font-size: rem(36);
+  line-height: rem(1.2);
 }
 
 h3 {
