@@ -1,27 +1,54 @@
+<?php
+$allowedTags='<p><strong><em><u><h1><h2><h3><h4><h5><h6><img>';
+$allowedTags.='<li><ol><ul><span><div><br><ins><del>';
+// Should use some proper HTML filtering here.
+if($_POST['pageContent']!='') {
+    $sHeader = '<h1>Ah, content is king.</h1>';
+    $sContent = strip_tags(stripslashes($_POST['pageContent']),$allowedTags);
+    echo $sContent;
+} else {
+    $sHeader = '<h1>Nothing submitted yet</h1>';
+    $sContent = '<p>Start typing...</p>';
+    $sContent.= '<p><img width="107" height="108" border="0" src="/mediawiki/images/badge.png"';
+    $sContent.= 'alt="TinyMCE button"/>This rover has crossed over</p>';
+}
+?>
+<script type="text/javascript" src="../../../Shared/tinymce/js/tinymce/tinymce.js"></script >
+<script>
+    tinymce.init({
+        selector: 'textarea#pageContent',  //Change this value according to your HTML
+        auto_focus: 'element1',
+        mode: "textareas",
+        elements : "pageContent",
+        height:"350px",
+        width:"600px"
+    });
+</script>
 <h2>Nouvelle page</h2>
+<?php echo $sHeader;?>
 <section class="new-post-main">
     <div class="section1-new-post-container">
-        <form>
+        <form method="post" action="<?=$_SERVER['REQUEST_URI']?>">
             <div class="form-group">
                 <label for="pageName"></label>
-                <textarea type="text" id="pageName" class="page-name" placeholder="Nom de la page ..."></textarea>
+                <textarea id="pageName" class="pageName" placeholder="Nom de la page ..."></textarea>
             </div>
             <div class="form-group">
                 <label for="pageTitle"></label>
-                <textarea type="text" id="pageName" class="page-title" placeholder="Titre de la page ..."></textarea>
+                <textarea id="pageTitle" class="pageTitle" placeholder="Titre de la page ..."></textarea>
             </div>
             <div class="form-group">
                 <label for="pageContent"></label>
-                <textarea type="text" id="pageName" class="page-content" placeholder="Saisir votre texte ..."></textarea>
+                <textarea name="pageContent" id="pageContent"><?php echo $sContent?></textarea>
             </div>
             <div class="form-button-add-element">
                 <button class="button button-primary button-sm">+</button>
             </div>
-
+            <div class="form-footer">
+                <button type="submit" class="button button-primary button-lg">Ajouter</button>
+            </div>
         </form>
-        <div class="form-footer">
-            <button class="button button-primary button-lg">Ajouter</button>
-        </div>
+
     </div>
 
 

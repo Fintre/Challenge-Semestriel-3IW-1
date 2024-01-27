@@ -28,7 +28,9 @@ class Posts
 
     public function newPosts(): void
     {
+
         $newPosts = new View("Post/newpost", "back");
+
     }
 
     public function save(): void
