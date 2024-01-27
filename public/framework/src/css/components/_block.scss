@@ -57,7 +57,7 @@
     }
   }
   &.block-card-custom-page {
-    border: 1px solid var(--green);
+    border: 2px solid var(--green);
     display: inline-flex;
     flex-direction: column;
     padding: 5px 20px;
@@ -113,7 +113,7 @@
     }
   }
   &.block-card-custom-page.media {
-    border: 1px solid var(--blue);
+    border: 2px solid var(--blue);
     .block-card-custom-page-media-property {
       text-align: left;
       padding: 10px 0 10px 0;
@@ -126,7 +126,7 @@
     }
   }
   &.block-card-custom-page.typo {
-    border: 1px solid var(--blue);
+    border: 2px solid var(--blue);
     .block-card-custom-page-typo-property {
       text-align: left;
       padding: 10px 0 10px 0;
