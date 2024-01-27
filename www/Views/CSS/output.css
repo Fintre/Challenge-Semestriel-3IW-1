@@ -364,6 +364,7 @@ h3 {
   border-radius: 0.625rem;
   padding: 0.3125rem;
   width: 30%;
+  align-items: center;
 }
 .block-card.block-card-custom-page.color .block-card-custom-page-color-wrapper .block-card-custom-page-color-content:first-child {
   margin-right: 0.625rem;
@@ -412,14 +413,16 @@ h3 {
   border: 0.125rem solid var(--blue);
 }
 .block-card.block-card-custom-page.media .block-card-custom-page-media-property {
-  text-align: left;
-  padding: 0.625rem 0 0.625rem 0;
+  text-align: center;
+  padding-bottom: 0.625rem;
 }
 .block-card.block-card-custom-page.media .block-card-custom-page-media-value {
   border: 0.0625rem solid var(--grey);
   border-radius: 0.625rem;
+  display: flex;
   margin-left: 0.9375rem;
   padding: 0.3125rem 1.25rem;
+  text-align: center;
 }
 
 .button-new-page {

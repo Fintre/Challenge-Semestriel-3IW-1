@@ -63,6 +63,7 @@
           border-radius: rem(10);
           padding: rem(5);
           width: 30%;
+          align-items: center;
           &:first-child {
             margin-right: rem(10);
           }
@@ -117,14 +118,16 @@
   &.block-card-custom-page.media {
     border: rem(2) solid var(--blue);
     .block-card-custom-page-media-property {
-      text-align: left;
-      padding: rem(10) 0 rem(10) 0;
+      text-align: center;
+      padding-bottom: rem(10);
     }
     .block-card-custom-page-media-value {
       border: rem(1) solid var(--grey);
       border-radius: rem(10);
+      display: flex;
       margin-left: rem(15);
       padding: rem(5) rem(20);
+      text-align: center;
     }
   }
 }
