@@ -3,7 +3,9 @@
   height: 100%;
   justify-content: space-between;
 }
-
+h3 {
+  color: var(--blue);
+}
 .section1-new-post-container {
   padding: rem(15);
   display: flex;
@@ -14,34 +16,46 @@
   margin-right: rem(8);
   border-right: rem(7) solid white;
   border-radius: rem(10);
-  .form-group {
-    background-color: white;
-    display: flex;
-    margin: rem(20) auto;
-    border-radius: rem(10);
-    box-shadow: 0 rem(4) rem(4) 0 rgba(0, 0, 0, 0.25);
-    padding: rem(17) rem(19);
-    align-items: flex-start;
-    width: rem(500);
-    textarea {
-      border: none;
-      outline: none;
-      width: 100%;
-      font-family: $font1;
-      font-weight: bold;
+  form {
+    width: inherit;
+    .form-group {
+      background-color: white;
+      display: flex;
+      margin: rem(20) auto;
+      border-radius: rem(10);
+      box-shadow: 0 rem(4) rem(4) 0 rgba(0, 0, 0, 0.25);
+      padding: rem(17) rem(19);
+      align-items: flex-start;
+      width: inherit;
+      textarea {
+        border: none;
+        outline: none;
+        width: 100%;
+        font-family: $font1;
+        font-weight: bold;
+      }
     }
-  }
-  .form-footer {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-  }
-  .form-button-add-element {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    width: 100%;
+    .form-content {
+      background-color: transparent;
+      box-shadow: none;
+      border-radius: 0;
+      display: flex;
+      margin: rem(20) auto;
+      align-items: flex-start;
+      width: inherit;
+    }
+    .form-footer {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+    }
+    .form-button-add-element {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      width: 100%;
+    }
   }
 }
 

@@ -3,11 +3,10 @@ $allowedTags='<p><strong><em><u><h1><h2><h3><h4><h5><h6><img>';
 $allowedTags.='<li><ol><ul><span><div><br><ins><del>';
 // Should use some proper HTML filtering here.
 if($_POST['pageContent']!='') {
-    $sHeader = '<h1>Ah, content is king.</h1>';
+    $sHeader = '<h3>Page sauvegardée</h3>';
     $sContent = strip_tags(stripslashes($_POST['pageContent']),$allowedTags);
-    echo $sContent;
 } else {
-    $sHeader = '<h1>Nothing submitted yet</h1>';
+    $sHeader = "<h3>N'oubliez pas sauvegarder</h3>";
     $sContent = '<p>Start typing...</p>';
     $sContent.= '<p><img width="107" height="108" border="0" src="/mediawiki/images/badge.png"';
     $sContent.= 'alt="TinyMCE button"/>This rover has crossed over</p>';
@@ -15,13 +14,16 @@ if($_POST['pageContent']!='') {
 ?>
 <script type="text/javascript" src="../../../Shared/tinymce/js/tinymce/tinymce.js"></script >
 <script>
+
+
     tinymce.init({
-        selector: 'textarea#pageContent',  //Change this value according to your HTML
+        selector: 'textarea#pageContent',
         auto_focus: 'element1',
         mode: "textareas",
         elements : "pageContent",
         height:"350px",
-        width:"600px"
+        width:"100%"
+
     });
 </script>
 <h2>Nouvelle page</h2>
@@ -37,7 +39,7 @@ if($_POST['pageContent']!='') {
                 <label for="pageTitle"></label>
                 <textarea id="pageTitle" class="pageTitle" placeholder="Titre de la page ..."></textarea>
             </div>
-            <div class="form-group">
+            <div class="form-content">
                 <label for="pageContent"></label>
                 <textarea name="pageContent" id="pageContent"><?php echo $sContent?></textarea>
             </div>
