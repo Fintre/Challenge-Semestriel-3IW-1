@@ -1,0 +1,20 @@
+.bo-connexion-header {
+    display: flex;
+    padding: rem(4) rem(16);
+    justify-content: space-between;
+    align-items: flex-start;
+    align-self: stretch;
+    background-color: var(--blue);
+}
+
+.bo-connexion-content {
+    display: flex;
+    padding: 100px 10px;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+    flex: 1 0 0;
+    align-self: stretch;
+}
+
+
