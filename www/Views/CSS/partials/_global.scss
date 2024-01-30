@@ -1,6 +1,9 @@
 //ici il faut ajouter les caratcteristiques des variables globales : h1, h2, p, etc..
 //Ajouter que des styles globaux comme font-size ou font weight, line-height etc.
 //les paddings ou margin des balises du text (h, p ou autre) se mettent dans les styles specifique de chaque page, car on peut avoir besoin d'avoir un padding plus grad ou plus petit selon le cas
+html {
+  height: 100%;
+}
 
 body {
   background-color: rgba(16, 24, 40, 0.08);

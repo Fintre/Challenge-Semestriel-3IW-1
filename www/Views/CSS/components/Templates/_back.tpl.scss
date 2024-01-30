@@ -7,6 +7,9 @@
   display: flex;
   justify-content: space-between;
   padding: rem(0) rem(8);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .profil-button {
@@ -19,15 +22,18 @@
 .back-office-nav-main {
   display: flex;
   flex-direction: row;
+  flex: 1;
 
 
   .back-office-navbar {
     display: flex;
+    flex-shrink: 0;
     flex-direction: column;
     width: rem(300);
     padding: rem(8) rem(4);
     background: #fff;
     border-right: 2px solid #4169E1;
+    height: 100%;
 
 
     .sb-logo {
@@ -87,7 +93,9 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    flex: 1;
     background:  rgba(16, 24, 40, 0.08);
     padding: rem(8);
+    overflow-y: auto;
   }
 }
