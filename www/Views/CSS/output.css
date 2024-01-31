@@ -5,8 +5,8 @@
   /* Couleurs */
   --white: #fff;
   --black: #000;
-  --grey: #cbcdd1;
-  --grey-darker: #b0b3b9;
+  --grey: rgba(16, 24, 40, 0.08);
+  --grey-darker: rgba(1, 2, 4, 0.08);
   --blue: #4169E1;
   --blue-darker: #214cce;
   --green: #A8E141;
@@ -363,6 +363,7 @@ p.text {
   gap: 0.5rem;
   flex: 1 0 0;
   align-self: stretch;
+  background-color: var(--grey-darker);
 }
 
 .section3-information-page {
