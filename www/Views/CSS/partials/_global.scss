@@ -6,7 +6,6 @@ html {
 }
 
 body {
-  background-color: rgba(16, 24, 40, 0.08);
   font-family: $font1;
   margin: 0;
   display: flex;
@@ -20,16 +19,78 @@ main {
 }
 
 h1 {
-  line-height: 0;
+  font-size: rem(48);
+  font-weight: 700;
+  line-height: rem(54);
+  letter-spacing: rem(3);
+  text-transform: uppercase;
+  font-family: var(--headers-font);
+  font-style: normal;
 }
 
 h2 {
   font-size: rem(36);
-  line-height: rem(1.2);
+  font-weight: 700;
+  line-height: rem(40);
+  letter-spacing: rem(2.4);
+  font-family: var(--headers-font);
+  font-style: normal;
 }
 
 h3 {
+  font-family: var(--headers-font);
+  font-size: rem(28);
+  font-style: normal;
+  font-weight: 700;
+  line-height: rem(30);
+  letter-spacing: rem(2);
+}
+
+h4 {
+  font-family: var(--headers-font);
   font-size: rem(20);
+  font-style: normal;
+  font-weight: 700;
+  line-height: rem(24);
+  letter-spacing: rem(1.5);
+}
+
+h5 {
+  font-family: var(--headers-font);
+  font-size: rem(18);
+  font-style: normal;
+  font-weight: 700;
+  line-height: rem(22);
+  letter-spacing: rem(1);
+}
+
+h6 {
+  font-family: var(--headers-font);
+  font-size: rem(16);
+  font-style: normal;
+  font-weight: 700;
+  line-height: rem(20);
+  letter-spacing: rem(0.8);
+}
+
+p {
+  &.subtitle {
+    font-family: var(--text-font);
+    font-size: rem(20);
+    font-style: normal;
+    font-weight: 500;
+    line-height: rem(28);
+    letter-spacing: rem(1);
+  }
+
+  &.text {
+    font-family: var(--text-font);
+    font-size: rem(16);
+    font-style: normal;
+    font-weight: 400;
+    line-height: rem(20);
+    letter-spacing: rem(0.32);
+  }
 }
 
 .page-content {
