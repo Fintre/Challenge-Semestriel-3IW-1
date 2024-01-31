@@ -1,18 +1,22 @@
 .bo-connexion-header {
     display: flex;
-    padding: rem(4) rem(16);
-    justify-content: space-between;
+    padding: rem(0) rem(8);
+    justify-content: center;
     align-items: flex-start;
     align-self: stretch;
     background-color: var(--blue);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    color: var(--white);
 }
 
 .bo-connexion-content {
     display: flex;
-    padding: 100px 10px;
+    padding: rem(100) rem(10);
     justify-content: center;
     align-items: flex-start;
-    gap: 10px;
+    gap: rem(8);
     flex: 1 0 0;
     align-self: stretch;
 }
