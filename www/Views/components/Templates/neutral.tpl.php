@@ -9,18 +9,12 @@
     <link rel="stylesheet" type="text/css" href="/Views/CSS/output.css">
 </head>
 <body>
-    <header id="header" class="back-office-header">
-        <p>Mon site</p>
-        <div class="profil-button">
-            <a href="#" class="site-profil-logo">
-               <img src="/Views/CSS/assets/GoFindMe_profil.png" alt="profil">
-            </a>
-        </div>
+    <header id="header" class="bo-connexion-header">
+        <p>Accedez au back office du gofindme.fr</p>
     </header>
-    <main class="back-office-content">
-        <?php include $this->viewName;?>
-    </main>
+        <main class="bo-connexion-content">
+            <?php include $this->viewName;?>
+        </main>
     </div>
 </body>
-
 </html>
