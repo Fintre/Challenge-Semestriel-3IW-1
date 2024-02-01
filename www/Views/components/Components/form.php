@@ -5,17 +5,11 @@
     id="<?= $config["config"]["id"]??"" ?>">
 
 
-    <?php if(!empty($data)) :?>
-    <div style="background-color: red">
-        <?php foreach ($data as $error):?>
-            <li><?= $error ?></li>
-        <?php endforeach;?>
-    </div>
-    <?php endif;?>
+
 
 
     <?php foreach ($config["inputs"] as $name=>$configInput):?>
-
+        <label for="<?= $configInput["id"]??"" ?>"><?= htmlspecialchars($name) ?></label>
         <input
             name="<?= $name?>"
             type="<?= $configInput["type"]??"text"?>"
@@ -28,4 +22,13 @@
     <?php endforeach;?>
 
     <input class="<?= $submitButtonClass??"" ?>" type="submit" value="<?= $config["config"]["submit"]??"Envoyer" ?>" >
+
+    <?php if(!empty($data)) :?>
+    <div style="background-color: red">
+        <?php foreach ($data as $error):?>
+            <li><?= $error ?></li>
+        <?php endforeach;?>
+    </div>
+    <?php endif;?>
+
 </form>
