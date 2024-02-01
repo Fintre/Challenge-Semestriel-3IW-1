@@ -676,11 +676,10 @@ a {
   border-radius: 0.625rem;
 }
 
-<<<<<<< HEAD
 .settings-bloc {
   background-color: white;
   border-radius: 0.625rem;
-=======
+
 form {
   padding: 20px;
   border-radius: 5px;
@@ -701,7 +700,6 @@ form input {
 }
 form input::placeholder {
   color: var(--grey);
->>>>>>> main
 }
 
 /*# sourceMappingURL=output.css.map */
