@@ -3,15 +3,16 @@
   border-radius: rem(10);
   border: none;
 }
-
 .responsive-th{
-  border: none;
+  text-align: center;
   border-radius: rem(10);
+}
+.responsive-tb{
+  border-radius: rem(10);
+}
+.adminCell{
+  border: none;
+  outline: none;
 }
 
-.responsive-tb{
-  border: none;
-  border-radius: rem(10);
-  background-color: black;
-}
 

@@ -573,14 +573,17 @@ p.text {
 }
 
 .responsive-th {
-  border: none;
+  text-align: center;
   border-radius: 0.625rem;
 }
 
 .responsive-tb {
-  border: none;
   border-radius: 0.625rem;
-  background-color: black;
+}
+
+.adminCell {
+  border: none;
+  outline: none;
 }
 
 .no-border {
@@ -677,8 +680,20 @@ a {
 }
 
 .settings-bloc {
-  background-color: white;
+  background-color: var(--white);
   border-radius: 0.625rem;
+  padding: 1.25rem;
+}
+
+.setting-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.setting-button {
+  padding-top: 0.9375rem;
+}
 
 form {
   padding: 20px;
