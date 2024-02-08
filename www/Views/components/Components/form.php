@@ -5,15 +5,12 @@
     id="<?= $config["config"]["id"]??"" ?>">
 
 
-
-
-
     <?php foreach ($config["inputs"] as $name=>$configInput):?>
         <label for="<?= $configInput["id"]??"" ?>"><?= htmlspecialchars($name) ?></label>
         <input
             name="<?= $name?>"
             type="<?= $configInput["type"]??"text"?>"
-            id="<?= $configInput["id"]??""?>"
+            id="<?= $configInput["id"]??" "?>"
             class="<?= $configInput["class"]??""?>"
             placeholder="<?= $configInput["placeholder"]??""?>"
             <?= (!empty($configInput["required"]))?"required":""?>
@@ -21,7 +18,7 @@
 
     <?php endforeach;?>
 
-    <input class="<?= $submitButtonClass??"" ?>" type="submit" value="<?= $config["config"]["submit"]??"Envoyer" ?>" >
+    <input type="submit" class="<?= $submitButtonClass??"" ?>" value="<?= $config["config"]["submit"]??"Envoyer" ?>" >
 
     <?php if(!empty($data)) :?>
     <div style="background-color: red">
