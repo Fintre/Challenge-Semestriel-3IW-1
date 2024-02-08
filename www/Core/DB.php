@@ -21,6 +21,15 @@ class DB
         $this->table = "gfm_".strtolower($table); //pour mettre le nom de la table en minuscule et ajouter le préfixe gfm_
     }
 
+    public function getAllData($table)
+    {
+        $sql = "SELECT * FROM " . $table;
+        $queryPrepared = $this->pdo->prepare($sql);
+        $queryPrepared->execute();
+
+        return $queryPrepared->fetchAll();
+    }
+
     public function getDataObject(): array //pour récupérer les données de l'objet
     {
         return array_diff_key(get_object_vars($this), get_class_vars(get_class())); //mettre dans un tableau les données de l'objet

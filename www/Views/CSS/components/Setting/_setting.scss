@@ -1,0 +1,20 @@
+.settings-bloc{
+  background-color: var(--white);
+  border-radius: rem(10);
+  padding: rem(20);
+}
+
+.setting-content{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.setting-button{
+  padding-top: rem(15);
+}
+
+// .site-image{
+//   width: 100%;
+// }
+
