@@ -9,14 +9,16 @@ class Verificator
     {
 
         //Est-ce qu'on a le bon nb d'inputs
-        if(count($config["inputs"]) != count($data))
-        {
-            die("Tentative de Hack");
+        if(count($config["inputs"]) != count($data)){
+            print_r($config["inputs"]);
+            echo count($config["inputs"]);
+            echo count($data);
+            die("Tentative de Hack1");
         }else{
             //CSRF ???
             foreach ($config["inputs"] as $name=>$input){
-                if(!isset($data[$name])){ //Est-ce que l'input existe
-                    die("Tentative de Hack");
+                if(!isset($data[$name])){ //Est-ce que le champ existe
+                    die("Tentative de Hack2"); //Si non, on arrete tout
                 }
                 if($input["type"]=="email" && !self::checkEmail($data[$name])){ //Est-ce que l'email est valide
                     $errors[]="Email incorrect";
