@@ -6,24 +6,19 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Template Back</title>
-    <link rel="stylesheet" type="text/css" href="/Views/CSS/output.css">
+    <link rel="stylesheet" type="text/css" href="/Views/styles/dist/css/style.css">
 </head>
 <body>
     <header id="header" class="back-office-header">
         <p>Mon site</p>
         <div class="profil-button">
             <a href="#" class="site-profil-logo">
-               <img src="/Views/CSS/assets/GoFindMe_profil.png" alt="profil">
+               <img src="/Views/styles/dist/images/GoFindMe_profil.png" alt="profil">
             </a>
         </div>
     </header>
     <div class="back-office-nav-main">
             <nav class="back-office-navbar">
-                <div class="sb-logo">
-                    <a href="#">
-                        <img src="/Views/CSS/assets/GoFindMe_logo.png" alt="logo">
-                    </a>
-                </div>
                 <div class="accordion-container">
                     <a href="" class="accordion">
                         <div class="accordion-title">Tableau de bord</div>

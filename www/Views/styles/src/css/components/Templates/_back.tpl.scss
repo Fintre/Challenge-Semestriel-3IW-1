@@ -19,41 +19,6 @@
       width: rem(40);
   }
 }
-.back-office-nav-main {
-  display: flex;
-  flex-direction: row;
-  flex: 1;
-
-
-  .back-office-navbar {
-    display: flex;
-    flex-shrink: 0;
-    flex-direction: column;
-    width: rem(300);
-    padding: rem(8) rem(4);
-    background: #fff;
-    border-right: 2px solid #4169E1;
-    height: 100%;
-
-
-    .sb-logo {
-      display: flex;
-      padding: rem(8);
-      height: fit-content;
-      justify-content: center;
-      align-items: flex-start;
-
-      a{
-        text-decoration: none;
-        img {
-          width: rem(120);
-          height: 100%;
-        }
-      }
-
-    }
-
-  }
 
   .back-office-content {
     display: flex;
@@ -64,4 +29,4 @@
     padding: rem(8);
     overflow-y: auto;
   }
-}
+
