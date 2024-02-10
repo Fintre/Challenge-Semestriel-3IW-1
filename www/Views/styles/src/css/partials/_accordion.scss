@@ -1,21 +1,13 @@
 .back-office-nav-main {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex: 1;
 }
 
 .navbar {
 	position: relative;
-	padding: rem(10) rem(16);
 	.container {
         @include flexbox(row, wrap, space-between, center, 0);
-	}
-
-	&_title {
-		color: inherit;
-		font-size: rem(22);
-		line-height: rem(28);
-		font-weight: 500;
 	}
 
 	&_toggle_button {
@@ -27,6 +19,7 @@
 		line-height: 0;
 		position: relative;
 		$lineHeight: rem(3);
+        justify-content: center;
 
 		span,
 		&::before,
@@ -110,9 +103,11 @@
         }
     }
 
-	@media screen and (min-width: $md-size) {
+	@media screen and (min-width: 1024px) {
         .back-office-nav-main {
-            flex-direction: row;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
         }
 
         .container {

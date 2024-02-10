@@ -6,7 +6,8 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Template Back</title>
-    <link rel="stylesheet" type="text/css" href="/Views/CSS/output.css">
+    <link rel="stylesheet" type="text/css" href="/Views/styles/dist/css/style.css">
+    <script src="dist/js/main.js"></script>
 </head>
 <body>
     <header id="header" class="bo-connexion-header">
