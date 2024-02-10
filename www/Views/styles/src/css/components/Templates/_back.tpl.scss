@@ -1,0 +1,101 @@
+//add responsive - media
+
+.back-office-header {
+  align-items: center;
+  background-color: #4169E1;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: rem(0) rem(8);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.profil-button {
+  display: flex;
+  align-items: flex-end;
+  img {
+      width: rem(40);
+  }
+}
+.back-office-nav-main {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+
+
+  .back-office-navbar {
+    display: flex;
+    flex-shrink: 0;
+    flex-direction: column;
+    width: rem(300);
+    padding: rem(8) rem(4);
+    background: #fff;
+    border-right: 2px solid #4169E1;
+    height: 100%;
+
+
+    .sb-logo {
+      display: flex;
+      padding: rem(8);
+      height: fit-content;
+      justify-content: center;
+      align-items: flex-start;
+
+      a{
+        text-decoration: none;
+        img {
+          width: rem(120);
+          height: 100%;
+        }
+      }
+
+    }
+    .accordion-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: rem(4);
+      align-self: stretch;
+      padding: rem(16);
+      a{
+          text-decoration: none;
+      }
+      .accordion {
+        display: flex;
+        padding: rem(4);
+        justify-content: space-between;
+        align-items: center;
+        align-self: stretch;
+        border-bottom: rem(1) solid var(--black);
+
+        &-title {
+            font-size: rem(16);
+            font-family: var(--text-font);
+            color: var(--black);
+        }
+
+        &-icon {
+            width: rem(30);
+            height: rem(30);
+            background-image: url(/Views/CSS/assets/fleche-accordion-open.svg);
+        }
+        &:hover {
+            background-color: rgba(65, 105, 225, 0.4);
+        }
+      }
+    }
+
+  }
+
+  .back-office-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex: 1;
+    background: rgba(16, 24, 40, 0.08);
+    padding: rem(8);
+    overflow-y: auto;
+  }
+}
