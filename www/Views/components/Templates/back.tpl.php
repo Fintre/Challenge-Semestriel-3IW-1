@@ -6,63 +6,78 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Template Back</title>
-    <link rel="stylesheet" type="text/css" href="/Views/CSS/output.css">
+    <link rel="stylesheet" type="text/css" href="/Views/styles/dist/css/style.css">
+    <script src="dist/js/main.js"></script>
 </head>
 <body>
     <header id="header" class="back-office-header">
         <p>Mon site</p>
         <div class="profil-button">
             <a href="#" class="site-profil-logo">
-               <img src="/Views/CSS/assets/GoFindMe_profil.png" alt="profil">
+               <img src="/Views/styles/dist/images/GoFindMe_profil.png" alt="profil">
             </a>
         </div>
     </header>
     <div class="back-office-nav-main">
-            <nav class="back-office-navbar">
-                <div class="sb-logo">
-                    <a href="#">
-                        <img src="/Views/CSS/assets/GoFindMe_logo.png" alt="logo">
-                    </a>
-                </div>
-                <div class="accordion-container">
-                    <a href="" class="accordion">
-                        <div class="accordion-title">Tableau de bord</div>
-                        <div class="accordion-icon"></div>
-                    </a>
-                    <a href="" class="accordion">
-                        <div class="accordion-title">Pages</div>
-                        <div class="accordion-icon"></div>
-                    </a>
-                    <a href="" class="accordion">
-                        <div class="accordion-title">Média</div>
-                        <div class="accordion-icon"></div>
-                    </a>
-                    <a href="" class="accordion">
-                        <div class="accordion-title">Articles</div>
-                       <div class="accordion-icon"> </div>
-                    </a>
-                    <a href="" class="accordion">
-                        <div class="accordion-title">Commentaires</div>
-                        <div class="accordion-icon"> </div>
-                    </a>
-                    <a href="" class="accordion">
-                        <div class="accordion-title">Avis</div>
-                        <div class="accordion-icon"> </div>
-                    </a>
-                    <a href="" class="accordion">
-                        <div class="accordion-title">Apparence</div>
-                        <div class="accordion-icon"> </div>
-                    </a>
-                    <a href="" class="accordion">
-                        <div class="accordion-title">Utilisateurs</div>
-                        <div class="accordion-icon"> </div>
-                    </a>
-                    <a href="" class="accordion">
-                        <div class="accordion-title">Réglages</div>
-                        <div class="accordion-icon"> </div>
-                    </a>
-                </div>
-            </nav>
+    <nav class="navbar">
+				<div class="container">
+					<button class="navbar_toggle_button" data-target="#content">
+						Menu
+					</button>
+					<div class="navbar_toggle_content" id="content">
+						<ul>
+							<li>
+								<a href="" class="accordion">
+                                    <div class="accordion-title">Tableau de bord</div>
+                                    <div class="accordion-icon"> </div>
+                                </a>
+							</li>
+							<li>
+								<a href="" class="accordion">
+                                    <div class="accordion-title">Pages</div>
+                                    <div class="accordion-icon"> </div>
+                                </a>
+							</li>
+							<li>
+								<a href="" class="accordion">
+									<div class="accordion-title">Média</div>
+									<div class="accordion-icon"> </div>
+								</a>
+							</li>
+                            <li>
+								<a href="" class="accordion">
+									<div class="accordion-title">Articles</div>
+									<div class="accordion-icon"> </div>
+								</a>
+							</li>
+                            <li>
+								<a href="" class="accordion">
+									<div class="accordion-title">Commentaires</div>
+									<div class="accordion-icon"> </div>
+								</a>
+							</li>
+                            <li>
+								<a href="" class="accordion">
+									<div class="accordion-title">Apparence</div>
+									<div class="accordion-icon"> </div>
+								</a>
+							</li>
+                            <li>
+								<a href="" class="accordion">
+									<div class="accordion-title">Utilisateurs</div>
+									<div class="accordion-icon"> </div>
+								</a>
+							</li>
+							<li>
+								<a href="" class="accordion">
+									<div class="accordion-title">Réglages</div>
+									<div class="accordion-icon"> </div>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
         <main class="back-office-content">
             <?php include $this->viewName;?>
         </main>

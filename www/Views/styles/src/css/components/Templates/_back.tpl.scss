@@ -1,0 +1,32 @@
+//add responsive - media
+
+.back-office-header {
+  align-items: center;
+  background-color: #4169E1;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: rem(0) rem(8);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.profil-button {
+  display: flex;
+  align-items: flex-end;
+  img {
+      width: rem(40);
+  }
+}
+
+  .back-office-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex: 1;
+    background: rgba(16, 24, 40, 0.08);
+    padding: rem(8);
+    overflow-y: auto;
+  }
+
