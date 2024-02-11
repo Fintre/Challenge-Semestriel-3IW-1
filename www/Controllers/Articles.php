@@ -20,4 +20,11 @@ class Articles
     {
         $newUser = new View("Articles/addArticles", "back");
     }
+
+    public function getAllArticles()
+    {
+        $article = new DB();
+        return $allArticles = $article->getAllData($table); // methode getAllData est créee dans DB avec en parametre le nom de la table
+
+    }
 }
