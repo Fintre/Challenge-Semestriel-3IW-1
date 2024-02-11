@@ -60,12 +60,12 @@ class Security
             $verificator = new Verificator();
             if($verificator->checkForm($config, $_REQUEST, $errors)){
                 $user = new User();
-                $user->setFirstname($_REQUEST['firstname']);
-                $user->setLastname($_REQUEST['lastname']);
-                $user->setUsername($_REQUEST['username']);
-                $user->setEmail($_REQUEST['email']);
-                $user->setPwd($_REQUEST['pwd']);
-                $user->setRoles($_REQUEST['role']);
+                $user->setFirstname($_REQUEST['Prénom']);
+                $user->setLastname($_REQUEST['Nom']);
+                $user->setUsername($_REQUEST['Nom_d\'utilisateur']);
+                $user->setEmail($_REQUEST['E-mail']);
+                $user->setPwd($_REQUEST['Mot_de_passe']);
+                $user->setRoles($_REQUEST['Role']);
                 $user->save(); //ajouter toutes les données dans la base de données
             }
         }
