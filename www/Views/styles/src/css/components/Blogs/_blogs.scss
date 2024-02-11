@@ -3,8 +3,8 @@
 }
 
 .container {
-  margin: 0 auto;
-  max-width: 1170px;
+  margin: rem(0) auto;
+  max-width: rem(1170);
   position: relative;
 }
 

@@ -1,18 +1,18 @@
 .dashboard-cards {
     display: flex;
-    padding: 10px;
+    padding: rem(8);
     align-items: flex-start;
     align-content: flex-start;
-    gap: 10px;
+    gap: rem(8);
     flex-wrap: wrap;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: rem(480)) {
     .dashboard-cards {
         justify-content: center;
     }
 }
 
 .dashboard-avis {
-    padding: 16px 0;
+    padding: rem(8) rem(0);
 }

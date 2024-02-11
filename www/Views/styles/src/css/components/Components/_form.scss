@@ -1,52 +1,52 @@
 form {
   display: flex;
-  padding: 16px 0px;
+  padding: rem(16) rem(0);
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: rem(8);
   align-self: stretch;
 }
 
 .error {
   color: red;
-  padding: 10px;
-  border-radius: 5px;
-  margin-bottom: 20px;
+  padding: rem(8);
+  border-radius: rem(5);
+  margin-bottom: rem(20);
 }
 
 .input-form {
   display: flex;
-  padding: 8px 24px;
+  padding: rem(8) rem(24);
   align-items: center;
-  gap: 16px;
+  gap: rem(16);
   align-self: stretch;
 
 
   label {
     display: flex;
     flex-wrap: wrap;
-    width: 100px;
+    width: rem(100);
     align-items: center;
     text-align: left;
     flex: 1 0 0;
   }
 
   input {
-    width: 150px;
-    height: 16px;
+    width: rem(150);
+    height: rem(16);
     display: flex;
-    padding: 6px 24px;
+    padding: rem(6) rem(24);
     align-items: flex-start;
-    gap: 10px;
-    border-radius: 5px;
-    border: 1px solid rgba(0, 0, 0, 0.20);
+    gap: rem(8);
+    border-radius: rem(5);
+    border: rem(1) solid rgba(0, 0, 0, 0.20);
 
   }
 
   input::placeholder {
     color: var(--grey);
     display: flex;
-    height: 22px;
+    height: rem(22);
     flex-direction: column;
     justify-content: center;
     flex: 1 0 0;

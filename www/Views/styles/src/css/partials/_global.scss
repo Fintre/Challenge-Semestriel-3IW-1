@@ -27,16 +27,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 48px;
-  line-height: 54px;
-  letter-spacing: 3px;
+  font-size: rem(48);
+  line-height: rem(54);
+  letter-spacing: rem(3);
 }
 
 @media (max-width: 768px) {
   h1 {
-    font-size: 36px;
-    line-height: 40px;
-    letter-spacing: 2px;
+    font-size: rem(36);
+    line-height: rem(40);
+    letter-spacing: rem(2);
   }
 }
 
@@ -132,11 +132,11 @@ p {
 
 @media (max-width: 768px) {
   p.subtitle {
-    font-size: 18px;
+    font-size: rem(18);
   }
 
   p.text {
-    font-size: 14px;
+    font-size: rem(14);
   }
 }
 
