@@ -21,14 +21,29 @@
 	<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
 </head>
 <body>
-    <header id="header" class="back-office-header">
-        <p>Mon site</p>
-        <div class="profil-button">
-            <a href="#" class="site-profil-logo">
-               <img src="/Views/styles/dist/images/GoFindMe_profil.png" alt="profil">
-            </a>
-        </div>
-    </header>
+	<header id="header" class="back-office-header">
+				<p>Mon site</p>
+				<div class="profil-button" data-modal-open="modal2">
+					<a href="#" class="site-profil-logo">
+					   <img src="/Views/styles/dist/images/GoFindMe_profil.png" alt="profil">
+					</a>
+				</div>
+				<div class="modal" id="modal2">
+					<section>
+						<header>
+							<h4>Choisir une action</h4>
+						</header>
+						<div class="modal_content">
+							<a><p class="text">Deconnexion</p></a>
+							<a><p class="text">Mon profil</p></a>
+							<a><p class="text">Paramètres</p></a>
+						</div>
+						<footer>
+							<button class="button button-primary" data-modal-close>
+								Close
+							</button>
+						</footer>
+	</header>
     <div class="back-office-nav-main">
     <nav class="navbar">
 				<div class="container">
