@@ -164,4 +164,22 @@ class User extends DB
     {
         $this->roles = $roles;
     }
+
+    public function setResetCode($resetCode) {
+        $this->reset_code = $resetCode;
+    }
+
+    public function setResetCodeExpires($resetCodeExpires) {
+        $this->reset_code_expires = $resetCodeExpires;
+    }
+
+    public function getResetCode() {
+        return $this->reset_code;
+    }
+
+    public function getResetCodeExpires() {
+        return $this->reset_code_expires;
+    }
+
+
 }

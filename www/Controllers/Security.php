@@ -7,6 +7,8 @@ use App\Forms\AddUser;
 use App\Models\User;
 use App\Forms\Connexion;
 use App\Forms\Login;
+use App\Forms\RequestResetPassword;
+use App\Core\DB;
 
 class Security
 {
@@ -80,23 +82,36 @@ class Security
         echo "Déconnexion";
     }
 
-
-    public function forgetPassword(): void
+    public function requestResetPassword(): void
     {
-        $form = new \App\Forms\RecoverPassword();
-        $myView = new View("Security/forgetPassword", "neutral");
+        $email = $_POST['email'] ?? null;
+        if ($email) {
+            $db = new DB();
+            $user = $db->getOneBy(['email' => $email], 'object');
+            if ($user) {
+                $resetCode = bin2hex(random_bytes(16)); // Générer un code sécurisé
+                $expireTime = new \DateTime("+1 hour"); // Expiration dans 1 heure
+
+                // Mettre à jour l'utilisateur avec le code de réinitialisation et la date d'expiration
+                $user->reset_code = $resetCode;
+                $user->reset_code_expires = $expireTime->format('Y-m-d H:i:s');
+                $db->save($user);
+
+                // Envoyer le code par e-mail à l'utilisateur
+                // $this->sendResetEmail($email, $resetCode);
+
+                // Rediriger ou envoyer une réponse de succès
+            }
+        }
+        // Gérer le cas où l'email n'est pas fourni ou l'utilisateur n'existe pas
     }
 
-    public function getCode(): void
-    {
-        $form = new \App\Forms\GetCode();
-        $myView = new View("Security/getCode", "neutral");
+    private function sendResetEmail($email, $resetCode) {
+        $resetLink = "https://yourdomain.com/reset-password.php?code=" . $resetCode;
+        // Utilisez votre méthode d'envoi d'email préférée ici.
+        mail($email, "Réinitialisation de votre mot de passe", "Voici votre lien de réinitialisation : " . $resetLink);
     }
 
-    public function initPassword(): void
-    {
-        $form = new \App\Forms\InitPassword();
-        $myView = new View("Security/initPassword", "neutral");
-    }
+
 
 }
