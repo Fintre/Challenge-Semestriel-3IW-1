@@ -44,43 +44,43 @@
                                 </a>
 							</li>
 							<li>
-								<a href="" class="accordion">
+								<a href="/post" class="accordion">
                                     <div class="accordion-title">Pages</div>
                                     <div class="accordion-icon"> </div>
                                 </a>
 							</li>
 							<li>
-								<a href="" class="accordion">
+								<a href="media" class="accordion">
 									<div class="accordion-title">Média</div>
 									<div class="accordion-icon"> </div>
 								</a>
 							</li>
                             <li>
-								<a href="" class="accordion">
+								<a href="articles" class="accordion">
 									<div class="accordion-title">Articles</div>
 									<div class="accordion-icon"> </div>
 								</a>
 							</li>
                             <li>
-								<a href="" class="accordion">
+								<a href="comments" class="accordion">
 									<div class="accordion-title">Commentaires</div>
 									<div class="accordion-icon"> </div>
 								</a>
 							</li>
                             <li>
-								<a href="" class="accordion">
+								<a href="themes" class="accordion">
 									<div class="accordion-title">Apparence</div>
 									<div class="accordion-icon"> </div>
 								</a>
 							</li>
                             <li>
-								<a href="" class="accordion">
+								<a href="user" class="accordion">
 									<div class="accordion-title">Utilisateurs</div>
 									<div class="accordion-icon"> </div>
 								</a>
 							</li>
 							<li>
-								<a href="" class="accordion">
+								<a href="settings" class="accordion">
 									<div class="accordion-title">Réglages</div>
 									<div class="accordion-icon"> </div>
 								</a>
