@@ -6,21 +6,16 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Template Back</title>
-    <link rel="stylesheet" type="text/css" href="/Views/CSS/output.css">
+    <link rel="stylesheet" type="text/css" href="/Views/styles/dist/css/style.css">
+    <script src="dist/js/main.js"></script>
 </head>
 <body>
-    <header id="header" class="back-office-header">
-        <p>Mon site</p>
-        <div class="profil-button">
-            <a href="#" class="site-profil-logo">
-               <img src="/Views/CSS/assets/GoFindMe_profil.png" alt="profil">
-            </a>
-        </div>
+    <header id="header" class="bo-connexion-header">
+        <p>Accedez au back office du gofindme.fr</p>
     </header>
-    <main class="back-office-content">
-        <?php include $this->viewName;?>
-    </main>
+        <main class="bo-connexion-content">
+            <?php include $this->viewName;?>
+        </main>
     </div>
 </body>
-
 </html>

@@ -2,10 +2,6 @@
   controller: Main
   action: home
 
-/design-guide:
-  controller: DesignGuide
-  action: index
-
 /categorie:
   controller: Categories
   action: allCategories
@@ -36,7 +32,7 @@
 
 /settings:
   controller: SiteSettings
-  action: settings
+  action: index
 
 /user:
   controller: User
@@ -98,3 +94,6 @@
   controller: Blogs
   action: editBlogs
 
+/themes:
+  controller: Themes
+  action: allThemes

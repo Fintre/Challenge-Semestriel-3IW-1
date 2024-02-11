@@ -2,10 +2,13 @@
 
 namespace App\Controllers;
 
+use App\Core\View;
+
 class SiteSettings{
     public function index()
     {
-// Liste de tout les settings
+        $newUser = new View("Setting/index", "back");
+        // Liste de tout les settings
     }
     public function create()
     {
