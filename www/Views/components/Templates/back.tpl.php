@@ -1,3 +1,4 @@
+<?php namespace App\Controllers; ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -8,6 +9,16 @@
     <title>Template Back</title>
     <link rel="stylesheet" type="text/css" href="/Views/styles/dist/css/style.css">
     <script src="/Views/styles/dist/js/main.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-g6R+2qH1I8hzl6fXExdSN3R/xkA6r0/KRXC5WAPtzIiq/T6NoD2efpZ/KisK/AJUp" crossorigin="anonymous">
+
+	<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+
+
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
+	<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
 </head>
 <body>
     <header id="header" class="back-office-header">
@@ -27,7 +38,7 @@
 					<div class="navbar_toggle_content" id="content">
 						<ul>
 							<li>
-								<a href="" class="accordion">
+								<a href="/" class="accordion">
                                     <div class="accordion-title">Tableau de bord</div>
                                     <div class="accordion-icon"> </div>
                                 </a>

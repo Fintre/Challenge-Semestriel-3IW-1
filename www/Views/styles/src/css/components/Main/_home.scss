@@ -1,0 +1,14 @@
+.dashboard-cards {
+    display: flex;
+    padding: 10px;
+    align-items: flex-start;
+    align-content: flex-start;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+@media screen and (max-width: 480px) {
+    .dashboard-cards {
+        justify-content: center;
+    }
+}
