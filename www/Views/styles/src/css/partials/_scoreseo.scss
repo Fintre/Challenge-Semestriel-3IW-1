@@ -1,8 +1,8 @@
 .score-seo {
   display: inline-block;
-  width: 12px;
-  height: 12px;
-  margin: 3px 4px 0 3px;
+  width: rem(12);
+  height: rem(12);
+  margin: rem(3) rem(4) 0 rem(3);
   border-radius: 50%;
   vertical-align: top;
   &.seo-good {
