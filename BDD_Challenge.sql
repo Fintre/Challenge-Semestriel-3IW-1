@@ -72,8 +72,8 @@ CREATE TABLE "gfm_user" (
   "status" smallint NOT NULL DEFAULT 0,
   "img_path" varchar(255),
   "roles" varchar(15),
-  "reset_code" varchar(255) NULL,
-  "reset_code_expires" datetime NULL,
+  "reset_token" varchar(255) NULL,
+  "reset_expires" timestamp NULL,
   "createdat" timestamp DEFAULT current_timestamp NOT NULL,
   "updatedat" timestamp DEFAULT current_timestamp
 );
