@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Core\View;
+use App\Core\DB;
 
 class Articles
 {
@@ -24,7 +25,6 @@ class Articles
     public function getAllArticles()
     {
         $article = new DB();
-        return $allArticles = $article->getAllData($table); // methode getAllData est créee dans DB avec en parametre le nom de la table
-
+        return $allArticles = $article->getArticlesAndBlogs("article"); 
     }
 }

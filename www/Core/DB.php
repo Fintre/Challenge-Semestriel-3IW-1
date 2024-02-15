@@ -30,6 +30,15 @@ class DB
         return $queryPrepared->fetchAll();
     }
 
+    public function getArticlesAndBlogs($article)
+    {
+        $sql = "SELECT * FROM gfm_post WHERE type = '" . $article . "'";
+        $queryPrepared = $this->pdo->prepare($sql);
+        $queryPrepared->execute();
+
+        return $queryPrepared->fetchAll();
+    }
+
     public function getDataObject(): array //pour récupérer les données de l'objet
     {
         return array_diff_key(get_object_vars($this), get_class_vars(get_class())); //mettre dans un tableau les données de l'objet

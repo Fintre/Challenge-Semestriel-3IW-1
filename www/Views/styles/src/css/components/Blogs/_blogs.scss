@@ -48,10 +48,12 @@ a{
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+      align-items: flex-start;
 
       .text-content{
         margin-left: rem(15);
         height: rem(100);
+        width: 100%;
         overflow: scroll;
       }
     }
@@ -74,10 +76,6 @@ a{
 }
 .link-primary{
   color: #214cce;
-}
-
-.blog-text{
-  width: 80%;
 }
 
 .blog-date{
