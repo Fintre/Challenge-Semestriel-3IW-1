@@ -26,6 +26,7 @@ class Security
         $formLogin = new Login();
         $configLogin = $formLogin->getConfig();
         $errorsLogin = [];
+        $successLogin = [];
 
         // Vérifier si le formulaire a été soumis
         if ($_SERVER["REQUEST_METHOD"] === $configLogin["config"]["method"]) {
@@ -54,6 +55,7 @@ class Security
         $myView = new View("Security/login", "neutral");
         $myView->assign("configForm", $configLogin);
         $myView->assign("errorsForm", $errorsLogin);
+        $myView->assign("successForm", $successLogin);
     }
 
     public function register(): void
@@ -62,7 +64,7 @@ class Security
         $config = $form->getConfig();
 
         $errors = [];
-
+        $success = [];
         // Est ce que le formulaire a été soumis
         if( $_SERVER["REQUEST_METHOD"] == $config["config"]["method"] )
         {
@@ -76,12 +78,14 @@ class Security
                 $user->setEmail($_REQUEST['E-mail']);
                 $user->setPwd($_REQUEST['Mot_de_passe']);
                 $user->save(); //ajouter toutes les données dans la base de données
+                $success[] = "Votre compte a bien été créé";
             }
         }
 
         $myView = new View("Security/register", "neutral");
         $myView->assign("configForm", $config);
         $myView->assign("errorsForm", $errors);
+        $myView->assign("successForm", $success);
 
     }
     public function logout(): void
