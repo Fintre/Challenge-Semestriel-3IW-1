@@ -1,27 +1,32 @@
 .block-line-search {
   display: inline-block;
   margin: rem(50) auto;
-  border-radius: var(--border-radius-std);
-  box-shadow: var(--box-shadow-base);
+
+  border-radius: $border-radius-std;
+  box-shadow: $box-shadow-base;
   padding: rem(17) rem(19);
   align-items: flex-start;
   width: rem(500);
+
+
   .search-input {
     border: none;
     outline: none;
     width: 100%;
     font-family: 'Lato', sans-serif;
   }
+
 }
 
 .block-card {
   display: inline-flex;
   flex-direction: row;
   flex-wrap: wrap;
-  border-radius: var(--border-radius-std);
-  box-shadow: var(--box-shadow-base);
+  border-radius: $border-radius-std;
+  box-shadow: $box-shadow-base;
   padding: rem(20);
   position: relative;
+
   &-media {
     &-img {
       padding-right: rem(15);
@@ -71,13 +76,13 @@
           display: flex;
           flex-direction: column;
           border: rem(1) solid var(--grey);
-          border-radius: var(--border-radius-std);
+          border-radius: $border-radius-std;
           margin-right: rem(10);
           padding: rem(5);
           input[type="color"] {
             border: none;
-            border-radius: var(--border-radius-hard);
-            box-shadow: var(--box-shadow-base);
+            border-radius: $border-radius-hard;
+            box-shadow: $box-shadow-base;
             height: rem(25);
             width: rem(30);
           }
@@ -87,12 +92,12 @@
           display: flex;
           flex-direction: column;
           border: rem(1) solid var(--grey);
-          border-radius: var(--border-radius-std);
+          border-radius: $border-radius-std;
           padding: rem(5);
           input[type="color"] {
             border: none;
-            border-radius: var(--border-radius-hard);
-            box-shadow: var(--box-shadow-base);
+            border-radius: $border-radius-hard;
+            box-shadow: $box-shadow-base;
             height: rem(25);
             width: rem(30);
           }
@@ -106,7 +111,7 @@
       padding: rem(10) rem(0) rem(10) rem(0);
       .block-card-custom-page-info-value {
         border: 1px solid var(--grey);
-        border-radius: var(--border-radius-hard);
+        border-radius: $border-radius-hard;
         margin-left: rem(15);
         padding: rem(5) rem(20);
       }
