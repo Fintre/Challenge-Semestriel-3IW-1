@@ -109,14 +109,13 @@ class Security
                 $resetToken = bin2hex(random_bytes(50));
                 $expires = new \DateTime('+1 hour');
 
-                // Supposons que $expiresTimestamp est votre timestamp Unix
+
                 $expiresTimestamp = $expires->getTimestamp();
 
-                // Convertir le timestamp Unix en format de date/heure compatible avec PostgreSQL
                 $expiresDateTime = date('Y-m-d H:i:s', $expiresTimestamp);
                 $userModel->setDataFromArray($userarray);
                 $userModel->setResetToken($resetToken);
-                // Passer cette chaîne de date/heure à setResetExpires ou directement dans votre requête SQL
+
                 $userModel->setResetExpires($expiresDateTime);
                 $userModel->save();
 
@@ -124,12 +123,12 @@ class Security
                 $emailResult = $this->sendResetEmail($email, $resetToken);
 
                 if (isset($emailResult['success'])) {
-                    $success[] = $emailResult['success']; // Ajouter le message de succès au tableau
+                    $success[] = $emailResult['success'];
                 } elseif (isset($emailResult['error'])) {
-                    $errors[] = $emailResult['error']; // Ajouter le message d'erreur au tableau
+                    $errors[] = $emailResult['error'];
                 }
             } else {
-                // Gérer le cas où l'utilisateur n'existe pas
+
                 $errors[] = 'Cet email n\'est pas associé à un compte existant.';
             }
         }
@@ -146,25 +145,25 @@ class Security
 
         try {
             // Configurations du serveur
-            $mail->isSMTP(); // Utiliser SMTP pour envoyer l'email
-            $mail->Host = 'smtp.gmail.com'; // Spécifiez vos serveurs SMTP
-            $mail->Port = 587; // Port TCP à utiliser; 587 pour `PHPMailer::ENCRYPTION_STARTTLS`
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->Port = 587;
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->SMTPAuth = true; // Activer l'authentification SMTP
             $mail->Username = 'gofindme.contact@gmail.com'; // SMTP username
             $mail->Password = 'hcnplwiqpmmqbwdp'; // SMTP password
             $mail->setFrom('gofindme.contact@gmail.com', 'Support GoFindMe');
-            $mail->addAddress($email); // Ajouter le destinataire
+            $mail->addAddress($email);
             $mail->Subject = 'Recuperation de mot de passe GoFindMe';
 
-            // Mise à jour du contenu pour utiliser le token
-            $resetLink = "http://localhost/reset-password?token=" . $resetToken; // Assurez-vous que ce chemin correspond à votre script de réinitialisation
+
+            $resetLink = "http://localhost/reset-password?token=" . $resetToken;
             $mail->Body = 'Cliquez sur ce lien pour réinitialiser votre mot de passe: ' . $resetLink;
 
             $mail->send();
-            return ['success' => 'Le message a été envoyé'];
+            return ['success' => 'Le lien de recuperation de mot de passe a été envoyé par mail.'];
         } catch (Exception $e) {
-            return ['error' => "Le message n'a pas pu être envoyé. Mailer Error: {$mail->ErrorInfo}"];
+            return ['error' => "Le lien n'a pas pu être envoyé. Mailer Error: {$mail->ErrorInfo}"];
         }
     }
 
