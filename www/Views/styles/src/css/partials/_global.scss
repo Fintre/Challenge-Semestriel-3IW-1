@@ -13,7 +13,10 @@ body {
   flex-direction: column;
   height: 100%;
 }
-
+a {
+  text-decoration: none;
+  color: var(--blue);
+}
 main {
   display: flex;
   height: 100%;
