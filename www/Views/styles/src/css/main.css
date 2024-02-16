@@ -17,15 +17,11 @@
   /* Typo */
   --headers-font: Lato, sans-serif;
   --text-font: Roboto, sans-serif;
-  /* Border-radius */
-  --border-radius-std: rem(10);
-  --border-radius-light: rem(5);
-  --border-radius-hard: rem(15);
-  /* Box-shadow */
-  --box-shadow-base: rem(0) rem(4) rem(4) rem(0) rgba(0, 0, 0, 0.25);
 }
 
 /* Ecrans */
+/* Border-radius */
+/* Box-shadow */
 html {
   height: 100%;
 }
@@ -213,8 +209,8 @@ p.text {
   background-color: white;
   display: inline-block;
   margin: 3.125rem auto;
-  border-radius: var(--border-radius-std);
-  box-shadow: var(--box-shadow-base);
+  border-radius: 0.625rem;
+  box-shadow: 0rem 0.25rem 0.25rem 0rem rgba(0, 0, 0, 0.25);
   padding: 1.0625rem 1.1875rem;
   align-items: flex-start;
   width: 31.25rem;
@@ -230,8 +226,8 @@ p.text {
   display: inline-flex;
   flex-direction: row;
   flex-wrap: wrap;
-  border-radius: var(--border-radius-std);
-  box-shadow: var(--box-shadow-base);
+  border-radius: 0.625rem;
+  box-shadow: 0rem 0.25rem 0.25rem 0rem rgba(0, 0, 0, 0.25);
   padding: 1.25rem;
   position: relative;
 }
@@ -279,14 +275,14 @@ p.text {
   display: flex;
   flex-direction: column;
   border: 0.0625rem solid var(--grey);
-  border-radius: var(--border-radius-std);
+  border-radius: 0.625rem;
   margin-right: 0.625rem;
   padding: 0.3125rem;
 }
 .block-card.block-card-custom-page.color .block-card-custom-page-color-wrapper .block-card-custom-page-text input[type=color] {
   border: none;
-  border-radius: var(--border-radius-hard);
-  box-shadow: var(--box-shadow-base);
+  border-radius: 0.9375rem;
+  box-shadow: 0rem 0.25rem 0.25rem 0rem rgba(0, 0, 0, 0.25);
   height: 1.5625rem;
   width: 1.875rem;
 }
@@ -295,13 +291,13 @@ p.text {
   display: flex;
   flex-direction: column;
   border: 0.0625rem solid var(--grey);
-  border-radius: var(--border-radius-std);
+  border-radius: 0.625rem;
   padding: 0.3125rem;
 }
 .block-card.block-card-custom-page.color .block-card-custom-page-color-wrapper .block-card-custom-page-background input[type=color] {
   border: none;
-  border-radius: var(--border-radius-hard);
-  box-shadow: var(--box-shadow-base);
+  border-radius: 0.9375rem;
+  box-shadow: 0rem 0.25rem 0.25rem 0rem rgba(0, 0, 0, 0.25);
   height: 1.5625rem;
   width: 1.875rem;
 }
@@ -311,7 +307,7 @@ p.text {
 }
 .block-card.block-card-custom-page.info .block-card-custom-page-info-property .block-card-custom-page-info-value {
   border: 1px solid var(--grey);
-  border-radius: var(--border-radius-hard);
+  border-radius: 0.9375rem;
   margin-left: 0.9375rem;
   padding: 0.3125rem 1.25rem;
 }

@@ -58,17 +58,9 @@
   controller: Security
   action: logout
 
-/login/recover-password:
+/recover-password:
   controller: Security
-  action: forgetPassword
-
-/login/get-code:
-  controller: Security
-  action: getCode
-
-/login/init-password:
-  controller: Security
-  action: initPassword
+  action: requestResetPassword
 
 /articles:
   controller: Articles
@@ -97,3 +89,4 @@
 /themes:
   controller: Themes
   action: allThemes
+

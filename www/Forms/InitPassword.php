@@ -9,7 +9,7 @@ class InitPassword
         return [
             "config"=> [
                 "method"=>"POST",
-                "action"=>"",
+                "action"=>"reset-password.php",
                 "submit"=>"Changer le mot de passe",
                 "class"=>"form"
             ],
