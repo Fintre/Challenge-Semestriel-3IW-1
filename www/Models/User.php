@@ -4,7 +4,7 @@ use App\Core\DB;
 
 class User extends DB
 {
-    private ?int $id = null;
+    protected ?int $id = null;
     protected string $firstname;
     protected string $lastname;
     protected string $username;
@@ -13,10 +13,8 @@ class User extends DB
     protected string $pwd;
     protected int $status;
     protected int $isDeleted;
-
-    protected string $reset_token;
-
-    protected int $reset_expires;
+    protected ?string $reset_token = null;
+    protected ?string $reset_expires = null;
 
 
     public function __construct()
@@ -179,12 +177,12 @@ class User extends DB
         $this->reset_token = $reset_token;
     }
 
-    public function getResetExpires(): int
+    public function getResetExpires(): string
     {
         return $this->reset_expires;
     }
 
-    public function setResetExpires(int $reset_expires): void
+    public function setResetExpires(string $reset_expires): void
     {
         $this->reset_expires = $reset_expires;
     }

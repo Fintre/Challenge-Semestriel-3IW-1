@@ -12,6 +12,7 @@ use App\Forms\RequestResetPassword;
 use App\Core\DB;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\SMTP;
 
 require __DIR__ . '/../vendor/autoload.php';
 
@@ -91,17 +92,26 @@ class Security
         $config = $form->getConfig();
         $errors = [];
 
-        if ($_SERVER["REQUEST_METHOD"] === "POST") {
-            $email = $_POST['E-mail'];
+        if ($_SERVER["REQUEST_METHOD"] === $config["config"]["method"]) {
+            $email = $_REQUEST['E-mail'];
             $userModel = new User();
-            $user = $userModel->getOneBy(['email' => $email], 'object');
+            $userarray = $userModel->getOneBy(['email' => $email]);
 
-            if ($user) {
+            $userModel->setDataFromArray($userarray);
+
+
+            if ($userarray) {
                 $resetToken = bin2hex(random_bytes(50));
                 $expires = new \DateTime('+1 hour');
 
+                // Supposons que $expiresTimestamp est votre timestamp Unix
+                $expiresTimestamp = $expires->getTimestamp();
+
+                // Convertir le timestamp Unix en format de date/heure compatible avec PostgreSQL
+                $expiresDateTime = date('Y-m-d H:i:s', $expiresTimestamp);
                 $userModel->setResetToken($resetToken);
-                $userModel->setResetExpires($expires->format('Y-m-d H:i:s'));
+                // Passer cette chaîne de date/heure à setResetExpires ou directement dans votre requête SQL
+                $userModel->setResetExpires($expiresDateTime);
                 $userModel->save();
 
                 // Envoyer l'email de réinitialisation
@@ -124,18 +134,20 @@ class Security
         try {
             // Configurations du serveur
             $mail->isSMTP(); // Utiliser SMTP pour envoyer l'email
+            $mail->SMTPDebug = SMTP::DEBUG_SERVER;
             $mail->Host = 'smtp.gmail.com'; // Spécifiez vos serveurs SMTP
-            $mail->SMTPAuth = true; // Activer l'authentification SMTP
-            $mail->Username = 'gofindme.contact@example.com'; // SMTP username
-            $mail->Password = 'gofindme.2024'; // SMTP password
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Activer le cryptage TLS, `PHPMailer::ENCRYPTION_SMTPS` est aussi accepté
             $mail->Port = 587; // Port TCP à utiliser; 587 pour `PHPMailer::ENCRYPTION_STARTTLS`
-
-            $mail->addAddress($email); // Ajouter l'adresse de l'utilisateur
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->SMTPAuth = true; // Activer l'authentification SMTP
+            $mail->Username = 'gofindme.contact@gmail.com'; // SMTP username
+            $mail->Password = 'hcnplwiqpmmqbwdp'; // SMTP password
+            $mail->setFrom('gofindme.contact@gmail.com', 'Support GoFindMe');
+            $mail->addAddress('catalinadanila6@gmail.com', 'Catalina DANILA'); // Ajouter le destinataire
+            $mail->Subject = 'Recuperation de mot de passe GoFindMe';
 
             // Mise à jour du contenu pour utiliser le token
             $resetLink = "http://localhost/resetPassword?token=" . $resetToken; // Assurez-vous que ce chemin correspond à votre script de réinitialisation
-            $mail->Body = 'Cliquez sur ce lien pour réinitialiser votre mot de passe: <a href="' . $resetLink . '">Réinitialiser le mot de passe</a>';
+            $mail->Body = 'Cliquez sur ce lien pour réinitialiser votre mot de passe: ' . $resetLink;
 
             $mail->send();
             echo 'Le message a été envoyé';
@@ -152,22 +164,33 @@ class Security
         $errors = [];
 
         if ($_SERVER["REQUEST_METHOD"] === $config["config"]["method"]) {
-            $verificator = new Verificator();
-            if ($verificator->checkForm($config, $_REQUEST, $errors)) {
-                $token = $_REQUEST['token'];
-                $newPassword = $_REQUEST['Mot_de_passe'];
+            // Extraire le token depuis la requête, suppose que le token est passé en tant que paramètre GET ou POST
+            $token = $_REQUEST['token'] ?? ''; // S'assurer de récupérer le token de la requête
 
+            if (empty($token)) {
+                $errors[] = "Le token de réinitialisation est manquant.";
+            } else {
                 $userModel = new User();
-                $user = $userModel->getOneBy(['reset_token' => $token], 'object');
+                $user = $userModel->getOneBy(['reset_token' => $token]);
 
-                if ($user && strtotime($user->getResetExpires()) >= time()) {
-                    $user->setPwd(password_hash($newPassword, PASSWORD_DEFAULT));
-                    $user->setResetToken(null);
-                    $user->setResetExpires(null);
-                    $user->save();
-                    echo "Votre mot de passe a été réinitialisé avec succès.";
+                // Vérifier si le token existe et n'a pas expiré
+                if (!$user || strtotime($user->getResetExpires()) < time()) {
+                    $errors[] = "Le token de réinitialisation est invalide ou a expiré.";
                 } else {
-                    echo "Erreur lors de la réinitialisation du mot de passe.";
+                    // Si le token est valide, vérifiez le formulaire
+                    $verificator = new Verificator();
+                    if ($verificator->checkForm($config, $_REQUEST, $errors)) {
+                        $newPassword = $_REQUEST['Mot_de_passe'];
+
+                        // Aucune erreur supplémentaire trouvée par Verificator
+                        if (empty($errors)) {
+                            $user->setPwd(password_hash($newPassword, PASSWORD_DEFAULT));
+                            $user->setResetToken(null);
+                            $user->setResetExpires(null);
+                            $user->save();
+                            echo "Votre mot de passe a été réinitialisé avec succès.";
+                        }
+                    }
                 }
             }
         }
@@ -176,6 +199,7 @@ class Security
         $myView->assign("configForm", $config);
         $myView->assign("errorsForm", $errors);
     }
+
 
 
 

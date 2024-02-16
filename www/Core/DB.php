@@ -21,7 +21,7 @@ class DB
         $this->table = "gfm_".strtolower($table); //pour mettre le nom de la table en minuscule et ajouter le préfixe gfm_
     }
 
-    public function getAllData($table)
+    public function getAllData($table) //pour récupérer tous les enregistrements de la bdd
     {
         $sql = "SELECT * FROM " . $table;
         $queryPrepared = $this->pdo->prepare($sql);
@@ -34,6 +34,16 @@ class DB
     {
         return array_diff_key(get_object_vars($this), get_class_vars(get_class())); //mettre dans un tableau les données de l'objet
     }
+
+    public function setDataFromArray(array $data): void //pour mettre à jour les données de l'objet
+    {
+        foreach ($data as $key => $value) {
+            if (property_exists($this, $key)) {
+                $this->$key = $value;
+            }
+        }
+    }
+
 
     public function save() //pour insérer ou mettre à jour les données de l'objet dans la bdd
     {
@@ -50,7 +60,6 @@ class DB
             $sql = substr($sql, 0, -1);
             $sql.= " WHERE id = ".$this->getId();
         }
-
 
         $queryPrepared = $this->pdo->prepare($sql); //pour préparer la requête
         $queryPrepared->execute($data); //pour exécuter la requête
