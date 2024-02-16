@@ -15,6 +15,7 @@ use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
 
 require __DIR__ . '/../vendor/autoload.php';
+
 date_default_timezone_set('Europe/Paris');
 
 class Security
@@ -135,7 +136,6 @@ class Security
         try {
             // Configurations du serveur
             $mail->isSMTP(); // Utiliser SMTP pour envoyer l'email
-            $mail->SMTPDebug = SMTP::DEBUG_SERVER;
             $mail->Host = 'smtp.gmail.com'; // Spécifiez vos serveurs SMTP
             $mail->Port = 587; // Port TCP à utiliser; 587 pour `PHPMailer::ENCRYPTION_STARTTLS`
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
@@ -143,7 +143,7 @@ class Security
             $mail->Username = 'gofindme.contact@gmail.com'; // SMTP username
             $mail->Password = 'hcnplwiqpmmqbwdp'; // SMTP password
             $mail->setFrom('gofindme.contact@gmail.com', 'Support GoFindMe');
-            $mail->addAddress('catalinadanila6@gmail.com', 'Catalina DANILA'); // Ajouter le destinataire
+            $mail->addAddress($email); // Ajouter le destinataire
             $mail->Subject = 'Recuperation de mot de passe GoFindMe';
 
             // Mise à jour du contenu pour utiliser le token
@@ -167,26 +167,25 @@ class Security
 
         if ($_SERVER["REQUEST_METHOD"] === $config["config"]["method"]) {
             $token = $_REQUEST['token'] ?? '';
-            var_dump($token);
+
             if (empty($token)) {
                 $errors[] = "Le token de réinitialisation est manquant.";
             } else {
                 $verificator = new Verificator();
-                if (!$verificator->checkForm($config, $_REQUEST, $errors)) {
-
+                if ($verificator->checkForm($config, $_REQUEST, $errors)) {
                     $userModel = new User();
                     $user = $userModel->getOneBy(['reset_token' => $token]);
-                    var_dump($user);
-                    if (!$user || strtotime($user->reset_expires) < time()) {
+                    echo date('Y-m-d H:i:s');
+                    echo "";
+                    echo time();
+                    if (!$user || strtotime($user['reset_expires']) < time()) {
                         $errors[] = "Le token de réinitialisation est invalide ou a expiré.";
                     } else {
                         $pwd = $_POST['pwd'] ?? '';
-
                         $userModel->setDataFromArray($user);
                         $userModel->setPwd($pwd);
-                        $userModel->reset_token = null;
-                        $userModel->reset_expires = null;
-                        print_r($userModel);
+                        $userModel->setResetToken(null);
+                        $userModel->setResetExpires(null);
                         $userModel->save();
                         echo "Votre mot de passe a été réinitialisé avec succès.";
 

@@ -172,7 +172,7 @@ class User extends DB
         return $this->reset_token;
     }
 
-    public function setResetToken(string $reset_token): void
+    public function setResetToken(?string $reset_token): void
     {
         $this->reset_token = $reset_token;
     }
@@ -182,8 +182,7 @@ class User extends DB
         return $this->reset_expires;
     }
 
-    public function setResetExpires(string $reset_expires): void
-    {
+    public function setResetExpires(?string $reset_expires): void {
         $this->reset_expires = $reset_expires;
     }
 
