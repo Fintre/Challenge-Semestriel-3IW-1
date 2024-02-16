@@ -93,6 +93,7 @@ class Security
         $form = new RequestResetPassword();
         $config = $form->getConfig();
         $errors = [];
+        $success = [];
 
         if ($_SERVER["REQUEST_METHOD"] === $config["config"]["method"]) {
             $email = $_REQUEST['E-mail'];
@@ -117,7 +118,13 @@ class Security
                 $userModel->save();
 
                 // Envoyer l'email de réinitialisation
-                $this->sendResetEmail($email, $resetToken);
+                $emailResult = $this->sendResetEmail($email, $resetToken);
+
+                if (isset($emailResult['success'])) {
+                    $success[] = $emailResult['success']; // Ajouter le message de succès au tableau
+                } elseif (isset($emailResult['error'])) {
+                    $errors[] = $emailResult['error']; // Ajouter le message d'erreur au tableau
+                }
             } else {
                 // Gérer le cas où l'utilisateur n'existe pas
                 $errors[] = 'Cet email n\'est pas associé à un compte existant.';
@@ -127,6 +134,7 @@ class Security
         $myView = new View("Security/requestResetPassword", "neutral");
         $myView->assign("configForm", $config);
         $myView->assign("errorsForm", $errors);
+        $myView->assign("successForm", $success);
     }
 
 
@@ -151,9 +159,9 @@ class Security
             $mail->Body = 'Cliquez sur ce lien pour réinitialiser votre mot de passe: ' . $resetLink;
 
             $mail->send();
-            echo 'Le message a été envoyé';
+            return ['success' => 'Le message a été envoyé'];
         } catch (Exception $e) {
-            echo "Le message n'a pas pu être envoyé. Mailer Error: {$mail->ErrorInfo}";
+            return ['error' => "Le message n'a pas pu être envoyé. Mailer Error: {$mail->ErrorInfo}"];
         }
     }
 
@@ -164,6 +172,7 @@ class Security
         $config = $formInitPass->getConfig($token);
 
         $errors = [];
+        $success = [];
 
         if ($_SERVER["REQUEST_METHOD"] === $config["config"]["method"]) {
             $token = $_REQUEST['token'] ?? '';
@@ -175,9 +184,6 @@ class Security
                 if ($verificator->checkForm($config, $_REQUEST, $errors)) {
                     $userModel = new User();
                     $user = $userModel->getOneBy(['reset_token' => $token]);
-                    echo date('Y-m-d H:i:s');
-                    echo "";
-                    echo time();
                     if (!$user || strtotime($user['reset_expires']) < time()) {
                         $errors[] = "Le token de réinitialisation est invalide ou a expiré.";
                     } else {
@@ -187,7 +193,7 @@ class Security
                         $userModel->setResetToken(null);
                         $userModel->setResetExpires(null);
                         $userModel->save();
-                        echo "Votre mot de passe a été réinitialisé avec succès.";
+                        $success[] = "Votre mot de passe a été réinitialisé avec succès.";
 
                     }
                 }
@@ -198,6 +204,7 @@ class Security
 
         $myView->assign("configForm", $config);
         $myView->assign("errorsForm", $errors);
+        $myView->assign("successForm", $success);
     }
 
 

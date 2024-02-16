@@ -22,10 +22,18 @@
 
     <input type="submit" class="<?= $submitButtonClass??"" ?>" value="<?= $config["config"]["submit"]??"Envoyer" ?>" >
 
-    <?php if(!empty($data)) :?>
+    <?php if(!empty($dataError)) :?>
     <div class="error">
-        <?php foreach ($data as $error):?>
+        <?php foreach ($dataError as $error):?>
             <li><?= $error ?></li>
+        <?php endforeach;?>
+    </div>
+    <?php endif;?>
+
+    <?php if(!empty($dataSuccess)) :?>
+    <div class="success">
+        <?php foreach ($dataSuccess as $success):?>
+            <li><?= $success ?></li>
         <?php endforeach;?>
     </div>
     <?php endif;?>
