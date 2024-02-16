@@ -15,6 +15,7 @@
                 class="<?= $configInput["class"]??""?>"
                 placeholder="<?= $configInput["placeholder"]??""?>"
                 <?= (!empty($configInput["required"]))?"required":""?>
+                value="<?= htmlspecialchars($configInput["value"]??'')?>"
             ><br>
         </div>
     <?php endforeach;?>

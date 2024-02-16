@@ -1,6 +1,6 @@
 <?php
 namespace App\Core;
-
+date_default_timezone_set('Europe/Paris');
 class DB
 {
     private ?object $pdo = null;
@@ -49,7 +49,8 @@ class DB
     {
         $data = $this->getDataObject();
 
-        if( empty($this->getId())){ //si l'id est vide, on insère
+        if(empty($this->getId())){ //si l'id est vide, on insère
+            unset($data['id']);
             $sql = "INSERT INTO " . $this->table . "(" . implode(",", array_keys($data)) . ")
             VALUES (:" . implode(",:", array_keys($data)) . ")";
         }else{ //sinon on met à jour

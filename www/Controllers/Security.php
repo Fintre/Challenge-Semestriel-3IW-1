@@ -15,6 +15,7 @@ use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
 
 require __DIR__ . '/../vendor/autoload.php';
+date_default_timezone_set('Europe/Paris');
 
 class Security
 {
@@ -146,7 +147,7 @@ class Security
             $mail->Subject = 'Recuperation de mot de passe GoFindMe';
 
             // Mise à jour du contenu pour utiliser le token
-            $resetLink = "http://localhost/resetPassword?token=" . $resetToken; // Assurez-vous que ce chemin correspond à votre script de réinitialisation
+            $resetLink = "http://localhost/reset-password?token=" . $resetToken; // Assurez-vous que ce chemin correspond à votre script de réinitialisation
             $mail->Body = 'Cliquez sur ce lien pour réinitialiser votre mot de passe: ' . $resetLink;
 
             $mail->send();
@@ -159,43 +160,43 @@ class Security
     public function resetPassword(): void
     {
         $formInitPass = new InitPassword();
-        $config = $formInitPass->getConfig();
+        $token = $_GET['token'] ?? '';
+        $config = $formInitPass->getConfig($token);
 
         $errors = [];
 
         if ($_SERVER["REQUEST_METHOD"] === $config["config"]["method"]) {
-            // Extraire le token depuis la requête, suppose que le token est passé en tant que paramètre GET ou POST
-            $token = $_REQUEST['token'] ?? ''; // S'assurer de récupérer le token de la requête
-
+            $token = $_REQUEST['token'] ?? '';
+            var_dump($token);
             if (empty($token)) {
                 $errors[] = "Le token de réinitialisation est manquant.";
             } else {
-                $userModel = new User();
-                $user = $userModel->getOneBy(['reset_token' => $token]);
+                $verificator = new Verificator();
+                if (!$verificator->checkForm($config, $_REQUEST, $errors)) {
 
-                // Vérifier si le token existe et n'a pas expiré
-                if (!$user || strtotime($user->getResetExpires()) < time()) {
-                    $errors[] = "Le token de réinitialisation est invalide ou a expiré.";
-                } else {
-                    // Si le token est valide, vérifiez le formulaire
-                    $verificator = new Verificator();
-                    if ($verificator->checkForm($config, $_REQUEST, $errors)) {
-                        $newPassword = $_REQUEST['Mot_de_passe'];
+                    $userModel = new User();
+                    $user = $userModel->getOneBy(['reset_token' => $token]);
+                    var_dump($user);
+                    if (!$user || strtotime($user->reset_expires) < time()) {
+                        $errors[] = "Le token de réinitialisation est invalide ou a expiré.";
+                    } else {
+                        $pwd = $_POST['pwd'] ?? '';
 
-                        // Aucune erreur supplémentaire trouvée par Verificator
-                        if (empty($errors)) {
-                            $user->setPwd(password_hash($newPassword, PASSWORD_DEFAULT));
-                            $user->setResetToken(null);
-                            $user->setResetExpires(null);
-                            $user->save();
-                            echo "Votre mot de passe a été réinitialisé avec succès.";
-                        }
+                        $userModel->setDataFromArray($user);
+                        $userModel->setPwd($pwd);
+                        $userModel->reset_token = null;
+                        $userModel->reset_expires = null;
+                        print_r($userModel);
+                        $userModel->save();
+                        echo "Votre mot de passe a été réinitialisé avec succès.";
+
                     }
                 }
             }
         }
 
         $myView = new View("Security/resetPassword", "neutral");
+
         $myView->assign("configForm", $config);
         $myView->assign("errorsForm", $errors);
     }
