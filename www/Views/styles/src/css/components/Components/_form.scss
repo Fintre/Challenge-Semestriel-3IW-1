@@ -5,6 +5,12 @@ form {
   align-items: center;
   gap: rem(8);
   align-self: stretch;
+
+   li {
+    list-style-type: none !important;
+    padding: 0;
+    margin: 0;
+   }
 }
 
 .error {

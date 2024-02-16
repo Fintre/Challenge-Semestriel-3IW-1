@@ -104,8 +104,6 @@ class Security
             $userModel = new User();
             $userarray = $userModel->getOneBy(['email' => $email]);
 
-            $userModel->setDataFromArray($userarray);
-
 
             if ($userarray) {
                 $resetToken = bin2hex(random_bytes(50));
@@ -116,6 +114,7 @@ class Security
 
                 // Convertir le timestamp Unix en format de date/heure compatible avec PostgreSQL
                 $expiresDateTime = date('Y-m-d H:i:s', $expiresTimestamp);
+                $userModel->setDataFromArray($userarray);
                 $userModel->setResetToken($resetToken);
                 // Passer cette chaîne de date/heure à setResetExpires ou directement dans votre requête SQL
                 $userModel->setResetExpires($expiresDateTime);
