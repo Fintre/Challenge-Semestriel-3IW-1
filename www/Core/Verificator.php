@@ -26,7 +26,7 @@ class Verificator
                     $errors[]="Email incorrect";
                 }
                 if($input["type"]=="password" && !self::checkPassword($data[$submitName])){ //Est-ce que le password est valide
-                    $errors[]="Mot de passe incorrect";
+                    $errors[]="Le mot de passe est invalide";
                 }
                 if($name == "Confirmation de mot de passe" && $data[$submitName] !== $data["Mot_de_passe"]){ //Est-ce que les mots de passe correspondent
                     $errors[]="Les mots de passe ne correspondent pas";
@@ -38,7 +38,7 @@ class Verificator
                     $errors[]="Nom incorrect";
                 }
                 if($name == "Nom d'utilisateur" && !self::checkUsername($data[$submitName])){ //Est-ce que le username est valide
-                    $errors[]="Nom d'utilisateur incorrect";
+                    $errors[]="Nom d'utilisateur invalide";
                 }
             }
 
@@ -69,7 +69,7 @@ class Verificator
 
     public static function checkUsername(String $username): bool
     {
-        return preg_match("#[a-z0-9-_.]#", $username);
+        return preg_match("#^[a-zA-Z0-9_]+$#", $username);
     }
 
 }

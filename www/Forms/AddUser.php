@@ -20,7 +20,6 @@ class AddUser
                 "E-mail"=>["type"=>"email", "class"=>"input-form","id"=>"email", "placeholder"=>"E-mail", "required"=>true, "error"=>"Le format de l'email est incorrect"],
                 "Mot de passe"=>["type"=>"password", "class"=>"input-form","id"=>"pwd", "placeholder"=>"Mot de passe", "required"=>true, "error"=>"Votre mot de passe doit faire plus de 8 caractères avec minuscule et chiffre"],
                 "Confirmation de mot de passe"=>["type"=>"password", "class"=>"input-form","id"=>"pwdConfirm", "confirm"=>"pwd" ,"placeholder"=>"Confirmation mdp", "required"=>true, "error"=>"Votre mot de passe de confirmation ne correspond pas"],
-                "Role"=>["type"=>"text", "class"=>"input-form","id"=>"role", "placeholder"=>"Role", "required"=>true, "error"=>"Veuillez choisir un rôle"]
             ]
         ];
     }
