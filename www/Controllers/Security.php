@@ -4,6 +4,7 @@ namespace App\Controllers;
 use App\Core\View;
 use App\Core\Verificator;
 use App\Forms\AddUser;
+use App\Forms\InitPassword;
 use App\Models\User;
 use App\Forms\Connexion;
 use App\Forms\Login;
@@ -96,24 +97,26 @@ class Security
             $user = $userModel->getOneBy(['email' => $email], 'object');
 
             if ($user) {
-                $resetToken = bin2hex(random_bytes(50)); // Générer un token sécurisé
-                $expires = new \DateTime('+1 hour'); // Le token expire dans 1 heure
+                $resetToken = bin2hex(random_bytes(50));
+                $expires = new \DateTime('+1 hour');
 
-                // Sauvegarder le token et la date d'expiration dans la base de données
-                $userModel->saveResetToken($user->getId(), $resetToken, $expires->format('Y-m-d H:i:s'));
+                $userModel->setResetToken($resetToken);
+                $userModel->setResetExpires($expires->format('Y-m-d H:i:s'));
+                $userModel->save();
 
                 // Envoyer l'email de réinitialisation
                 $this->sendResetEmail($email, $resetToken);
+            } else {
+                // Gérer le cas où l'utilisateur n'existe pas
+                $errors[] = 'Cet email n\'est pas associé à un compte existant.';
             }
-
-            // Vous pouvez ici ajouter un message pour dire à l'utilisateur de vérifier son email, etc.
         }
 
-        // Afficher le formulaire de demande de réinitialisation
         $myView = new View("Security/requestResetPassword", "neutral");
         $myView->assign("configForm", $config);
         $myView->assign("errorsForm", $errors);
     }
+
 
     private function sendResetEmail($email, $resetToken) {
         $mail = new PHPMailer(true); // Passer `true` active les exceptions
@@ -131,7 +134,7 @@ class Security
             $mail->addAddress($email); // Ajouter l'adresse de l'utilisateur
 
             // Mise à jour du contenu pour utiliser le token
-            $resetLink = "http://localhost/reset-password.php?token=" . $resetToken; // Assurez-vous que ce chemin correspond à votre script de réinitialisation
+            $resetLink = "http://localhost/resetPassword?token=" . $resetToken; // Assurez-vous que ce chemin correspond à votre script de réinitialisation
             $mail->Body = 'Cliquez sur ce lien pour réinitialiser votre mot de passe: <a href="' . $resetLink . '">Réinitialiser le mot de passe</a>';
 
             $mail->send();
@@ -139,6 +142,39 @@ class Security
         } catch (Exception $e) {
             echo "Le message n'a pas pu être envoyé. Mailer Error: {$mail->ErrorInfo}";
         }
+    }
+
+    public function resetPassword(): void
+    {
+        $formInitPass = new InitPassword();
+        $config = $formInitPass->getConfig();
+
+        $errors = [];
+
+        if ($_SERVER["REQUEST_METHOD"] === $config["config"]["method"]) {
+            $verificator = new Verificator();
+            if ($verificator->checkForm($config, $_REQUEST, $errors)) {
+                $token = $_REQUEST['token'];
+                $newPassword = $_REQUEST['Mot_de_passe'];
+
+                $userModel = new User();
+                $user = $userModel->getOneBy(['reset_token' => $token], 'object');
+
+                if ($user && strtotime($user->getResetExpires()) >= time()) {
+                    $user->setPwd(password_hash($newPassword, PASSWORD_DEFAULT));
+                    $user->setResetToken(null);
+                    $user->setResetExpires(null);
+                    $user->save();
+                    echo "Votre mot de passe a été réinitialisé avec succès.";
+                } else {
+                    echo "Erreur lors de la réinitialisation du mot de passe.";
+                }
+            }
+        }
+
+        $myView = new View("Security/resetPassword", "neutral");
+        $myView->assign("configForm", $config);
+        $myView->assign("errorsForm", $errors);
     }
 
 
