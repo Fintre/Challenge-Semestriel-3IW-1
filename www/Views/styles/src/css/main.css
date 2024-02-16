@@ -210,6 +210,7 @@ p.text {
 }
 
 .block-line-search {
+  background-color: white;
   display: inline-block;
   margin: 3.125rem auto;
   border-radius: var(--border-radius-std);
@@ -1005,13 +1006,10 @@ p.text {
   justify-content: space-between;
 }
 
-<<<<<<< HEAD
 h3 {
   color: var(--blue);
 }
 
-=======
->>>>>>> camille
 .section1-new-post-container {
   padding: 0.9375rem;
   display: flex;
@@ -1023,14 +1021,10 @@ h3 {
   border-right: 0.4375rem solid white;
   border-radius: 0.625rem;
 }
-<<<<<<< HEAD
 .section1-new-post-container form {
   width: inherit;
 }
 .section1-new-post-container form .form-group {
-=======
-.section1-new-post-container .form-group {
->>>>>>> camille
   background-color: white;
   display: flex;
   margin: 1.25rem auto;
@@ -1038,22 +1032,15 @@ h3 {
   box-shadow: 0 0.25rem 0.25rem 0 rgba(0, 0, 0, 0.25);
   padding: 1.0625rem 1.1875rem;
   align-items: flex-start;
-<<<<<<< HEAD
   width: inherit;
 }
 .section1-new-post-container form .form-group textarea {
-=======
-  width: 31.25rem;
-}
-.section1-new-post-container .form-group textarea {
->>>>>>> camille
   border: none;
   outline: none;
   width: 100%;
   font-family: "Lato", sans-serif;
   font-weight: bold;
 }
-<<<<<<< HEAD
 .section1-new-post-container form .form-content {
   background-color: transparent;
   box-shadow: none;
@@ -1064,19 +1051,12 @@ h3 {
   width: inherit;
 }
 .section1-new-post-container form .form-footer {
-=======
-.section1-new-post-container .form-footer {
->>>>>>> camille
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
 }
-<<<<<<< HEAD
 .section1-new-post-container form .form-button-add-element {
-=======
-.section1-new-post-container .form-button-add-element {
->>>>>>> camille
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -1101,10 +1081,7 @@ h3 {
   border-radius: 0.625rem;
   padding: 0.3125rem;
   width: 30%;
-<<<<<<< HEAD
   align-items: center;
-=======
->>>>>>> camille
 }
 .block-card.block-card-custom-page.color .block-card-custom-page-color-wrapper .block-card-custom-page-color-content:first-child {
   margin-right: 0.625rem;
@@ -1153,26 +1130,16 @@ h3 {
   border: 0.125rem solid var(--blue);
 }
 .block-card.block-card-custom-page.media .block-card-custom-page-media-property {
-<<<<<<< HEAD
   text-align: center;
   padding-bottom: 0.625rem;
-=======
-  text-align: left;
-  padding: 0.625rem 0 0.625rem 0;
->>>>>>> camille
 }
 .block-card.block-card-custom-page.media .block-card-custom-page-media-value {
   border: 0.0625rem solid var(--grey);
   border-radius: 0.625rem;
-<<<<<<< HEAD
   display: flex;
   margin-left: 0.9375rem;
   padding: 0.3125rem 1.25rem;
   text-align: center;
-=======
-  margin-left: 0.9375rem;
-  padding: 0.3125rem 1.25rem;
->>>>>>> camille
 }
 
 .button-new-page {
