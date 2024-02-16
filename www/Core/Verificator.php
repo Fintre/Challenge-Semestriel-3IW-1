@@ -17,7 +17,7 @@ class Verificator
         }else{
             //CSRF ???
             foreach ($config["inputs"] as $name=>$input){
-                $submitName = str_replace(' ', '_', $name);
+                $submitName = str_replace(' ', '_', $name); //On remplace les espaces par des _
                 if(!isset($data[$submitName])){ //Est-ce que le champ existe
                     var_dump($data);
                     die("Tentative de Hack2"); //Si non, on arrete tout
@@ -26,7 +26,10 @@ class Verificator
                     $errors[]="Email incorrect";
                 }
                 if($input["type"]=="password" && !self::checkPassword($data[$submitName])){ //Est-ce que le password est valide
-                    $errors[]="Password incorrect";
+                    $errors[]="Mot de passe incorrect";
+                }
+                if($name == "Confirmation de mot de passe" && $data[$submitName] !== $data["Mot_de_passe"]){ //Est-ce que les mots de passe correspondent
+                    $errors[]="Les mots de passe ne correspondent pas";
                 }
                 if($name == "Prénom" && !self::checkName($data[$submitName])){ //Est-ce que le prenom est valide
                     $errors[]="Prenom incorrect";
@@ -34,8 +37,8 @@ class Verificator
                 if($name == "Nom" && !self::checkName($data[$submitName])){ //Est-ce que le nom est valide
                     $errors[]="Nom incorrect";
                 }
-                if($name == "Nom_d'utilisateur" && !self::checkUsername($data[$submitName])){ //Est-ce que le username est valide
-                    $errors[]="Username incorrect";
+                if($name == "Nom d'utilisateur" && !self::checkUsername($data[$submitName])){ //Est-ce que le username est valide
+                    $errors[]="Nom d'utilisateur incorrect";
                 }
             }
 
