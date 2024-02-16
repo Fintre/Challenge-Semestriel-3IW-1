@@ -62,6 +62,10 @@
   controller: Security
   action: requestResetPassword
 
+/reset-password:
+  controller: Security
+  action: resetPassword
+
 /articles:
   controller: Articles
   action: allArticles

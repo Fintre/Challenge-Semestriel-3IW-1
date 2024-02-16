@@ -5,7 +5,7 @@ namespace App;
 
 use App\Controllers\Error;
 
-
+date_default_timezone_set('Europe/Paris');
 spl_autoload_register("App\myAutoloader"); //pour enregistrer une fonction d'autoload personnalisée
 
 function myAutoloader(String $class): void
