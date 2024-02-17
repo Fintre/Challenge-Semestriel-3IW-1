@@ -9,21 +9,63 @@ class EditUser
         return [
             "config"=> [
                 "method"=>"POST",
-                "action"=>"editUser",
-                "submit"=>"Sauvegarder",
-                "class"=>"form",
-                "id"=>"form-edit"
+                "action"=>"update-profile",
+                "submit"=>"Sauvegarder les modifications",
+                "enctype"=>"multipart/form-data",
+                "class"=>"form"
             ],
             "inputs"=>[
-                "Nom"=>["label" => "Nom", "type"=>"text", "class"=>"input-form no-border", "placeholder"=>"nom", "minlen"=>2, "required"=>true, "error"=>"Le nom doit faire plus de 2 caractères"],
-                "Prénom"=>["label" => "Prénom", "type"=>"text", "class"=>"input-form no-border", "placeholder"=>"prénom", "minlen"=>2, "required"=>true, "error"=>"Le prénom doit faire plus de 2 caractères"],
-                "Nom d'utilisateur"=>["label" => "Pseudo", "type"=>"text", "class"=>"input-form no-border" , "placeholder"=>"pseudo", "minlen"=>2, "required"=>true, "error"=>"Le login doit faire plus de 2 caractères"],
-                "E-mail"=>["label" => "email", "type"=>"email", "class"=>"input-form no-border", "placeholder"=>"email", "required"=>true, "error"=>"Le format de l'email est incorrect"],
-                "Mot de passe"=>["label" => "mot de passe", "type"=>"password", "class"=>"input-form no-border", "placeholder"=>"mot de passe", "required"=>true, "error"=>"Votre mot de passe doit faire plus de 8 caractères avec minuscule et chiffre"],
-                "Role"=>["type"=>"text", "class"=>"input-form","id"=>"role", "placeholder"=>"role", "required"=>true, "error"=>"Veuillez choisir un rôle"],
-                ]
-
+                "Nom d'utilisateur"=>[
+                    "type"=>"text",
+                    "name" => "username",
+                    "class" => "input-form",
+                    "placeholder" => "Nom d'utilisateur",
+                    "required"=>true,
+                    "error"=>"Le nom d'utilisateur doit faire plus de 2 caractères"
+                ],
+                "E-mail"=>[
+                    "type"=>"email",
+                    "name" => "email",
+                    "class" => "input-form",
+                    "placeholder" => "Adresse email",
+                    "required"=>true
+                ],
+                "Image de profil"=>[
+                    "type"=>"file",
+                    "name" => "profile_picture",
+                    "class" => "input-form",
+                    "placeholder" => "Image de profil",
+                    "required"=>false, // Dépend de si tu veux forcer l'utilisateur à avoir une image de profil
+                    "accept"=>"image/*" // Accepte uniquement les images
+                ],
+                "Nom"=>[
+                    "type"=>"text",
+                    "name" => "nom",
+                    "class" => "input-form",
+                    "placeholder" => "Nom",
+                    "required"=>true,
+                ],
+                "Prénom"=>[
+                    "type"=>"text",
+                    "name" => "prenom",
+                    "class" => "input-form",
+                    "placeholder" => "Prénom",
+                    "required"=>true,
+                ],
+                "Role"=>[
+                    "type"=>"select",
+                    "name" => "role",
+                    "class" => "input-form",
+                    "options"=> [
+                        "admin" => "Administrateur",
+                        "editor" => "Éditeur",
+                        "user" => "Utilisateur"
+                    ],
+                    "required"=>true,
+                    "error"=>"Veuillez sélectionner un rôle pour l'utilisateur"
+                ],
+                // Ajoute d'autres champs selon tes besoins...
+            ]
         ];
     }
-
 }
