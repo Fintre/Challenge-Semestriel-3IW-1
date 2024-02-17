@@ -92,3 +92,19 @@ a{
 .blog-image{
   border-radius: rem(10);
 }
+
+/* Media query pour les écrans de taille moyenne, comme les tablettes */
+@media only screen and (max-width: 768px) {
+  body {
+      font-size: rem(12);
+  }
+}
+
+/* Media query pour les petits écrans, tels que les smartphones */
+@media only screen and (max-width: 480px) {
+  body {
+      font-size: rem(10);
+  }
+  /* Ajoutez ici d'autres styles spécifiques aux petits écrans si nécessaire */
+}
+

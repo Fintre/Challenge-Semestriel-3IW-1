@@ -22,6 +22,13 @@ class Articles
         $newUser = new View("Articles/addArticles", "back");
     }
 
+    public function deleteArticle($id): void
+    {
+        $deleted = new DB();
+        $deleted->delete($id);
+        
+    }
+
     public function getAllArticles()
     {
         $article = new DB();
