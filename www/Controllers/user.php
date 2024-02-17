@@ -58,7 +58,6 @@ class User
         $myView->assign("successForm", $success);
     }
 
-
     public function delete(): void
     {
         echo "Supprimmer un utilisateur";
