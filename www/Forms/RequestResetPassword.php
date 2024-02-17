@@ -10,7 +10,7 @@ class RequestResetPassword
             "config"=> [
                 "method"=>"POST",
                 "action"=>"recover-password",
-                "submit"=>"Demander un nouveau mot de passe",
+                "submit"=>"Recevoir le lien",
                 "class"=>"form"
 
             ],
