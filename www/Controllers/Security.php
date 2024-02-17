@@ -77,8 +77,19 @@ class Security
                 $user->setUsername($_REQUEST['Nom_d\'utilisateur']);
                 $user->setEmail($_REQUEST['E-mail']);
                 $user->setPwd($_REQUEST['Mot_de_passe']);
+                $activationToken = bin2hex(random_bytes(16)); // Générer un token d'activation
+                $user->setActivationToken($activationToken); // Supposons que vous avez une méthode pour cela
                 $user->save(); //ajouter toutes les données dans la base de données
                 $success[] = "Votre compte a bien été créé";
+
+                // Envoyer l'email de réinitialisation
+                $emailResult = $this->sendActivationEmail($user->getEmail(), $activationToken);
+
+                if (isset($emailResult['success'])) {
+                    $success[] = $emailResult['success'];
+                } elseif (isset($emailResult['error'])) {
+                    $errors[] = $emailResult['error'];
+                }
             }
         }
 
@@ -167,6 +178,33 @@ class Security
         }
     }
 
+    private function sendActivationEmail($email, $activationToken) {
+        $mail = new PHPMailer(true); // Passer `true` active les exceptions
+
+        try {
+            // Configurations du serveur
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->Port = 587;
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->SMTPAuth = true; // Activer l'authentification SMTP
+            $mail->Username = 'gofindme.contact@gmail.com'; // SMTP username
+            $mail->Password = 'hcnplwiqpmmqbwdp'; // SMTP password
+            $mail->setFrom('gofindme.contact@gmail.com', 'Support GoFindMe');
+            $mail->addAddress($email);
+            $mail->Subject = 'Activation de votre compte GoFindMe';
+
+
+            $activationLink = "http://localhost/activate-account?token=" . $activationToken;
+            $mail->Body = 'Veuillez cliquer sur ce lien pour activer votre compte: ' . $activationLink;
+
+            $mail->send();
+            return ['success' => 'Le lien de recuperation de mot de passe a été envoyé par mail.'];
+        } catch (Exception $e) {
+            return ['error' => "Le lien n'a pas pu être envoyé. Mailer Error: {$mail->ErrorInfo}"];
+        }
+    }
+
     public function resetPassword(): void
     {
         $formInitPass = new InitPassword();
@@ -207,6 +245,32 @@ class Security
         $myView->assign("configForm", $config);
         $myView->assign("errorsForm", $errors);
         $myView->assign("successForm", $success);
+    }
+
+    public function activateAccount()
+    {
+        $token = $_GET['token'] ?? '';
+        $errors = [];
+        $success = [];
+        if (empty($token)) {
+            $errors[] = "Le token d'activation est manquant.";
+            return;
+        }
+
+        $user = new User();
+        $userModel = $user->getOneBy(['activation_token' => $token]);
+        $user->setDataFromArray($userModel);
+        if ($user) {
+            $user->setIsActive(1);
+            $user->setActivationToken(null);
+            $user->save();
+            $success[] = "Votre compte a été activé avec succès.";
+        } else {
+            $errors[] = "Le token d'activation est invalide.";
+        }
+        $view = new View("Security/activationAccount", "neutral"); // Remplacez "activation" par le nom de votre fichier de vue
+        $view->assign("errors", $errors);
+        $view->assign("success", $success);
     }
 
 

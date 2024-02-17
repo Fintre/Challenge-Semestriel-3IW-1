@@ -46,6 +46,10 @@
   controller: Security
   action: register
 
+/activate-account:
+  controller: Security
+  action: activateAccount
+
 /user/edit-user:
   controller: User
   action: editUser

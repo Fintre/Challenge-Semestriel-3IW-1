@@ -86,6 +86,11 @@ class DB
         }
 
         $queryPrepared = $this->pdo->prepare($sql); //pour préparer la requête
+        //pour associer les valeurs aux paramètres de la requête préparée
+        foreach ($data as $key => $value) {
+            $type = is_bool($value) ? \PDO::PARAM_BOOL : (is_int($value) ? \PDO::PARAM_INT : \PDO::PARAM_STR);
+            $queryPrepared->bindValue(":$key", $value, $type);
+        }
         $queryPrepared->execute($data); //pour exécuter la requête
     }
 
@@ -150,15 +155,3 @@ class DB
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-

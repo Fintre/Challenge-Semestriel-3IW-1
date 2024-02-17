@@ -15,6 +15,9 @@ class User extends DB
     protected int $isDeleted;
     protected ?string $reset_token = null;
     protected ?string $reset_expires = null;
+    protected ?string $activation_Token = null;
+    protected bool $is_Active;
+
 
 
     public function __construct()
@@ -186,6 +189,25 @@ class User extends DB
         $this->reset_expires = $reset_expires;
     }
 
+    public function getActivationToken(): string
+    {
+        return $this->activation_Token;
+    }
+
+    public function setActivationToken(?string $activationToken): void
+    {
+        $this->activation_Token = $activationToken;
+    }
+
+    public function getIsActive(): bool
+    {
+        return $this->is_Active;
+    }
+
+    public function setIsActive(bool $is_Active): void
+    {
+        $this->is_Active = $is_Active;
+    }
 
 
 }
