@@ -84,7 +84,7 @@
 							</li>
                             <li>
 								<a href="themes" class="accordion">
-									<div class="accordion-title">Apparence</div>
+									<div class="accordion-title">Thèmes</div>
 									<div class="accordion-icon"> </div>
 								</a>
 							</li>

@@ -15,8 +15,13 @@ class Verificator
             //CSRF ???
             foreach ($config["inputs"] as $name=>$input){
                 $submitName = str_replace(' ', '_', $name); //On remplace les espaces par des _
-                if(!isset($data[$submitName])){ //Est-ce que le champ existe
+                if(!isset($data[$submitName])){ //Est-ce que le champ existe dans le formulaire
+                    echo $submitName;
+                    echo "<pre>";
+                    print_r($data);
+                    echo "</pre>";
                     die("Tentative de Hack2"); //Si non, on arrete tout
+
                 }
                 if($input["type"]=="email" && !self::checkEmail($data[$submitName])){ //Est-ce que l'email est valide
                     $errors[]="Email incorrect";

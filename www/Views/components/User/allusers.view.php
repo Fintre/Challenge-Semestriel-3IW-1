@@ -24,7 +24,7 @@
                     <td><?php echo $userData['status']; ?></td>
                     <td class="link-list">
                         <a href="#" class="link-primary"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                        <a href="/user/edit-user" class="link-primary"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                        <a href="/user/edit-user?id=<?php echo $userData['id']; ?>" class="link-primary"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                         <a href="#" class="link-danger"><i class="fa fa-minus-square-o" aria-hidden="true"></i></a>
                     </td>
                 </tr>
