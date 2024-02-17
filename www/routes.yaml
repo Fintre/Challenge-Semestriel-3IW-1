@@ -48,7 +48,7 @@
 
 /user/edit-user:
   controller: User
-  action: edit
+  action: editUser
 
 /login:
   controller: Security

@@ -14,16 +14,15 @@ class User
         $newUser = new View("User/allusers", "back");
     }
 
-    public function editUser(): void
-    {
-        $db = new DB();
+    public function editUser(): void {
+        $userId = $_GET['id'] ?? null;
+        $db = DB::getInstance();
         $errors = [];
         $success = [];
 
-        // Étape 1: Charger les données de l'utilisateur
-        $userId = $_GET['id'] ?? null;
         if ($userId) {
-            $userData = $db->getOneBy(['id' => $userId], 'object');
+            // Charger les données existantes de l'utilisateur
+            $userData = $db->getOneBy(['id' => $userId]);
             if (!$userData) {
                 $errors[] = "Utilisateur non trouvé.";
             } else {
@@ -33,22 +32,19 @@ class User
             $errors[] = "Aucun ID d'utilisateur spécifié.";
         }
 
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            // Étape 3: Traiter la soumission du formulaire
+        $config = $form->getConfig();
+
+        if ($_SERVER["REQUEST_METHOD"] === $config["config"]["method"]) {
             $verificator = new Verificator();
-            if ($verificator->checkForm($form->getConfig(), $_POST, $errors)) {
-                // Mettre à jour les données de l'utilisateur
-                $updateData = [
-                    'username' => $_POST['username'],
-                    'email' => $_POST['email'],
-                    // Assurez-vous de traiter et de valider les autres champs correctement, y compris l'hashage du mot de passe si nécessaire
-                ];
-                $db->updateUser($userId, $updateData); // Vous devrez implémenter cette méthode
+            if ($verificator->checkForm($config, $_REQUEST, $errors)) {
+                // Mettre à jour les propriétés de l'objet utilisateur
+                $userData->setDataFromArray($_REQUEST);
+                // Enregistrer les modifications
+                $userData->save(); // Cette méthode doit gérer la logique de mise à jour
                 $success[] = "Les informations de l'utilisateur ont été mises à jour avec succès.";
             }
         }
 
-        $config = $form->getConfig();
         $myView = new View("User/edituser", "back");
         $myView->assign("configForm", $config);
         $myView->assign("errorsForm", $errors);
