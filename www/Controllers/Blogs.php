@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Core\View;
+use App\Core\DB;
 
 class Blogs
 {
@@ -19,5 +20,11 @@ class Blogs
     public function addBlogs(): void
     {
         $newUser = new View("Blogs/addBlogs", "back");
+    }
+
+    public function getAllBlogs()
+    {
+        $article = new DB();
+        return $allArticles = $article->getArticlesAndBlogs("blog"); 
     }
 }

@@ -44,10 +44,12 @@
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+      align-items: flex-start;
 
       .text-content{
         margin-left: rem(15);
         height: rem(100);
+        width: 100%;
         overflow: scroll;
       }
     }
@@ -72,10 +74,6 @@
   color: #214cce;
 }
 
-.blog-text{
-  width: 80%;
-}
-
 .blog-date{
   text-align: start;
   margin-top: rem(10);
@@ -90,3 +88,18 @@
 .blog-image{
   border-radius: rem(10);
 }
+
+/* Media query pour les écrans de taille moyenne, comme les tablettes */
+@media only screen and (max-width: 768px) {
+  body {
+      font-size: rem(12);
+  }
+}
+
+/* Media query pour les petits écrans, tels que les smartphones */
+@media only screen and (max-width: 480px) {
+  body {
+      font-size: rem(10);
+  }
+}
+
