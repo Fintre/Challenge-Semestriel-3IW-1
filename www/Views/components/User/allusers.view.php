@@ -1,15 +1,3 @@
-<?php namespace App\Controllers; ?>
-
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-g6R+2qH1I8hzl6fXExdSN3R/xkA6r0/KRXC5WAPtzIiq/T6NoD2efpZ/KisK/AJUp" crossorigin="anonymous">
-
-<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
-
-
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" /> 
-<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
-
 <h1>Tous les utilisateurs</h1>
 <section class="users-table">
 <div class="user-table">
@@ -50,7 +38,7 @@
         </tbody> -->
 
         <tbody class="responsive-tb">
-            <?php 
+            <?php
 
                 $userController = new \App\Controllers\User();
                 $allUsers = $userController->getUsers();

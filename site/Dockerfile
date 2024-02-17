@@ -17,7 +17,8 @@ RUN apt-get update && apt-get install -y \
 
 RUN npm install -g sass
 
-RUN pecl install yamL
+# Installer et activer l'extension YAML
+RUN pecl install yaml && docker-php-ext-enable yaml
 
 RUN usermod -u 1000 www-data
 

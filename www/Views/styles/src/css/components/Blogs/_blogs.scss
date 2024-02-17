@@ -3,8 +3,8 @@
 }
 
 .container {
-  margin: 0 auto;
-  max-width: 1170px;
+  margin: rem(0) auto;
+  max-width: rem(1170);
   position: relative;
 }
 
@@ -13,10 +13,6 @@
   display: flex;
   flex-direction: row;
   align-items: end;
-}
-
-a{
-  text-decoration: none;
 }
 
 .link-list{
@@ -105,6 +101,5 @@ a{
   body {
       font-size: rem(10);
   }
-  /* Ajoutez ici d'autres styles spécifiques aux petits écrans si nécessaire */
 }
 

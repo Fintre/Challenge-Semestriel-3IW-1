@@ -2,10 +2,6 @@
   controller: Main
   action: home
 
-/design-guide:
-  controller: DesignGuide
-  action: index
-
 /categorie:
   controller: Categories
   action: allCategories
@@ -62,17 +58,13 @@
   controller: Security
   action: logout
 
-/login/recover-password:
+/recover-password:
   controller: Security
-  action: forgetPassword
+  action: requestResetPassword
 
-/login/get-code:
+/reset-password:
   controller: Security
-  action: getCode
-
-/login/init-password:
-  controller: Security
-  action: initPassword
+  action: resetPassword
 
 /articles:
   controller: Articles
@@ -97,4 +89,8 @@
 /blogs/edit-blog:
   controller: Blogs
   action: editBlogs
+
+/themes:
+  controller: Themes
+  action: allThemes
 
