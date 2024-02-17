@@ -6,19 +6,8 @@
 
 
     <?php foreach ($config["inputs"] as $name => $configInput): ?>
-        <?php if ($configInput["type"] != "hidden"): ?>
-            <div class="input-form">
-                <label for="<?= $configInput['id'] ?? '' ?>"><?= htmlspecialchars($name) ?></label>
-                <input
-                    name="<?= $name ?>"
-                    type="<?= $configInput["type"] ?? "text" ?>"
-                    id="<?= $configInput["id"] ?? " " ?>"
-                    class="<?= $configInput["class"] ?? "" ?>"
-                    placeholder="<?= $configInput["placeholder"] ?? "" ?>"
-                    <?= (!empty($configInput["required"])) ? "required" : "" ?>
-                ><br>
-            </div>
-        <?php else: ?>
+        <div class="input-form">
+        <?php if ($configInput["type"] == "hidden"): ?>
             <input
                 type="hidden"
                 name="<?= $name ?>"
@@ -28,7 +17,25 @@
                 value="<?= htmlspecialchars($configInput["value"] ?? '') ?>"
                 <?= (!empty($configInput["required"])) ? "required" : "" ?>
             >
+        <?php elseif ($configInput["type"] == "select"): ?>
+                <label for="<?= $configInput['name'] ?>"><?= htmlspecialchars($name) ?></label>
+                <select name="<?= $configInput['name'] ?>" id="<?= $configInput['id'] ?? '' ?>" class="<?= $configInput["class"] ?? "" ?>" <?= (!empty($configInput["required"])) ? "required" : "" ?>>
+                    <?php foreach ($configInput["options"] as $value => $text): ?>
+                        <option value="<?= htmlspecialchars($value) ?>"><?= htmlspecialchars($text) ?></option>
+                    <?php endforeach; ?>
+                </select><br>
+        <?php else: ?>
+            <label for="<?= $configInput['id'] ?? '' ?>"><?= htmlspecialchars($name) ?></label>
+                <input
+                    name="<?= $name ?>"
+                    type="<?= $configInput["type"] ?? "text" ?>"
+                    id="<?= $configInput["id"] ?? " " ?>"
+                    class="<?= $configInput["class"] ?? "" ?>"
+                    placeholder="<?= $configInput["placeholder"] ?? "" ?>"
+                    <?= (!empty($configInput["required"])) ? "required" : "" ?>
+                ><br>
         <?php endif; ?>
+        </div>
     <?php endforeach; ?>
 
     <input type="submit" class="<?= $submitButtonClass??"" ?>" value="<?= $config["config"]["submit"]??"Envoyer" ?>" >

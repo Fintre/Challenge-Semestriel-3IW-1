@@ -69,7 +69,7 @@
 
 <section class="dashboard-avis">
 	<div class="card">
-				<div class="card-title"> Avis</div>
+				<div class="card-title">Commentaires</div>
 				<div class="card-avis">
 					<div class="card-avis-elements">
 						<img src="/Views/styles/dist/images/profil.png" alt="profil image">

@@ -3,7 +3,8 @@ namespace App\Core;
 date_default_timezone_set('Europe/Paris');
 class DB
 {
-    private ?object $pdo = null;
+    private static ?DB $instance = null;
+    private \PDO $pdo;
     private string $table;
 
     public function __construct()
@@ -20,6 +21,19 @@ class DB
         $table = array_pop($table); //pour récupérer le nom de la classe
         $this->table = "gfm_".strtolower($table); //pour mettre le nom de la table en minuscule et ajouter le préfixe gfm_
     }
+
+    public static function getInstance(): DB {
+        if (self::$instance === null) {
+            self::$instance = new self();
+        }
+        return self::$instance;
+    }
+
+    // Empêcher le clonage de l'instance
+    private function __clone() {}
+
+    // Empêcher la désérialisation de l'instance
+    public function __wakeup() {}
 
     public function getAllData($table) //pour récupérer tous les enregistrements de la bdd
     {
