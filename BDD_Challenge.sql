@@ -43,12 +43,11 @@ CREATE TABLE "gfm_post" (
   "description" varchar(255),
   "slug" varchar(20) NOT NULL,
   "theme" varchar(45),
-  "published" smallint NOT NULL DEFAULT 0,
-  "isDeleted" smallint NOT NULL DEFAULT 0,
+  "published" boolean NOT NULL DEFAULT FALSE,
+  "isDeleted" boolean NOT NULL DEFAULT FALSE,
   "createdat" timestamp DEFAULT current_timestamp NOT NULL,
-  "updatedat" timestamp DEFAULT current_timestamp,
-  "user_id" int NOT NULL,
-  "siteSetting_id" int NOT NULL
+  "updatedat" timestamp DEFAULT current_timestamp
+  --todo when login is ok "user_id" int NOT NULL,
 );
 
 -- Structure de la table `siteSetting`
@@ -94,8 +93,8 @@ CREATE INDEX "gfm_media_post_id" ON "gfm_media" ("post_id");
 
 -- Index pour la table `post`
 CREATE UNIQUE INDEX "gfm_post_pkey" ON "gfm_post" ("id");
-CREATE INDEX "gfm_post_user_id" ON "gfm_post" ("user_id");
-CREATE INDEX "gfm_post_siteSetting_id" ON "gfm_post" ("siteSetting_id");
+--CREATE INDEX "gfm_post_user_id" ON "gfm_post" ("user_id");
+
 
 -- Index pour la table `siteSetting`
 CREATE UNIQUE INDEX "gfm_siteSetting_pkey" ON "gfm_siteSetting" ("id");
@@ -115,6 +114,5 @@ ALTER TABLE "gfm_media"
   ADD CONSTRAINT "gfm_media_post_fk" FOREIGN KEY ("post_id") REFERENCES "gfm_post" ("id") ON DELETE NO ACTION ON UPDATE CASCADE;
 
 -- Contraintes pour la table `post`
-ALTER TABLE "gfm_post"
-  ADD CONSTRAINT "gfm_post_user_fk" FOREIGN KEY ("user_id") REFERENCES "gfm_user" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT "gfm_post_siteSetting_fk" FOREIGN KEY ("siteSetting_id") REFERENCES "gfm_siteSetting" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION;
+--ALTER TABLE "gfm_post"
+  --ADD CONSTRAINT "gfm_post_user_fk" FOREIGN KEY ("user_id") REFERENCES "gfm_user" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION,

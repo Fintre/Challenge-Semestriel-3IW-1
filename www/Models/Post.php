@@ -1,28 +1,36 @@
 <?php
+
 namespace App\Models;
 
-class Post
-{
-    protected $id;
-    protected $slug;
-    protected $title;
-    protected $description;
-    protected $body;
+use App\Core\DB;
 
-    protected $type;
-    protected $published;
-    protected $isDeleted;
-    protected $createAt;
-    protected $updatedAt;
-    protected $userId;
-    protected $siteSettingId;
+class Post extends DB
+{
+    protected ?int $id;
+    protected string $slug;
+    protected string $title;
+    protected ?string $description;
+    protected string $body;
+
+    protected ?string $type;
+    protected bool $published;
+    protected bool $isDeleted;
+
+    //todo when login ok protected int $userId;
+
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
     /**
      * @return mixed
      */
     public function getId()
     {
-        return $this->id;
+        if (isset($this->id)) {
+         return $this->id;
+        }
     }
 
     /**
@@ -38,7 +46,9 @@ class Post
      */
     public function getSlug()
     {
-        return $this->slug;
+        if (isset($this->slug)) {
+            return $this->slug;
+        }
     }
 
     /**
@@ -54,7 +64,9 @@ class Post
      */
     public function getTitle()
     {
-        return $this->title;
+        if (isset($this->title)) {
+            return $this->title;
+        }
     }
 
     /**
@@ -86,7 +98,9 @@ class Post
      */
     public function getBody()
     {
-        return $this->body;
+        if (isset($this->body)) {
+            return $this->body;
+        }
     }
 
     /**
@@ -177,61 +191,27 @@ class Post
         $this->updatedAt = $updatedAt;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getUserId()
+    public function validate(): array
     {
-        return $this->userId;
+        $missingFields = array();
+
+        if (empty($this->getSlug()) ) {
+            $missingFields['slug'] = 'Le nom de la page est obligatoire';
+        }
+
+        if (empty($this->getTitle())) {
+            $missingFields['title'] = 'Le titre de la page est obligatoire';
+        }
+
+        if (empty($this->getBody())) {
+            $missingFields['body'] = 'Le contenu de la page est obligatoire';
+        }
+
+        return $missingFields;
     }
 
-    /**
-     * @param mixed $userId
-     */
-    public function setUserId($userId): void
+    public function __toString()
     {
-        $this->userId = $userId;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getSiteSettingId()
-    {
-        return $this->siteSettingId;
-    }
-
-    /**
-     * @param mixed $siteSettingId
-     */
-    public function setSiteSettingId($siteSettingId): void
-    {
-        $this->siteSettingId = $siteSettingId;
-    }
-
-
-    // CRUD OPERATIONS
-    public function create(array $data)
-    {
-
-    }
-
-    public function read(int $id)
-    {
-
-    }
-
-    public function update(int $id, array $data)
-    {
-
-    }
-
-    public function delete(int $id)
-    {
-
-    }
-
-    public function __toString() {
         return "ID: " . $this->id . "\n" .
             "Slug: " . $this->slug . "\n" .
             "Title: " . $this->title . "\n" .

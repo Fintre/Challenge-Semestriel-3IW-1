@@ -189,6 +189,12 @@ p {
   }
 }
 
+@media (max-width: 768px) {
+  .section1-status-tab {
+    margin-left: 0;
+  }
+}
+
 .tab-item {
   padding: rem(10) rem(20);
   text-decoration: none;
@@ -197,3 +203,8 @@ p {
   color: black;
 }
 
+@media (max-width: 768px) {
+  .tab-item {
+    padding: 0;
+  }
+}

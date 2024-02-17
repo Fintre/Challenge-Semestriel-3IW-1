@@ -1,21 +1,5 @@
-<?php
-$allowedTags='<p><strong><em><u><h1><h2><h3><h4><h5><h6><img>';
-$allowedTags.='<li><ol><ul><span><div><br><ins><del>';
-// Should use some proper HTML filtering here.
-if($_POST['pageContent']!='') {
-    $sHeader = '<h3>Page sauvegardée</h3>';
-    $sContent = strip_tags(stripslashes($_POST['pageContent']),$allowedTags);
-} else {
-    $sHeader = "<h3>N'oubliez pas sauvegarder</h3>";
-    $sContent = '<p>Start typing...</p>';
-    $sContent.= '<p><img width="107" height="108" border="0" src="/mediawiki/images/badge.png"';
-    $sContent.= 'alt="TinyMCE button"/>This rover has crossed over</p>';
-}
-?>
 <script type="text/javascript" src="../../../Shared/tinymce/js/tinymce/tinymce.js"></script >
 <script>
-
-
     tinymce.init({
         selector: 'textarea#pageContent',
         auto_focus: 'element1',
@@ -27,21 +11,32 @@ if($_POST['pageContent']!='') {
     });
 </script>
 <h2>Nouvelle page</h2>
-<?php echo $sHeader;?>
+<?php
+$info = $this->data['info'];
+echo "<h3>$info</h3>";
+
+if (empty($this->data['mandatoryFields'])) {
+    $missingFields = implode("<br>", $this->data['mandatoryFields']);
+    echo "<div style='color: red'>$missingFields</div>";
+}
+?>
 <section class="new-post-main">
     <div class="section1-new-post-container">
         <form method="post" action="<?=$_SERVER['REQUEST_URI']?>">
             <div class="form-group">
                 <label for="pageName"></label>
-                <textarea id="pageName" class="pageName" placeholder="Nom de la page ..."></textarea>
+                <textarea name="pageSlug" id="pageName" class="pageName" placeholder="Nom de la page ..."><?php echo $this->data['pageSlug'] ??'' ?></textarea>
             </div>
             <div class="form-group">
                 <label for="pageTitle"></label>
-                <textarea id="pageTitle" class="pageTitle" placeholder="Titre de la page ..."></textarea>
+                <textarea name="pageTitle" id="pageTitle" class="pageTitle" placeholder="Titre de la page ..."><?php echo $this->data['pageTitle'] ?? ''?></textarea>
             </div>
             <div class="form-content">
                 <label for="pageContent"></label>
-                <textarea name="pageContent" id="pageContent"><?php echo $sContent?></textarea>
+                <textarea name="pageContent" id="pageContent"><?php echo $this->data['sContent'] ?? '' ?></textarea>
+            </div>
+            <div hidden>
+                <input type="number" name="id" value="<?php echo $this->data['id'] ?? ''?>"/>
             </div>
             <div class="form-button-add-element">
                 <button class="button button-primary button-sm">+</button>
@@ -50,13 +45,9 @@ if($_POST['pageContent']!='') {
                 <button type="submit" class="button button-primary button-lg">Ajouter</button>
             </div>
         </form>
-
     </div>
 
-
-
-
-    <div>
+    <div class="section2-new-post-container">
         <div class="block-card block-card-custom-page color">Couleur
             <div class="block-card block-card-custom-page-color-wrapper">
                 <span class="block-card-custom-page-color-content">Texte

@@ -62,6 +62,8 @@
 <section class="section4-">
 </section>
 <section class="section5-page-add">
-    <button class="button button-primary">Ajouter</button>
+    <button class="button button-primary">
+        <a href="/post/add-post" class="add-content">Ajouter</a>
+    </button>
 </section>
 

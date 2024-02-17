@@ -197,6 +197,11 @@ p.text {
   width: 31.25rem;
 }
 
+@media (max-width: 768px) {
+  .section1-status-tab {
+    margin-left: 0;
+  }
+}
 .tab-item {
   padding: 0.625rem 1.25rem;
   text-decoration: none;
@@ -205,6 +210,11 @@ p.text {
   color: black;
 }
 
+@media (max-width: 768px) {
+  .tab-item {
+    padding: 0;
+  }
+}
 .block-line-search {
   background-color: white;
   display: inline-block;
@@ -260,6 +270,7 @@ p.text {
   height: 1.375rem;
 }
 .block-card.block-card-custom-page {
+  background-color: white;
   border: 0.125rem solid var(--green);
   display: inline-flex;
   flex-direction: column;
@@ -967,6 +978,20 @@ p.text {
   background-color: var(--grey-darker);
 }
 
+.section2-search-bar {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .section2-search-bar {
+    width: auto;
+  }
+  .section2-search-bar .block-line-search {
+    width: 100%;
+  }
+}
 .section3-information-page {
   display: flex;
   flex-direction: column;
@@ -995,11 +1020,15 @@ p.text {
   display: flex;
   justify-content: space-around;
 }
+.section5-page-add .button.button-primary .add-content {
+  color: white;
+}
 
 .new-post-main {
   display: flex;
   height: 100%;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  width: 100%;
 }
 
 h3 {
@@ -1145,6 +1174,11 @@ h3 {
 }
 .button-new-page .button-submit {
   margin: 0.9375rem 0 0.9375rem;
+}
+
+.section2-new-post-container {
+  display: flex;
+  flex-direction: column;
 }
 
 .connection-box {

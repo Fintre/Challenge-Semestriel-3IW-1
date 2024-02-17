@@ -35,14 +35,16 @@ class DB
         return array_diff_key(get_object_vars($this), get_class_vars(get_class())); //mettre dans un tableau les données de l'objet
     }
 
-    public function save() //pour insérer ou mettre à jour les données de l'objet dans la bdd
+    public function save(): string //pour insérer ou mettre à jour les données de l'objet dans la bdd
     {
         $data = $this->getDataObject();
 
         if( empty($this->getId())){ //si l'id est vide, on insère
+            unset($data['id']);
             $sql = "INSERT INTO " . $this->table . "(" . implode(",", array_keys($data)) . ")
             VALUES (:" . implode(",:", array_keys($data)) . ")";
-        }else{ //sinon on met à jour
+        } else { //sinon on met à jour
+            $isUpdate = true;
             $sql = "UPDATE " . $this->table . " SET ";
             foreach ($data as $column => $value){
                 $sql.= $column. "=:".$column. ",";
@@ -54,6 +56,10 @@ class DB
 
         $queryPrepared = $this->pdo->prepare($sql); //pour préparer la requête
         $queryPrepared->execute($data); //pour exécuter la requête
+        if (isset($isUpdate)) {
+            return $this->getId();
+        }
+        return $this->pdo->lastInsertId($this->table."_id_seq");
     }
 
 
@@ -69,10 +75,10 @@ class DB
     {
         //SELECT * FROM gfm_user WHERE id=:id AND ...
         $sql = "SELECT * FROM ".$this->table. " WHERE ";
-        foreach ($data as $column=>$value){
+        foreach ($data as $column => $value){
             $sql .= " ".$column."=:".$column. " AND";
         }
-        $sql = substr($sql, 0, -3); //pour enlever le dernier AND
+        $sql = substr($sql, 0, -3);//pour enlever le dernier AND
         $queryPrepared = $this->pdo->prepare($sql); //pour préparer la requête
         $queryPrepared->execute($data); //pour exécuter la requête
         if($return == "object"){//pour récupérer un objet

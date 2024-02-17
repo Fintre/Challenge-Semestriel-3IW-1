@@ -1,3 +1,20 @@
+.section2-search-bar {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .section2-search-bar  {
+    width: auto;
+    .block-line-search {
+      width: 100%;
+    }
+  }
+}
+
+
+
 .section3-information-page {
   display: flex;
   flex-direction: column;
@@ -25,5 +42,10 @@
 .section5-page-add {
   display: flex;
   justify-content: space-around;
+  .button.button-primary {
+    .add-content {
+      color: white;
+    }
+  }
 }
 
