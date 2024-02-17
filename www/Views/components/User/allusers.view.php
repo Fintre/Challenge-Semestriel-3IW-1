@@ -1,5 +1,6 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <h2>Tous les utilisateurs</h2>
-<section class="section1-status-tab">
+<section class="section1-user-table">
 <div class="user-table">
     <table class="responsive-table" id="myTable">
         <thead class="responsive-th">
@@ -21,7 +22,11 @@
                     <td><?php echo $userData['firstname']; ?></td>
                     <td><?php echo $userData['email']; ?></td>
                     <td><?php echo $userData['status']; ?></td>
-                    <td><a href="#" class="link-danger">supprimer</a></td>
+                    <td class="link-list">
+                        <a href="#" class="link-primary"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                        <a href="/user/edit-user" class="link-primary"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                        <a href="#" class="link-danger"><i class="fa fa-minus-square-o" aria-hidden="true"></i></a>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
