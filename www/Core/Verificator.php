@@ -10,30 +10,31 @@ class Verificator
 
         //Est-ce qu'on a le bon nb d'inputs
         if(count($config["inputs"]) != count($data)){
-            print_r($config["inputs"]);
-            echo count($config["inputs"]);
-            echo count($data);
             die("Tentative de Hack1");
         }else{
             //CSRF ???
             foreach ($config["inputs"] as $name=>$input){
-                if(!isset($data[$name])){ //Est-ce que le champ existe
+                $submitName = str_replace(' ', '_', $name); //On remplace les espaces par des _
+                if(!isset($data[$submitName])){ //Est-ce que le champ existe
                     die("Tentative de Hack2"); //Si non, on arrete tout
                 }
-                if($input["type"]=="email" && !self::checkEmail($data[$name])){ //Est-ce que l'email est valide
+                if($input["type"]=="email" && !self::checkEmail($data[$submitName])){ //Est-ce que l'email est valide
                     $errors[]="Email incorrect";
                 }
-                if($input["type"]=="password" && !self::checkPassword($data[$name])){ //Est-ce que le password est valide
-                    $errors[]="Password incorrect";
+                if($input["type"]=="password" && !self::checkPassword($data[$submitName])){ //Est-ce que le password est valide
+                    $errors[]="Le mot de passe est invalide";
                 }
-                if($name == "firstname" && !self::checkName($data[$name])){ //Est-ce que le prenom est valide
+                if($name == "Confirmation de mot de passe" && $data[$submitName] !== $data["Mot_de_passe"]){ //Est-ce que les mots de passe correspondent
+                    $errors[]="Les mots de passe ne correspondent pas";
+                }
+                if($name == "Prénom" && !self::checkName($data[$submitName])){ //Est-ce que le prenom est valide
                     $errors[]="Prenom incorrect";
                 }
-                if($name == "lastname" && !self::checkName($data[$name])){ //Est-ce que le nom est valide
+                if($name == "Nom" && !self::checkName($data[$submitName])){ //Est-ce que le nom est valide
                     $errors[]="Nom incorrect";
                 }
-                if($name == "username" && !self::checkUsername($data[$name])){ //Est-ce que le username est valide
-                    $errors[]="Username incorrect";
+                if($name == "Nom d'utilisateur" && !self::checkUsername($data[$submitName])){ //Est-ce que le username est valide
+                    $errors[]="Nom d'utilisateur invalide";
                 }
             }
 
@@ -64,7 +65,7 @@ class Verificator
 
     public static function checkUsername(String $username): bool
     {
-        return preg_match("#[a-z0-9-_.]#", $username);
+        return preg_match("#^[a-zA-Z0-9_]+$#", $username);
     }
 
 }

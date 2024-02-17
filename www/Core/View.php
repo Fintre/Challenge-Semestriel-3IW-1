@@ -43,7 +43,7 @@ class View
         $this->data[$key]=$value;
     }
 
-    public function includeComponent(string $component, array $config, array $data = [], string $styleButton): void
+    public function includeComponent(string $component, array $config, array $dataError = [], array $dataSuccess = [], string $styleButton): void
     {
         if(!file_exists("Views/components/Components/".$component.".php"))
         {
