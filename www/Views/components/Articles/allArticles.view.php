@@ -33,12 +33,7 @@
 
 <script>
     function deleteArticle(articleId) {
-        // Appeler la méthode deleteArticle avec l'ID de l'article
-        // Vous pouvez faire une requête AJAX ici pour appeler le backend, par exemple
-        // Ou vous pouvez rediriger vers une page de traitement avec l'ID
 
-        // Exemple avec une requête AJAX (utilisez la bibliothèque JavaScript appropriée, comme jQuery, si nécessaire)
-        // Remplacez l'URL par l'URL réelle de votre backend
         fetch('/votre-backend/delete-article.php?id=' + articleId, {
             method: 'DELETE',
         })
