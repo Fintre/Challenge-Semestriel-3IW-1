@@ -103,23 +103,27 @@ class DB
     }
 
     //$data = ["id"=>1] ou ["email"=>"y.skrzypczyk@gmail.com"]
-    public function getOneBy(array $data, string $return = "array") //pour récupérer un enregistrement de la bdd
+    public function getOneBy(array $data, string $return = "array")
     {
-        //SELECT * FROM gfm_user WHERE id=:id AND ...
         $sql = "SELECT * FROM ".$this->table. " WHERE ";
-        foreach ($data as $column=>$value){
+        foreach ($data as $column => $value) {
             $sql .= " ".$column."=:".$column. " AND";
         }
-        $sql = substr($sql, 0, -3); //pour enlever le dernier AND
-        $queryPrepared = $this->pdo->prepare($sql); //pour préparer la requête
-        $queryPrepared->execute($data); //pour exécuter la requête
-        if($return == "object"){//pour récupérer un objet
-            $queryPrepared->setFetchMode(\PDO::FETCH_CLASS, get_called_class()); //les resultats seront sous forme d'objet de la classe appelée
+        $sql = substr($sql, 0, -3); // pour enlever le dernier AND
+        $queryPrepared = $this->pdo->prepare($sql); // pour préparer la requête
+        $queryPrepared->execute($data); // pour exécuter la requête
+
+        if($return == "object") {
+            // les resultats seront sous forme d'objet de la classe appelée
+            $queryPrepared->setFetchMode(\PDO::FETCH_CLASS, get_called_class());
+        } else {
+            // pour récupérer un tableau associatif
+            $queryPrepared->setFetchMode(\PDO::FETCH_ASSOC);
         }
 
-        return $queryPrepared->fetch(); //pour récupérer le résultat de la requête (un seul enregistrement)
-
+        return $queryPrepared->fetch(); // pour récupérer le résultat de la requête (un seul enregistrement)
     }
+
     public function delete(array $data)
     {
         // Use the getOneBy function to find the record to delete

@@ -17,13 +17,24 @@
                 value="<?= htmlspecialchars($configInput["value"] ?? '') ?>"
                 <?= (!empty($configInput["required"])) ? "required" : "" ?>
             >
-        <?php elseif ($configInput["type"] == "select"): ?>
-                <label for="<?= $configInput['name'] ?>"><?= htmlspecialchars($name) ?></label>
-                <select name="<?= $configInput['name'] ?>" id="<?= $configInput['id'] ?? '' ?>" class="<?= $configInput["class"] ?? "" ?>" <?= (!empty($configInput["required"])) ? "required" : "" ?>>
-                    <?php foreach ($configInput["options"] as $value => $text): ?>
-                        <option value="<?= htmlspecialchars($value) ?>"><?= htmlspecialchars($text) ?></option>
-                    <?php endforeach; ?>
-                </select><br>
+            <?php elseif ($configInput["type"] == "radio"): ?>
+                <label for="<?= $configInput['id'] ?? '' ?>"><?= htmlspecialchars($name) ?></label><br>
+                <?php foreach ($configInput["options"] as $optionValue => $optionText):
+                    // Détermine si l'option doit être cochée en comparant avec la 'value' de l'input
+                    $isChecked = ($configInput['value'] == $optionValue) ? 'checked' : '';
+                ?>
+                    <input
+                        type="radio"
+                        id="<?= htmlspecialchars($optionValue) ?>"
+                        name="<?= htmlspecialchars($configInput['name']) ?>"
+                        value="<?= htmlspecialchars($optionValue) ?>"
+                        <?= $isChecked ?>
+                        class="<?= $configInput["class"] ?? "input-form" ?>"
+                    >
+                    <label for="<?= htmlspecialchars($optionValue) ?>"><?= htmlspecialchars($optionText) ?></label><br>
+                <?php endforeach; ?>
+
+
         <?php else: ?>
             <label for="<?= $configInput['id'] ?? '' ?>"><?= htmlspecialchars($name) ?></label>
                 <input
@@ -33,6 +44,7 @@
                     class="<?= $configInput["class"] ?? "" ?>"
                     placeholder="<?= $configInput["placeholder"] ?? "" ?>"
                     <?= (!empty($configInput["required"])) ? "required" : "" ?>
+                    value="<?= htmlspecialchars($configInput["value"] ?? '') ?>"
                 ><br>
         <?php endif; ?>
         </div>

@@ -15,18 +15,22 @@ class EditUser
         return [
             "config"=> [
                 "method"=>"POST",
-                "action"=>"update-profile",
+                "action"=>"edit-user?id=".$this->userData['id'] ?? '',
                 "submit"=>"Sauvegarder les modifications",
                 "enctype"=>"multipart/form-data",
                 "class"=>"form"
             ],
             "inputs"=>[
+                "id"=>[
+                    "type"=>"hidden",
+                    "name" => "id",
+                    "value" => $this->userData['id'] ?? '',
+                ],
                 "Nom d'utilisateur"=>[
                     "type"=>"text",
                     "name" => "username",
                     "class" => "input-form",
                     "placeholder" => "Nom d'utilisateur",
-                    "required"=>true,
                     "error"=>"Le nom d'utilisateur doit faire plus de 2 caractères",
                     "value" => $this->userData['username'] ?? '',
                 ],
@@ -35,7 +39,6 @@ class EditUser
                     "name" => "email",
                     "class" => "input-form",
                     "placeholder" => "Adresse email",
-                    "required"=>true,
                     "error"=>"Veuillez entrer une adresse email valide",
                     "value" => $this->userData['email'] ?? '',
                 ],
@@ -43,7 +46,6 @@ class EditUser
                     "type"=>"file",
                     "name" => "profile_picture",
                     "class" => "input-form",
-                    "placeholder" => "Image de profil",
                     "required"=>false, // Dépend de si tu veux forcer l'utilisateur à avoir une image de profil
                     "accept"=>"image/*", // Accepte uniquement les images
                     "value" => $this->userData['img_path'] ?? '',
@@ -53,7 +55,6 @@ class EditUser
                     "name" => "nom",
                     "class" => "input-form",
                     "placeholder" => "Nom",
-                    "required"=>true,
                     "error"=>"Le nom doit faire plus de 2 caractères",
                     "value" => $this->userData['lastname'] ?? '',
                 ],
@@ -62,38 +63,20 @@ class EditUser
                     "name" => "prenom",
                     "class" => "input-form",
                     "placeholder" => "Prénom",
-                    "required"=>true,
                     "error"=>"Le prénom doit faire plus de 2 caractères",
                     "value" => $this->userData['firstname'] ?? '',
                 ],
                 "Role"=>[
-                    "type"=>"select",
-                    "name" => "role",
+                    "type"=>"radio",
+                    "name" => "Role",
                     "class" => "input-form",
                     "options"=> [
                         "admin" => "Administrateur",
                         "editor" => "Éditeur",
                         "user" => "Utilisateur"
                     ],
-                    "required"=>true,
                     "error"=>"Veuillez sélectionner un rôle pour l'utilisateur",
                     "value" => $this->userData['roles'] ?? '',
-                ],
-                "Mot de passe"=>[
-                    "type"=>"password",
-                    "name" => "password",
-                    "class" => "input-form",
-                    "placeholder" => "Mot de passe",
-                    "required"=>true,
-                    "error"=>"Le mot de passe doit faire plus de 8 caractères",
-                ],
-                "Confirmer le mot de passe"=>[
-                    "type"=>"password",
-                    "name" => "password_confirm",
-                    "class" => "input-form",
-                    "placeholder" => "Confirmer le mot de passe",
-                    "required"=>true,
-                    "error"=>"Les mots de passe ne correspondent pas"
                 ],
             ]
         ];

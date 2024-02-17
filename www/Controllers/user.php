@@ -5,6 +5,7 @@ use App\Core\View;
 use App\Core\DB;
 use App\Core\Verificator;
 use App\Forms\EditUser;
+use App\Models\User as UserModel;
 
 class User
 {
@@ -16,17 +17,17 @@ class User
 
     public function editUser(): void {
         $userId = $_GET['id'] ?? null;
-        $db = DB::getInstance();
+        $user = new UserModel();
         $errors = [];
         $success = [];
 
         if ($userId) {
             // Charger les données existantes de l'utilisateur
-            $userData = $db->getOneBy(['id' => $userId]);
+            $userData = $user->getOneBy(['id' => $userId]);
             if (!$userData) {
                 $errors[] = "Utilisateur non trouvé.";
             } else {
-                $form = new EditUser((array)$userData);
+                $form = new EditUser($userData);
             }
         } else {
             $errors[] = "Aucun ID d'utilisateur spécifié.";
@@ -38,9 +39,15 @@ class User
             $verificator = new Verificator();
             if ($verificator->checkForm($config, $_REQUEST, $errors)) {
                 // Mettre à jour les propriétés de l'objet utilisateur
-                $userData->setDataFromArray($_REQUEST);
+                $user->setDataFromArray($userData);
+                $user->setFirstname($_REQUEST['Prénom']);
+                $user->setLastname($_REQUEST['Nom']);
+                $user->setUsername($_REQUEST['Nom_d\'utilisateur']);
+                $user->setEmail($_REQUEST['E-mail']);
+                $user->setImgPath($_REQUEST['Image_de_profil']);
+                $user->setRoles($_REQUEST['Role']);
                 // Enregistrer les modifications
-                $userData->save(); // Cette méthode doit gérer la logique de mise à jour
+                $user->save(); // Cette méthode doit gérer la logique de mise à jour
                 $success[] = "Les informations de l'utilisateur ont été mises à jour avec succès.";
             }
         }
