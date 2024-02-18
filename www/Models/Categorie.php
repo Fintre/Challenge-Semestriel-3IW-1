@@ -1,7 +1,8 @@
 <?php
 namespace App\Models;
+use App\Core\DB;
 
-class Categorie
+class Categorie extends DB
 {
     protected $name;
     protected $description;
@@ -9,6 +10,10 @@ class Categorie
     protected $updatedAt;
     protected $isDeleted;
     protected $id;
+
+    public function __construct() {
+        parent::__construct();
+    }
 
     /**
      * @return mixed
@@ -112,6 +117,13 @@ class Categorie
             "Created At: " . $this->createdAt . "\n" .
             "Updated At: " . $this->updatedAt . "\n" .
             "IsDeleted: " . $this->isDeleted . "\n";
+    }
+    public function getNbElements() {
+        return $this->countElements();
+    }
+
+    public function getElementsByType($column, $value) {
+        return $this->countElements($column, $value);
     }
 
 }
