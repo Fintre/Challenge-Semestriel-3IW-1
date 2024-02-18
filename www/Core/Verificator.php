@@ -10,6 +10,12 @@ class Verificator
 
         //Est-ce qu'on a le bon nb d'inputs
         if(count($config["inputs"]) != count($data)){
+            echo "<pre>";
+            print_r($config["inputs"]);
+            echo "</pre>";
+            echo "<pre>";
+            print_r($data);
+            echo "</pre>";
             die("Tentative de Hack1");
         }else{
             //CSRF ???

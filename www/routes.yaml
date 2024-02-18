@@ -34,14 +34,6 @@
   controller: SiteSettings
   action: index
 
-/user:
-  controller: User
-  action: allUsers
-
-/user/delete-user:
-  controller: User
-  action: delete
-
 /register:
   controller: Security
   action: register
@@ -50,9 +42,21 @@
   controller: Security
   action: activateAccount
 
+/user:
+  controller: User
+  action: allUsers
+
+/user/view-user:
+  controller: User
+  action: viewUser
+
 /user/edit-user:
   controller: User
   action: editUser
+
+/user/edit-password:
+  controller: User
+  action: editPassword
 
 /login:
   controller: Security
