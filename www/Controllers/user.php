@@ -3,6 +3,9 @@
 namespace App\Controllers;
 use App\Core\View;
 use App\Core\DB;
+use App\Core\Verificator;
+use App\Forms\EditUser;
+use App\Models\User as UserModel;
 
 class User
 {
@@ -12,10 +15,49 @@ class User
         $newUser = new View("User/allusers", "back");
     }
 
-    public function edit(): void
-    {
-        $editUser = new View("User/edituser", "back");
+    public function editUser(): void {
+        $userId = $_GET['id'] ?? null;
+        $user = new UserModel();
+        $errors = [];
+        $success = [];
+
+        if ($userId) {
+            // Charger les données existantes de l'utilisateur
+            $userData = $user->getOneBy(['id' => $userId]);
+            if (!$userData) {
+                $errors[] = "Utilisateur non trouvé.";
+            } else {
+                $form = new EditUser($userData);
+            }
+        } else {
+            $errors[] = "Aucun ID d'utilisateur spécifié.";
+        }
+
+        $config = $form->getConfig();
+
+        if ($_SERVER["REQUEST_METHOD"] === $config["config"]["method"]) {
+            $verificator = new Verificator();
+            if ($verificator->checkForm($config, $_REQUEST, $errors)) {
+                // Mettre à jour les propriétés de l'objet utilisateur
+                $user->setDataFromArray($userData);
+                $user->setFirstname($_REQUEST['Prénom']);
+                $user->setLastname($_REQUEST['Nom']);
+                $user->setUsername($_REQUEST['Nom_d\'utilisateur']);
+                $user->setEmail($_REQUEST['E-mail']);
+                $user->setImgPath($_REQUEST['Image_de_profil']);
+                $user->setRoles($_REQUEST['Role']);
+                // Enregistrer les modifications
+                $user->save(); // Cette méthode doit gérer la logique de mise à jour
+                $success[] = "Les informations de l'utilisateur ont été mises à jour avec succès.";
+            }
+        }
+
+        $myView = new View("User/edituser", "back");
+        $myView->assign("configForm", $config);
+        $myView->assign("errorsForm", $errors);
+        $myView->assign("successForm", $success);
     }
+
 
     public function delete(): void
     {

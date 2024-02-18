@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Core\View;
+use App\Core\DB;
 
 class Articles
 {
@@ -19,5 +20,18 @@ class Articles
     public function addArticles(): void
     {
         $newUser = new View("Articles/addArticles", "back");
+    }
+
+    public function deleteArticle($id): void
+    {
+        $deleted = new DB();
+        $deleted->delete($id);
+        
+    }
+
+    public function getAllArticles()
+    {
+        $article = new DB();
+        return $allArticles = $article->getArticlesAndBlogs("article"); 
     }
 }

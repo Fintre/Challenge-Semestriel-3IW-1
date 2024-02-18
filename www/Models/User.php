@@ -4,7 +4,7 @@ use App\Core\DB;
 
 class User extends DB
 {
-    private ?int $id = null;
+    protected ?int $id = null;
     protected string $firstname;
     protected string $lastname;
     protected string $username;
@@ -13,6 +13,12 @@ class User extends DB
     protected string $pwd;
     protected int $status;
     protected int $isDeleted;
+    protected ?string $reset_token = null;
+    protected ?string $reset_expires = null;
+    protected ?string $activation_Token = null;
+    protected bool $is_Active;
+    protected ?string $img_path = null;
+
 
 
     public function __construct()
@@ -165,50 +171,54 @@ class User extends DB
         $this->roles = $roles;
     }
 
-    public function saveResetToken($userId, $token, $expires) {
-        $sql = "UPDATE " . $this->table . " SET reset_token = :token, reset_expires = :expires WHERE id = :userId";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute(['token' => $token, 'expires' => $expires, 'userId' => $userId]);
+    public function getResetToken(): string
+    {
+        return $this->reset_token;
     }
 
-
-    /**
-     * Trouve un utilisateur par son token de réinitialisation et vérifie si le token n'a pas expiré.
-     *
-     * @param string $token Le token de réinitialisation.
-     * @return mixed L'utilisateur si trouvé et le token est valide, sinon null.
-     */
-    public function getUserByResetToken(string $token) {
-        $sql = "SELECT * FROM ".$this->table." WHERE reset_token = :token AND reset_expires > NOW()";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute(['token' => $token]);
-        $stmt->setFetchMode(\PDO::FETCH_CLASS, get_called_class());
-        return $stmt->fetch();
+    public function setResetToken(?string $reset_token): void
+    {
+        $this->reset_token = $reset_token;
     }
 
+    public function getResetExpires(): string
+    {
+        return $this->reset_expires;
+    }
 
-    /**
-     * Réinitialise le mot de passe d'un utilisateur en utilisant un token de réinitialisation.
-     *
-     * @param string $token Le token de réinitialisation.
-     * @param string $newPassword Le nouveau mot de passe choisi par l'utilisateur.
-     * @return bool True si le mot de passe a été réinitialisé avec succès, sinon false.
-     */
-    public function resetPassword(string $token, string $newPassword): bool {
-        $user = $this->getUserByResetToken($token);
+    public function setResetExpires(?string $reset_expires): void {
+        $this->reset_expires = $reset_expires;
+    }
 
-        if ($user) {
-            $newPasswordHash = password_hash($newPassword, PASSWORD_DEFAULT);
-            $sql = "UPDATE ".$this->table." SET pwd = :newPassword, reset_token = NULL, reset_expires = NULL WHERE id = :userId";
-            $stmt = $this->pdo->prepare($sql);
-            $result = $stmt->execute(['newPassword' => $newPasswordHash, 'userId' => $user->id]);
+    public function getActivationToken(): string
+    {
+        return $this->activation_Token;
+    }
 
-            return $result;
-        }
+    public function setActivationToken(?string $activationToken): void
+    {
+        $this->activation_Token = $activationToken;
+    }
 
-        return false;
-}
+    public function getIsActive(): bool
+    {
+        return $this->is_Active;
+    }
 
+    public function setIsActive(bool $is_Active): void
+    {
+        $this->is_Active = $is_Active;
+    }
+
+    public function getImgPath(): string
+    {
+        return $this->img_path;
+    }
+
+    public function setImgPath(?string $img_path): void
+    {
+        $this->img_path = $img_path;
+    }
 
 
 }

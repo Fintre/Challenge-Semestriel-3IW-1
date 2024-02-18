@@ -1,9 +1,10 @@
 <?php
 namespace App\Core;
-
+date_default_timezone_set('Europe/Paris');
 class DB
 {
-    private ?object $pdo = null;
+    private static ?DB $instance = null;
+    private \PDO $pdo;
     private string $table;
 
     public function __construct()
@@ -21,9 +22,31 @@ class DB
         $this->table = "gfm_".strtolower($table); //pour mettre le nom de la table en minuscule et ajouter le préfixe gfm_
     }
 
-    public function getAllData($table)
+    public static function getInstance(): DB {
+        if (self::$instance === null) {
+            self::$instance = new self();
+        }
+        return self::$instance;
+    }
+
+    // Empêcher le clonage de l'instance
+    private function __clone() {}
+
+    // Empêcher la désérialisation de l'instance
+    public function __wakeup() {}
+
+    public function getAllData($table) //pour récupérer tous les enregistrements de la bdd
     {
         $sql = "SELECT * FROM " . $table;
+        $queryPrepared = $this->pdo->prepare($sql);
+        $queryPrepared->execute();
+
+        return $queryPrepared->fetchAll();
+    }
+
+    public function getArticlesAndBlogs($article)
+    {
+        $sql = "SELECT * FROM gfm_post WHERE type = '" . $article . "'";
         $queryPrepared = $this->pdo->prepare($sql);
         $queryPrepared->execute();
 
@@ -35,11 +58,21 @@ class DB
         return array_diff_key(get_object_vars($this), get_class_vars(get_class())); //mettre dans un tableau les données de l'objet
     }
 
-    public function save(): string //pour insérer ou mettre à jour les données de l'objet dans la bdd
+    public function setDataFromArray(array $data): void //pour mettre à jour les données de l'objet
+    {
+        foreach ($data as $key => $value) {
+            if (property_exists($this, $key)) {
+                $this->$key = $value;
+            }
+        }
+    }
+
+
+    public function save() //pour insérer ou mettre à jour les données de l'objet dans la bdd
     {
         $data = $this->getDataObject();
 
-        if( empty($this->getId())){ //si l'id est vide, on insère
+        if(empty($this->getId())){ //si l'id est vide, on insère
             unset($data['id']);
             $sql = "INSERT INTO " . $this->table . "(" . implode(",", array_keys($data)) . ")
             VALUES (:" . implode(",:", array_keys($data)) . ")";
@@ -53,8 +86,12 @@ class DB
             $sql.= " WHERE id = ".$this->getId();
         }
 
-
         $queryPrepared = $this->pdo->prepare($sql); //pour préparer la requête
+        //pour associer les valeurs aux paramètres de la requête préparée
+        foreach ($data as $key => $value) {
+            $type = is_bool($value) ? \PDO::PARAM_BOOL : (is_int($value) ? \PDO::PARAM_INT : \PDO::PARAM_STR);
+            $queryPrepared->bindValue(":$key", $value, $type);
+        }
         $queryPrepared->execute($data); //pour exécuter la requête
         if (isset($isUpdate)) {
             return $this->getId();
@@ -71,23 +108,27 @@ class DB
     }
 
     //$data = ["id"=>1] ou ["email"=>"y.skrzypczyk@gmail.com"]
-    public function getOneBy(array $data, string $return = "array") //pour récupérer un enregistrement de la bdd
+    public function getOneBy(array $data, string $return = "array")
     {
-        //SELECT * FROM gfm_user WHERE id=:id AND ...
         $sql = "SELECT * FROM ".$this->table. " WHERE ";
-        foreach ($data as $column => $value){
+        foreach ($data as $column => $value) {
             $sql .= " ".$column."=:".$column. " AND";
         }
-        $sql = substr($sql, 0, -3);//pour enlever le dernier AND
-        $queryPrepared = $this->pdo->prepare($sql); //pour préparer la requête
-        $queryPrepared->execute($data); //pour exécuter la requête
-        if($return == "object"){//pour récupérer un objet
-            $queryPrepared->setFetchMode(\PDO::FETCH_CLASS, get_called_class()); //les resultats seront sous forme d'objet de la classe appelée
+        $sql = substr($sql, 0, -3); // pour enlever le dernier AND
+        $queryPrepared = $this->pdo->prepare($sql); // pour préparer la requête
+        $queryPrepared->execute($data); // pour exécuter la requête
+
+        if($return == "object") {
+            // les resultats seront sous forme d'objet de la classe appelée
+            $queryPrepared->setFetchMode(\PDO::FETCH_CLASS, get_called_class());
+        } else {
+            // pour récupérer un tableau associatif
+            $queryPrepared->setFetchMode(\PDO::FETCH_ASSOC);
         }
 
-        return $queryPrepared->fetch(); //pour récupérer le résultat de la requête (un seul enregistrement)
-
+        return $queryPrepared->fetch(); // pour récupérer le résultat de la requête (un seul enregistrement)
     }
+
     public function delete(array $data)
     {
         // Use the getOneBy function to find the record to delete
@@ -123,15 +164,3 @@ class DB
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-

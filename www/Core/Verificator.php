@@ -10,23 +10,24 @@ class Verificator
 
         //Est-ce qu'on a le bon nb d'inputs
         if(count($config["inputs"]) != count($data)){
-            print_r($config["inputs"]);
-            echo count($config["inputs"]);
-            echo count($data);
             die("Tentative de Hack1");
         }else{
             //CSRF ???
             foreach ($config["inputs"] as $name=>$input){
                 $submitName = str_replace(' ', '_', $name); //On remplace les espaces par des _
-                if(!isset($data[$submitName])){ //Est-ce que le champ existe
-                    var_dump($data);
+                if(!isset($data[$submitName])){ //Est-ce que le champ existe dans le formulaire
+                    echo $submitName;
+                    echo "<pre>";
+                    print_r($data);
+                    echo "</pre>";
                     die("Tentative de Hack2"); //Si non, on arrete tout
+
                 }
                 if($input["type"]=="email" && !self::checkEmail($data[$submitName])){ //Est-ce que l'email est valide
                     $errors[]="Email incorrect";
                 }
                 if($input["type"]=="password" && !self::checkPassword($data[$submitName])){ //Est-ce que le password est valide
-                    $errors[]="Mot de passe incorrect";
+                    $errors[]="Le mot de passe est invalide";
                 }
                 if($name == "Confirmation de mot de passe" && $data[$submitName] !== $data["Mot_de_passe"]){ //Est-ce que les mots de passe correspondent
                     $errors[]="Les mots de passe ne correspondent pas";
@@ -38,7 +39,7 @@ class Verificator
                     $errors[]="Nom incorrect";
                 }
                 if($name == "Nom d'utilisateur" && !self::checkUsername($data[$submitName])){ //Est-ce que le username est valide
-                    $errors[]="Nom d'utilisateur incorrect";
+                    $errors[]="Nom d'utilisateur invalide";
                 }
             }
 
@@ -69,7 +70,7 @@ class Verificator
 
     public static function checkUsername(String $username): bool
     {
-        return preg_match("#[a-z0-9-_.]#", $username);
+        return preg_match("#^[a-zA-Z0-9_]+$#", $username);
     }
 
 }
