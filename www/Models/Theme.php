@@ -1,15 +1,14 @@
 <?php
 namespace App\Models;
+use App\Core\DB;
 
-class Themes {
+class Theme extends DB{
     private $id;
     private $name;
     private $description;
 
-    public function __construct($id, $name, $description) {
-        $this->id = $id;
-        $this->name = $name;
-        $this->description = $description;
+    public function __construct() {
+        parent::__construct();
     }
 
     // Getters and setters for the properties
@@ -36,5 +35,9 @@ class Themes {
 
     public function setDescription($description) {
         $this->description = $description;
+    }
+
+    public function getNbElements() {
+        return $this->countElements();
     }
 }

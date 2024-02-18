@@ -158,4 +158,21 @@ class DB
         return null;
     }
 
+    public function countElements($typeColumn = null, $typeValue = null): int {
+        if ($typeColumn && $typeValue) {
+            // Compter seulement les éléments d'un type spécifique
+            $sql = "SELECT COUNT(*) FROM " . $this->table . " WHERE " . $typeColumn . " = :typeValue";
+            $queryPrepared = $this->pdo->prepare($sql);
+            $queryPrepared->execute(['typeValue' => $typeValue]);
+        } else {
+            // Compter tous les éléments si aucun type n'est spécifié
+            $sql = "SELECT COUNT(*) FROM " . $this->table;
+            $queryPrepared = $this->pdo->prepare($sql);
+            $queryPrepared->execute();
+        }
+
+        return $queryPrepared->fetchColumn();
+    }
+
+
 }

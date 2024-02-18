@@ -1,7 +1,8 @@
 <?php
 namespace App\Models;
+use App\Core\DB;
 
-class Media
+class Media extends DB
 {
     protected $id;
 
@@ -14,6 +15,10 @@ class Media
     protected $isDeleted;
     protected $createAt;
     protected $updatedAt;
+
+    public function __construct() {
+        parent::__construct();
+    }
 
     /**
      * @return mixed
@@ -167,8 +172,16 @@ class Media
             "Type: " . $this->type . "\n" .
             "Published: " . $this->published . "\n" .
             "IsDeleted: " . $this->isDeleted . "\n" .
-            "Created At: " . $this->createdAt . "\n" .
+            "Created At: " . $this->createAt . "\n" .
             "Updated At: " . $this->updatedAt . "\n";
+    }
+
+    public function getNbElements() {
+        return $this->countElements();
+    }
+
+    public function getElementsByType($column, $value) {
+        return $this->countElements($column, $value);
     }
 
 }

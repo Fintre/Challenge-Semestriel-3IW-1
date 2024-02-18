@@ -10,7 +10,7 @@
 				<img src="/Views/styles/dist/images/pages.png" alt="pages-image">
 				<div class="block-card-dashboard-total-text">
 					<div class="title">Pages</div>
-					<div class="number">3</div>
+					<div class="number"><?php echo htmlspecialchars($elementsCount['pages']); ?></div>
 				</div>
 		</div>
 	</a>
@@ -19,7 +19,7 @@
 			<img src="/Views/styles/dist/images/profil.png" alt="users-image">
 			<div class="block-card-dashboard-total-text">
 				<div class="title">Utilisateurs</div>
-				<div class="number">3</div>
+				<div class="number"><?php echo htmlspecialchars($elementsCount['users']); ?></div>
 			</div>
 		</div>
 	</a>
@@ -31,7 +31,7 @@
 			<img src="/Views/styles/dist/images/media.png" alt="media-image">
 			<div class="block-card-dashboard-total-text">
 				<div class="title">Photos</div>
-				<div class="number">3</div>
+				<div class="number"><?php echo htmlspecialchars($elementsCount['photos']); ?></div>
 			</div>
 		</div>
 	</a>
@@ -40,7 +40,7 @@
 			<img src="/Views/styles/dist/images/video.png" alt="video-image">
 			<div class="block-card-dashboard-total-text">
 				<div class="title">Videos</div>
-				<div class="number">3</div>
+				<div class="number"><?php echo htmlspecialchars($elementsCount['videos']); ?></div>
 			</div>
 		</div>
 	</a>
@@ -51,7 +51,7 @@
 			<img src="/Views/styles/dist/images/avis.png" alt="avis-image">
 			<div class="block-card-dashboard-total-text">
 				<div class="title">Themes</div>
-				<div class="number">3</div>
+				<div class="number"><?php echo htmlspecialchars($elementsCount['themes']); ?></div>
 			</div>
 		</div>
 	</a>
@@ -60,7 +60,7 @@
 			<img src="/Views/styles/dist/images/comment.png" alt="comment-image">
 			<div class="block-card-dashboard-total-text">
 				<div class="title">Commentaires</div>
-				<div class="number">3</div>
+				<div class="number"><?php echo htmlspecialchars($elementsCount['comments']); ?></div>
 			</div>
 		</div>
 	</a>

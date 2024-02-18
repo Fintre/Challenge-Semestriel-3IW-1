@@ -2,29 +2,30 @@
 namespace App\Controllers;
 use App\Core\View;
 use App\Models\User;
+use App\Models\Post;
+use App\Models\Media;
+use App\Models\Comment;
+use App\Models\Theme;
 class Main
 {
     public function home(): void
     {
+        $user = new User();
+        $post = new Post();
+        $media = new Media();
+        $comment = new Comment();
+        $themes = new Theme();
 
-        /*$myUser = new User();
-        $myUser->setFirstname("YVEs");
-        $myUser->setLastname("Skrzypczyk   ");
-        $myUser->setEmail("Y.skrzypczyk@gmail.com");
-        $myUser->setUsername("Yves.Skrrr");
-        $myUser->setRoles("admin");
-        $myUser->setPwd("Test1234");
-        $myUser->save();
-
-        $myUser = User::populate(1);
-        $myUser->setLastname("titi");
-        $myUser->save();*/
+        $elementsCount = [
+            'users' => $user->getNbElements(),
+            'pages' => $post->getElementsByType('type', 'page'),
+            'photos' => $media->getElementsByType('type', 'photo'),
+            'comments' => $comment->getNbElements(),
+            'videos' => $media->getElementsByType('type', 'video'),
+            'themes' => $themes->getNbElements(),
+            ];
 
         $myView = new View("Main/home", "back");
-    }
-
-    public function aboutUs(): void
-    {
-        $myView = new View("Main/aboutus", "front");
+        $myView->assign("elementsCount", $elementsCount);
     }
 }
