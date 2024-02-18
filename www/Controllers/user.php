@@ -120,6 +120,34 @@ class User
         $myView->assign("successForm", $success);
     }
 
+    public function viewUser(): void
+    {
+        // Récupérer l'ID de l'utilisateur depuis l'URL
+        $userId = $_GET['id'] ?? null;
+        $errors = [];
+        $success = [];
+
+
+        if ($userId === null) {
+            // Rediriger vers une page d'erreur ou afficher un message d'erreur
+            $errors[] = "Aucun ID utilisateur spécifié.";
+
+        }
+
+        $userModel = new UserModel();
+        $userData = $userModel->getOneBy(['id' => $userId]);
+
+        if (!$userData) {
+            // Gérer le cas où l'utilisateur n'est pas trouvé
+            $errors[] = "Utilisateur non trouvé.";
+        }
+
+        // Afficher les données de l'utilisateur dans une vue
+        $myView = new View("User/viewUser", "back");
+        $myView->assign("userData", $userData);
+        $myView->assign("errors", $errors);
+        $myView->assign("success", $success);
+    }
 
 
 

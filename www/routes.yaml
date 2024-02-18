@@ -42,6 +42,10 @@
   controller: User
   action: deleteUser
 
+/user/viewUser:
+  controller: User
+  action: viewUser
+
 /register:
   controller: Security
   action: register

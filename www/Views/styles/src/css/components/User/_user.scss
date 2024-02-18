@@ -18,5 +18,32 @@
   border: none;
   outline: none;
 }
+.user-profile {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: #fff;
+}
+.user-profile img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.user-info {
+  flex-grow: 1;
+}
+.user-info p {
+  margin: 0;
+  padding: 4px 0;
+}
+.user-info h2 {
+  margin-top: 0;
+}
 
 
