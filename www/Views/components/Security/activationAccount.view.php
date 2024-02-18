@@ -13,3 +13,5 @@
         <?php endforeach; ?>
     </div>
 <?php endif; ?>
+
+<p>Pour vous connecter cliquez <a href="/login">ici</a></p>

@@ -46,6 +46,7 @@ CREATE TABLE "public"."gfm_media" (
     "updatedat" timestamp DEFAULT CURRENT_TIMESTAMP,
     "isDeleted" smallint DEFAULT '0' NOT NULL,
     "post_id" integer NOT NULL,
+    "type" character varying(15) NOT NULL,
     CONSTRAINT "gfm_media_pkey" UNIQUE ("id")
 ) WITH (oids = false);
 
@@ -54,7 +55,7 @@ CREATE INDEX "gfm_media_post_id" ON "public"."gfm_media" USING btree ("post_id")
 
 DROP TABLE IF EXISTS "gfm_post";
 DROP SEQUENCE IF EXISTS gfm_post_id_seq;
-CREATE SEQUENCE gfm_post_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1;
+CREATE SEQUENCE gfm_post_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 2147483647 START 4 CACHE 1;
 
 CREATE TABLE "public"."gfm_post" (
     "id" integer DEFAULT nextval('gfm_post_id_seq') NOT NULL,
@@ -68,9 +69,9 @@ CREATE TABLE "public"."gfm_post" (
     "isDeleted" smallint DEFAULT '0' NOT NULL,
     "createdat" timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL,
     "updatedat" timestamp DEFAULT CURRENT_TIMESTAMP,
-    "user_id" integer NOT NULL,
-    "siteSetting_id" integer NOT NULL,
-    "theme_id" integer NOT NULL,
+    "user_id" integer,
+    "siteSetting_id" integer,
+    "theme_id" integer,
     CONSTRAINT "gfm_post_pkey" UNIQUE ("id")
 ) WITH (oids = false);
 
@@ -78,6 +79,8 @@ CREATE INDEX "gfm_post_siteSetting_id" ON "public"."gfm_post" USING btree ("site
 
 CREATE INDEX "gfm_post_user_id" ON "public"."gfm_post" USING btree ("user_id");
 
+INSERT INTO "gfm_post" ("id", "title", "body", "type", "description", "slug", "theme", "published", "isDeleted", "createdat", "updatedat", "user_id", "siteSetting_id", "theme_id") VALUES
+(4,	'test',	'test',	'article',	'test',	'test',	'',	0,	0,	'2024-02-17 16:34:10.427418',	'2024-02-17 16:34:10.427418',	NULL,	NULL,	NULL);
 
 DROP TABLE IF EXISTS "gfm_siteSetting";
 DROP SEQUENCE IF EXISTS "gfm_siteSetting_id_seq";
@@ -109,7 +112,7 @@ CREATE TABLE "public"."gfm_theme" (
 
 DROP TABLE IF EXISTS "gfm_user";
 DROP SEQUENCE IF EXISTS gfm_user_id_seq;
-CREATE SEQUENCE gfm_user_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1;
+CREATE SEQUENCE gfm_user_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 2147483647 START 28 CACHE 1;
 
 CREATE TABLE "public"."gfm_user" (
     "id" integer DEFAULT nextval('gfm_user_id_seq') NOT NULL,
@@ -125,10 +128,14 @@ CREATE TABLE "public"."gfm_user" (
     "reset_expires" timestamp,
     "createdat" timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL,
     "updatedat" timestamp DEFAULT CURRENT_TIMESTAMP,
+    "activation_token" character varying(255),
+    "is_active" boolean DEFAULT false,
     CONSTRAINT "gfm_user_email_key" UNIQUE ("email"),
     CONSTRAINT "gfm_user_pkey" UNIQUE ("id")
 ) WITH (oids = false);
 
+INSERT INTO "gfm_user" ("id", "firstname", "lastname", "email", "username", "pwd", "status", "img_path", "roles", "reset_token", "reset_expires", "createdat", "updatedat", "activation_token", "is_active") VALUES
+(28,	'Catalina',	'DANILA',	'catalinadanila6@gmail.com',	'NILA',	'$2y$10$37u6Jz74DY59C9zVMa8vMekCBequ0KDKvnu1vtae2dBuX53shC4Xi',	0,	NULL,	'utilisateur',	NULL,	NULL,	'2024-02-18 15:07:30.159345',	'2024-02-18 15:07:30.159345',	NULL,	't');
 
 ALTER TABLE ONLY "public"."gfm_comment" ADD CONSTRAINT "gfm_comment_post_fk" FOREIGN KEY (post_id) REFERENCES gfm_post(id) NOT DEFERRABLE;
 ALTER TABLE ONLY "public"."gfm_comment" ADD CONSTRAINT "gfm_comment_user_fk" FOREIGN KEY (user_id) REFERENCES gfm_user(id) NOT DEFERRABLE;
@@ -139,4 +146,4 @@ ALTER TABLE ONLY "public"."gfm_post" ADD CONSTRAINT "gfm_post_siteSetting_fk" FO
 ALTER TABLE ONLY "public"."gfm_post" ADD CONSTRAINT "gfm_post_theme_id_fkey" FOREIGN KEY (theme_id) REFERENCES gfm_theme(id) ON UPDATE CASCADE ON DELETE SET NULL NOT DEFERRABLE;
 ALTER TABLE ONLY "public"."gfm_post" ADD CONSTRAINT "gfm_post_user_fk" FOREIGN KEY (user_id) REFERENCES gfm_user(id) NOT DEFERRABLE;
 
--- 2024-02-16 12:28:04.763922+00
+-- 2024-02-18 16:45:54.349651+00

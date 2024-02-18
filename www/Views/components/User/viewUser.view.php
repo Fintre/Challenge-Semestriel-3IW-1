@@ -11,7 +11,6 @@
             <p class="text"><strong>Actif :</strong> <?= $userData['is_active'] ? 'Oui' : 'Non' ?></p>
             <button class="button button-primary">Modifier</button>
         </div>
-
 </section>
 
 
