@@ -1,7 +1,8 @@
 <?php
 namespace App\Models;
+use App\Core\DB;
 
-class Post
+class Post extends DB
 {
     protected $id;
     protected $slug;
@@ -16,6 +17,10 @@ class Post
     protected $updatedAt;
     protected $userId;
     protected $siteSettingId;
+
+    public function __construct() {
+        parent::__construct();
+    }
 
     /**
      * @return mixed
@@ -210,26 +215,6 @@ class Post
     }
 
 
-    // CRUD OPERATIONS
-    public function create(array $data)
-    {
-
-    }
-
-    public function read(int $id)
-    {
-
-    }
-
-    public function update(int $id, array $data)
-    {
-
-    }
-
-    public function delete(int $id)
-    {
-
-    }
 
     public function __toString() {
         return "ID: " . $this->id . "\n" .
@@ -244,6 +229,13 @@ class Post
             "Updated At: " . $this->updatedAt . "\n" .
             "User ID: " . $this->userId . "\n" .
             "Site Setting ID: " . $this->siteSettingId . "\n";
+    }
+    public function getNbElements() {
+        return $this->countElements();
+    }
+
+    public function getElementsByType($column, $value) {
+        return $this->countElements($column, $value);
     }
 
 }
