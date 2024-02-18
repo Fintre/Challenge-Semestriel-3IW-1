@@ -36,7 +36,7 @@
                     <td><?php echo $userData['email']; ?></td>
                     <td><?php echo $userData['status']; ?></td>
                     <td class="link-list">
-                        <a href="/user/viewUser?id=<?php echo $userData['id']; ?>" class="link-primary">
+                        <a href="/user/view-user?id=<?php echo $userData['id']; ?>" class="link-primary">
                             <i class="fa fa-eye" aria-hidden="true"></i>
                         </a>
                         <a href="/user/edit-user?id=<?php echo $userData['id']; ?>" class="link-primary"><i class="fa fa-pencil" aria-hidden="true"></i></a>
