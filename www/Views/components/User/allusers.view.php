@@ -1,5 +1,22 @@
-<h1>Tous les utilisateurs</h1>
-<section class="users-table">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<h3>Tous les utilisateurs</h3>
+    <?php if (!empty($errors)): ?>
+        <div class="error">
+            <?php foreach ($errors as $error): ?>
+                <p class="text"><?php echo htmlspecialchars($error); ?></p>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
+
+    <?php if (!empty($success)): ?>
+        <div class="success">
+            <?php foreach ($success as $message): ?>
+                <p class="text"><?php echo htmlspecialchars($message); ?></p>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
+
+<section class="section1-user-table">
 <div class="user-table">
     <table class="responsive-table" id="myTable">
         <thead class="responsive-th">
@@ -10,45 +27,24 @@
                 <th>Action</th>
             </tr>
         </thead>
-        <!-- <tbody class="responsive-tb">
-            <tr>
-                <td>user1</td>
-                <td>user@gmail.com</td>
-                <td id="adminCell" class="adminCell"></td>
-                <td><a href="#" class="link-danger">supprimer</a></td>
-            </tr>
-            <tr>
-                <td>user2</td>
-                <td>user@gmail.com</td>
-                <td>admin</td>
-                <td><a href="#" class="link-danger">supprimer</a></td>
-            </tr>
-            <tr>
-                <td>user3</td>
-                <td>user@gmail.com</td>
-                <td>admin</td>
-                <td><a href="#" class="link-danger">supprimer</a></td>
-            </tr>
-            <tr>
-                <td>user4</td>
-                <td>user@gmail.com</td>
-                <td>admin</td>
-                <td><a href="#" class="link-danger">supprimer</a></td>
-            </tr>
-        </tbody> -->
-
         <tbody class="responsive-tb">
             <?php
 
-                $userController = new \App\Controllers\User();
-                $allUsers = $userController->getUsers();
-
-                foreach ($allUsers as $userData): ?>
+                foreach ($users as $userData): ?>
                 <tr>
                     <td><?php echo $userData['firstname']; ?></td>
                     <td><?php echo $userData['email']; ?></td>
                     <td><?php echo $userData['status']; ?></td>
-                    <td><a href="#" class="link-danger">supprimer</a></td>
+                    <td class="link-list">
+                        <a href="/user/view-user?id=<?php echo $userData['id']; ?>" class="link-primary">
+                            <i class="fa fa-eye" aria-hidden="true"></i>
+                        </a>
+                        <a href="/user/edit-user?id=<?php echo $userData['id']; ?>" class="link-primary"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                        <a href="/user?action=delete&id=<?php echo $userData['id']; ?>" class="link-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');">
+                            <i class="fa fa-minus-square-o" aria-hidden="true"></i>
+                        </a>
+
+                    </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
@@ -60,7 +56,6 @@
     $(document).ready(function() {
         var table = $('#myTable').DataTable({
             "rowCallback": function(row, data, index) {
-                // Vérifiez si l'index de la ligne est pair
                 if (index % 2 === 0) {
                     $(row).css("background-color", "white");
                 } else {
@@ -68,7 +63,6 @@
                 }
             },
             "drawCallback": function(settings) {
-                // Réappliquez la couleur d'arrière-plan après chaque redessin
                 var rows = table.rows({ page: 'current' }).nodes();
                 $(rows).each(function(index) {
                     if (index % 2 === 0) {
@@ -80,24 +74,5 @@
             }
         });
     });
-
-    var adminTd = document.getElementById('adminCell');
-
-    // Créer un élément <select>
-    var selectElement = document.createElement('select');
-
-    // Ajouter des options à la liste déroulante
-    var options = ['Admin', 'Utilisateur', ''];
-
-    for (var i = 0; i < options.length; i++) {
-        var option = document.createElement('option');
-        option.value = options[i];
-        option.text = options[i];
-        selectElement.appendChild(option);
-    }
-
-    // Remplacer le contenu du <td> par la liste déroulante
-    adminTd.innerHTML = '';
-    adminTd.appendChild(selectElement);
 
 </script>

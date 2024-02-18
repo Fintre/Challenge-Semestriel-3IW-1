@@ -1,4 +1,4 @@
-<h1>Réglages</h1>
+<h2>Réglages</h2>
 <section class="settings-bloc">
     <div class="setting-content">
         <div class="site-image">
@@ -7,7 +7,7 @@
         <div>Formulaire ici avec input type=file (pour ajouter l'image de profil)</div>
     </div>
 </section>
-<section class="setting-button">
+<section class="section5-page-add">
     <button class="button button-primary">Lancer le site</button>
     <button class="button button-danger">Supprimer le site le site</button>
 </section>

@@ -211,6 +211,22 @@ p.text {
   color: black;
 }
 
+.error {
+  color: red;
+  padding: 0.5rem;
+  border-radius: 0.3125rem;
+  margin-bottom: 1.25rem;
+  text-align: center;
+}
+
+.success {
+  color: green;
+  padding: 0.5rem;
+  border-radius: 0.3125rem;
+  margin-bottom: 1.25rem;
+  text-align: center;
+}
+
 .block-line-search {
   display: inline-block;
   margin: 3.125rem auto;
@@ -761,7 +777,7 @@ p.text {
   flex-direction: column;
   flex: 1;
   background: rgba(16, 24, 40, 0.08);
-  overflow-y: auto;
+  overflow: auto;
   gap: 0.25rem;
 }
 
@@ -1234,6 +1250,10 @@ p.text {
     padding: 0rem 1rem;
   }
 }
+.section1-user-table {
+  width: 100%;
+}
+
 .responsive-table {
   text-align: center;
   border-radius: 0.625rem;
@@ -1254,6 +1274,47 @@ p.text {
   outline: none;
 }
 
+/* Styles de base (pour les ordinateurs de bureau) */
+.user-profile {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: #fff;
+}
+
+.user-profile img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Pour les tablettes */
+@media (max-width: 768px) {
+  .user-profile {
+    flex-direction: column;
+    align-items: center;
+  }
+  .user-profile img {
+    width: 120px;
+    height: 120px;
+  }
+}
+/* Pour les mobiles */
+@media (max-width: 480px) {
+  .user-profile {
+    padding: 15px;
+  }
+  .user-profile img {
+    width: 100px;
+    height: 100px;
+  }
+}
 .no-border {
   border: none;
 }
@@ -1279,35 +1340,36 @@ p.text {
   font-size: 1.25rem;
 }
 
-.my-blogs {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+.all-blogs {
+  width: 100%;
+  margin-bottom: 0.625rem;
 }
-.my-blogs .article-text {
+
+.article-text {
   height: 6.25rem;
   overflow: scroll;
 }
-.my-blogs .one-blog {
+
+.one-blog {
   background-color: white;
   border-radius: 0.625rem;
   margin-top: 0.9375rem;
   padding: 0.625rem;
 }
-.my-blogs .one-blog .blog-text {
+.one-blog .blog-text {
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
 }
-.my-blogs .one-blog .blog-text .text-content {
+.one-blog .blog-text .text-content {
   margin-left: 0.9375rem;
   height: 6.25rem;
   width: 100%;
   overflow: scroll;
 }
-.my-blogs .one-blog .blog-date {
+.one-blog .blog-date {
   height: 8%;
 }
 
@@ -1341,18 +1403,6 @@ p.text {
   border-radius: 0.625rem;
 }
 
-/* Media query pour les écrans de taille moyenne, comme les tablettes */
-@media only screen and (max-width: 768px) {
-  body {
-    font-size: 0.75rem;
-  }
-}
-/* Media query pour les petits écrans, tels que les smartphones */
-@media only screen and (max-width: 480px) {
-  body {
-    font-size: 0.625rem;
-  }
-}
 .settings-bloc {
   background-color: var(--white);
   border-radius: 0.625rem;
@@ -1404,7 +1454,7 @@ form li {
   padding: 0.5rem 1.5rem;
   align-items: center;
   gap: 1rem;
-  align-self: stretch;
+  align-self: flex-start;
 }
 .input-form label {
   display: flex;
@@ -1415,7 +1465,6 @@ form li {
   flex: 1 0 0;
 }
 .input-form input {
-  width: 9.375rem;
   height: 1rem;
   display: flex;
   padding: 0.375rem 1.5rem;
