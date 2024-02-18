@@ -68,6 +68,7 @@ if( !empty($listOfRoutes[$uri]) ){ // si l'uri existe dans le fichier routes
 
 
 }else{ //si l'uri n'existe pas dans le fichier routes
+    echo $uri;
     require "Controllers/Error.php"; //page 404
     $customError = new Error();
     $customError->page404();

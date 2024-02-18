@@ -34,7 +34,7 @@ form {
   padding: rem(8) rem(24);
   align-items: center;
   gap: rem(16);
-  align-self: stretch;
+  align-self: flex-start;
 
 
   label {
@@ -47,7 +47,6 @@ form {
   }
 
   input {
-    width: rem(150);
     height: rem(16);
     display: flex;
     padding: rem(6) rem(24);

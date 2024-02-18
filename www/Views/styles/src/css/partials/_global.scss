@@ -200,3 +200,18 @@ p {
   color: black;
 }
 
+.error {
+  color: red;
+  padding: rem(8);
+  border-radius: rem(5);
+  margin-bottom: rem(20);
+  text-align: center;
+}
+
+.success {
+  color: green;
+  padding: rem(8);
+  border-radius: rem(5);
+  margin-bottom: rem(20);
+  text-align: center;
+}
