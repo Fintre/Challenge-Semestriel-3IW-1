@@ -22,13 +22,13 @@
   controller: Comments
   action: allComments
 
-/post:
+/posts:
   controller: Posts
   action: allPosts
 
-/post/add-post:
+/posts/post:
   controller: Posts
-  action: newPosts
+  action: post
 
 /settings:
   controller: SiteSettings

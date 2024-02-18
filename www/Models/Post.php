@@ -9,12 +9,11 @@ class Post extends DB
     protected ?int $id;
     protected string $slug;
     protected string $title;
-    protected ?string $description;
     protected string $body;
+    protected ?int $published;
+    protected ?int $isdeleted;
 
-    protected ?string $type;
-    protected bool $published;
-    protected bool $isDeleted;
+    protected ?string $createdat;
 
     //todo when login ok protected int $userId;
 
@@ -80,22 +79,6 @@ class Post extends DB
     /**
      * @return mixed
      */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
-     * @param mixed $description
-     */
-    public function setDescription($description): void
-    {
-        $this->description = $description;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getBody()
     {
         if (isset($this->body)) {
@@ -114,25 +97,11 @@ class Post extends DB
     /**
      * @return mixed
      */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
-     * @param mixed $type
-     */
-    public function setType($type): void
-    {
-        $this->type = $type;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getPublished()
     {
-        return $this->published;
+        if (isset($this->published)) {
+            return $this->published;
+        }
     }
 
     /**
@@ -148,47 +117,16 @@ class Post extends DB
      */
     public function getIsDeleted()
     {
-        return $this->isDeleted;
+        if (isset($this->isdeleted)) {
+            return $this->isdeleted;
+        }
     }
 
-    /**
-     * @param mixed $isDeleted
-     */
-    public function setIsDeleted($isDeleted): void
+    public function getCreatedat()
     {
-        $this->isDeleted = $isDeleted;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCreateAt()
-    {
-        return $this->createAt;
-    }
-
-    /**
-     * @param mixed $createAt
-     */
-    public function setCreateAt($createAt): void
-    {
-        $this->createAt = $createAt;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
-    }
-
-    /**
-     * @param mixed $updatedAt
-     */
-    public function setUpdatedAt($updatedAt): void
-    {
-        $this->updatedAt = $updatedAt;
+        if (isset($this->createdat)) {
+            return $this->createdat;
+        }
     }
 
     public function validate(): array
@@ -212,18 +150,18 @@ class Post extends DB
 
     public function __toString()
     {
-        return "ID: " . $this->id . "\n" .
+        return "ID: " . $this->getId() . "\n" .
             "Slug: " . $this->slug . "\n" .
             "Title: " . $this->title . "\n" .
-            "Description: " . $this->description . "\n" .
             "Body: " . $this->body . "\n" .
-            "Type: " . $this->type . "\n" .
-            "Published: " . $this->published . "\n" .
-            "IsDeleted: " . $this->isDeleted . "\n" .
-            "Created At: " . $this->createAt . "\n" .
-            "Updated At: " . $this->updatedAt . "\n" .
-            "User ID: " . $this->userId . "\n" .
-            "Site Setting ID: " . $this->siteSettingId . "\n";
+            "Published: " . $this->getPublished(). "\n" .
+            "IsDeleted: " . $this->getIsDeleted() . "\n" .
+            "Created At: " . $this->getCreatedat() . "\n" ;
+    }
+
+    public function setIsdeleted(?int $isdeleted): void
+    {
+        $this->isdeleted = $isdeleted;
     }
 
 }

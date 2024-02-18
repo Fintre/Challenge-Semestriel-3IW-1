@@ -60,21 +60,16 @@ CREATE TABLE "public"."gfm_post" (
     "id" integer DEFAULT nextval('gfm_post_id_seq') NOT NULL,
     "title" character varying(40) NOT NULL,
     "body" text NOT NULL,
-    "type" character varying(40) NOT NULL,
-    "description" character varying(255) NOT NULL,
     "slug" character varying(20) NOT NULL,
-    "theme" character varying(45) NOT NULL,
     "published" smallint DEFAULT '0' NOT NULL,
-    "isDeleted" smallint DEFAULT '0' NOT NULL,
+    "isdeleted" smallint DEFAULT '0' NOT NULL,
     "createdat" timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL,
     "updatedat" timestamp DEFAULT CURRENT_TIMESTAMP,
-    "user_id" integer NOT NULL,
-    "siteSetting_id" integer NOT NULL,
-    "theme_id" integer NOT NULL,
+    "user_id" integer,
+    "theme_id" integer,
     CONSTRAINT "gfm_post_pkey" UNIQUE ("id")
 ) WITH (oids = false);
 
-CREATE INDEX "gfm_post_siteSetting_id" ON "public"."gfm_post" USING btree ("siteSetting_id");
 
 CREATE INDEX "gfm_post_user_id" ON "public"."gfm_post" USING btree ("user_id");
 
@@ -135,8 +130,7 @@ ALTER TABLE ONLY "public"."gfm_comment" ADD CONSTRAINT "gfm_comment_user_fk" FOR
 
 ALTER TABLE ONLY "public"."gfm_media" ADD CONSTRAINT "gfm_media_post_fk" FOREIGN KEY (post_id) REFERENCES gfm_post(id) ON UPDATE CASCADE NOT DEFERRABLE;
 
-ALTER TABLE ONLY "public"."gfm_post" ADD CONSTRAINT "gfm_post_siteSetting_fk" FOREIGN KEY ("siteSetting_id") REFERENCES "gfm_siteSetting"(id) NOT DEFERRABLE;
-ALTER TABLE ONLY "public"."gfm_post" ADD CONSTRAINT "gfm_post_theme_id_fkey" FOREIGN KEY (theme_id) REFERENCES gfm_theme(id) ON UPDATE CASCADE ON DELETE SET NULL NOT DEFERRABLE;
-ALTER TABLE ONLY "public"."gfm_post" ADD CONSTRAINT "gfm_post_user_fk" FOREIGN KEY (user_id) REFERENCES gfm_user(id) NOT DEFERRABLE;
+--ALTER TABLE ONLY "public"."gfm_post" ADD CONSTRAINT "gfm_post_theme_id_fkey" FOREIGN KEY (theme_id) REFERENCES gfm_theme(id) ON UPDATE CASCADE ON DELETE SET NULL NOT DEFERRABLE;
+--ALTER TABLE ONLY "public"."gfm_post" ADD CONSTRAINT "gfm_post_user_fk" FOREIGN KEY (user_id) REFERENCES gfm_user(id) NOT DEFERRABLE;
 
 -- 2024-02-16 12:28:04.763922+00

@@ -25,6 +25,7 @@ $uri = strtolower($_SERVER["REQUEST_URI"]); //pour récupérer l'uri et la mettr
 $uri = strtok($uri, "?"); //pour récupérer l'uri avant le ? (pour enlever les paramètres GET)
 $uri = strlen($uri)>1 ? rtrim($uri, "/"):$uri; //pour supprimer le dernier / de l'uri si elle est supérieure à 1 caractère
 
+
 if(!file_exists("routes.yaml")){ //pour vérifier si le fichier routes existe
     die("Le fichier de routing n'existe pas");
 }

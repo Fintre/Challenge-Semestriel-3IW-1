@@ -1,17 +1,21 @@
-<script type="text/javascript" src="../../../Shared/tinymce/js/tinymce/tinymce.js"></script >
+<script type="text/javascript" src="../../../Shared/tinymce/js/tinymce/tinymce.js"></script>
 <script>
     tinymce.init({
         selector: 'textarea#pageContent',
         auto_focus: 'element1',
         mode: "textareas",
-        elements : "pageContent",
-        height:"350px",
-        width:"100%"
+        elements: "pageContent",
+        height: "350px",
+        width: "100%"
 
     });
 </script>
-<h2>Nouvelle page</h2>
 <?php
+if (empty($this->data['post']->getId())) {
+    echo "<h2>Nouvelle page</h2>";
+} else {
+    echo "<h2>Modification de la page</h2>";
+}
 $info = $this->data['info'];
 echo "<h3>$info</h3>";
 
@@ -22,22 +26,28 @@ if (empty($this->data['mandatoryFields'])) {
 ?>
 <section class="new-post-main">
     <div class="section1-new-post-container">
-        <form method="post" action="<?=$_SERVER['REQUEST_URI']?>">
+        <form method="post" action="<?= $_SERVER['REQUEST_URI'] ?>">
             <div class="form-group">
                 <label for="pageName"></label>
-                <textarea name="pageSlug" id="pageName" class="pageName" placeholder="Nom de la page ..."><?php echo $this->data['pageSlug'] ??'' ?></textarea>
+                <textarea name="pageSlug" id="pageName" class="pageName"
+                          placeholder="Nom de la page ..."><?php echo $this->data['post']->getSlug() ?? '' ?></textarea>
             </div>
             <div class="form-group">
                 <label for="pageTitle"></label>
-                <textarea name="pageTitle" id="pageTitle" class="pageTitle" placeholder="Titre de la page ..."><?php echo $this->data['pageTitle'] ?? ''?></textarea>
+                <textarea name="pageTitle" id="pageTitle" class="pageTitle"
+                          placeholder="Titre de la page ..."><?php echo $this->data['post']->getTitle() ?? '' ?></textarea>
             </div>
             <div class="form-content">
                 <label for="pageContent"></label>
-                <textarea name="pageContent" id="pageContent"><?php echo $this->data['sContent'] ?? '' ?></textarea>
+                <textarea name="pageContent"
+                          id="pageContent"><?php echo $this->data['post']->getBody() ?? '' ?></textarea>
             </div>
             <div hidden>
-                <input type="number" name="id" value="<?php echo $this->data['id'] ?? ''?>"/>
+                <input type="number" name="id" value="<?php echo $this->data['post']->getId() ?? '' ?>"/>
+                <input type="number" name="isDeleted" value="<?php echo $this->data['post']->getIsDeleted() ?? '0' ?>"/>
+                <input type="number" name="isPublished" value="<?php echo $this->data['post']->getPublished() ?? '0' ?>"/>
             </div>
+
             <div class="form-button-add-element">
                 <button class="button button-primary button-sm">+</button>
             </div>
@@ -54,7 +64,8 @@ if (empty($this->data['mandatoryFields'])) {
                     <input type="color" id="color-text" name="color-text"/><label for="color-text"></label>
                 </span>
                 <span class="block-card-custom-page-color-content">A-Plan
-                    <input type="color" id="color-text-background" name="color-text-background"/><label for="color-text-background"></label>
+                    <input type="color" id="color-text-background" name="color-text-background"/><label
+                            for="color-text-background"></label>
                 </span>
             </div>
         </div>
@@ -73,19 +84,25 @@ if (empty($this->data['mandatoryFields'])) {
                         <button class="block-card-custom-page-typo-value">liste</button>
                         <button class="block-card-custom-page-typo-value">lien</button>
                         <button class="block-card-custom-page-typo-value">a</button>
-                        <button class="block-card-custom-page-typo-value">A</>
+                        <button class="block-card-custom-page-typo-value">A</
+                        >
                     </div>
                 </div>
             </div>
         </div>
         <div class="block-card block-card-custom-page info">
-            <div class="block-card-custom-page-info-property">Auteur<span class="block-card-custom-page-info-value">Yves</span></div>
-            <div class="block-card-custom-page-info-property">Statut<span class="block-card-custom-page-info-value">Brouillon</span></div>
-            <div class="block-card-custom-page-info-property">Date<span class="block-card-custom-page-info-value">12/12/2023</span></div>
-            <div class="block-card-custom-page-info-property">URL<span class="block-card-custom-page-info-value">gofindme.com/home</span></div>
+            <div class="block-card-custom-page-info-property">Auteur<span
+                        class="block-card-custom-page-info-value">Yves</span></div>
+            <div class="block-card-custom-page-info-property">Statut<span class="block-card-custom-page-info-value">Brouillon</span>
+            </div>
+            <div class="block-card-custom-page-info-property">Date<span class="block-card-custom-page-info-value">12/12/2023</span>
+            </div>
+            <div class="block-card-custom-page-info-property">URL<span class="block-card-custom-page-info-value">gofindme.com/home</span>
+            </div>
         </div>
         <div class="block-card block-card-custom-page media">
-            <div class="block-card-custom-page-media-property">Image<span class="block-card-custom-page-media-value">Ajouter un nouveau contenu</span></div>
+            <div class="block-card-custom-page-media-property">Image<span class="block-card-custom-page-media-value">Ajouter un nouveau contenu</span>
+            </div>
         </div>
         <div class="button-new-page">
             <div class="button-submit">

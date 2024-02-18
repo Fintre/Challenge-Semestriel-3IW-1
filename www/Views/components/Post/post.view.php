@@ -24,46 +24,41 @@
             <th class="tab-item active">Titre</th>
             <th class="tab-item">Auteur</th>
             <th class="tab-item">Date</th>
-            <th class="tab-item">SEO</th>
+            <th class="tab-item">Status</th>
+            <th class="tab-item">Modifier</th>
         </tr>
         </thead>
-        <tr class="tab-page">
-            <!--  <td>
-                <?php echo $this->fakePost1[0];?>
-            </td>
-            -->
-            <td>Acceuil</td>
-            <td>Catalina</td>
-            <td>12/12/2023</td>
-            <td>SEO</td>
-        </tr>
-        <tr class="tab-page">
-            <!--  <td>
-                <?php echo $this->fakePost1[0];?>
-            </td>
-            -->
-            <td>Contact</td>
-            <td>Catalina</td>
-            <td>12/11/2023</td>
-            <td>SEO</td>
-        </tr>
-        <tr class="tab-page">
-            <!--  <td>
-                <?php echo $this->fakePost1[0];?>
-            </td>
-            -->
-            <td>RDV</td>
-            <td>Catalina</td>
-            <td>12/10/2023</td>
-            <td>SEO</td>
-        </tr>
+        <?php
+        if (isset($this->data['posts'])) {
+            foreach ($this->data['posts'] as $post) {
+                $postId = $post->getId();
+                $title = $post->getTitle();
+                $username = "username";
+                $createdAt = $post->getCreatedat();
+                $status = $post->getPublished() ? 'Publié' : "Non publié";
+                echo "
+                    <tr class='tab-page'>
+                        <td>$title</td>
+                        <td>$username</td>
+                        <td>$createdAt</td>
+                        <td>$status</td>
+                        <td>
+                            <button class='button button-primary'>
+                                <a href='/posts/post?id=$postId' class='add-content'>Modifier</a>
+                            </button>
+                        </td>
+                    </tr>
+                    ";
+            }
+        }
+        ?>
     </table>
 </section>
 <section class="section4-">
 </section>
 <section class="section5-page-add">
     <button class="button button-primary">
-        <a href="/post/add-post" class="add-content">Ajouter</a>
+        <a href="/posts/post" class="add-content">Ajouter</a>
     </button>
 </section>
 

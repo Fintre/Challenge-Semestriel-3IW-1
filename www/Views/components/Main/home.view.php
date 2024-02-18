@@ -4,7 +4,7 @@
     <br> Voici les dernieres informations sur votre site</p>
 </p>
 <section class="dashboard-cards">
-    <a href="/post">
+    <a href="/posts">
 		<div class="block-card-dashboard">
 			<div class="block-card-dashboard-total blue">
 				<img src="/Views/styles/dist/images/pages.png" alt="pages-image">

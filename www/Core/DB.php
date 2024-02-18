@@ -35,11 +35,19 @@ class DB
     // Empêcher la désérialisation de l'instance
     public function __wakeup() {}
 
-    public function getAllData($table) //pour récupérer tous les enregistrements de la bdd
+    public function getAllData($return) //pour récupérer tous les enregistrements de la bdd
     {
-        $sql = "SELECT * FROM " . $table;
+        $sql = "SELECT * FROM " . $this->table;
         $queryPrepared = $this->pdo->prepare($sql);
         $queryPrepared->execute();
+
+        if($return == "object") {
+            // les resultats seront sous forme d'objet de la classe appelée
+            $queryPrepared->setFetchMode(\PDO::FETCH_CLASS, get_called_class());
+        } else {
+            // pour récupérer un tableau associatif
+            $queryPrepared->setFetchMode(\PDO::FETCH_ASSOC);
+        }
 
         return $queryPrepared->fetchAll();
     }
