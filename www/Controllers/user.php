@@ -14,7 +14,27 @@ class User
 
     public function allUsers(): void
     {
-        $newUser = new View("User/allusers", "back");
+        $errors = [];
+        $success = [];
+        $user = new UserModel();
+        // Vérifiez si l'action de suppression a été demandée
+        if (isset($_GET['action']) && $_GET['action'] === 'delete' && isset($_GET['id'])) {
+            $userId = $_GET['id'];
+
+            if ($user->delete(['id' => $userId])) {
+                $success[] = "L'utilisateur a été supprimé avec succès.";
+            } else {
+                $errors[] = "La suppression a échoué.";
+            }
+        }
+
+        // Chargez les utilisateurs et préparez les messages à afficher
+        $allUsers = $user->getUsers();
+
+        $myView = new View("User/allusers", "back");
+        $myView->assign("users", $allUsers);
+        $myView->assign("errors", $errors);
+        $myView->assign("success", $success);
     }
 
     public function editUser(): void {
@@ -101,27 +121,6 @@ class User
     }
 
 
-    public function deleteUser(): void
-    {
-        echo "Supprimmer un utilisateur";
-    }
 
-    //Récuperer les données de la table gfm_user
-    public function getUsers()
-    {
-        $table = $this->getTableName();
-
-        $user = new DB();
-        return $allUsers = $user->getAllData($table); // methode getAllData est créee dans DB avec en parametre le nom de la table
-
-    }
-
-    //recuperer le nom de la table en fonction du nom de la classe (user)
-    private function getTableName() {
-        $table = get_called_class();
-        $table = explode("\\", $table);
-        $table = array_pop($table);
-        return "gfm_" . strtolower($table);
-    }
 
 }

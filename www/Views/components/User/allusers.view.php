@@ -1,5 +1,21 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<h2>Tous les utilisateurs</h2>
+<h3>Tous les utilisateurs</h3>
+    <?php if (!empty($errors)): ?>
+        <div class="error">
+            <?php foreach ($errors as $error): ?>
+                <p class="text"><?php echo htmlspecialchars($error); ?></p>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
+
+    <?php if (!empty($success)): ?>
+        <div class="success">
+            <?php foreach ($success as $message): ?>
+                <p class="text"><?php echo htmlspecialchars($message); ?></p>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
+
 <section class="section1-user-table">
 <div class="user-table">
     <table class="responsive-table" id="myTable">
@@ -14,10 +30,7 @@
         <tbody class="responsive-tb">
             <?php
 
-                $userController = new \App\Controllers\User();
-                $allUsers = $userController->getUsers();
-
-                foreach ($allUsers as $userData): ?>
+                foreach ($users as $userData): ?>
                 <tr>
                     <td><?php echo $userData['firstname']; ?></td>
                     <td><?php echo $userData['email']; ?></td>
@@ -25,7 +38,10 @@
                     <td class="link-list">
                         <a href="#" class="link-primary"><i class="fa fa-eye" aria-hidden="true"></i></a>
                         <a href="/user/edit-user?id=<?php echo $userData['id']; ?>" class="link-primary"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                        <a href="#" class="link-danger"><i class="fa fa-minus-square-o" aria-hidden="true"></i></a>
+                        <a href="/user?action=delete&id=<?php echo $userData['id']; ?>" class="link-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');">
+                            <i class="fa fa-minus-square-o" aria-hidden="true"></i>
+                        </a>
+
                     </td>
                 </tr>
             <?php endforeach; ?>

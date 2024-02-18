@@ -38,9 +38,9 @@
   controller: User
   action: allUsers
 
-/user/delete-user:
+/user/deleteUser:
   controller: User
-  action: delete
+  action: deleteUser
 
 /register:
   controller: Security
