@@ -54,6 +54,10 @@
   controller: User
   action: editUser
 
+/user/edit-password:
+  controller: User
+  action: editPassword
+
 /login:
   controller: Security
   action: login
