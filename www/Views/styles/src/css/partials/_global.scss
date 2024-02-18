@@ -154,6 +154,9 @@ p {
   margin-left: rem(30);
   .status-tab {
     color: black;
+    @media (prefers-color-scheme: dark) {
+      color: white;
+    }
     .tab {
       display: flex;
       flex-direction: row;
@@ -172,6 +175,9 @@ p {
           border-bottom: none;
           background-color: transparent;
           color: black;
+          @media (prefers-color-scheme: dark) {
+            color: white;
+          }
           &:hover,
           &.active {
             color: var(--blue);
@@ -188,6 +194,9 @@ p {
       box-shadow: var(--box-shadow-base);
       padding: rem(17) rem(19);
       width: rem(500);
+      @media (prefers-color-scheme: dark) {
+        background-color: lighten(#262626, 10%);
+      }
     }
   }
 }
@@ -204,6 +213,9 @@ p {
   display: block;
   background-color: transparent;
   color: black;
+  @media (prefers-color-scheme: dark) {
+    color: white;
+  }
 }
 
 @media (max-width: 768px) {

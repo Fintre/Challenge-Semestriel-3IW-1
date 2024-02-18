@@ -168,6 +168,11 @@ p.text {
 .section1-status-tab .status-tab {
   color: black;
 }
+@media (prefers-color-scheme: dark) {
+  .section1-status-tab .status-tab {
+    color: white;
+  }
+}
 .section1-status-tab .status-tab .tab {
   display: flex;
   flex-direction: row;
@@ -189,6 +194,11 @@ p.text {
   background-color: transparent;
   color: black;
 }
+@media (prefers-color-scheme: dark) {
+  .section1-status-tab .status-tab .tab th a {
+    color: white;
+  }
+}
 .section1-status-tab .status-tab .tab th a:hover, .section1-status-tab .status-tab .tab th a.active {
   color: var(--blue);
   border-bottom: 2px solid var(--green);
@@ -202,6 +212,11 @@ p.text {
   padding: 1.0625rem 1.1875rem;
   width: 31.25rem;
 }
+@media (prefers-color-scheme: dark) {
+  .section1-status-tab .status-tab .tab-page {
+    background-color: #404040;
+  }
+}
 
 @media (max-width: 768px) {
   .section1-status-tab {
@@ -214,6 +229,11 @@ p.text {
   display: block;
   background-color: transparent;
   color: black;
+}
+@media (prefers-color-scheme: dark) {
+  .tab-item {
+    color: white;
+  }
 }
 
 @media (max-width: 768px) {
@@ -231,11 +251,22 @@ p.text {
   align-items: flex-start;
   width: 31.25rem;
 }
+@media (prefers-color-scheme: dark) {
+  .block-line-search {
+    background-color: #404040;
+  }
+}
 .block-line-search .search-input {
+  background-color: white;
   border: none;
   outline: none;
   width: 100%;
   font-family: "Lato", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  .block-line-search .search-input {
+    background-color: #404040;
+  }
 }
 
 .block-card {
@@ -282,6 +313,11 @@ p.text {
   flex-direction: column;
   padding: 0.3125rem 1.25rem;
   text-align: center;
+}
+@media (prefers-color-scheme: dark) {
+  .block-card.block-card-custom-page {
+    background-color: #404040;
+  }
 }
 .block-card.block-card-custom-page.color .block-card-custom-page-color-wrapper {
   display: inline-flex;
@@ -406,6 +442,11 @@ p.text {
   align-self: stretch;
   color: var(--black);
 }
+@media (prefers-color-scheme: dark) {
+  .block-card .block-card-form-text.name {
+    color: white;
+  }
+}
 .block-card .block-card-form svg {
   display: flex;
   width: 3.5rem;
@@ -435,6 +476,11 @@ p.text {
   border-radius: 0.9375rem;
   background: var(--white);
   box-shadow: 0rem 0.25rem 0.25rem 0rem rgba(0, 0, 0, 0.25);
+}
+@media (prefers-color-scheme: dark) {
+  .block-card-dashboard .block-card-dashboard-total {
+    background-color: #404040;
+  }
 }
 .block-card-dashboard .block-card-dashboard-total.blue {
   border: 0.0625rem solid var(--blue);
@@ -476,6 +522,11 @@ p.text {
   align-self: stretch;
   color: rgba(0, 0, 0, 0.75);
 }
+@media (prefers-color-scheme: dark) {
+  .block-card-dashboard .block-card-dashboard-total-text .title {
+    color: white;
+  }
+}
 .block-card-dashboard .block-card-dashboard-total-text .number {
   display: flex;
   height: 1.5rem;
@@ -486,6 +537,11 @@ p.text {
   font-family: var(--text-font);
   align-self: stretch;
   color: var(--black);
+}
+@media (prefers-color-scheme: dark) {
+  .block-card-dashboard .block-card-dashboard-total-text .number {
+    color: white;
+  }
 }
 
 .button {
@@ -514,6 +570,11 @@ p.text {
   background-color: var(--bg-hover-color);
   color: var(--bg-text-hover-color);
   border: 0.0625rem solid var(--bg-hover-border-color);
+}
+@media (prefers-color-scheme: dark) {
+  .button:hover {
+    background-color: #404040;
+  }
 }
 .button-primary {
   --bg-color: var(--blue);
@@ -639,6 +700,11 @@ p.text {
   justify-content: space-around;
   background-color: white;
 }
+@media (prefers-color-scheme: dark) {
+  .grid .row {
+    background-color: #404040;
+  }
+}
 
 .themes {
   display: flex;
@@ -657,6 +723,11 @@ p.text {
   align-items: flex-start;
   box-shadow: 0rem 0rem 0.25rem 0.25rem rgba(0, 0, 0, 0.2);
   background: var(--white);
+}
+@media (prefers-color-scheme: dark) {
+  .themes .themes-card {
+    background-color: #404040;
+  }
 }
 .themes .themes-card img {
   flex: 1 0 0;
@@ -684,6 +755,11 @@ p.text {
   align-self: stretch;
   background: var(--white);
 }
+@media (prefers-color-scheme: dark) {
+  .themes .themes-card-inactive {
+    background-color: #404040;
+  }
+}
 
 @media screen and (max-width: 480px) {
   .themes {
@@ -704,6 +780,11 @@ p.text {
   border: 0.0625rem solid var(--black);
   padding: 1rem 1.5rem;
 }
+@media (prefers-color-scheme: dark) {
+  .card {
+    background-color: #404040;
+  }
+}
 .card-title {
   display: flex;
   justify-content: center;
@@ -713,6 +794,11 @@ p.text {
   font-family: var(--headers-font);
   text-align: center;
   color: var(--black);
+}
+@media (prefers-color-scheme: dark) {
+  .card-title {
+    color: white;
+  }
 }
 .card-avis {
   display: flex;
@@ -746,11 +832,21 @@ p.text {
   text-align: left;
   color: var(--black);
 }
+@media (prefers-color-scheme: dark) {
+  .card-avis-elements.text-name {
+    color: white;
+  }
+}
 .card-avis-elements.text-avis {
   font-size: 0.75rem;
   font-family: var(--text-font);
   text-align: left;
   color: rgba(0, 0, 0, 0.75);
+}
+@media (prefers-color-scheme: dark) {
+  .card-avis-elements.text-avis {
+    color: white;
+  }
 }
 .card-button {
   display: flex;
@@ -873,6 +969,11 @@ p.text {
   text-align: center;
   padding: 0.25rem;
 }
+@media (prefers-color-scheme: dark) {
+  .navbar ul li .accordion-title {
+    color: white;
+  }
+}
 @media screen and (min-width: 64rem) {
   .navbar .container {
     display: flex;
@@ -885,6 +986,13 @@ p.text {
     height: 100%;
     gap: 1.875rem;
   }
+}
+@media screen and (min-width: 64rem) and (prefers-color-scheme: dark) {
+  .navbar .container {
+    background-color: #404040;
+  }
+}
+@media screen and (min-width: 64rem) {
   .navbar ul {
     flex-direction: column;
     align-items: center;
@@ -908,6 +1016,13 @@ p.text {
     color: var(--black);
     text-align: left;
   }
+}
+@media screen and (min-width: 64rem) and (prefers-color-scheme: dark) {
+  .navbar ul li .accordion-title {
+    color: white;
+  }
+}
+@media screen and (min-width: 64rem) {
   .navbar ul li .accordion-icon {
     width: 1.875rem;
     height: 1.875rem;
@@ -962,10 +1077,20 @@ p.text {
   padding: 1rem;
   border-radius: var(--main-radius);
 }
+@media (prefers-color-scheme: dark) {
+  .modal section {
+    background-color: #404040;
+  }
+}
 .modal section a {
   color: var(--black);
   text-decoration: none;
   text-align: center;
+}
+@media (prefers-color-scheme: dark) {
+  .modal section a {
+    color: white;
+  }
 }
 .modal section a:hover {
   text-decoration: underline;
@@ -996,6 +1121,18 @@ p.text {
   width: 2.5rem;
 }
 
+@media (prefers-color-scheme: dark) {
+  .back-office-nav-main {
+    background-color: #262626;
+    color: white;
+  }
+  .back-office-nav-main .navbar .container {
+    background-color: #404040;
+  }
+  .back-office-nav-main .navbar .container .navbar_toggle_content ul li .accordion .accordion-title {
+    color: white;
+  }
+}
 .bo-connexion-header {
   display: flex;
   padding: 0rem 0.5rem;
@@ -1054,8 +1191,16 @@ p.text {
 .section3-information-page .status-tab .tab th, .section3-information-page .status-tab .tab td, .section3-information-page .status-tab tr th, .section3-information-page .status-tab tr td {
   text-align: left;
 }
+@media (prefers-color-scheme: dark) {
+  .section3-information-page .status-tab .tab th, .section3-information-page .status-tab .tab td, .section3-information-page .status-tab tr th, .section3-information-page .status-tab tr td {
+    color: white;
+  }
+}
 .section3-information-page .status-tab .tab th:first-child, .section3-information-page .status-tab .tab td:first-child, .section3-information-page .status-tab tr th:first-child, .section3-information-page .status-tab tr td:first-child {
   margin-right: 0;
+}
+.section3-information-page .status-tab .tab th .add-content, .section3-information-page .status-tab .tab td .add-content, .section3-information-page .status-tab tr th .add-content, .section3-information-page .status-tab tr td .add-content {
+  color: white;
 }
 
 .section5-page-add {

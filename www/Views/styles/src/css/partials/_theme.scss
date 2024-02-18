@@ -15,7 +15,9 @@
         align-items: flex-start;
         box-shadow: rem(0) rem(0) rem(4) rem(4) rgba(0, 0, 0, 0.20);
         background: var(--white);
-
+        @media (prefers-color-scheme: dark) {
+            background-color: lighten(#262626, 10%);
+        }
 
         img {
             flex: 1 0 0;
@@ -44,6 +46,9 @@
             flex-shrink: 0;
             align-self: stretch;
             background: var(--white);
+            @media (prefers-color-scheme: dark) {
+                background-color: lighten(#262626, 10%);
+            }
         }
     }
 }
