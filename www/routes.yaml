@@ -90,6 +90,10 @@
   controller: Articles
   action: deleteArticle
 
+/articles/update-article:
+  controller: Articles
+  action: updateArticle
+
 /blogs:
   controller: Blogs
   action: allBlogs

@@ -50,6 +50,26 @@
         </div>
     <?php endforeach; ?>
 
+    <?php // generer les textareas si elles existent dans les configs
+        if (!empty($config["textareas"])) {
+            foreach ($config["textareas"] as $name => $configTextarea):
+                ?>
+                <div class="input-form">
+                    <label for="<?= $configTextarea['id'] ?? '' ?>"><?= htmlspecialchars($name) ?></label>
+                    <textarea
+                            name="<?= $name ?>"
+                            id="<?= $configTextarea["id"] ?? "" ?>"
+                            class="<?= $configTextarea["class"] ?? "" ?>"
+                            placeholder="<?= $configTextarea["placeholder"] ?? "" ?>"
+                    <?= (!empty($configTextarea["required"])) ? "required" : "" ?>>
+                    <?= htmlspecialchars($configTextarea["value"] ?? '') ?>
+                </textarea><br>
+                </div>
+            <?php
+            endforeach;
+        }
+    ?>
+
     <input type="submit" class="<?= $submitButtonClass??"" ?>" value="<?= $config["config"]["submit"]??"Envoyer" ?>" >
 
     <?php if(!empty($dataError)) :?>

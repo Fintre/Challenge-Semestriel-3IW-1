@@ -4,28 +4,58 @@ namespace App\Controllers;
 
 use App\Core\View;
 use App\Core\DB;
-use App\Forms\RemoveArticle;
 use App\Forms\UpdateArticle;
 use App\Models\Article;
+use App\Models\Post;
 
 class Articles
 {
     public function allArticles(): void
     {
-        $newUser = new View("Articles/allArticles", "back");
+        $errors = [];
+        $success = [];
+        $article = new Article();
+        if (isset($_GET['action']) && $_GET['action'] === 'delete' && isset($_GET['id'])) {
+            $articleId = $_GET['id'];
+
+            if ($article->deleteArticlesAndBlogs($articleId)) {
+                $success[] = "L'article a été supprimé avec succès.";
+            } else {
+                $errors[] = "La suppression a échoué.";
+            }
+        }
+        $allArticles = $article->getAllArticles();
+
+        $myView = new View("Articles/allArticles", "back");
+        $myView->assign("articles", $allArticles);
+        $myView->assign("errors", $errors);
+        $myView->assign("success", $success);
     }
 
     public function editArticles(): void
     {
-        $formUpdate = new UpdateArticle();
-        $configUpdate = $formUpdate->getConfig();
-        $errorsUpdate = [];
-        $successUpdate = [];
+        $article = new Article();
+        if (isset($_GET['article']) && $_GET['article']) {
+            $articleId = $_GET['article'];
+            $selectedArticle = $article->getArticlesAndBlogs("article", $articleId);
 
-        $myView = new View("Articles/editArticles", "back");
-        $myView->assign("configForm", $configUpdate);
-        $myView->assign("errorsForm", $errorsUpdate);
-        $myView->assign("successForm", $successUpdate);
+            // Vérifiez si l'article a été trouvé avant d'essayer d'accéder à ses propriétés
+            if ($selectedArticle) {
+                $formUpdate = new UpdateArticle();
+                $configUpdate = $formUpdate->getConfig($selectedArticle[0]["title"], $selectedArticle[0]["description"]);
+                $errorsUpdate = [];
+                $successUpdate = [];
+
+                $myView = new View("Articles/editArticles", "back");
+                $myView->assign("article", $selectedArticle);
+                $myView->assign("configForm", $configUpdate);
+                $myView->assign("errorsForm", $errorsUpdate);
+                $myView->assign("successForm", $successUpdate);
+            } else {
+                // Gérer le cas où l'article n'est pas trouvé
+                echo "Article non trouvé.";
+            }
+        }
     }
 
     public function addArticles(): void
@@ -33,25 +63,19 @@ class Articles
         $newUser = new View("Articles/addArticles", "back");
     }
 
-    /*public function deleteArticle(): void
+    public function updateArticle(): void
     {
-        $articleIdToDelete = $_GET['id'] ?? null;
-        if ($articleIdToDelete !== null && is_numeric($articleIdToDelete)) {
-            $articleIdToDelete = (int)$articleIdToDelete;
+        // Formatez le timestamp en une date lisible
+        $formattedDate = date('Y-m-d H:i:s');
 
-            $deletedArticle = new Article();
-            $deletedArticle->delete((array)$articleIdToDelete);
+        $title = $_REQUEST['Titre'];
+        $description = $_REQUEST['Description'];
 
-            header('Location: /articles');
-            exit;
-        } else {
-            echo "L'ID de l'article n'est pas valide.";
-        }
-    }*/
-
-    public function getAllArticles()
-    {
-        $article = new DB();
-        return $allArticles = $article->getArticlesAndBlogs("article"); 
+        $article = new Post();
+        $article->setTitle($title);
+        $article->setDescription($description);
+        $article->setUpdatedAt($formattedDate);
+        $article->save();
     }
+
 }

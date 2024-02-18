@@ -1,7 +1,9 @@
 <?php
 namespace App\Models;
 
-class Post
+use App\Core\DB;
+
+class Post extends DB
 {
     protected $id;
     protected $slug;
@@ -226,10 +228,10 @@ class Post
 
     }
 
-    public function delete(int $id)
+    /*public function delete(int $id)
     {
 
-    }
+    }*/
 
     public function __toString() {
         return "ID: " . $this->id . "\n" .
