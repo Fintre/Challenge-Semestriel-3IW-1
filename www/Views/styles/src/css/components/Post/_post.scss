@@ -1,6 +1,7 @@
 .section2-search-bar {
   display: flex;
   flex-direction: column;
+  margin-left: rem(30);
   width: 100%;
 }
 
@@ -12,8 +13,6 @@
     }
   }
 }
-
-
 
 .section3-information-page {
   display: flex;
@@ -45,7 +44,7 @@
   }
 }
 
-.section5-page-add {
+.section4-page-add {
   display: flex;
   justify-content: space-around;
   .button.button-primary {

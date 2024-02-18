@@ -37,26 +37,24 @@
                 $createdAt = $post->getCreatedat();
                 $status = $post->getPublished() ? 'Publié' : "Non publié";
                 echo "
-                    <tr class='tab-page'>
-                        <td>$title</td>
-                        <td>$username</td>
-                        <td>$createdAt</td>
-                        <td>$status</td>
-                        <td>
-                            <button class='button button-primary'>
-                                <a href='/posts/post?id=$postId' class='add-content'>Modifier</a>
-                            </button>
-                        </td>
-                    </tr>
-                    ";
+                <tr class='tab-page'>
+                    <td>$title</td>
+                    <td>$username</td>
+                    <td>$createdAt</td>
+                    <td>$status</td>
+                    <td>
+                        <button class='button button-primary'>
+                            <a href='/posts/post?id=$postId' class='add-content'>Modifier</a>
+                        </button>
+                    </td>
+                </tr>
+                ";
             }
         }
         ?>
     </table>
 </section>
-<section class="section4-">
-</section>
-<section class="section5-page-add">
+<section class="section4-page-add">
     <button class="button button-primary">
         <a href="/posts/post" class="add-content">Ajouter</a>
     </button>

@@ -7,16 +7,7 @@
 h3 {
   color: var(--blue);
 }
-.section1-new-post-container {
-  padding: rem(15);
-  display: flex;
-  justify-content: flex-start;
-  flex-direction: column;
-  width: 80%;
-  align-items: center;
-  margin-right: rem(8);
-  border-right: rem(7) solid white;
-  border-radius: rem(10);
+.my-form {
   form {
     width: inherit;
     .form-group {
@@ -36,6 +27,18 @@ h3 {
         font-weight: bold;
       }
     }
+}
+
+.section1-new-post-container {
+  padding: rem(15);
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  width: 80%;
+  align-items: center;
+  margin-right: rem(8);
+  border-right: rem(7) solid white;
+  border-radius: rem(10);
     .form-content {
       background-color: transparent;
       box-shadow: none;
@@ -153,6 +156,10 @@ h3 {
   align-items: center;
   .button-submit {
     margin: rem(15) 0 rem(15);
+  }
+  .button-draft {
+    margin-top: rem(15);
+
   }
 }
 

@@ -42,7 +42,6 @@ a {
 
 main {
   display: flex;
-  height: 100%;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -863,7 +862,8 @@ p.text {
 }
 
 .back-office-content {
-  padding: 1.25rem;
+  padding-top: 1.25rem;
+  padding-left: 1.25rem;
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -1160,6 +1160,7 @@ p.text {
 .section2-search-bar {
   display: flex;
   flex-direction: column;
+  margin-left: 1.875rem;
   width: 100%;
 }
 
@@ -1203,11 +1204,11 @@ p.text {
   color: white;
 }
 
-.section5-page-add {
+.section4-page-add {
   display: flex;
   justify-content: space-around;
 }
-.section5-page-add .button.button-primary .add-content {
+.section4-page-add .button.button-primary .add-content {
   color: white;
 }
 
@@ -1222,7 +1223,27 @@ h3 {
   color: var(--blue);
 }
 
-.section1-new-post-container {
+.my-form form {
+  width: inherit;
+}
+.my-form form .form-group {
+  background-color: white;
+  display: flex;
+  margin: 1.25rem auto;
+  border-radius: 0.625rem;
+  box-shadow: 0 0.25rem 0.25rem 0 rgba(0, 0, 0, 0.25);
+  padding: 1.0625rem 1.1875rem;
+  align-items: flex-start;
+  width: inherit;
+}
+.my-form form .form-group textarea {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-family: "Lato", sans-serif;
+  font-weight: bold;
+}
+.my-form .section1-new-post-container {
   padding: 0.9375rem;
   display: flex;
   justify-content: flex-start;
@@ -1233,27 +1254,7 @@ h3 {
   border-right: 0.4375rem solid white;
   border-radius: 0.625rem;
 }
-.section1-new-post-container form {
-  width: inherit;
-}
-.section1-new-post-container form .form-group {
-  background-color: white;
-  display: flex;
-  margin: 1.25rem auto;
-  border-radius: 0.625rem;
-  box-shadow: 0 0.25rem 0.25rem 0 rgba(0, 0, 0, 0.25);
-  padding: 1.0625rem 1.1875rem;
-  align-items: flex-start;
-  width: inherit;
-}
-.section1-new-post-container form .form-group textarea {
-  border: none;
-  outline: none;
-  width: 100%;
-  font-family: "Lato", sans-serif;
-  font-weight: bold;
-}
-.section1-new-post-container form .form-content {
+.my-form .section1-new-post-container .form-content {
   background-color: transparent;
   box-shadow: none;
   border-radius: 0;
@@ -1262,13 +1263,13 @@ h3 {
   align-items: flex-start;
   width: inherit;
 }
-.section1-new-post-container form .form-footer {
+.my-form .section1-new-post-container .form-footer {
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
 }
-.section1-new-post-container form .form-button-add-element {
+.my-form .section1-new-post-container .form-button-add-element {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -1361,6 +1362,9 @@ h3 {
 }
 .button-new-page .button-submit {
   margin: 0.9375rem 0 0.9375rem;
+}
+.button-new-page .button-draft {
+  margin-top: 0.9375rem;
 }
 
 .section2-new-post-container {
