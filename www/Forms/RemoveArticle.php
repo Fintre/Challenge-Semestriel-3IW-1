@@ -11,11 +11,9 @@ class RemoveArticle
                 "method"=>"POST",
                 "action"=>"deleteArticle",
                 "submit"=>"Supprimer",
-                "class"=>"form link-danger",
+                "class"=>"remove-form",
             ],
-            "inputs"=> [
-                "Prénom"=>["type"=>"text", "class"=>"input-form", "id"=>"firstname", "placeholder"=>"Prénom", "minlen"=>2, "required"=>true, "error"=>"Le prénom doit faire plus de 2 caractères"],
-                ]
+            "inputs"=> []
         ];
     }
 }

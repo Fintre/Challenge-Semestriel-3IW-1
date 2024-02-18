@@ -78,6 +78,10 @@
   controller: Articles
   action: editArticles
 
+/articles/delete-article:
+  controller: Articles
+  action: deleteArticle
+
 /blogs:
   controller: Blogs
   action: allBlogs

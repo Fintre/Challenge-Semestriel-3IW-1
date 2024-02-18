@@ -4,6 +4,9 @@ namespace App\Controllers;
 
 use App\Core\View;
 use App\Core\DB;
+use App\Forms\RemoveArticle;
+use App\Forms\UpdateArticle;
+use App\Models\Article;
 
 class Articles
 {
@@ -14,7 +17,15 @@ class Articles
 
     public function editArticles(): void
     {
-        $newUser = new View("Articles/editArticles", "back");
+        $formUpdate = new UpdateArticle();
+        $configUpdate = $formUpdate->getConfig();
+        $errorsUpdate = [];
+        $successUpdate = [];
+
+        $myView = new View("Articles/editArticles", "back");
+        $myView->assign("configForm", $configUpdate);
+        $myView->assign("errorsForm", $errorsUpdate);
+        $myView->assign("successForm", $successUpdate);
     }
 
     public function addArticles(): void
@@ -22,12 +33,21 @@ class Articles
         $newUser = new View("Articles/addArticles", "back");
     }
 
-    public function deleteArticle($id): void
+    /*public function deleteArticle(): void
     {
-        $deleted = new DB();
-        $deleted->delete($id);
-        
-    }
+        $articleIdToDelete = $_GET['id'] ?? null;
+        if ($articleIdToDelete !== null && is_numeric($articleIdToDelete)) {
+            $articleIdToDelete = (int)$articleIdToDelete;
+
+            $deletedArticle = new Article();
+            $deletedArticle->delete((array)$articleIdToDelete);
+
+            header('Location: /articles');
+            exit;
+        } else {
+            echo "L'ID de l'article n'est pas valide.";
+        }
+    }*/
 
     public function getAllArticles()
     {
