@@ -92,4 +92,5 @@ if (empty($this->data['mandatoryFields'])) {
             </div>
         </form>
     </div>
+
 </section>

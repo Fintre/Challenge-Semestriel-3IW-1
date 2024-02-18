@@ -42,6 +42,7 @@ class Posts
                 header('Location: /posts');
                 exit();
             }
+
             if (!empty($_POST['id'])) {
             $post->setId(intval($_POST['id']));
             }
