@@ -23,6 +23,9 @@ class Security
 
     public function login(): void
     {
+        session_start();
+        var_dump(session_id());
+        var_dump($_SESSION);
         $formLogin = new Login();
         $configLogin = $formLogin->getConfig();
         $errorsLogin = [];
@@ -33,17 +36,19 @@ class Security
             $verificator = new Verificator();
             if ($verificator->checkForm($configLogin, $_REQUEST, $errorsLogin)) {
                 // Récupérer les données du formulaire
-                $email = $_REQUEST['email'];
-                $password = $_REQUEST['pwd'];
+                $email = $_REQUEST['Email'];
+                $password = $_REQUEST['Mot_de_passe'];
 
                 // Créer une instance du modèle User et vérifier les identifiants
                 $userModel = new User();
                 $user = $userModel->checkUserCredentials($email, $password);
-
                 if ($user) {
                     // Authentification réussie
-                    session_start();
-                    $_SESSION['user'] = $user; // Stocker les informations de l'utilisateur dans la session
+                    var_dump($user);
+                    $userSerialized = serialize($user);
+                    $_SESSION['user'] = $userSerialized; // Stocker les informations de l'utilisateur dans la session
+                    header("Location: /");
+                    exit();
                 } else {
                     // Échec de l'authentification
                     $errorsLogin[] = 'Email ou mot de passe incorrect';
