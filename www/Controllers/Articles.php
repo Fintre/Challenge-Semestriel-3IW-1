@@ -79,7 +79,7 @@ class Articles
         $title = $_REQUEST['Titre'];
         $body = $_REQUEST['Contenu'];
 
-        $article = new Post();
+        $article = new Article();
         $article->setTitle($title);
         $article->setBody($body);
 
@@ -93,10 +93,10 @@ class Articles
             $article->setDescription($selectedArticle[0]["description"]);
             $article->setIsDeleted($selectedArticle[0]["isdeleted"]);
             $article->setPublished($selectedArticle[0]["published"]);
-            $article->setSiteSetting_Id($selectedArticle[0]["sitesetting_id"]);
+            $article->setSiteSettingId($selectedArticle[0]["siteSetting_id"]);
             $article->setSlug($selectedArticle[0]["slug"]);
             $article->setType($selectedArticle[0]["type"]);
-            $article->setUser_Id($selectedArticle[0]["user_id"]);
+            $article->setUserId($selectedArticle[0]["user_id"]);
             $article->setThemeId($selectedArticle[0]["theme_id"]);
             $article->setTheme($selectedArticle[0]["theme"]);
 
@@ -107,15 +107,15 @@ class Articles
             $article->setDescription("");
             $article->setIsDeleted(0);
             $article->setPublished(0);
-            $article->setSiteSetting_Id(1);
+            $article->setSiteSettingId(1);
             $article->setSlug("");
             $article->setType("article");
-            $article->setUser_Id(1);
+            $article->setUserId(1);
             $article->setThemeId(1);
             $article->setTheme("");
         }
 
-        $article->save();
+        $article->saveInpost();
         header("Location: /articles");
         exit();
     }
