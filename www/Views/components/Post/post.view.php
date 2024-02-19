@@ -35,7 +35,7 @@
                 foreach ($this->data['posts'] as $post) {
                     $postId = $post->getId();
                     $title = $post->getTitle();
-                    $username = "username";
+                    $username = $post->getUserUsername();
                     $createdAt = (new DateTime($post->getCreatedat()))->format('Y-m-d');
                     $status = $post->getPublished() ? 'Publié' : "Non publié";
                     echo "
@@ -45,9 +45,7 @@
                         <td>$createdAt</td>
                         <td>$status</td>
                         <td>
-                            <button class='button button-primary'>
-                                <a href='/posts/post?id=$postId' class='add-content'>Modifier</a>
-                            </button>
+                            <a href='/bo/posts/post?id=$postId' class='link-primary'><i class='fa fa-pencil' aria-hidden='true'></i></a>
                         </td>
                     </tr>
                     ";
@@ -57,8 +55,8 @@
         </table>
     </section>
     <section class="section4-add">
-        <button class="button button-primary">
-            <a href="/bo/posts/post" class="add-content">Ajouter</a>
-        </button>
+    <a href="/bo/posts/post" class="add-content"><button class="button button-primary">
+            Ajouter
+        </button></a>
     </section>
 </div>

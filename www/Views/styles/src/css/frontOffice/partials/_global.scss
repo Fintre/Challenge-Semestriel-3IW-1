@@ -7,7 +7,7 @@ html {
 }
 
 body {
-  font-family: $font1;
+  font-family: $font-primary;
   margin: 0;
   display: flex;
   flex-direction: column;
@@ -230,15 +230,10 @@ p {
   }
 }
 
-  .success {
-    color: green;
-    padding: rem(8);
-    border-radius: rem(5);
-    margin-bottom: rem(20);
-    text-align: center;
-  }
-<<<<<<< HEAD
+.success {
+  color: green;
+  padding: rem(8);
+  border-radius: rem(5);
+  margin-bottom: rem(20);
+  text-align: center;
 }
-
-=======
->>>>>>> 60e1cfa517f1261fd0c635cc37ed3a31f16186a8

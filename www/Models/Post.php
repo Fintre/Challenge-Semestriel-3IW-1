@@ -14,8 +14,11 @@ class Post extends DB
     protected ?int $isdeleted;
 
     protected ?string $createdat;
+    protected ?string $type;
 
-    //todo when login ok protected int $userId;
+    protected ?int $theme_id;
+
+    protected string $user_username;
 
     public function __construct()
     {
@@ -203,6 +206,26 @@ class Post extends DB
 
     public function getElementsByType($column, $value) {
         return $this->countElements($column, $value);
+    }
+
+    public function setType($type): void
+    {
+        $this->type = $type;
+    }
+
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    public function setUserUsername($user): void
+    {
+        $this->user_username = $user;
+    }
+
+    public function getUserUsername()
+    {
+        return $this->user_username;
     }
 
 }

@@ -1,13 +1,18 @@
 import { defineConfig } from "vite";
 import path from "path";
 
+
+
 export default defineConfig({
 	build: {
 		lib: {
-			entry: path.resolve(__dirname, "./src/js/main.js"),
+			entry: [path.resolve(__dirname, "./src/js/main.js"), path.resolve(__dirname, "./src/js/mainFront.js")],
+			//entry: [path.resolve(__dirname, "./src/js/mainFront.js")],
 			name: "gfm-project",
 			formats: ["es"],
 		},
+		cssCodeSplit: true,
+
 		rollupOptions: {
 			output: {
 				entryFileNames: "js/[name].js",

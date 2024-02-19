@@ -130,3 +130,6 @@
   security: true
   roles: [admin]
 
+/themes/boulangerie-theme:
+  controller: Themes
+  action: boulangerietheme

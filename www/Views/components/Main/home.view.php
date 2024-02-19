@@ -1,7 +1,7 @@
 <h2>Tableau de bord</h2>
-<p class="subtitle">Bonjour, <?php echo htmlspecialchars($lastname); ?> <?php echo htmlspecialchars($firstname); ?>
-    <br>Vous êtes connecté en tant que <?php echo htmlspecialchars($roles); ?>
-    <br> Voici les dernieres informations sur votre site</p>
+<p class="subtitle">Bonjour, <strong><?php echo htmlspecialchars($lastname); ?> <?php echo htmlspecialchars($firstname); ?> </strong>!
+    <br>Vous êtes connecté en tant que <em><?php echo htmlspecialchars($roles); ?></em>
+
 </p>
 <section class="dashboard-cards">
     <a href="/bo/posts">
@@ -55,12 +55,12 @@
 			</div>
 		</div>
 	</a>
-	<a href="/bo/comments">
+	<a href="/bo/articles">
 		<div class="block-card-dashboard-total green">
 			<img src="/Views/styles/dist/images/comment.png" alt="comment-image">
 			<div class="block-card-dashboard-total-text">
-				<div class="title">Commentaires</div>
-				<div class="number"><?php echo htmlspecialchars($elementsCount['comments']); ?></div>
+				<div class="title">Articles</div>
+				<div class="number"><?php echo htmlspecialchars($elementsCount['articles']); ?></div>
 			</div>
 		</div>
 	</a>

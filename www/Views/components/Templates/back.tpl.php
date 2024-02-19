@@ -7,7 +7,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Template Back</title>
-    <link rel="stylesheet" type="text/css" href="/Views/styles/dist/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/Views/styles/dist/css/main.css">
     <script src="/Views/styles/dist/js/main.js"></script>
 
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
@@ -34,13 +34,19 @@
 						<header>
 							<h4>Choisir une action</h4>
 						</header>
+						<?php if(isset($_SESSION['user'])) {
+							$userSerialized = $_SESSION['user'];
+
+							$user = unserialize($userSerialized);
+
+						}?>
 						<div class="modal_content">
+							<h6>Bonjour <?= $user->getFirstname() ?></h6>
 							<form id="logout-form" action="/login/logout" method="POST">
 								<button type="submit" name="logout" class="text">Déconnexion</button>
 							</form>
-							<!-- <a><p class="text">Deconnexion</p></a> -->
-							<a><p class="text">Mon profil</p></a>
-							<a><p class="text">Paramètres</p></a>
+							<a href="/bo/user/view-user?id=<?= $user->getId() ?>"><p class="text">Mon profil</p></a>
+
 						</div>
 						<footer>
 							<button class="button button-primary" data-modal-close>
@@ -87,7 +93,7 @@
                                     <div class="accordion-icon"> </div>
                                 </a>
                             </li>
-                     
+
                 <li>
 
 								<a href="/bo/themes" class="accordion">

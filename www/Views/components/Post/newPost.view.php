@@ -44,7 +44,7 @@ if (empty($this->data['mandatoryFields'])) {
                     <input type="number" name="isDeleted" value="1"/>
                 </div>
                 <div <?php echo empty($this->data['post']->getId()) ? 'hidden' : '' ?> class="button-deleted">
-                    <button type="submit" class="button button-danger button-lg">Supprimer
+                    <button type="submit" class="button button-danger button-lg" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette page ?');">Supprimer
                     </button>
                 </div>
             </form>
