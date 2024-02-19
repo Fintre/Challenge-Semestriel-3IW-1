@@ -12,6 +12,7 @@ class Articles
 {
     public function allArticles(): void
     {
+
         $errors = [];
         $success = [];
         $article = new Article();
@@ -34,6 +35,7 @@ class Articles
 
     public function editArticles(): void
     {
+
         $article = new Article();
         if (isset($_GET['article']) && $_GET['article']) {
             $articleId = $_GET['article'];
@@ -42,7 +44,7 @@ class Articles
             // Vérifiez si l'article a été trouvé avant d'essayer d'accéder à ses propriétés
             if ($selectedArticle) {
                 $formUpdate = new UpdateArticle();
-                $configUpdate = $formUpdate->getConfig($selectedArticle[0]["title"], $selectedArticle[0]["description"]);
+                $configUpdate = $formUpdate->getConfig($selectedArticle[0]["title"], $selectedArticle[0]["body"], $selectedArticle[0]["id"]);
                 $errorsUpdate = [];
                 $successUpdate = [];
 
@@ -60,22 +62,63 @@ class Articles
 
     public function addArticles(): void
     {
-        $newUser = new View("Articles/addArticles", "back");
+        $formUpdate = new UpdateArticle();
+        $configUpdate = $formUpdate->getConfig("", "", "");
+        $errorsUpdate = [];
+        $successUpdate = [];
+
+        $myView = new View("Articles/addArticles", "back");
+        $myView->assign("configForm", $configUpdate);
+        $myView->assign("errorsForm", $errorsUpdate);
+        $myView->assign("successForm", $successUpdate);
     }
 
     public function updateArticle(): void
     {
-        // Formatez le timestamp en une date lisible
         $formattedDate = date('Y-m-d H:i:s');
 
         $title = $_REQUEST['Titre'];
-        $description = $_REQUEST['Description'];
+        $body = $_REQUEST['Contenu'];
 
-        $article = new Post();
+        $article = new Article();
         $article->setTitle($title);
-        $article->setDescription($description);
-        $article->setUpdatedAt($formattedDate);
-        $article->save();
-    }
+        $article->setBody($body);
 
+        if($_GET['id']){
+            $post = new Article();
+            $selectedArticle = $post->getArticlesAndBlogs("article", $_GET['id']);
+
+            $article->setId($_GET['id']);
+            $article->setUpdatedAt($formattedDate);
+            $article->setCreatedAt($selectedArticle[0]["createdat"]);
+            $article->setDescription($selectedArticle[0]["description"]);
+            $article->setIsDeleted($selectedArticle[0]["isdeleted"]);
+            $article->setPublished($selectedArticle[0]["published"]);
+            $article->setSiteSettingId($selectedArticle[0]["siteSetting_id"]);
+            $article->setSlug($selectedArticle[0]["slug"]);
+            $article->setType($selectedArticle[0]["type"]);
+            $article->setUserId($selectedArticle[0]["user_id"]);
+            $article->setThemeId($selectedArticle[0]["theme_id"]);
+            $article->setTheme($selectedArticle[0]["theme"]);
+
+        }else{
+            $article->setUpdatedAt($formattedDate);
+            $article->setCreatedAt($formattedDate);
+
+            $article->setDescription("");
+            $article->setIsDeleted(0);
+            $article->setPublished(0);
+            $article->setSiteSettingId(1);
+            $article->setSlug("");
+            $article->setType("article");
+            $article->setUserId(1);
+            $article->setThemeId(1);
+            $article->setTheme("");
+        }
+
+        $article->saveInpost();
+        header("Location: /articles");
+        exit();
+    }
 }
+

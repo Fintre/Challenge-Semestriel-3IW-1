@@ -19,8 +19,10 @@
             >
             <?php elseif ($configInput["type"] == "radio"): ?>
                 <label for="<?= $configInput['id'] ?? '' ?>"><?= htmlspecialchars($name) ?></label><br>
+
                 <?php foreach ($configInput["options"] as $optionValue => $optionText):
                     // Détermine si l'option doit être cochée en comparant avec la 'value' de l'input
+
                     $isChecked = ($configInput['value'] == $optionValue) ? 'checked' : '';
                 ?>
                     <input
@@ -33,7 +35,6 @@
                     >
                     <label for="<?= htmlspecialchars($optionValue) ?>"><?= htmlspecialchars($optionText) ?></label><br>
                 <?php endforeach; ?>
-
 
         <?php else: ?>
             <label for="<?= $configInput['id'] ?? '' ?>"><?= htmlspecialchars($name) ?></label>

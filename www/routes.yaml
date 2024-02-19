@@ -1,42 +1,14 @@
-/:
+/bo/dashboard:
   controller: Main
   action: home
+  security: true
+  roles: [admin, editor]
 
-/categorie:
-  controller: Categories
-  action: allCategories
-
-/categorie/add-new-categorie:
-  controller: Categories
-  action: newCategorie
-
-/categorie/edit-categorie:
-  controller: Categories
-  action: editCategorie
-
-/medias:
+/bo/medias:
   controller: Medias
   action: allMedias
-
-/medias/media:
-  controller: Medias
-  action: media
-
-/comments:
-  controller: Comments
-  action: allComments
-
-/posts:
-  controller: Posts
-  action: allPosts
-
-/posts/post:
-  controller: Posts
-  action: post
-
-/settings:
-  controller: SiteSetting
-  action: index
+  security: true
+  roles: [admin, editor]
 
 /register:
   controller: Security
@@ -46,22 +18,6 @@
   controller: Security
   action: activateAccount
 
-/user:
-  controller: User
-  action: allUsers
-
-/user/view-user:
-  controller: User
-  action: viewUser
-
-/user/edit-user:
-  controller: User
-  action: editUser
-
-/user/edit-password:
-  controller: User
-  action: editPassword
-
 /login:
   controller: Security
   action: login
@@ -69,6 +25,48 @@
 /login/logout:
   controller: Security
   action: logout
+
+/bo/posts:
+  controller: Posts
+  action: allPosts
+  security: true
+  roles: [admin, editor]
+
+/bo/posts/post:
+  controller: Posts
+  action: post
+  security: true
+  roles: [admin, editor]
+
+/bo/settings:
+  controller: SiteSetting
+  action: index
+  security: true
+  roles: [admin]
+
+/bo/user:
+  controller: User
+  action: allUsers
+  security: true
+  roles: [admin, editor]
+
+/bo/user/view-user:
+  controller: User
+  action: viewUser
+  security: true
+  roles: [admin, editor]
+
+/bo/user/edit-user:
+  controller: User
+  action: editUser
+  security: true
+  roles: [admin]
+
+/bo/user/edit-password:
+  controller: User
+  action: editPassword
+  security: true
+  roles: [admin]
 
 /recover-password:
   controller: Security
@@ -78,41 +76,47 @@
   controller: Security
   action: resetPassword
 
-/articles:
+/bo/articles:
   controller: Articles
   action: allArticles
+  security: true
+  roles: [admin, editor]
 
-/articles/add-article:
+/bo/articles/add-article:
   controller: Articles
   action: addArticles
+  security: true
+  roles: [admin, editor]
 
-/articles/edit-article:
+/bo/articles/edit-article:
   controller: Articles
   action: editArticles
+  security: true
+  roles: [admin, editor]
 
-/articles/delete-article:
-  controller: Articles
-  action: deleteArticle
-
-/articles/update-article:
-  controller: Articles
-  action: updateArticle
-
-/blogs:
+/bo/blogs:
   controller: Blogs
   action: allBlogs
+  security: true
+  roles: [admin, editor]
 
-/blogs/add-blog:
+/bo/blogs/add-blog:
   controller: Blogs
   action: addBlogs
+  security: true
+  roles: [admin, editor]
 
-/blogs/edit-blog:
+/bo/blogs/edit-blog:
   controller: Blogs
   action: editBlogs
+  security: true
+  roles: [admin, editor]
 
-/themes:
+/bo/themes:
   controller: Themes
   action: allThemes
+  security: true
+  roles: [admin]
 
 /themes/boulangerie-theme:
   controller: Themes

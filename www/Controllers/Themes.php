@@ -15,6 +15,7 @@ class Themes
 
     public function newTheme(): void
     {
+
         $newUser = new View("Themes/newtheme", "back");
     }
 
@@ -24,6 +25,7 @@ class Themes
     }
     public function edit(): void
     {
+
         $editUser = new View("Themes/edittheme", "back");
     }
 

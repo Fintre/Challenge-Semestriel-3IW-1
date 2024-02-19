@@ -92,6 +92,37 @@ class DB
         }
     }
 
+    
+    public function saveInpost() 
+    {
+        $data = $this->getDataObject();
+
+        if(empty($this->getId())){ //si l'id est vide, on insère
+            unset($data['id']);
+            $sql = "INSERT INTO gfm_post (" . implode(",", array_keys($data)) . ")
+            VALUES (:" . implode(",:", array_keys($data)) . ")";
+        } else { //sinon on met à jour
+            $isUpdate = true;
+            $sql = "UPDATE gfm_post SET ";
+            foreach ($data as $column => $value){
+                $sql.= $column. "=:".$column. ",";
+            }
+            $sql = substr($sql, 0, -1);
+            $sql.= " WHERE id = ".$this->getId();
+        }
+
+        $queryPrepared = $this->pdo->prepare($sql); //pour préparer la requête
+        //pour associer les valeurs aux paramètres de la requête préparée
+        foreach ($data as $key => $value) {
+            $type = is_bool($value) ? \PDO::PARAM_BOOL : (is_int($value) ? \PDO::PARAM_INT : \PDO::PARAM_STR);
+            $queryPrepared->bindValue(":$key", $value, $type);
+        }
+        $queryPrepared->execute($data); //pour exécuter la requête
+        if (isset($isUpdate)) {
+            return $this->getId();
+        }
+        return $this->pdo->lastInsertId($this->table."_id_seq");
+    }
 
     public function save() //pour insérer ou mettre à jour les données de l'objet dans la bdd
     {

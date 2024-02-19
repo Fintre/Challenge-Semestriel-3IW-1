@@ -1,68 +1,58 @@
-.section1-user-table{
+.section1-user-table {
   width: 100%;
 }
 
-.responsive-table{
+.responsive-table {
   text-align: center;
   border-radius: rem(10);
   border: none;
 }
-.responsive-th{
+
+.responsive-th, .responsive-tb {
   text-align: center;
   border-radius: rem(10);
 }
-.responsive-tb{
-  border-radius: rem(10);
-}
-.adminCell{
+
+
+.adminCell {
   border: none;
   outline: none;
 }
-/* Styles de base (pour les ordinateurs de bureau) */
-.user-profile {
-  max-width: 800px;
-  margin: 20px auto;
-  padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  background: #fff;
+
+/* Styles pour le mode sombre */
+@media (prefers-color-scheme: dark) {
+    .section1-user-table {
+        background-color: #333;
+        color: var(--white);
+    }
+
+    .responsive-table, .responsive-th, .responsive-tb {
+        border-color: #555;
+    }
+
+    .responsive-table {
+        background-color: #222;
+    }
+
+    .responsive-th {
+        background-color: #444;
+    }
+
+    .link-primary {
+        color: var(--blue);
+    }
+
+    .link-danger {
+        color: var(--red);
+    }
+
+    .fa {
+        color: inherit;
+    }
+    tbody{
+      tr {
+        color: var(--black);
+      }
+    }
+
 }
-
-.user-profile img {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-
-/* Pour les tablettes */
-@media (max-width: 768px) {
-  .user-profile {
-      flex-direction: column;
-      align-items: center;
-  }
-
-  .user-profile img {
-      width: 120px;
-      height: 120px;
-  }
-}
-
-/* Pour les mobiles */
-@media (max-width: 480px) {
-  .user-profile {
-      padding: 15px;
-  }
-
-  .user-profile img {
-      width: 100px;
-      height: 100px;
-  }
-}
-
-
-

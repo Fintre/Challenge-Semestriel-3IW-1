@@ -1,10 +1,10 @@
 <h2>Tableau de bord</h2>
-<p class="subtitle">Bonjour, <?php echo htmlspecialchars($lastname); ?> <?php echo htmlspecialchars($firstname); ?>
-    <br>Vous êtes connecté en tant que <?php echo htmlspecialchars($roles); ?>
-    <br> Voici les dernieres informations sur votre site</p>
+<p class="subtitle">Bonjour, <strong><?php echo htmlspecialchars($lastname); ?> <?php echo htmlspecialchars($firstname); ?> </strong>!
+    <br>Vous êtes connecté en tant que <em><?php echo htmlspecialchars($roles); ?></em>
+
 </p>
 <section class="dashboard-cards">
-    <a href="/posts">
+    <a href="/bo/posts">
 		<div class="block-card-dashboard">
 			<div class="block-card-dashboard-total blue">
 				<img src="/Views/styles/dist/images/pages.png" alt="pages-image">
@@ -14,7 +14,7 @@
 				</div>
 		</div>
 	</a>
-	<a href="/user">
+	<a href="/bo/user">
 		<div class="block-card-dashboard-total blue">
 			<img src="/Views/styles/dist/images/profil.png" alt="users-image">
 			<div class="block-card-dashboard-total-text">
@@ -26,7 +26,7 @@
 	</div>
 
     <div class="block-card-dashboard">
-	<a href="/media">
+	<a href="/bo/medias">
 		<div class="block-card-dashboard-total green">
 			<img src="/Views/styles/dist/images/media.png" alt="media-image">
 			<div class="block-card-dashboard-total-text">
@@ -35,7 +35,7 @@
 			</div>
 		</div>
 	</a>
-	<a href="/media">
+	<a href="/bo/medias">
 		<div class="block-card-dashboard-total green">
 			<img src="/Views/styles/dist/images/video.png" alt="video-image">
 			<div class="block-card-dashboard-total-text">
@@ -46,7 +46,7 @@
 	</a>
 	</div>
     <div class="block-card-dashboard">
-	<a href="/themes">
+	<a href="/bo/themes">
 		<div class="block-card-dashboard-total blue">
 			<img src="/Views/styles/dist/images/avis.png" alt="avis-image">
 			<div class="block-card-dashboard-total-text">
@@ -55,51 +55,15 @@
 			</div>
 		</div>
 	</a>
-	<a href="/comments">
+	<a href="/bo/articles">
 		<div class="block-card-dashboard-total green">
 			<img src="/Views/styles/dist/images/comment.png" alt="comment-image">
 			<div class="block-card-dashboard-total-text">
-				<div class="title">Commentaires</div>
-				<div class="number"><?php echo htmlspecialchars($elementsCount['comments']); ?></div>
+				<div class="title">Articles</div>
+				<div class="number"><?php echo htmlspecialchars($elementsCount['articles']); ?></div>
 			</div>
 		</div>
 	</a>
 	</div>
-</section>
-
-<section class="dashboard-avis">
-	<div class="card">
-				<div class="card-title">Commentaires</div>
-				<div class="card-avis">
-					<div class="card-avis-elements">
-						<img src="/Views/styles/dist/images/profil.png" alt="profil image">
-						<div class="card-avis-elements text">
-							<div class="card-avis-elements text-name">Nom</div>
-							<div class="card-avis-elements text-avis">Lorem ipsum dolor sit amet....</div>
-						</div>
-					</div>
-				</div>
-				<div class="card-avis">
-					<div class="card-avis-elements">
-						<img src="/Views/styles/dist/images/profil.png" alt="profil image">
-						<div class="card-avis-elements text">
-							<div class="card-avis-elements text-name">Nom</div>
-							<div class="card-avis-elements text-avis">Lorem ipsum dolor sit amet....</div>
-						</div>
-					</div>
-				</div>
-				<div class="card-avis">
-					<div class="card-avis-elements">
-						<img src="/Views/styles/dist/images/profil.png" alt="profil image">
-						<div class="card-avis-elements text">
-							<div class="card-avis-elements text-name">Nom</div>
-							<div class="card-avis-elements text-avis">Lorem ipsum dolor sit amet....</div>
-						</div>
-					</div>
-				</div>
-				<div class="card-button">
-					<button class="button button-primary button-lg">Voir tous les avis</button>
-				</div>
-		</div>
 </section>
 

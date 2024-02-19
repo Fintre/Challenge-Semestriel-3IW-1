@@ -10,20 +10,17 @@ class Main
 {
     public function home(): void
     {
-        session_start();
-        // var_dump(session_id());
-        // var_dump($_SESSION);
+
         $user = new User();
         $post = new Post();
         $media = new Media();
-        $comment = new Comment();
         $themes = new Theme();
 
         $elementsCount = [
             'users' => $user->getNbElements(),
             'pages' => $post->getElementsByType('type', 'page'),
             'photos' => $media->getElementsByType('type', 'photo'),
-            'comments' => $comment->getNbElements(),
+            'articles' => $post->getElementsByType('type', 'article'),
             'videos' => $media->getElementsByType('type', 'video'),
             'themes' => $themes->getNbElements(),
             ];
@@ -32,8 +29,9 @@ class Main
 
             $user = unserialize($userSerialized);
             $lastname = $user->getLastname();
-            $firstname = $user->getFirstname();     
-            $roles = $user->getRoles();       
+            $firstname = $user->getFirstname();
+            $roles = $user->getRoles();
+
         }
         $myView = new View("Main/home", "back");
         $myView->assign("elementsCount", $elementsCount);
@@ -41,6 +39,6 @@ class Main
         $myView->assign("firstname", $firstname);
         $myView->assign("roles", $roles);
 
-       
+
     }
 }

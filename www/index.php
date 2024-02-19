@@ -1,13 +1,14 @@
 <?php
 
-
+//il faut ajouter les pages d'erreur 404 et 403
 namespace App;
-
 use App\Controllers\Error;
+use App\Controllers\Main;
+use App\Controllers\Security;
+use App\Models\User;
 
 date_default_timezone_set('Europe/Paris');
 spl_autoload_register("App\myAutoloader"); //pour enregistrer une fonction d'autoload personnalisée
-
 function myAutoloader(String $class): void
 {
     //$class = App\Core\View
@@ -25,7 +26,6 @@ $uri = strtolower($_SERVER["REQUEST_URI"]); //pour récupérer l'uri et la mettr
 $uri = strtok($uri, "?"); //pour récupérer l'uri avant le ? (pour enlever les paramètres GET)
 $uri = strlen($uri)>1 ? rtrim($uri, "/"):$uri; //pour supprimer le dernier / de l'uri si elle est supérieure à 1 caractère
 
-
 if(!file_exists("routes.yaml")){ //pour vérifier si le fichier routes existe
     die("Le fichier de routing n'existe pas");
 }
@@ -33,6 +33,36 @@ $listOfRoutes = yaml_parse_file("routes.yaml"); //pour récupérer le contenu du
 
 
 if( !empty($listOfRoutes[$uri]) ){ // si l'uri existe dans le fichier routes
+    //if security dans routes.yml est true
+    //Security::checkSecurity($listOfRoutes[$uri]); //pour vérifier si la route est sécurisée
+    //if roles dans routing.yml est non vide
+    //Security::checkRoles($listOfRoutes[$uri]); //pour vérifier si l'utilisateur a les rôles nécessaires pour accéder à la route
+    //Security::checkAuth($listOfRoutes[$uri]);
+    //Security::checkRoles($listOfRoutes[$uri]);
+
+    if (isset($listOfRoutes[$uri]['security']) && $listOfRoutes[$uri]['security'] === true) {
+        session_start();
+        if (!isset($_SESSION['user'])) { // Vérifier si l'utilisateur est connecté
+            require "Controllers/Error.php";
+            $error = new Error();
+            $error->page403();
+            die();
+        }
+    }
+
+    if (!empty($listOfRoutes[$uri]['roles'])) {
+        $user = unserialize($_SESSION['user']); // Récupérer l'utilisateur de la session
+
+        if (!in_array($user->getRoles(), $listOfRoutes[$uri]['roles'])) {
+            require "Controllers/Error.php";
+            $error = new Error();
+            $error->page403();
+            die();
+        }
+    }
+
+
+
     if( !empty($listOfRoutes[$uri]['controller']) ){ // si l'uri contient un controller
         if( !empty($listOfRoutes[$uri]['action']) ){ // si l'uri contient une action
 
@@ -41,7 +71,7 @@ if( !empty($listOfRoutes[$uri]) ){ // si l'uri existe dans le fichier routes
             $action = $listOfRoutes[$uri]['action'];
 
             if(file_exists("Controllers/".$controller.".php")){ //si le fichier controller existe
-                include "Controllers/".$controller.".php"; //on l'inclut
+                include_once "Controllers/".$controller.".php"; //on l'inclut
                 $controller = "App\\Controllers\\".$controller; //on ajoute le namespace
                 if(class_exists($controller)){ //si la classe du controller existe
                     $objectController = new $controller(); //on instancie le controller
@@ -69,7 +99,6 @@ if( !empty($listOfRoutes[$uri]) ){ // si l'uri existe dans le fichier routes
 
 
 }else{ //si l'uri n'existe pas dans le fichier routes
-    echo $uri;
     require "Controllers/Error.php"; //page 404
     $customError = new Error();
     $customError->page404();

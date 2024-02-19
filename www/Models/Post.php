@@ -14,13 +14,50 @@ class Post extends DB
     protected ?int $isdeleted;
 
     protected ?string $createdat;
+    protected ?string $type;
 
-    //todo when login ok protected int $userId;
+    protected ?int $theme_id;
+
+    protected string $user_username;
 
     public function __construct()
     {
         parent::__construct();
     }
+
+    /**
+     * @return mixed
+     */
+    public function getTheme()
+    {
+        return $this->theme;
+    }
+
+    /**
+     * @param mixed $theme
+     */
+    public function setTheme($theme): void
+    {
+        $this->theme = $theme;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getThemeId()
+    {
+        return $this->theme_id;
+    }
+
+    /**
+     * @param mixed $theme_id
+     */
+    public function setThemeId($theme_id): void
+    {
+        $this->theme_id = $theme_id;
+    }
+
 
     /**
      * @return mixed
@@ -169,6 +206,26 @@ class Post extends DB
 
     public function getElementsByType($column, $value) {
         return $this->countElements($column, $value);
+    }
+
+    public function setType($type): void
+    {
+        $this->type = $type;
+    }
+
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    public function setUserUsername($user): void
+    {
+        $this->user_username = $user;
+    }
+
+    public function getUserUsername()
+    {
+        return $this->user_username;
     }
 
 }
