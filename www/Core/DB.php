@@ -121,7 +121,8 @@ class DB
         if (isset($isUpdate)) {
             return $this->getId();
         }
-        return $this->pdo->lastInsertId($this->table."_id_seq");
+        $postTable = "gfm_post";
+        return $this->pdo->lastInsertId($postTable . "_id_seq");
     }
 
     public function save() //pour insérer ou mettre à jour les données de l'objet dans la bdd
