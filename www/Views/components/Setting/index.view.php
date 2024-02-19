@@ -1,10 +1,11 @@
-<h2>Réglages</h2>
+<h3>Réglages</h3>
 <section class="settings-bloc">
     <div class="setting-content">
-        <div class="site-image">
-            <img src="https://sf1.lechasseurfrancais.com/wp-content/uploads/2023/11/shutterstock_2321514999-scaled.jpg" alt="image" width="300" height="200" class="blog-image">
-        </div>
-        <div>Formulaire ici avec input type=file (pour ajouter l'image de profil)</div>
+    <?php if (isset($settings)): ?>
+        <?php foreach ($settings as $setting): ?>
+            <li><strong><?php echo htmlspecialchars($setting['clé']); ?> : </strong> <?php echo htmlspecialchars($setting['valeur']); ?></li>
+        <?php endforeach; ?>
+    <?php endif; ?>
     </div>
 </section>
 <section class="section5-page-add">

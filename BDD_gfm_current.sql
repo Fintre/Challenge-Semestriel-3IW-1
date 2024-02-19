@@ -79,16 +79,14 @@ CREATE INDEX "gfm_post_siteSetting_id" ON "public"."gfm_post" USING btree ("site
 
 CREATE INDEX "gfm_post_user_id" ON "public"."gfm_post" USING btree ("user_id");
 
-INSERT INTO "gfm_post" ("id", "title", "body", "type", "description", "slug", "theme", "published", "isDeleted", "createdat", "updatedat", "user_id", "siteSetting_id", "theme_id") VALUES
-(4,	'test',	'test',	'article',	'test',	'test',	'',	0,	0,	'2024-02-17 16:34:10.427418',	'2024-02-17 16:34:10.427418',	NULL,	NULL,	NULL);
 
-DROP TABLE IF EXISTS "gfm_siteSetting";
+DROP TABLE IF EXISTS "gfm_sitesetting";
 DROP SEQUENCE IF EXISTS "gfm_siteSetting_id_seq";
 CREATE SEQUENCE "gfm_siteSetting_id_seq" INCREMENT  MINVALUE  MAXVALUE  CACHE ;
 
-CREATE TABLE "public"."gfm_siteSetting" (
+CREATE TABLE "public"."gfm_sitesetting" (
     "id" integer DEFAULT nextval('"gfm_siteSetting_id_seq"') NOT NULL,
-    "clé" integer NOT NULL,
+    "clé" character varying(45) NOT NULL,
     "valeur" character varying(255) NOT NULL,
     "createdat" timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL,
     "updatedat" timestamp DEFAULT CURRENT_TIMESTAMP,
@@ -134,16 +132,14 @@ CREATE TABLE "public"."gfm_user" (
     CONSTRAINT "gfm_user_pkey" UNIQUE ("id")
 ) WITH (oids = false);
 
-INSERT INTO "gfm_user" ("id", "firstname", "lastname", "email", "username", "pwd", "status", "img_path", "roles", "reset_token", "reset_expires", "createdat", "updatedat", "activation_token", "is_active") VALUES
-(28,	'Catalina',	'DANILA',	'catalinadanila6@gmail.com',	'NILA',	'$2y$10$37u6Jz74DY59C9zVMa8vMekCBequ0KDKvnu1vtae2dBuX53shC4Xi',	0,	NULL,	'utilisateur',	NULL,	NULL,	'2024-02-18 15:07:30.159345',	'2024-02-18 15:07:30.159345',	NULL,	't');
 
 ALTER TABLE ONLY "public"."gfm_comment" ADD CONSTRAINT "gfm_comment_post_fk" FOREIGN KEY (post_id) REFERENCES gfm_post(id) NOT DEFERRABLE;
 ALTER TABLE ONLY "public"."gfm_comment" ADD CONSTRAINT "gfm_comment_user_fk" FOREIGN KEY (user_id) REFERENCES gfm_user(id) NOT DEFERRABLE;
 
 ALTER TABLE ONLY "public"."gfm_media" ADD CONSTRAINT "gfm_media_post_fk" FOREIGN KEY (post_id) REFERENCES gfm_post(id) ON UPDATE CASCADE NOT DEFERRABLE;
 
-ALTER TABLE ONLY "public"."gfm_post" ADD CONSTRAINT "gfm_post_siteSetting_fk" FOREIGN KEY ("siteSetting_id") REFERENCES "gfm_siteSetting"(id) NOT DEFERRABLE;
+ALTER TABLE ONLY "public"."gfm_post" ADD CONSTRAINT "gfm_post_siteSetting_fk" FOREIGN KEY ("siteSetting_id") REFERENCES gfm_sitesetting(id) NOT DEFERRABLE;
 ALTER TABLE ONLY "public"."gfm_post" ADD CONSTRAINT "gfm_post_theme_id_fkey" FOREIGN KEY (theme_id) REFERENCES gfm_theme(id) ON UPDATE CASCADE ON DELETE SET NULL NOT DEFERRABLE;
 ALTER TABLE ONLY "public"."gfm_post" ADD CONSTRAINT "gfm_post_user_fk" FOREIGN KEY (user_id) REFERENCES gfm_user(id) NOT DEFERRABLE;
 
--- 2024-02-18 16:45:54.349651+00
+-- 2024-02-18 20:52:31.803521+00

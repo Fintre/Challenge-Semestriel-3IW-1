@@ -223,9 +223,7 @@ class User extends DB
        //Récuperer les données de la table gfm_user
        public function getUsers()
        {
-           $table = $this->table;
-
-           return $this->getAllData($table); // methode getAllData est créee dans DB avec en parametre le nom de la table
+           return $this->getAllData(); // methode getAllData est créee dans DB avec en parametre le nom de la table
 
        }
 
