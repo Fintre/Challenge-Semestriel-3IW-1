@@ -1,16 +1,15 @@
 <h3>Réglages</h3>
-<section class="settings-bloc">
-    <div class="setting-content">
+<section class="settings-container">
+    <div class="settings-list">
     <?php if (isset($settings)): ?>
         <?php foreach ($settings as $setting): ?>
-            <li><strong><?php echo htmlspecialchars($setting['clé']); ?> : </strong> <?php echo htmlspecialchars($setting['valeur']); ?></li>
+            <div class="setting-item">
+                <span class="setting-key"><?php echo htmlspecialchars($setting['clé']); ?></span> :
+                <span class="setting-value"><?php echo htmlspecialchars($setting['valeur']); ?></span>
+            </div>
         <?php endforeach; ?>
     <?php endif; ?>
     </div>
-</section>
-<section class="section5-page-add">
-    <button class="button button-primary">Lancer le site</button>
-    <button class="button button-danger">Supprimer le site le site</button>
 </section>
 
 

@@ -9,6 +9,13 @@
 	z-index: 999;
 	display: none;
 	section {
+		h6 {
+			text-align: center;
+			color: var(--black);
+			@media (prefers-color-scheme: dark) {
+				color: var(--white);
+			}
+		}
         color: var(--blue);
 		margin: auto;
 		max-width: rem(600);

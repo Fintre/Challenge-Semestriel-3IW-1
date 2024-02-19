@@ -40,7 +40,7 @@ class Posts
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($_POST['isDeleted'] == 1) {
                 $post->delete(['id' => intval($_POST['id'])]);
-                header('Location: /posts');
+                header('Location: /bo/posts');
                 exit();
             }
 
@@ -51,13 +51,20 @@ class Posts
             $post->setTitle($_POST['pageTitle']);
             $post->setBody(strip_tags(stripslashes($_POST['pageContent']), $allowedTags));
             $post->setIsDeleted($_POST['isDeleted']);
+            $post->setType('page');
             $isPublished = 0;
             if (isset($_POST['isPublished'])) {
                 $isPublished = $_POST['isPublished'] === "on" ? 1 : 0;
 
             }
             $post->setPublished($isPublished);
+            if(isset($_SESSION['user'])) {
+                $userSerialized = $_SESSION['user'];
 
+                $user = unserialize($userSerialized);
+                $post->setUserUsername($user->getUsername());
+
+            }
             $missingFields = $post->validate();
 
 

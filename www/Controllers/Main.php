@@ -14,14 +14,13 @@ class Main
         $user = new User();
         $post = new Post();
         $media = new Media();
-        $comment = new Comment();
         $themes = new Theme();
 
         $elementsCount = [
             'users' => $user->getNbElements(),
             'pages' => $post->getElementsByType('type', 'page'),
             'photos' => $media->getElementsByType('type', 'photo'),
-            'comments' => $comment->getNbElements(),
+            'articles' => $post->getElementsByType('type', 'article'),
             'videos' => $media->getElementsByType('type', 'video'),
             'themes' => $themes->getNbElements(),
             ];
