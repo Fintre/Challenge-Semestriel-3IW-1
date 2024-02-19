@@ -9,7 +9,7 @@ class User extends DB
     protected string $lastname;
     protected string $username;
     protected string $email;
-    protected string $role;
+    protected ?string $role = 'user';
     protected string $pwd;
     protected int $status;
     protected int $isDeleted;

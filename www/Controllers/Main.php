@@ -32,8 +32,8 @@ class Main
 
             $user = unserialize($userSerialized);
             $lastname = $user->getLastname();
-            $firstname = $user->getFirstname();     
-            $roles = $user->getRoles();       
+            $firstname = $user->getFirstname();
+            $roles = $user->getRoles();
         }
         $myView = new View("Main/home", "back");
         $myView->assign("elementsCount", $elementsCount);
@@ -41,6 +41,6 @@ class Main
         $myView->assign("firstname", $firstname);
         $myView->assign("roles", $roles);
 
-       
+
     }
 }

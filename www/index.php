@@ -9,7 +9,6 @@ use App\Controllers\Security;
 
 date_default_timezone_set('Europe/Paris');
 spl_autoload_register("App\myAutoloader"); //pour enregistrer une fonction d'autoload personnalisée
-session_start();
 function myAutoloader(String $class): void
 {
     //$class = App\Core\View

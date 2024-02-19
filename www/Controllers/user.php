@@ -13,6 +13,7 @@ class User
 
     public function allUsers(): void
     {
+        session_start();
         $errors = [];
         $success = [];
         $user = new UserModel();
@@ -37,6 +38,7 @@ class User
     }
 
     public function editUser(): void {
+        session_start();
         $userId = $_GET['id'] ?? null;
         $user = new UserModel();
         $errors = [];
@@ -81,6 +83,7 @@ class User
     }
 
     public function editPassword(): void {
+        session_start();
         $userId = $_GET['id'] ?? null;
         $user = new UserModel();
         $errors = [];
@@ -121,6 +124,7 @@ class User
 
     public function viewUser(): void
     {
+        session_start();
         $userId = $_GET['id'] ?? null;
         $errors = [];
         $success = [];

@@ -16,21 +16,25 @@ class Medias
 
     public function media(): void
     {
+        session_start();
         $myView = new View("Media/media", "back");
     }
 
     public function save(): void
     {
+        session_start();
         echo "save the media";
     }
 
     public function update(): void
     {
+        session_start();
         echo "update the media";
     }
 
     public function delete(): void
     {
+        session_start();
         echo "delete the media";
     }
 }
