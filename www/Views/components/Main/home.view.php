@@ -55,7 +55,7 @@
 			</div>
 		</div>
 	</a>
-	<a href="/bo/comments">
+	<a href="/bo/articles">
 		<div class="block-card-dashboard-total green">
 			<img src="/Views/styles/dist/images/comment.png" alt="comment-image">
 			<div class="block-card-dashboard-total-text">

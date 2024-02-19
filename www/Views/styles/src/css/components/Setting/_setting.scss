@@ -1,24 +1,58 @@
-.settings-bloc{
+/* Styles de base pour la section de réglages */
+.settings-container {
   background-color: var(--white);
-  border-radius: rem(10);
   padding: rem(20);
+  margin-bottom: rem(20);
+  border-radius: rem(8);
+  box-shadow: 0 rem(2) rem(4) rgba(0, 0, 0, 0.1);
+  color: #333;
 }
 
-.setting-content{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+.setting-item {
+  margin-bottom: rem(15); /* Espace entre chaque réglage pour l'aération */
+  padding: rem(10) 0; /* Padding vertical pour plus d'espace */
+  border-bottom: rem(1) solid #eee; /* Ligne de séparation subtile */
+}
 
-  li {
-    display: flex;
-    justify-content: space-between;
-    padding: rem(10) 0;
-    border-bottom: 1px solid var(--light-gray);
+.setting-key {
+  font-weight: bold; /* Met en évidence la clé */
+}
+
+.setting-value {
+  color: #555; /* Couleur légèrement différente pour la valeur */
+}
+
+/* Media query pour les tablettes */
+@media (min-width: 768px) {
+  .settings-container {
+      padding: rem(25);
+  }
+  .setting-item {
+      font-size: rem(18);
   }
 }
 
-.setting-button{
-  padding-top: rem(15);
+/* Media query pour les desktops */
+@media (min-width: 1024px) {
+  .settings-container {
+      padding: rem(30);
+  }
+  .setting-item {
+      font-size: rem(20);
+  }
 }
 
-
+/* Préférence de l'utilisateur pour le mode sombre */
+@media (prefers-color-scheme: dark) {
+  .settings-container {
+      background-color: #333;
+      color: #f0f0f0;
+      box-shadow: 0 rem(2) rem(4) rgba(255, 255, 255, 0.1);
+  }
+  .setting-item {
+      border-bottom: rem(1) solid rgba(255, 255, 255, 0.2);
+  }
+  .setting-value {
+      color: #ccc;
+  }
+}
