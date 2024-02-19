@@ -2,10 +2,10 @@
 
 
 namespace App;
-
 use App\Controllers\Error;
 use App\Controllers\Main;
 use App\Controllers\Security;
+use App\Models\User;
 
 date_default_timezone_set('Europe/Paris');
 spl_autoload_register("App\myAutoloader"); //pour enregistrer une fonction d'autoload personnalisée
@@ -37,11 +37,27 @@ if( !empty($listOfRoutes[$uri]) ){ // si l'uri existe dans le fichier routes
     //Security::checkSecurity($listOfRoutes[$uri]); //pour vérifier si la route est sécurisée
     //if roles dans routing.yml est non vide
     //Security::checkRoles($listOfRoutes[$uri]); //pour vérifier si l'utilisateur a les rôles nécessaires pour accéder à la route
-    // Vérifiez si la route est sécurisée
-    Security::checkAuth($listOfRoutes[$uri]);
+    //Security::checkAuth($listOfRoutes[$uri]);
+    //Security::checkRoles($listOfRoutes[$uri]);
 
-    // Vérifiez si l'utilisateur a les rôles nécessaires
-    Security::checkRoles($listOfRoutes[$uri]);
+    if (isset($listOfRoutes[$uri]['security']) && $listOfRoutes[$uri]['security'] === true) {
+        session_start();
+        if (!isset($_SESSION['user'])) { // Vérifier si l'utilisateur est connecté
+            die("Accès refusé. Vous devez être connecté pour accéder à cette page.");
+        }
+    }
+
+    if (!empty($listOfRoutes[$uri]['roles'])) {
+        $user = unserialize($_SESSION['user']); // Récupérer l'utilisateur de la session
+        var_dump($user->getRoles());
+        var_dump(in_array($user->getRoles(), $listOfRoutes[$uri]['roles']));
+
+        if (!in_array($user->getRoles(), $listOfRoutes[$uri]['roles'])) {
+            die("Accès refusé. Vous n'avez pas les droits nécessaires pour accéder à cette page.");
+        }
+    }
+
+
 
     if( !empty($listOfRoutes[$uri]['controller']) ){ // si l'uri contient un controller
         if( !empty($listOfRoutes[$uri]['action']) ){ // si l'uri contient une action

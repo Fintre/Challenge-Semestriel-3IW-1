@@ -67,39 +67,3 @@
 	</div>
 </section>
 
-<section class="dashboard-avis">
-	<div class="card">
-				<div class="card-title">Commentaires</div>
-				<div class="card-avis">
-					<div class="card-avis-elements">
-						<img src="/Views/styles/dist/images/profil.png" alt="profil image">
-						<div class="card-avis-elements text">
-							<div class="card-avis-elements text-name">Nom</div>
-							<div class="card-avis-elements text-avis">Lorem ipsum dolor sit amet....</div>
-						</div>
-					</div>
-				</div>
-				<div class="card-avis">
-					<div class="card-avis-elements">
-						<img src="/Views/styles/dist/images/profil.png" alt="profil image">
-						<div class="card-avis-elements text">
-							<div class="card-avis-elements text-name">Nom</div>
-							<div class="card-avis-elements text-avis">Lorem ipsum dolor sit amet....</div>
-						</div>
-					</div>
-				</div>
-				<div class="card-avis">
-					<div class="card-avis-elements">
-						<img src="/Views/styles/dist/images/profil.png" alt="profil image">
-						<div class="card-avis-elements text">
-							<div class="card-avis-elements text-name">Nom</div>
-							<div class="card-avis-elements text-avis">Lorem ipsum dolor sit amet....</div>
-						</div>
-					</div>
-				</div>
-				<div class="card-button">
-					<button class="button button-primary button-lg">Voir tous les avis</button>
-				</div>
-		</div>
-</section>
-

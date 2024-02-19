@@ -34,6 +34,7 @@ class Main
             $lastname = $user->getLastname();
             $firstname = $user->getFirstname();
             $roles = $user->getRoles();
+
         }
         $myView = new View("Main/home", "back");
         $myView->assign("elementsCount", $elementsCount);

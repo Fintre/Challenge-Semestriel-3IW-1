@@ -4,13 +4,17 @@ namespace App\Controllers;
 
 use App\Core\View;
 use App\Models\Media;
+use App\Models\User;
+use App\Controllers\Security;
 
 class Medias
 {
 
     public function allMedias(): void
     {
-        session_start();
+
+
+
         $myView = new View("Media/allMedias", "back");
     }
 
