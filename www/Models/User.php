@@ -9,7 +9,7 @@ class User extends DB
     protected string $lastname;
     protected string $username;
     protected string $email;
-    protected string $roles;
+    protected ?string $role = 'user';
     protected string $pwd;
     protected int $status;
     protected int $isDeleted;
@@ -160,7 +160,7 @@ class User extends DB
     }
     public function getRoles(): string
     {
-        return $this->roles;
+        return $this->role;
     }
 
     /**
@@ -168,7 +168,7 @@ class User extends DB
      */
     public function setRoles(string $roles): void
     {
-        $this->roles = $roles;
+        $this->role = $roles;
     }
 
     public function getResetToken(): string

@@ -45,7 +45,7 @@ class Security
                     var_dump($user);
                     $userSerialized = serialize($user);
                     $_SESSION['user'] = $userSerialized; // Stocker les informations de l'utilisateur dans la session
-                    header("Location: /");
+                    header("Location: /bo/dashboard");
                     exit();
                 } else {
                     // Échec de l'authentification
@@ -107,13 +107,13 @@ class Security
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logout'])) {
             // Start the session
             session_start();
-        
+
             // Unset all session variables
             $_SESSION = array();
-        
+
             // Destroy the session
             session_destroy();
-        
+
             // Redirect the user to the login page or any other appropriate page
             header("Location: /login");
             exit();

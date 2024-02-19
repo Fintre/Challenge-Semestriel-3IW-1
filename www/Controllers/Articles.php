@@ -12,6 +12,7 @@ class Articles
 {
     public function allArticles(): void
     {
+
         $errors = [];
         $success = [];
         $article = new Article();
@@ -34,6 +35,7 @@ class Articles
 
     public function editArticles(): void
     {
+
         $article = new Article();
         if (isset($_GET['article']) && $_GET['article']) {
             $articleId = $_GET['article'];
@@ -69,7 +71,6 @@ class Articles
         $myView->assign("configForm", $configUpdate);
         $myView->assign("errorsForm", $errorsUpdate);
         $myView->assign("successForm", $successUpdate);
-
     }
 
     public function updateArticle(): void
@@ -120,3 +121,4 @@ class Articles
         exit();
     }
 }
+
