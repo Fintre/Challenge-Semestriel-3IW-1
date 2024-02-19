@@ -1,4 +1,4 @@
-<script type="text/javascript" src="../../../Shared/tinymce/js/tinymce/tinymce.js"></script >
+<script type="text/javascript" src="../../../Shared/tinymce/js/tinymce/tinymce.js"></script>
 <script>
     tinymce.init({
         selector: 'textarea#pageContent',

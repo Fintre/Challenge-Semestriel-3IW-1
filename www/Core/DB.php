@@ -35,7 +35,7 @@ class DB
     // Empêcher la désérialisation de l'instance
     public function __wakeup() {}
 
-    public function getAllData($return) //pour récupérer tous les enregistrements de la bdd
+    public function getAllData(string $return = "array") //pour récupérer tous les enregistrements de la bdd
 
     {
         $sql = "SELECT * FROM " . $this->table;
