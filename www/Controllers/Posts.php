@@ -11,7 +11,7 @@ class Posts
 
     public function allPosts(): void
     {
-        session_start();
+
         $post = new Post();
         $posts = $post->getAllData("object");
 
@@ -21,7 +21,7 @@ class Posts
 
     public function post(): void
     {
-        session_start();
+
 
         $allowedTags='<p><strong><em><u><h1><h2><h3><h4><h5><h6><img>';
         $allowedTags.='<li><ol><ul><span><div><br><ins><del>';
@@ -77,25 +77,25 @@ class Posts
 
     public function save(): void
     {
-        session_start();
+
         echo "save the post";
     }
 
     private function validateField(Post $newPost): bool
     {
-        session_start();
+
         return false;
     }
 
     public function update(): void
     {
-        session_start();
+
         echo "update the post";
     }
 
     public function delete(): void
     {
-        session_start();
+
         echo "delete the post";
     }
 

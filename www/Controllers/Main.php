@@ -10,9 +10,7 @@ class Main
 {
     public function home(): void
     {
-        session_start();
-        // var_dump(session_id());
-        // var_dump($_SESSION);
+
         $user = new User();
         $post = new Post();
         $media = new Media();

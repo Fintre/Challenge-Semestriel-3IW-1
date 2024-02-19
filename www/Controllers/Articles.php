@@ -12,7 +12,7 @@ class Articles
 {
     public function allArticles(): void
     {
-        session_start();
+
         $errors = [];
         $success = [];
         $article = new Article();
@@ -35,7 +35,7 @@ class Articles
 
     public function editArticles(): void
     {
-        session_start();
+
         $article = new Article();
         if (isset($_GET['article']) && $_GET['article']) {
             $articleId = $_GET['article'];
@@ -62,13 +62,13 @@ class Articles
 
     public function addArticles(): void
     {
-        session_start();
+
         $newUser = new View("Articles/addArticles", "back");
     }
 
     public function updateArticle(): void
     {
-        session_start();
+
         // Formatez le timestamp en une date lisible
         $formattedDate = date('Y-m-d H:i:s');
 

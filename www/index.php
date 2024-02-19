@@ -49,8 +49,6 @@ if( !empty($listOfRoutes[$uri]) ){ // si l'uri existe dans le fichier routes
 
     if (!empty($listOfRoutes[$uri]['roles'])) {
         $user = unserialize($_SESSION['user']); // Récupérer l'utilisateur de la session
-        var_dump($user->getRoles());
-        var_dump(in_array($user->getRoles(), $listOfRoutes[$uri]['roles']));
 
         if (!in_array($user->getRoles(), $listOfRoutes[$uri]['roles'])) {
             die("Accès refusé. Vous n'avez pas les droits nécessaires pour accéder à cette page.");

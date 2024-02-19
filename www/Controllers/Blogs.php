@@ -9,22 +9,25 @@ class Blogs
 {
     public function allBlogs(): void
     {
+
         $newUser = new View("Blogs/allBlogs", "back");
     }
 
     public function EditBlogs(): void
     {
+
         $newUser = new View("Blogs/editBlogs", "back");
     }
 
     public function addBlogs(): void
     {
+
         $newUser = new View("Blogs/addBlogs", "back");
     }
 
     public function getAllBlogs()
     {
         $article = new DB();
-        return $allArticles = $article->getArticlesAndBlogs("blog"); 
+        return $allArticles = $article->getArticlesAndBlogs("blog");
     }
 }
