@@ -15,7 +15,7 @@ import I18n from './util/I18n';
  * Creating a custom theme may require the re-implementation of this functionality.
  * To change TinyMCE's appearance, Tiny recommends changing the Skin instead.
  *
- * @class tinymce.Theme
+ * @class tinymce.Themes
  * @example
  * tinymce.ThemeManager.add('MyTheme', (editor) => {
  *   // Setup up custom UI elements in the dom
@@ -226,7 +226,7 @@ const AddOnManager = <T>(): AddOnManager<T> => {
      *
      * @method get
      * @param {String} name Add-on to look for.
-     * @return {tinymce.Theme/tinymce.Plugin} Theme or plugin add-on instance or undefined.
+     * @return {tinymce.Themes/tinymce.Plugin} Themes or plugin add-on instance or undefined.
      */
     get,
 
@@ -244,8 +244,8 @@ const AddOnManager = <T>(): AddOnManager<T> => {
      *
      * @method add
      * @param {String} id Short name/id for the add-on.
-     * @param {tinymce.Theme/tinymce.Plugin} addOn Theme or plugin to add.
-     * @return {tinymce.Theme/tinymce.Plugin} The same theme or plugin instance that got passed in.
+     * @param {tinymce.Themes/tinymce.Plugin} addOn Themes or plugin to add.
+     * @return {tinymce.Themes/tinymce.Plugin} The same theme or plugin instance that got passed in.
      * @example
      * // Create a simple plugin
      * const TestPlugin = (ed, url) => {

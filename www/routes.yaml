@@ -114,3 +114,6 @@
   controller: Themes
   action: allThemes
 
+/themes/boulangerie-theme:
+  controller: Themes
+  action: boulangerietheme

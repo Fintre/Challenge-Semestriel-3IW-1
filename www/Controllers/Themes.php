@@ -9,7 +9,7 @@ class Themes
 
     public function allThemes(): void
     {
-        $myView = new View("Themes/themes", "back");
+        $myView = new View("Themes/allthemes", "back");
     }
 
 
@@ -18,6 +18,10 @@ class Themes
         $newUser = new View("Themes/newtheme", "back");
     }
 
+    public function boulangerieTheme(): void
+    {
+        $newUser = new View("Themes/boulangerieTheme", "front");
+    }
     public function edit(): void
     {
         $editUser = new View("Themes/edittheme", "back");
