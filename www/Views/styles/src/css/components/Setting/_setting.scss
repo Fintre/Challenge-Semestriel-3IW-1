@@ -6,8 +6,15 @@
 
 .setting-content{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    padding: rem(10) 0;
+    border-bottom: 1px solid var(--light-gray);
+  }
 }
 
 .setting-button{

@@ -31,7 +31,7 @@
   action: newPosts
 
 /settings:
-  controller: SiteSettings
+  controller: SiteSetting
   action: index
 
 /register:
