@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Models;
+use App\Core\DB;
 
-class Blogs
+class Blog extends DB
 {
     protected ?int $id = null;
     protected $title;

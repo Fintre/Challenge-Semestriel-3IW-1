@@ -11,7 +11,7 @@ class Blogs
     {
         $errors = [];
         $success = [];
-        $blog = new Blogs();
+        $blog = new Blog();
         $allBlogs = $blog->getAllArticles();
         //$newUser = new View("Blogs/allBlogs", "back");
 
