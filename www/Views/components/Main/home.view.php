@@ -4,7 +4,7 @@
     <br> Voici les dernieres informations sur votre site</p>
 </p>
 <section class="dashboard-cards">
-    <a href="/posts">
+    <a href="/bo/posts">
 		<div class="block-card-dashboard">
 			<div class="block-card-dashboard-total blue">
 				<img src="/Views/styles/dist/images/pages.png" alt="pages-image">
@@ -14,7 +14,7 @@
 				</div>
 		</div>
 	</a>
-	<a href="/user">
+	<a href="/bo/user">
 		<div class="block-card-dashboard-total blue">
 			<img src="/Views/styles/dist/images/profil.png" alt="users-image">
 			<div class="block-card-dashboard-total-text">
@@ -26,7 +26,7 @@
 	</div>
 
     <div class="block-card-dashboard">
-	<a href="/media">
+	<a href="/bo/medias">
 		<div class="block-card-dashboard-total green">
 			<img src="/Views/styles/dist/images/media.png" alt="media-image">
 			<div class="block-card-dashboard-total-text">
@@ -35,7 +35,7 @@
 			</div>
 		</div>
 	</a>
-	<a href="/media">
+	<a href="/bo/medias">
 		<div class="block-card-dashboard-total green">
 			<img src="/Views/styles/dist/images/video.png" alt="video-image">
 			<div class="block-card-dashboard-total-text">
@@ -46,7 +46,7 @@
 	</a>
 	</div>
     <div class="block-card-dashboard">
-	<a href="/themes">
+	<a href="/bo/themes">
 		<div class="block-card-dashboard-total blue">
 			<img src="/Views/styles/dist/images/avis.png" alt="avis-image">
 			<div class="block-card-dashboard-total-text">
@@ -55,7 +55,7 @@
 			</div>
 		</div>
 	</a>
-	<a href="/comments">
+	<a href="/bo/comments">
 		<div class="block-card-dashboard-total green">
 			<img src="/Views/styles/dist/images/comment.png" alt="comment-image">
 			<div class="block-card-dashboard-total-text">

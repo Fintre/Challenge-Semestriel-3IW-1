@@ -1,6 +1,6 @@
 <?php
 
-
+//il faut ajouter les pages d'erreur 404 et 403
 namespace App;
 use App\Controllers\Error;
 use App\Controllers\Main;
