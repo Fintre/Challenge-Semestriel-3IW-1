@@ -45,9 +45,7 @@
                         <td>$createdAt</td>
                         <td>$status</td>
                         <td>
-                            <button class='button button-primary'>
-                                <a href='/posts/post?id=$postId' class='add-content'>Modifier</a>
-                            </button>
+                            <a href='/bo/posts/post?id=$postId' class='link-primary'><i class='fa fa-pencil' aria-hidden='true'></i></a>
                         </td>
                     </tr>
                     ";

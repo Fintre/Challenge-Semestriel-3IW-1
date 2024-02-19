@@ -40,7 +40,7 @@ class Posts
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($_POST['isDeleted'] == 1) {
                 $post->delete(['id' => intval($_POST['id'])]);
-                header('Location: /posts');
+                header('Location: /bo/posts');
                 exit();
             }
 
