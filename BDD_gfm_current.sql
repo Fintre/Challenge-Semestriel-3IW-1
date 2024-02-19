@@ -46,6 +46,7 @@ CREATE TABLE "public"."gfm_media" (
     "updatedat" timestamp DEFAULT CURRENT_TIMESTAMP,
     "isDeleted" smallint DEFAULT '0' NOT NULL,
     "post_id" integer NOT NULL,
+    "type" character varying(15) NOT NULL,
     CONSTRAINT "gfm_media_pkey" UNIQUE ("id")
 ) WITH (oids = false);
 
@@ -54,7 +55,7 @@ CREATE INDEX "gfm_media_post_id" ON "public"."gfm_media" USING btree ("post_id")
 
 DROP TABLE IF EXISTS "gfm_post";
 DROP SEQUENCE IF EXISTS gfm_post_id_seq;
-CREATE SEQUENCE gfm_post_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1;
+CREATE SEQUENCE gfm_post_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 2147483647 START 4 CACHE 1;
 
 CREATE TABLE "public"."gfm_post" (
     "id" integer DEFAULT nextval('gfm_post_id_seq') NOT NULL,
@@ -74,13 +75,13 @@ CREATE TABLE "public"."gfm_post" (
 CREATE INDEX "gfm_post_user_id" ON "public"."gfm_post" USING btree ("user_id");
 
 
-DROP TABLE IF EXISTS "gfm_siteSetting";
+DROP TABLE IF EXISTS "gfm_sitesetting";
 DROP SEQUENCE IF EXISTS "gfm_siteSetting_id_seq";
 CREATE SEQUENCE "gfm_siteSetting_id_seq" INCREMENT  MINVALUE  MAXVALUE  CACHE ;
 
-CREATE TABLE "public"."gfm_siteSetting" (
+CREATE TABLE "public"."gfm_sitesetting" (
     "id" integer DEFAULT nextval('"gfm_siteSetting_id_seq"') NOT NULL,
-    "clé" integer NOT NULL,
+    "clé" character varying(45) NOT NULL,
     "valeur" character varying(255) NOT NULL,
     "createdat" timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL,
     "updatedat" timestamp DEFAULT CURRENT_TIMESTAMP,
@@ -104,7 +105,7 @@ CREATE TABLE "public"."gfm_theme" (
 
 DROP TABLE IF EXISTS "gfm_user";
 DROP SEQUENCE IF EXISTS gfm_user_id_seq;
-CREATE SEQUENCE gfm_user_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1;
+CREATE SEQUENCE gfm_user_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 2147483647 START 28 CACHE 1;
 
 CREATE TABLE "public"."gfm_user" (
     "id" integer DEFAULT nextval('gfm_user_id_seq') NOT NULL,
@@ -120,6 +121,8 @@ CREATE TABLE "public"."gfm_user" (
     "reset_expires" timestamp,
     "createdat" timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL,
     "updatedat" timestamp DEFAULT CURRENT_TIMESTAMP,
+    "activation_token" character varying(255),
+    "is_active" boolean DEFAULT false,
     CONSTRAINT "gfm_user_email_key" UNIQUE ("email"),
     CONSTRAINT "gfm_user_pkey" UNIQUE ("id")
 ) WITH (oids = false);
@@ -133,4 +136,5 @@ ALTER TABLE ONLY "public"."gfm_media" ADD CONSTRAINT "gfm_media_post_fk" FOREIGN
 --ALTER TABLE ONLY "public"."gfm_post" ADD CONSTRAINT "gfm_post_theme_id_fkey" FOREIGN KEY (theme_id) REFERENCES gfm_theme(id) ON UPDATE CASCADE ON DELETE SET NULL NOT DEFERRABLE;
 --ALTER TABLE ONLY "public"."gfm_post" ADD CONSTRAINT "gfm_post_user_fk" FOREIGN KEY (user_id) REFERENCES gfm_user(id) NOT DEFERRABLE;
 
--- 2024-02-16 12:28:04.763922+00
+
+-- 2024-02-18 20:52:31.803521+00

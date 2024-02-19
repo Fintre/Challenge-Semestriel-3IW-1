@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Models;
-
 use App\Core\DB;
+
 
 class Post extends DB
 {
@@ -162,6 +162,13 @@ class Post extends DB
     public function setIsdeleted(?int $isdeleted): void
     {
         $this->isdeleted = $isdeleted;
+    }
+    public function getNbElements() {
+        return $this->countElements();
+    }
+
+    public function getElementsByType($column, $value) {
+        return $this->countElements($column, $value);
     }
 
 }

@@ -221,4 +221,18 @@ p {
   .tab-item {
     padding: 0;
   }
+.error {
+  color: red;
+  padding: rem(8);
+  border-radius: rem(5);
+  margin-bottom: rem(20);
+  text-align: center;
+}
+
+.success {
+  color: green;
+  padding: rem(8);
+  border-radius: rem(5);
+  margin-bottom: rem(20);
+  text-align: center;
 }

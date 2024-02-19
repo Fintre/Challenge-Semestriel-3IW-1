@@ -35,16 +35,8 @@
   action: post
 
 /settings:
-  controller: SiteSettings
+  controller: SiteSetting
   action: index
-
-/user:
-  controller: User
-  action: allUsers
-
-/user/delete-user:
-  controller: User
-  action: delete
 
 /register:
   controller: Security
@@ -54,9 +46,21 @@
   controller: Security
   action: activateAccount
 
+/user:
+  controller: User
+  action: allUsers
+
+/user/view-user:
+  controller: User
+  action: viewUser
+
 /user/edit-user:
   controller: User
   action: editUser
+
+/user/edit-password:
+  controller: User
+  action: editPassword
 
 /login:
   controller: Security
@@ -85,6 +89,14 @@
 /articles/edit-article:
   controller: Articles
   action: editArticles
+
+/articles/delete-article:
+  controller: Articles
+  action: deleteArticle
+
+/articles/update-article:
+  controller: Articles
+  action: updateArticle
 
 /blogs:
   controller: Blogs

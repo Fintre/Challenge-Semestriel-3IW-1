@@ -71,31 +71,31 @@
 								</a>
 							</li>
                             <li>
-								<a href="articles" class="accordion">
+								<a href="/articles" class="accordion">
 									<div class="accordion-title">Articles</div>
 									<div class="accordion-icon"> </div>
 								</a>
 							</li>
                             <li>
-								<a href="comments" class="accordion">
+								<a href="/comments" class="accordion">
 									<div class="accordion-title">Commentaires</div>
 									<div class="accordion-icon"> </div>
 								</a>
 							</li>
                             <li>
-								<a href="themes" class="accordion">
+								<a href="/themes" class="accordion">
 									<div class="accordion-title">Thèmes</div>
 									<div class="accordion-icon"> </div>
 								</a>
 							</li>
                             <li>
-								<a href="user" class="accordion">
+								<a href="/user" class="accordion">
 									<div class="accordion-title">Utilisateurs</div>
 									<div class="accordion-icon"> </div>
 								</a>
 							</li>
 							<li>
-								<a href="settings" class="accordion">
+								<a href="/settings" class="accordion">
 									<div class="accordion-title">Réglages</div>
 									<div class="accordion-icon"> </div>
 								</a>

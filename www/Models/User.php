@@ -220,5 +220,17 @@ class User extends DB
         $this->img_path = $img_path;
     }
 
+       //Récuperer les données de la table gfm_user
+       public function getUsers()
+       {
+           return $this->getAllData(); // methode getAllData est créee dans DB avec en parametre le nom de la table
+
+       }
+
+        public function getNbElements() {
+            return $this->countElements();
+        }
+
+
 
 }
