@@ -59,13 +59,13 @@
                                 </a>
 							</li>
 							<li>
-								<a href="/post" class="accordion">
+								<a href="/posts" class="accordion">
                                     <div class="accordion-title">Pages</div>
                                     <div class="accordion-icon"> </div>
                                 </a>
 							</li>
 							<li>
-								<a href="/media" class="accordion">
+								<a href="/medias" class="accordion">
 									<div class="accordion-title">Média</div>
 									<div class="accordion-icon"> </div>
 								</a>

@@ -1,19 +1,26 @@
 .block-line-search {
+  background-color: white;
   display: inline-block;
   margin: rem(50) auto;
-
   border-radius: $border-radius-std;
   box-shadow: $box-shadow-base;
   padding: rem(17) rem(19);
   align-items: flex-start;
   width: rem(500);
+  @media (prefers-color-scheme: dark) {
+    background-color: lighten(#262626, 10%);
+  }
 
 
   .search-input {
+    background-color: white;
     border: none;
     outline: none;
     width: 100%;
     font-family: 'Lato', sans-serif;
+    @media (prefers-color-scheme: dark) {
+      background-color: lighten(#262626, 10%);
+    }
   }
 
 }
@@ -62,11 +69,15 @@
     }
   }
   &.block-card-custom-page {
+    background-color: white;
     border: rem(2) solid var(--green);
     display: inline-flex;
     flex-direction: column;
     padding: rem(5) rem(20);
     text-align: center;
+    @media (prefers-color-scheme: dark) {
+      background-color: lighten(#262626, 10%);
+    }
     &.color {
       .block-card-custom-page-color-wrapper {
         display: inline-flex;
@@ -198,6 +209,9 @@
         font-family: var(--text-font);
         align-self: stretch;
         color: var(--black);
+        @media (prefers-color-scheme: dark) {
+          color: white;
+        }
       }
     }
 
@@ -231,6 +245,9 @@
       border-radius: rem(15);
       background: var(--white);
       box-shadow: rem(0) rem(4) rem(4) rem(0) rgba(0, 0, 0, 0.25);
+    @media (prefers-color-scheme: dark) {
+      background-color: lighten(#262626, 10%);
+    }
       &.blue {
         border: rem(1) solid var(--blue);
       }
@@ -263,27 +280,33 @@
         justify-content: center;
 
         .title {
-            display: flex;
-            height: rem(12);
-            flex-direction: column;
-            justify-content: center;
-            font-size: rem(16);
-            letter-spacing: rem(1.6);
-            font-family: var(--text-font);
-            align-self: stretch;
-            color: rgba(0, 0, 0, 0.75);
+          display: flex;
+          height: rem(12);
+          flex-direction: column;
+          justify-content: center;
+          font-size: rem(16);
+          letter-spacing: rem(1.6);
+          font-family: var(--text-font);
+          align-self: stretch;
+          color: rgba(0, 0, 0, 0.75);
+          @media (prefers-color-scheme: dark) {
+            color: white;
+          }
         }
 
         .number {
-            display: flex;
-            height: rem(24);
-            flex-direction: column;
-            justify-content: center;
-            font-size: rem(16);
-            letter-spacing: rem(1.6);
-            font-family: var(--text-font);
-            align-self: stretch;
-            color: var(--black);
+          display: flex;
+          height: rem(24);
+          flex-direction: column;
+          justify-content: center;
+          font-size: rem(16);
+          letter-spacing: rem(1.6);
+          font-family: var(--text-font);
+          align-self: stretch;
+          color: var(--black);
+          @media (prefers-color-scheme: dark) {
+            color: white;
+          }
         }
       }
 

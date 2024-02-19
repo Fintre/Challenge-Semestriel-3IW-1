@@ -35,11 +35,20 @@ class DB
     // Empêcher la désérialisation de l'instance
     public function __wakeup() {}
 
-    public function getAllData() //pour récupérer tous les enregistrements de la bdd
+    public function getAllData($return) //pour récupérer tous les enregistrements de la bdd
+
     {
         $sql = "SELECT * FROM " . $this->table;
         $queryPrepared = $this->pdo->prepare($sql);
         $queryPrepared->execute();
+
+        if($return == "object") {
+            // les resultats seront sous forme d'objet de la classe appelée
+            $queryPrepared->setFetchMode(\PDO::FETCH_CLASS, get_called_class());
+        } else {
+            // pour récupérer un tableau associatif
+            $queryPrepared->setFetchMode(\PDO::FETCH_ASSOC);
+        }
 
         return $queryPrepared->fetchAll();
     }
@@ -92,7 +101,8 @@ class DB
             unset($data['id']);
             $sql = "INSERT INTO " . $this->table . "(" . implode(",", array_keys($data)) . ")
             VALUES (:" . implode(",:", array_keys($data)) . ")";
-        }else{ //sinon on met à jour
+        } else { //sinon on met à jour
+            $isUpdate = true;
             $sql = "UPDATE " . $this->table . " SET ";
             foreach ($data as $column => $value){
                 $sql.= $column. "=:".$column. ",";
@@ -108,6 +118,10 @@ class DB
             $queryPrepared->bindValue(":$key", $value, $type);
         }
         $queryPrepared->execute($data); //pour exécuter la requête
+        if (isset($isUpdate)) {
+            return $this->getId();
+        }
+        return $this->pdo->lastInsertId($this->table."_id_seq");
     }
 
 

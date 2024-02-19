@@ -19,7 +19,6 @@ a {
 }
 main {
   display: flex;
-  height: 100%;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -154,6 +153,9 @@ p {
   margin-left: rem(30);
   .status-tab {
     color: black;
+    @media (prefers-color-scheme: dark) {
+      color: white;
+    }
     .tab {
       display: flex;
       flex-direction: row;
@@ -172,6 +174,9 @@ p {
           border-bottom: none;
           background-color: transparent;
           color: black;
+          @media (prefers-color-scheme: dark) {
+            color: white;
+          }
           &:hover,
           &.active {
             color: var(--blue);
@@ -188,7 +193,16 @@ p {
       box-shadow: var(--box-shadow-base);
       padding: rem(17) rem(19);
       width: rem(500);
+      @media (prefers-color-scheme: dark) {
+        background-color: lighten(#262626, 10%);
+      }
     }
+  }
+}
+
+@media (max-width: 768px) {
+  .section1-status-tab {
+    margin-left: 0;
   }
 }
 
@@ -198,8 +212,15 @@ p {
   display: block;
   background-color: transparent;
   color: black;
+  @media (prefers-color-scheme: dark) {
+    color: white;
+  }
 }
 
+@media (max-width: 768px) {
+  .tab-item {
+    padding: 0;
+  }
 .error {
   color: red;
   padding: rem(8);
