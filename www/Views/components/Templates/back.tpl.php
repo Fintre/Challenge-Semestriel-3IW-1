@@ -80,6 +80,12 @@
 								</a>
 							</li>
                             <li>
+                                <a href="/blogs" class="accordion">
+                                    <div class="accordion-title">Blogs</div>
+                                    <div class="accordion-icon"> </div>
+                                </a>
+                            </li>
+                            <li>
 								<a href="/comments" class="accordion">
 									<div class="accordion-title">Commentaires</div>
 									<div class="accordion-icon"> </div>

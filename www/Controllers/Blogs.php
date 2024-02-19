@@ -9,7 +9,16 @@ class Blogs
 {
     public function allBlogs(): void
     {
-        $newUser = new View("Blogs/allBlogs", "back");
+        $errors = [];
+        $success = [];
+        $blog = new Blogs();
+        $allBlogs = $blog->getAllArticles();
+        //$newUser = new View("Blogs/allBlogs", "back");
+
+        $myView = new View("Blogs/allBlogs", "back");
+        $myView->assign("blogs", $allBlogs);
+        $myView->assign("errors", $errors);
+        $myView->assign("success", $success);
     }
 
     public function EditBlogs(): void
