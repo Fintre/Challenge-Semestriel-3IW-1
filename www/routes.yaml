@@ -1,6 +1,22 @@
 /:
   controller: Main
   action: home
+  security: true
+  roles: [ROLE_EDITEUR, ROLE_ADMIN]
+
+/media:
+  controller: Medias
+  action: allMedias
+  security: true
+  roles: [ROLE_ADMIN]
+
+/register:
+  controller: Security
+  action: register
+
+/activate-account:
+  controller: Security
+  action: activateAccount
 
 /categorie:
   controller: Categories
@@ -14,37 +30,23 @@
   controller: Categories
   action: editCategorie
 
-/medias:
-  controller: Medias
-  action: allMedias
 
-/medias/media:
-  controller: Medias
-  action: media
 
 /comments:
   controller: Comments
   action: allComments
 
-/posts:
+/post:
   controller: Posts
   action: allPosts
 
-/posts/post:
+/post/add-post:
   controller: Posts
-  action: post
+  action: newPosts
 
 /settings:
   controller: SiteSetting
   action: index
-
-/register:
-  controller: Security
-  action: register
-
-/activate-account:
-  controller: Security
-  action: activateAccount
 
 /user:
   controller: User
@@ -89,14 +91,6 @@
 /articles/edit-article:
   controller: Articles
   action: editArticles
-
-/articles/delete-article:
-  controller: Articles
-  action: deleteArticle
-
-/articles/update-article:
-  controller: Articles
-  action: updateArticle
 
 /blogs:
   controller: Blogs

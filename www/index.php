@@ -4,6 +4,8 @@
 namespace App;
 
 use App\Controllers\Error;
+use App\Controllers\Main;
+use App\Controllers\Security;
 
 date_default_timezone_set('Europe/Paris');
 spl_autoload_register("App\myAutoloader"); //pour enregistrer une fonction d'autoload personnalisée
@@ -25,7 +27,6 @@ $uri = strtolower($_SERVER["REQUEST_URI"]); //pour récupérer l'uri et la mettr
 $uri = strtok($uri, "?"); //pour récupérer l'uri avant le ? (pour enlever les paramètres GET)
 $uri = strlen($uri)>1 ? rtrim($uri, "/"):$uri; //pour supprimer le dernier / de l'uri si elle est supérieure à 1 caractère
 
-
 if(!file_exists("routes.yaml")){ //pour vérifier si le fichier routes existe
     die("Le fichier de routing n'existe pas");
 }
@@ -33,6 +34,16 @@ $listOfRoutes = yaml_parse_file("routes.yaml"); //pour récupérer le contenu du
 
 
 if( !empty($listOfRoutes[$uri]) ){ // si l'uri existe dans le fichier routes
+    //if security dans routes.yml est true
+    //Security::checkSecurity($listOfRoutes[$uri]); //pour vérifier si la route est sécurisée
+    //if roles dans routing.yml est non vide
+    //Security::checkRoles($listOfRoutes[$uri]); //pour vérifier si l'utilisateur a les rôles nécessaires pour accéder à la route
+    // Vérifiez si la route est sécurisée
+    Security::checkSecurity($listOfRoutes[$uri]);
+
+    // Vérifiez si l'utilisateur a les rôles nécessaires
+    Security::checkRoles($listOfRoutes[$uri]);
+
     if( !empty($listOfRoutes[$uri]['controller']) ){ // si l'uri contient un controller
         if( !empty($listOfRoutes[$uri]['action']) ){ // si l'uri contient une action
 

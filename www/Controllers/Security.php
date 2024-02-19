@@ -24,8 +24,6 @@ class Security
     public function login(): void
     {
         session_start();
-        var_dump(session_id());
-        var_dump($_SESSION);
         $formLogin = new Login();
         $configLogin = $formLogin->getConfig();
         $errorsLogin = [];
@@ -61,6 +59,24 @@ class Security
         $myView->assign("configForm", $configLogin);
         $myView->assign("errorsForm", $errorsLogin);
         $myView->assign("successForm", $successLogin);
+    }
+
+    public static function checkSecurity($routeConfig) {
+        if (isset($routeConfig['security']) && $routeConfig['security'] === true) {
+            if (!isset($_SESSION['user'])) {
+                header("Location: /login");
+                exit();
+            }
+        }
+    }
+
+    public static function checkRoles($routeConfig) {
+        if (!empty($routeConfig['roles'])) {
+            $user = unserialize($_SESSION['user']); // Récupérer l'utilisateur de la session
+            if (!in_array($user->role, $routeConfig['roles'])) {
+                die("Accès refusé. Vous n'avez pas le rôle requis pour accéder à cette page.");
+            }
+        }
     }
 
     public function register(): void
