@@ -1,3 +1,6 @@
 mysql-data2/
 .DS_Store
 /.idea/inspectionProfiles/
+/.idea/php.xml
+www/Views/styles/src/css/main.css
+www/Views/styles/src/css/main.css.map
