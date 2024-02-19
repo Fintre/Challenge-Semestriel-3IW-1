@@ -9,6 +9,7 @@ use App\Models\SiteSetting as SiteSettingModel;
 class SiteSetting{
     public function index() {
         // Instanciez le modèle Settings
+
         $settingsModel = new SiteSettingModel();
 
         // Récupérez tous les paramètres du site

@@ -13,6 +13,7 @@ class User
 
     public function allUsers(): void
     {
+
         $errors = [];
         $success = [];
         $user = new UserModel();
@@ -37,6 +38,7 @@ class User
     }
 
     public function editUser(): void {
+
         $userId = $_GET['id'] ?? null;
         $user = new UserModel();
         $errors = [];
@@ -81,6 +83,7 @@ class User
     }
 
     public function editPassword(): void {
+
         $userId = $_GET['id'] ?? null;
         $user = new UserModel();
         $errors = [];
@@ -143,7 +146,5 @@ class User
         $myView->assign("errors", $errors);
         $myView->assign("success", $success);
     }
-
-
 
 }

@@ -22,6 +22,7 @@ class Posts
     public function post(): void
     {
 
+
         $allowedTags='<p><strong><em><u><h1><h2><h3><h4><h5><h6><img>';
         $allowedTags.='<li><ol><ul><span><div><br><ins><del>';
         $info = "N'oubliez pas de sauvegarder";
@@ -76,6 +77,7 @@ class Posts
 
     public function save(): void
     {
+
         echo "save the post";
     }
 
@@ -87,11 +89,13 @@ class Posts
 
     public function update(): void
     {
+
         echo "update the post";
     }
 
     public function delete(): void
     {
+
         echo "delete the post";
     }
 

@@ -13,7 +13,7 @@
     </table>
 </section>
 <section class="all-blogs">
-    <?php 
+    <?php
         $articleController = new \App\Controllers\Articles();
         $allArticles = $articleController->getAllArticles();
 
