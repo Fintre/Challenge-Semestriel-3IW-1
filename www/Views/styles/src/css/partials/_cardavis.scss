@@ -7,6 +7,9 @@
     background: var(--white);
     border: rem(1) solid var(--black);
     padding: rem(16) rem(24);
+    @media (prefers-color-scheme: dark) {
+        background-color: lighten(#262626, 10%);
+    }
 
     &-title {
         display: flex;
@@ -17,6 +20,9 @@
         font-family: var(--headers-font);
         text-align: center;
         color: var(--black);
+        @media (prefers-color-scheme: dark) {
+            color: white;
+        }
     }
 
     &-avis{
@@ -52,6 +58,9 @@
                     font-family: var(--headers-font);
                     text-align: left;
                     color: var(--black);
+                    @media (prefers-color-scheme: dark) {
+                        color: white;
+                    }
                 }
 
                 &-avis {
@@ -59,6 +68,9 @@
                     font-family: var(--text-font);
                     text-align: left;
                     color: rgba(0, 0, 0, 0.75);
+                    @media (prefers-color-scheme: dark) {
+                        color: white;
+                    }
                 }
             }
 

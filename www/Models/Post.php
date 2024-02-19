@@ -1,26 +1,24 @@
 <?php
+
 namespace App\Models;
 use App\Core\DB;
 
+
 class Post extends DB
 {
-    protected $id;
-    protected $slug;
-    protected $title;
-    protected $description;
-    protected $body;
+    protected ?int $id;
+    protected string $slug;
+    protected string $title;
+    protected string $body;
+    protected ?int $published;
+    protected ?int $isdeleted;
 
-    protected $type;
-    protected $published;
-    protected $isDeleted;
-    protected $createdAt;
-    protected $updatedAt;
-    protected $user_Id;
-    protected $siteSetting_Id;
-    protected $theme_id;
-    protected $theme;
+    protected ?string $createdat;
 
-    public function __construct() {
+    //todo when login ok protected int $userId;
+
+    public function __construct()
+    {
         parent::__construct();
     }
 
@@ -63,7 +61,9 @@ class Post extends DB
      */
     public function getId()
     {
-        return $this->id;
+        if (isset($this->id)) {
+         return $this->id;
+        }
     }
 
     /**
@@ -79,7 +79,9 @@ class Post extends DB
      */
     public function getSlug()
     {
-        return $this->slug;
+        if (isset($this->slug)) {
+            return $this->slug;
+        }
     }
 
     /**
@@ -95,7 +97,9 @@ class Post extends DB
      */
     public function getTitle()
     {
-        return $this->title;
+        if (isset($this->title)) {
+            return $this->title;
+        }
     }
 
     /**
@@ -109,25 +113,11 @@ class Post extends DB
     /**
      * @return mixed
      */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
-     * @param mixed $description
-     */
-    public function setDescription($description): void
-    {
-        $this->description = $description;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getBody()
     {
-        return $this->body;
+        if (isset($this->body)) {
+            return $this->body;
+        }
     }
 
     /**
@@ -141,25 +131,11 @@ class Post extends DB
     /**
      * @return mixed
      */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
-     * @param mixed $type
-     */
-    public function setType($type): void
-    {
-        $this->type = $type;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getPublished()
     {
-        return $this->published;
+        if (isset($this->published)) {
+            return $this->published;
+        }
     }
 
     /**
@@ -175,96 +151,51 @@ class Post extends DB
      */
     public function getIsDeleted()
     {
-        return $this->isDeleted;
+        if (isset($this->isdeleted)) {
+            return $this->isdeleted;
+        }
     }
 
-    /**
-     * @param mixed $isDeleted
-     */
-    public function setIsDeleted($isDeleted): void
+    public function getCreatedat()
     {
-        $this->isDeleted = $isDeleted;
+        if (isset($this->createdat)) {
+            return $this->createdat;
+        }
     }
 
-    /**
-     * @return mixed
-     */
-    public function getCreatedAt()
+    public function validate(): array
     {
-        return $this->createdAt;
+        $missingFields = array();
+
+        if (empty($this->getSlug()) ) {
+            $missingFields['slug'] = 'Le nom de la page est obligatoire';
+        }
+
+        if (empty($this->getTitle())) {
+            $missingFields['title'] = 'Le titre de la page est obligatoire';
+        }
+
+        if (empty($this->getBody())) {
+            $missingFields['body'] = 'Le contenu de la page est obligatoire';
+        }
+
+        return $missingFields;
     }
 
-    /**
-     * @param mixed $createdAt
-     */
-    public function setCreatedAt($createdAt): void
+    public function __toString()
     {
-        $this->createdAt = $createdAt;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
-    }
-
-    /**
-     * @param mixed $updatedAt
-     */
-    public function setUpdatedAt($updatedAt): void
-    {
-        $this->updatedAt = $updatedAt;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getUser_Id()
-    {
-        return $this->user_Id;
-    }
-
-    /**
-     * @param mixed $user_Id
-     */
-    public function setUser_Id($user_Id): void
-    {
-        $this->user_Id = $user_Id;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getSiteSetting_Id()
-    {
-        return $this->siteSetting_Id;
-    }
-
-    /**
-     * @param mixed $siteSetting_Id
-     */
-    public function setSiteSetting_Id($siteSetting_Id): void
-    {
-        $this->siteSetting_Id = $siteSetting_Id;
-    }
-
-
-
-    public function __toString() {
-        return "ID: " . $this->id . "\n" .
+        return "ID: " . $this->getId() . "\n" .
             "Slug: " . $this->slug . "\n" .
             "Title: " . $this->title . "\n" .
-            "Description: " . $this->description . "\n" .
             "Body: " . $this->body . "\n" .
-            "Type: " . $this->type . "\n" .
-            "Published: " . $this->published . "\n" .
-            "IsDeleted: " . $this->isDeleted . "\n" .
-            "Created At: " . $this->createdAt . "\n" .
-            "Updated At: " . $this->updatedAt . "\n" .
-            "User ID: " . $this->user_Id . "\n" .
-            "Site Setting ID: " . $this->siteSetting_Id . "\n";
+            "Published: " . $this->getPublished(). "\n" .
+            "IsDeleted: " . $this->getIsDeleted() . "\n" .
+            "Created At: " . $this->getCreatedat() . "\n" ;
+    }
+
+    public function setIsdeleted(?int $isdeleted): void
+    {
+        $this->isdeleted = $isdeleted;
     }
     public function getNbElements() {
         return $this->countElements();

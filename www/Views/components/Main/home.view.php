@@ -1,10 +1,10 @@
 <h2>Tableau de bord</h2>
-<p class="subtitle">Bonjour, (ici il faut mettre le nom de la personne en session)
-    <br>Vous êtes connecté en tant que (ici il faut mettre le rôle de la personne en session)
+<p class="subtitle">Bonjour, <?php echo htmlspecialchars($lastname); ?> <?php echo htmlspecialchars($firstname); ?>
+    <br>Vous êtes connecté en tant que <?php echo htmlspecialchars($roles); ?>
     <br> Voici les dernieres informations sur votre site</p>
 </p>
 <section class="dashboard-cards">
-    <a href="/post">
+    <a href="/posts">
 		<div class="block-card-dashboard">
 			<div class="block-card-dashboard-total blue">
 				<img src="/Views/styles/dist/images/pages.png" alt="pages-image">

@@ -15,11 +15,16 @@
 		background-color: var(--white);
 		padding: rem(16);
 		border-radius: var(--main-radius);
-
+		@media (prefers-color-scheme: dark) {
+			background-color: lighten(#262626, 10%);
+		}
         a {
-            color: var(--black);
+			color: var(--black);
             text-decoration: none;
             text-align: center;
+			@media (prefers-color-scheme: dark) {
+				color: white;
+			}
             &:hover {
                 text-decoration: underline;
             }
