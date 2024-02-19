@@ -14,9 +14,13 @@
   controller: Categories
   action: editCategorie
 
-/media:
+/medias:
   controller: Medias
   action: allMedias
+
+/medias/media:
+  controller: Medias
+  action: media
 
 /comments:
   controller: Comments

@@ -10,6 +10,11 @@ class Medias
 
     public function allMedias(): void
     {
+        $myView = new View("Media/allMedias", "back");
+    }
+
+    public function media(): void
+    {
         $myView = new View("Media/media", "back");
     }
 

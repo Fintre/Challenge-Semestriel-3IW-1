@@ -1,15 +1,15 @@
-<h2>Mes pages</h2>
+<h2>Mes médias</h2>
 
-<div class="post-page">
+<div class="media-page">
     <section class="section1-status-tab">
         <table class="status-tab">
             <thead>
-                <tr class="tab">
-                    <th class="tab-item active"><a href="#">Tous</a></th>
-                    <th class="tab-item"><a href="#">Publiées</a></th>
-                    <th class="tab-item"><a href="#">Brouillon</a></th>
-                    <th class="tab-item"><a href="#">Corbeille</a></th>
-                </tr>
+            <tr class="tab">
+                <th class="tab-item active"><a href="#">Tous</a></th>
+                <th class="tab-item"><a href="#">Publiées</a></th>
+                <th class="tab-item"><a href="#">Brouillon</a></th>
+                <th class="tab-item"><a href="#">Corbeille</a></th>
+            </tr>
             </thead>
         </table>
     </section>
@@ -58,7 +58,7 @@
     </section>
     <section class="section4-add">
         <button class="button button-primary">
-            <a href="/posts/post" class="add-content">Ajouter</a>
+            <a href="/medias/media" class="add-content">Ajouter</a>
         </button>
     </section>
 </div>

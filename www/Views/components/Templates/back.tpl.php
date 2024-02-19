@@ -65,7 +65,7 @@
                                 </a>
 							</li>
 							<li>
-								<a href="media" class="accordion">
+								<a href="/medias" class="accordion">
 									<div class="accordion-title">Média</div>
 									<div class="accordion-icon"> </div>
 								</a>
