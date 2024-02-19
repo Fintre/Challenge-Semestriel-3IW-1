@@ -1,4 +1,3 @@
-<?php namespace App\Controllers; ?>
 <h2>Mes blogs</h2>
 <section class="section1-status-tab">
     <table class="status-tab">
@@ -14,8 +13,6 @@
 </section>
 <section class="all-blogs">
     <?php
-        $articleController = new \App\Controllers\Articles();
-        $allArticles = $articleController->getAllArticles();
 
         foreach ($allArticles as $articleData): ?>
         <div class="one-blog">

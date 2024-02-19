@@ -25,6 +25,40 @@ class Post extends DB
     /**
      * @return mixed
      */
+    public function getTheme()
+    {
+        return $this->theme;
+    }
+
+    /**
+     * @param mixed $theme
+     */
+    public function setTheme($theme): void
+    {
+        $this->theme = $theme;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getThemeId()
+    {
+        return $this->theme_id;
+    }
+
+    /**
+     * @param mixed $theme_id
+     */
+    public function setThemeId($theme_id): void
+    {
+        $this->theme_id = $theme_id;
+    }
+
+
+    /**
+     * @return mixed
+     */
     public function getId()
     {
         if (isset($this->id)) {

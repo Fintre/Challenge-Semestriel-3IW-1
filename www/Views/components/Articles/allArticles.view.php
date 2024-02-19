@@ -12,7 +12,7 @@
         </thead>
     </table>
 </section>
-<section class="all-blogs">
+<section class="all-blogs" id="all-blogs">
     <?php
         foreach ($articles as $articleData): ?>
         <div class="one-blog">
@@ -24,10 +24,44 @@
             </div>
             <div class="blog-title"><h4><?php echo $articleData['title']; ?></h4></div>
             <div class="article-text"><?php echo $articleData['body']; ?></div>
-            <div class="blog-date">Pulié le : <?php echo date('Y-m-d', strtotime($articleData['createdat'])); ?></div>
+
+            <div class="blog-date">Pulié le : <?php echo date('Y-m-d', strtotime($articleData['updatedat'])); ?></div>
+        </div>
+    <?php endforeach; ?>
+</section>
+<section hidden="true" class="all-blogs" id="publish-blogs">
+    <?php
+    foreach ($articles as $articleData): ?>
+        <div class="one-blog">
+            <div class="edit-icon">
+                <a href="/articles/edit-article?article=<?php echo $articleData['id']; ?>" class="link-primary"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                <a href="/articles?action=delete&id=<?php echo $articleData['id']; ?>" class="link-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer l\'article ?');">
+                    <i class="fa fa-minus-square-o" aria-hidden="true"></i>
+                </a>
+            </div>
+            <div class="blog-title"><h4><?php echo $articleData['title']; ?></h4></div>
+            <div class="article-text"><?php echo $articleData['body']; ?></div>
+            <div class="blog-date">Pulié le : <?php echo date('Y-m-d', strtotime($articleData['updatedat'])); ?></div>
+        </div>
+    <?php endforeach; ?>
+</section>
+<section hidden="true" class="all-blogs" id="delete-blogs">
+    <?php
+    foreach ($articles as $articleData): ?>
+        <div class="one-blog">
+            <div class="edit-icon">
+                <a href="/articles/edit-article?article=<?php echo $articleData['id']; ?>" class="link-primary"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                <a href="/articles?action=delete&id=<?php echo $articleData['id']; ?>" class="link-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer l\'article ?');">
+                    <i class="fa fa-minus-square-o" aria-hidden="true"></i>
+                </a>
+            </div>
+            <div class="blog-title"><h4><?php echo $articleData['title']; ?></h4></div>
+            <div class="article-text"><?php echo $articleData['body']; ?></div>
+            <div class="blog-date">Pulié le : <?php echo date('Y-m-d', strtotime($articleData['updatedat'])); ?></div>
+
         </div>
     <?php endforeach; ?>
 </section>
 <section class="section5-page-add">
-    <button class="button button-primary">Ajouter un nouvel article</button>
+    <a href="/articles/add-article"><button class="button button-primary">Ajouter un nouvel article</button></a>
 </section>

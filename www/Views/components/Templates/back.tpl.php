@@ -81,6 +81,15 @@
 								</a>
 							</li>
                             <li>
+
+                                <a href="/bo/blogs" class="accordion">
+                                    <div class="accordion-title">Blogs</div>
+                                    <div class="accordion-icon"> </div>
+                                </a>
+                            </li>
+                     
+                <li>
+
 								<a href="/bo/themes" class="accordion">
 									<div class="accordion-title">Thèmes</div>
 									<div class="accordion-icon"> </div>
