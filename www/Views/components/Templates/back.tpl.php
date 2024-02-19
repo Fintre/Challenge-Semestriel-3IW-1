@@ -34,7 +34,10 @@
 							<h4>Choisir une action</h4>
 						</header>
 						<div class="modal_content">
-							<a><p class="text">Deconnexion</p></a>
+							<form id="logout-form" action="login/logout" method="POST">
+								<button type="submit" name="logout" class="text">Déconnexion</button>
+							</form>
+							<!-- <a><p class="text">Deconnexion</p></a> -->
 							<a><p class="text">Mon profil</p></a>
 							<a><p class="text">Paramètres</p></a>
 						</div>

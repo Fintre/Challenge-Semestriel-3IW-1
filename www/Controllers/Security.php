@@ -24,8 +24,6 @@ class Security
     public function login(): void
     {
         session_start();
-        var_dump(session_id());
-        var_dump($_SESSION);
         $formLogin = new Login();
         $configLogin = $formLogin->getConfig();
         $errorsLogin = [];
@@ -106,7 +104,20 @@ class Security
     }
     public function logout(): void
     {
-        echo "Déconnexion";
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logout'])) {
+            // Start the session
+            session_start();
+        
+            // Unset all session variables
+            $_SESSION = array();
+        
+            // Destroy the session
+            session_destroy();
+        
+            // Redirect the user to the login page or any other appropriate page
+            header("Location: /login");
+            exit();
+        }
     }
 
     public function requestResetPassword(): void {
