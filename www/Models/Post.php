@@ -20,8 +20,6 @@ class Post extends DB
 
     protected string $user_username;
 
-    //todo when login ok protected int $userId;
-
     public function __construct()
     {
         parent::__construct();

@@ -76,7 +76,7 @@ class EditUser
                         "user" => "Utilisateur"
                     ],
                     "error"=>"Veuillez sélectionner un rôle pour l'utilisateur",
-                    "value" => $this->userData['roles'] ?? '',
+                    "value" => $this->userData['role'] ?? '',
                 ],
             ]
         ];
