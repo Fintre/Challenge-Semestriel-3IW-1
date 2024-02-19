@@ -43,7 +43,10 @@ if( !empty($listOfRoutes[$uri]) ){ // si l'uri existe dans le fichier routes
     if (isset($listOfRoutes[$uri]['security']) && $listOfRoutes[$uri]['security'] === true) {
         session_start();
         if (!isset($_SESSION['user'])) { // Vérifier si l'utilisateur est connecté
-            die("Accès refusé. Vous devez être connecté pour accéder à cette page.");
+            require "Controllers/Error.php";
+            $error = new Error();
+            $error->page403();
+            die();
         }
     }
 
@@ -51,7 +54,10 @@ if( !empty($listOfRoutes[$uri]) ){ // si l'uri existe dans le fichier routes
         $user = unserialize($_SESSION['user']); // Récupérer l'utilisateur de la session
 
         if (!in_array($user->getRoles(), $listOfRoutes[$uri]['roles'])) {
-            die("Accès refusé. Vous n'avez pas les droits nécessaires pour accéder à cette page.");
+            require "Controllers/Error.php";
+            $error = new Error();
+            $error->page403();
+            die();
         }
     }
 
@@ -93,7 +99,6 @@ if( !empty($listOfRoutes[$uri]) ){ // si l'uri existe dans le fichier routes
 
 
 }else{ //si l'uri n'existe pas dans le fichier routes
-    echo $uri;
     require "Controllers/Error.php"; //page 404
     $customError = new Error();
     $customError->page404();
