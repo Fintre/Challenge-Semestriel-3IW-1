@@ -1209,8 +1209,13 @@ p.text {
   margin-bottom: 5px;
 }
 .post-page .section3-information-page .status-tab .tab.tab-page:nth-child(odd), .post-page .section3-information-page .status-tab tr.tab-page:nth-child(odd) {
-  background-color: #404040;
+  background-color: white;
   border-radius: 0.625rem;
+}
+@media (prefers-color-scheme: dark) {
+  .post-page .section3-information-page .status-tab .tab.tab-page:nth-child(odd), .post-page .section3-information-page .status-tab tr.tab-page:nth-child(odd) {
+    background-color: #404040;
+  }
 }
 .post-page .section4-add {
   display: flex;
@@ -1246,7 +1251,7 @@ h3 {
   align-items: flex-start;
   display: flex;
   flex-direction: row;
-  width: inherit;
+  width: auto;
 }
 .section1-new-post-container form .post-wrapper {
   border-right: 0.4375rem solid white;
