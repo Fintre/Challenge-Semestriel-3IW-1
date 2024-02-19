@@ -13,14 +13,50 @@ class Post extends DB
     protected $type;
     protected $published;
     protected $isDeleted;
-    protected $createAt;
+    protected $createdAt;
     protected $updatedAt;
-    protected $userId;
-    protected $siteSettingId;
+    protected $user_Id;
+    protected $siteSetting_Id;
+    protected $theme_id;
+    protected $theme;
 
     public function __construct() {
         parent::__construct();
     }
+
+    /**
+     * @return mixed
+     */
+    public function getTheme()
+    {
+        return $this->theme;
+    }
+
+    /**
+     * @param mixed $theme
+     */
+    public function setTheme($theme): void
+    {
+        $this->theme = $theme;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getThemeId()
+    {
+        return $this->theme_id;
+    }
+
+    /**
+     * @param mixed $theme_id
+     */
+    public function setThemeId($theme_id): void
+    {
+        $this->theme_id = $theme_id;
+    }
+
 
     /**
      * @return mixed
@@ -153,17 +189,17 @@ class Post extends DB
     /**
      * @return mixed
      */
-    public function getCreateAt()
+    public function getCreatedAt()
     {
-        return $this->createAt;
+        return $this->createdAt;
     }
 
     /**
-     * @param mixed $createAt
+     * @param mixed $createdAt
      */
-    public function setCreateAt($createAt): void
+    public function setCreatedAt($createdAt): void
     {
-        $this->createAt = $createAt;
+        $this->createdAt = $createdAt;
     }
 
     /**
@@ -185,33 +221,33 @@ class Post extends DB
     /**
      * @return mixed
      */
-    public function getUserId()
+    public function getUser_Id()
     {
-        return $this->userId;
+        return $this->user_Id;
     }
 
     /**
-     * @param mixed $userId
+     * @param mixed $user_Id
      */
-    public function setUserId($userId): void
+    public function setUser_Id($user_Id): void
     {
-        $this->userId = $userId;
+        $this->user_Id = $user_Id;
     }
 
     /**
      * @return mixed
      */
-    public function getSiteSettingId()
+    public function getSiteSetting_Id()
     {
-        return $this->siteSettingId;
+        return $this->siteSetting_Id;
     }
 
     /**
-     * @param mixed $siteSettingId
+     * @param mixed $siteSetting_Id
      */
-    public function setSiteSettingId($siteSettingId): void
+    public function setSiteSetting_Id($siteSetting_Id): void
     {
-        $this->siteSettingId = $siteSettingId;
+        $this->siteSetting_Id = $siteSetting_Id;
     }
 
 
@@ -225,10 +261,10 @@ class Post extends DB
             "Type: " . $this->type . "\n" .
             "Published: " . $this->published . "\n" .
             "IsDeleted: " . $this->isDeleted . "\n" .
-            "Created At: " . $this->createAt . "\n" .
+            "Created At: " . $this->createdAt . "\n" .
             "Updated At: " . $this->updatedAt . "\n" .
-            "User ID: " . $this->userId . "\n" .
-            "Site Setting ID: " . $this->siteSettingId . "\n";
+            "User ID: " . $this->user_Id . "\n" .
+            "Site Setting ID: " . $this->siteSetting_Id . "\n";
     }
     public function getNbElements() {
         return $this->countElements();

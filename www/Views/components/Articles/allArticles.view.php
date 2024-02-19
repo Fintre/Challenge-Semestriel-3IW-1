@@ -23,11 +23,11 @@
                 </a>
             </div>
             <div class="blog-title"><h4><?php echo $articleData['title']; ?></h4></div>
-            <div class="article-text"><?php echo $articleData['description']; ?></div>
-            <div class="blog-date">Pulié le : <?php echo date('Y-m-d', strtotime($articleData['createdat'])); ?></div>
+            <div class="article-text"><?php echo $articleData['body']; ?></div>
+            <div class="blog-date">Pulié le : <?php echo date('Y-m-d', strtotime($articleData['updatedat'])); ?></div>
         </div>
     <?php endforeach; ?>
 </section>
 <section class="section5-page-add">
-    <button class="button button-primary">Ajouter un nouvel article</button>
+    <a href="/articles/add-article"><button class="button button-primary">Ajouter un nouvel article</button></a>
 </section>
