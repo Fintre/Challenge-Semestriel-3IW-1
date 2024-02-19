@@ -44,13 +44,29 @@ class DB
         return $queryPrepared->fetchAll();
     }
 
-    public function getArticlesAndBlogs($article)
+    public function getArticlesAndBlogs($type, $id = null)
     {
-        $sql = "SELECT * FROM gfm_post WHERE type = '" . $article . "'";
+        $sql = "SELECT * FROM gfm_post WHERE type = :type";
+        $params = [':type' => $type];
+
+        if ($id !== null) {
+            $sql .= " AND id = :id";
+            $params[':id'] = $id;
+        }
+
+        $queryPrepared = $this->pdo->prepare($sql);
+        $queryPrepared->execute($params);
+
+        return $queryPrepared->fetchAll();
+    }
+
+    public function deleteArticlesAndBlogs($id)
+    {
+        $sql = "DELETE FROM gfm_post WHERE id = '" . $id . "'";
         $queryPrepared = $this->pdo->prepare($sql);
         $queryPrepared->execute();
 
-        return $queryPrepared->fetchAll();
+        return $queryPrepared->rowCount() > 0;
     }
 
     public function getDataObject(): array //pour récupérer les données de l'objet
