@@ -61,11 +61,10 @@ class Security
         $myView->assign("successForm", $successLogin);
     }
 
-    public static function checkSecurity($routeConfig) {
-        if (isset($routeConfig['security']) && $routeConfig['security'] === true) {
+    public static function checkAuth($routeConfig) {
+        if (isset($routeConfig['session']) && $routeConfig['session'] === true) {
             if (!isset($_SESSION['user'])) {
-                header("Location: /login");
-                exit();
+                die("Accès refusé. Vous devez être connecté pour accéder à cette page.");
             }
         }
     }
@@ -73,7 +72,7 @@ class Security
     public static function checkRoles($routeConfig) {
         if (!empty($routeConfig['roles'])) {
             $user = unserialize($_SESSION['user']); // Récupérer l'utilisateur de la session
-            if (!in_array($user->role, $routeConfig['roles'])) {
+            if (!in_array($user->getRoles(), $routeConfig['roles'])) {
                 die("Accès refusé. Vous n'avez pas le rôle requis pour accéder à cette page.");
             }
         }

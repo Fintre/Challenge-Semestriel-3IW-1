@@ -10,6 +10,7 @@ class Medias
 
     public function allMedias(): void
     {
+        session_start();
         $myView = new View("Media/allMedias", "back");
     }
 

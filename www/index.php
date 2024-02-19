@@ -9,7 +9,7 @@ use App\Controllers\Security;
 
 date_default_timezone_set('Europe/Paris');
 spl_autoload_register("App\myAutoloader"); //pour enregistrer une fonction d'autoload personnalisée
-
+session_start();
 function myAutoloader(String $class): void
 {
     //$class = App\Core\View
@@ -39,7 +39,7 @@ if( !empty($listOfRoutes[$uri]) ){ // si l'uri existe dans le fichier routes
     //if roles dans routing.yml est non vide
     //Security::checkRoles($listOfRoutes[$uri]); //pour vérifier si l'utilisateur a les rôles nécessaires pour accéder à la route
     // Vérifiez si la route est sécurisée
-    Security::checkSecurity($listOfRoutes[$uri]);
+    Security::checkAuth($listOfRoutes[$uri]);
 
     // Vérifiez si l'utilisateur a les rôles nécessaires
     Security::checkRoles($listOfRoutes[$uri]);
@@ -52,7 +52,7 @@ if( !empty($listOfRoutes[$uri]) ){ // si l'uri existe dans le fichier routes
             $action = $listOfRoutes[$uri]['action'];
 
             if(file_exists("Controllers/".$controller.".php")){ //si le fichier controller existe
-                include "Controllers/".$controller.".php"; //on l'inclut
+                include_once "Controllers/".$controller.".php"; //on l'inclut
                 $controller = "App\\Controllers\\".$controller; //on ajoute le namespace
                 if(class_exists($controller)){ //si la classe du controller existe
                     $objectController = new $controller(); //on instancie le controller
