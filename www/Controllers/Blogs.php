@@ -4,6 +4,8 @@ namespace App\Controllers;
 
 use App\Core\View;
 use App\Core\DB;
+use App\Models\Article;
+use App\Models\Post;
 
 class Blogs
 {
