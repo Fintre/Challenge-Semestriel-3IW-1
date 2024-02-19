@@ -35,9 +35,9 @@ class DB
     // Empêcher la désérialisation de l'instance
     public function __wakeup() {}
 
-    public function getAllData($table) //pour récupérer tous les enregistrements de la bdd
+    public function getAllData() //pour récupérer tous les enregistrements de la bdd
     {
-        $sql = "SELECT * FROM " . $table;
+        $sql = "SELECT * FROM " . $this->table;
         $queryPrepared = $this->pdo->prepare($sql);
         $queryPrepared->execute();
 

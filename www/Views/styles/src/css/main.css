@@ -1411,8 +1411,14 @@ p.text {
 
 .setting-content {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
+}
+.setting-content li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.625rem 0;
+  border-bottom: 1px solid var(--light-gray);
 }
 
 .setting-button {
