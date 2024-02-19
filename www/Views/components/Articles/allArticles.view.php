@@ -23,7 +23,7 @@
                 </a>
             </div>
             <div class="blog-title"><h4><?php echo $articleData['title']; ?></h4></div>
-            <div class="article-text"><?php echo $articleData['description']; ?></div>
+            <div class="article-text"><?php echo $articleData['body']; ?></div>
             <div class="blog-date">Pulié le : <?php echo date('Y-m-d', strtotime($articleData['createdat'])); ?></div>
         </div>
     <?php endforeach; ?>
