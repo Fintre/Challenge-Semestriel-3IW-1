@@ -1,4 +1,3 @@
-/* Styles de base pour la section de réglages */
 .settings-container {
   background-color: var(--white);
   padding: rem(20);
@@ -9,17 +8,17 @@
 }
 
 .setting-item {
-  margin-bottom: rem(15); /* Espace entre chaque réglage pour l'aération */
-  padding: rem(10) 0; /* Padding vertical pour plus d'espace */
-  border-bottom: rem(1) solid #eee; /* Ligne de séparation subtile */
+  margin-bottom: rem(15);
+  padding: rem(10) 0;
+  border-bottom: rem(1) solid #eee;
 }
 
 .setting-key {
-  font-weight: bold; /* Met en évidence la clé */
+  font-weight: bold;
 }
 
 .setting-value {
-  color: #555; /* Couleur légèrement différente pour la valeur */
+  color: #555;
 }
 
 /* Media query pour les tablettes */
@@ -42,7 +41,7 @@
   }
 }
 
-/* Préférence de l'utilisateur pour le mode sombre */
+
 @media (prefers-color-scheme: dark) {
   .settings-container {
       background-color: #333;
