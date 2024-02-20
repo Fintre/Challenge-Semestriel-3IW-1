@@ -133,3 +133,7 @@
 /themes/boulangerie-theme:
   controller: Themes
   action: boulangerietheme
+
+/themes/music-theme:
+  controller: Themes
+  action: musictheme
