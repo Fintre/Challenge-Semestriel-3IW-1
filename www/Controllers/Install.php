@@ -11,7 +11,6 @@ class Install
 {
     public function run()
     {
-        echo "Installation de l'application";
         $form = new InstallSite();
         $config = $form->getConfig();
         $errors = [];
@@ -26,14 +25,13 @@ class Install
                 $adminPassword = $_POST['admin_password'] ?? ''; //recupère la valeur de admin_password
                 $dbname = $_POST['dbname'] ?? ''; //recupère la valeur de dbname
                 $dbuser = $_POST['dbuser'] ?? ''; //recupère la valeur de dbuser
-                $dbpassword = $_POST['dbpassword'] ?? ''; //recupère la valeur de dbpassword
-                $dbhost = $_POST['dbhost'] ?? 'localhost'; //recupère la valeur de dbhost
+                $dbpassword = $_POST['dbpwd'] ?? ''; //recupère la valeur de dbpassword
                 $tablePrefix = $_POST['table_prefix'] ?? '';    //recupère la valeur de table_prefix
 
                 // Créer le fichier de configuration
                 $configContent = "<?php\n";
                 $configContent .= "// Configuration de la base de données\n";
-                $configContent .= "define('DB_HOST', '" . addslashes($dbhost) . "');\n"; //
+                $configContent .= "define('DB_HOST', 'postgres:5432');\n"; //
                 $configContent .= "define('DB_NAME', '" . addslashes($dbname) . "');\n";
                 $configContent .= "define('DB_USER', '" . addslashes($dbuser) . "');\n";
                 $configContent .= "define('DB_PASSWORD', '" . addslashes($dbpassword) . "');\n";
@@ -42,18 +40,19 @@ class Install
                 echo $configContent;
                 file_put_contents('config.php', $configContent);
 
-            if (file_put_contents('config.php', $configContent) == false) { // Créer le fichier de configuration
+            if (file_put_contents('config.php', $configContent) === false) { // Créer le fichier de configuration
                 die('Erreur lors de la création du fichier de configuration.');
             }
 
-
             try {
-                $pdo = new PDO("pgsql:host=$dbhost;dbname=$dbname", $dbuser, $dbpassword);
+                var_dump($dbname);
+                $pdo = new PDO("pgsql:host=postgres;port:5432;dbname=$dbname;user=$dbuser;password=$dbpassword");
                 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+                $bddPath = __DIR__ . '/../BDD.sql';
+                var_dump($bddPath);
                 // script SQL
-                $sqlScript = file_get_contents('/../BDD_gfm_current.sql');
-
+                $sqlScript = file_get_contents($bddPath);
 
                 $sqlScript = str_replace("{prefix}", $tablePrefix, $sqlScript);
 
@@ -76,8 +75,6 @@ class Install
 
             }
         }
-
-
         // Utiliser votre système de vue pour inclure le formulaire
         $myView = new View("install");
         $myView->assign("configForm", $config);

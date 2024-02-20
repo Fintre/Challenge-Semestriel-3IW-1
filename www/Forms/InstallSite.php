@@ -48,19 +48,11 @@ class InstallSite
                 ],
                 "dbpwd"=>[
                     "type"=>"password",
-                    "name" => "dbpassword",
+                    "name" => "dbpwd",
                     "class" => "input-form",
                     "placeholder" => "Mot de passe de la base de données",
                     "required"=>true,
                     "error"=>"Veuillez entrer le mot de passe de la base de données",
-                ],
-                "dbhost"=>[
-                    "type"=>"text",
-                    "name" => "dbhost",
-                    "class" => "input-form",
-                    "placeholder" => "Hôte de la base de données (habituellement localhost)",
-                    "required"=>true,
-                    "error"=>"Veuillez entrer l'hôte de la base de données",
                 ],
                 "table_prefix"=>[
                     "type"=>"text",
