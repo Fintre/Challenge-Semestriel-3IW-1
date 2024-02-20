@@ -140,6 +140,11 @@
   controller: Themes
   action: boulangerietheme
 
+
+/install:
+  controller: Install
+  action: run
+
 /themes/music-theme:
   controller: Themes
   action: musictheme

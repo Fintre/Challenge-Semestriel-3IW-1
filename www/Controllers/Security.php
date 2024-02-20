@@ -81,7 +81,7 @@ class Security
                 $user->setEmail($_REQUEST['E-mail']);
                 $user->setPwd($_REQUEST['Mot_de_passe']);
                 $activationToken = bin2hex(random_bytes(16)); // Générer un token d'activation
-                $user->setActivationToken($activationToken); // Supposons que vous avez une méthode pour cela
+                $user->setActivationToken($activationToken);
                 $user->save(); //ajouter toutes les données dans la base de données
                 $success[] = "Votre compte a bien été créé";
 

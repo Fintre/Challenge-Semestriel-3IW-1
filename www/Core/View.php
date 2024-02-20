@@ -6,7 +6,7 @@ class View
     private String $viewName;
     private array $data = [];
 
-    public function __construct(string $viewName, string $templateName = "back")
+    public function __construct(string $viewName, string $templateName = "neutral")
     {
         $this->setViewName($viewName);
         $this->setTemplateName($templateName);
