@@ -62,7 +62,55 @@ class DB
 
     public function getArticlesAndBlogs($type, $id = null)
     {
-        $sql = "SELECT * FROM gfm_post WHERE type = :type";
+        $sql = "SELECT * FROM gfm_post WHERE type = :type and isdeleted = 0";
+        $params = [':type' => $type];
+
+        if ($id !== null) {
+            $sql .= " AND id = :id";
+            $params[':id'] = $id;
+        }
+
+        $queryPrepared = $this->pdo->prepare($sql);
+        $queryPrepared->execute($params);
+
+        return $queryPrepared->fetchAll();
+    }
+
+    public function getPublishedPost($type, $id = null)
+    {
+        $sql = "SELECT * FROM gfm_post WHERE type = :type and isdeleted = 0 and published = 1";
+        $params = [':type' => $type];
+
+        if ($id !== null) {
+            $sql .= " AND id = :id";
+            $params[':id'] = $id;
+        }
+
+        $queryPrepared = $this->pdo->prepare($sql);
+        $queryPrepared->execute($params);
+
+        return $queryPrepared->fetchAll();
+    }
+
+    public function getDleletedArticlesAndBlogs($type, $id = null)
+    {
+        $sql = "SELECT * FROM gfm_post WHERE type = :type and isdeleted = 1";
+        $params = [':type' => $type];
+
+        if ($id !== null) {
+            $sql .= " AND id = :id";
+            $params[':id'] = $id;
+        }
+
+        $queryPrepared = $this->pdo->prepare($sql);
+        $queryPrepared->execute($params);
+
+        return $queryPrepared->fetchAll();
+    }
+
+    public function getDraftArticlesAndBlogs($type, $id = null)
+    {
+        $sql = "SELECT * FROM gfm_post WHERE type = :type and isdeleted = 0 and published = 0";
         $params = [':type' => $type];
 
         if ($id !== null) {
@@ -79,6 +127,24 @@ class DB
     public function deleteArticlesAndBlogs($id)
     {
         $sql = "DELETE FROM gfm_post WHERE id = '" . $id . "'";
+        $queryPrepared = $this->pdo->prepare($sql);
+        $queryPrepared->execute();
+
+        return $queryPrepared->rowCount() > 0;
+    }
+
+    public function draftArticlesAndBlogs($id)
+    {
+        $sql = "UPDATE gfm_post SET isdeleted = 0, published = 0 WHERE id = '" . $id . "'";
+        $queryPrepared = $this->pdo->prepare($sql);
+        $queryPrepared->execute();
+
+        return $queryPrepared->rowCount() > 0;
+    }
+
+    public function publishArticlesAndBlogs($id)
+    {
+        $sql = "UPDATE gfm_post SET isdeleted = 0, published = 1 WHERE id = '" . $id . "'";
         $queryPrepared = $this->pdo->prepare($sql);
         $queryPrepared->execute();
 

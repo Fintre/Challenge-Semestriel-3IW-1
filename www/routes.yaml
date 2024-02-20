@@ -10,6 +10,12 @@
   security: true
   roles: [admin, editor]
 
+/bo/medias/media:
+  controller: Medias
+  action: media
+  security: true
+  roles: [admin, editor]
+
 /register:
   controller: Security
   action: register
@@ -134,8 +140,11 @@
   controller: Themes
   action: boulangerietheme
 
+
 /install:
   controller: Install
   action: run
 
-
+/themes/music-theme:
+  controller: Themes
+  action: musictheme

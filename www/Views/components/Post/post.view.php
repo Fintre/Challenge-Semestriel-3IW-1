@@ -55,8 +55,8 @@
         </table>
     </section>
     <section class="section4-add">
-    <a href="/bo/posts/post" class="add-content"><button class="button button-primary">
-            Ajouter
-        </button></a>
+        <a href="/bo/posts/post" class="add-content">
+            <button class="button button-primary">Ajouter</button>
+        </a>
     </section>
 </div>

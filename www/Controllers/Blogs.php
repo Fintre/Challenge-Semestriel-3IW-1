@@ -16,19 +16,38 @@ class Blogs
         $errors = [];
         $success = [];
         $blog = new Blog();
-        if (isset($_GET['action']) && $_GET['action'] === 'delete' && isset($_GET['id'])) {
+        if (isset($_GET['action']) && isset($_GET['id'])) {
             $blogId = $_GET['id'];
-
-            if ($blog->deleteArticlesAndBlogs($blogId)) {
-                $success[] = "Le blog a été supprimé avec succès.";
-            } else {
-                $errors[] = "La suppression a échoué.";
+        
+            if ($_GET['action'] === 'delete') {
+                if ($blog->deleteArticlesAndBlogs($blogId)) {
+                    $success[] = "Le blog a été supprimé avec succès.";
+                } else {
+                    $errors[] = "La suppression a échoué.";
+                }
+            } elseif ($_GET['action'] === 'draft') {
+                if ($blog->draftArticlesAndBlogs($blogId)) {
+                    $success[] = "Le blog a été restauré avec succès";
+                } else {
+                    $errors[] = "Echoué";
+                }
+            } elseif ($_GET['action'] === 'publish') {
+                if ($blog->publishArticlesAndBlogs($blogId)) {
+                    $success[] = "Le blog a été publié avec succès";
+                } else {
+                    $errors[] = "Echoué";
+                }
             }
         }
+
         $allblogs = $blog->getAllArticles();
+        $publishblogs = $blog->getPublishedArticles();
+        $draftblogs = $blog->getDraftArticle();
 
         $myView = new View("Blogs/allBlogs", "back");
         $myView->assign("allblogs", $allblogs);
+        $myView->assign("publishblogs", $publishblogs);
+        $myView->assign("draftblogs", $draftblogs);
         $myView->assign("errors", $errors);
         $myView->assign("success", $success);
     }
@@ -74,6 +93,10 @@ class Blogs
 
     public function updateBlog(): void
     {
+        $userSerialized = $_SESSION['user'];
+        $user = unserialize($userSerialized);
+        $username = $user->getUsername();
+
         $formattedDate = date('Y-m-d H:i:s');
 
         $title = $_REQUEST['Titre'];
@@ -90,29 +113,23 @@ class Blogs
             $article->setId($_GET['id']);
             $article->setUpdatedAt($formattedDate);
             $article->setCreatedAt($selectedArticle[0]["createdat"]);
-            $article->setDescription($selectedArticle[0]["description"]);
             $article->setIsDeleted($selectedArticle[0]["isdeleted"]);
             $article->setPublished($selectedArticle[0]["published"]);
-            $article->setSiteSettingId($selectedArticle[0]["siteSetting_id"]);
             $article->setSlug($selectedArticle[0]["slug"]);
             $article->setType($selectedArticle[0]["type"]);
-            $article->setUserId($selectedArticle[0]["user_id"]);
+            $article->setUserId($selectedArticle[0]["user_username"]);
             $article->setThemeId($selectedArticle[0]["theme_id"]);
-            $article->setTheme($selectedArticle[0]["theme"]);
 
         }else{
             $article->setUpdatedAt($formattedDate);
             $article->setCreatedAt($formattedDate);
 
-            $article->setDescription("");
             $article->setIsDeleted(0);
             $article->setPublished(0);
-            $article->setSiteSettingId(1);
             $article->setSlug("");
             $article->setType("blog");
-            $article->setUserId(1);
+            $article->setUserId($username);
             $article->setThemeId(1);
-            $article->setTheme("");
         }
 
         $article->saveInpost();

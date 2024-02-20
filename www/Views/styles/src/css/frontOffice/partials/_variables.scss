@@ -6,6 +6,7 @@
   $gfm-primary-grey: #70726e;
   $color-hover: #ddd; // Gris pour hover
 
+
   /* Variables css */
   /* Couleurs */
   --main-color: #{$main-color};
@@ -33,5 +34,16 @@
 
   /* Box-shadow */
   $box-shadow-base: rem(0) rem(4) rem(4) rem(0) rgba(0, 0, 0, 0.25);
+
+  [data-theme="boulangerie-template"] {
+    --secondary-color: #dcb253;
+    --font-color: #dcb253;
+    --hover-color: #{$secondary-color};
+  }
+
+  [data-theme="music-template"] {
+    --secondary-color: #{$secondary-color};
+    --font-color: #{$secondary-color};
+  }
 
 }

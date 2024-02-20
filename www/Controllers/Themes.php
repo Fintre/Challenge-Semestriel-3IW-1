@@ -23,6 +23,10 @@ class Themes
     {
         $newUser = new View("Themes/boulangerieTheme", "front");
     }
+    public function musicTheme(): void
+    {
+        $newUser = new View("Themes/musicTheme", "front");
+    }
     public function edit(): void
     {
 

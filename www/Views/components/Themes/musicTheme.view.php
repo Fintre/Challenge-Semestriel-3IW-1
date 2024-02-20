@@ -1,4 +1,4 @@
-<div data-theme="boulangerie-template" class="boulangerie-template">
+<div data-theme="music-template" class="music-template">
     <div id="div-body" class="div-body no-transition">
         <!-- Navbar -->
         <nav id="nav-header" class="nav-header">
@@ -17,8 +17,8 @@
             <div class="container">
                 <img src="" style="">
                 <div class="">
-                    <h1>Ma pâtisserie</h1>
-                    <p><b>Bien mieux que Cyril Lignac!</b></p>
+                    <h1>Ma boutique de vinyle</h1>
+                    <p><b>Retrouvez la fièvre du samedi soir!</b></p>
                 </div>
             </div>
         </section>
