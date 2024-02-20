@@ -24,29 +24,26 @@
             <thead>
             <tr class="tab">
                 <th class="tab-item active">Titre</th>
-                <th class="tab-item">Auteur</th>
+                <th class="tab-item">Description</th>
                 <th class="tab-item">Date</th>
-                <th class="tab-item">Status</th>
                 <th class="tab-item">Modifier</th>
             </tr>
             </thead>
             <?php
-            if (isset($this->data['posts'])) {
-                foreach ($this->data['posts'] as $post) {
-                    $postId = $post->getId();
-                    $title = $post->getTitle();
-                    $username = "username";
-                    $createdAt = (new DateTime($post->getCreatedat()))->format('Y-m-d');
-                    $status = $post->getPublished() ? 'Publié' : "Non publié";
+            if (isset($this->data['medias'])) {
+                foreach ($this->data['medias'] as $media) {
+                    $mediaId = $media->getId();
+                    $title = $media->getTitle();
+                    $desc = $media->getDescription() ?? '';
+                    $createdAt = (new DateTime($media->getCreatedat()))->format('Y-m-d');
                     echo "
                     <tr class='tab-page'>
                         <td>$title</td>
-                        <td>$username</td>
+                        <td>$desc</td>
                         <td>$createdAt</td>
-                        <td>$status</td>
                         <td>
                             <button class='button button-primary'>
-                                <a href='/posts/post?id=$postId' class='add-content'>Modifier</a>
+                                <a href='/bo/medias/media?id=$mediaId' class='add-content'>Modifier</a>
                             </button>
                         </td>
                     </tr>
@@ -57,8 +54,8 @@
         </table>
     </section>
     <section class="section4-add">
-        <button class="button button-primary">
-            <a href="/medias/media" class="add-content">Ajouter</a>
-        </button>
+        <a href="/bo/medias/media" class="add-content">
+            <button class="button button-primary">Ajouter</button>
+        </a>
     </section>
 </div>

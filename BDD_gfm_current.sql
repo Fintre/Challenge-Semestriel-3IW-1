@@ -39,19 +39,12 @@ CREATE SEQUENCE gfm_media_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 2147483647 CACH
 
 CREATE TABLE "public"."gfm_media" (
     "id" integer DEFAULT nextval('gfm_media_id_seq') NOT NULL,
-    "tag" character varying(15) NOT NULL,
-    "filepath" character varying(100) NOT NULL,
-    "description" character varying(255) NOT NULL,
+    "title" character varying(145) NOT NULL,
+    "filepath" character varying NOT NULL,
+    "description" character varying(255),
     "createdat" timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    "updatedat" timestamp DEFAULT CURRENT_TIMESTAMP,
-    "isDeleted" smallint DEFAULT '0' NOT NULL,
-    "post_id" integer NOT NULL,
-    "type" character varying(15) NOT NULL,
     CONSTRAINT "gfm_media_pkey" UNIQUE ("id")
 ) WITH (oids = false);
-
-CREATE INDEX "gfm_media_post_id" ON "public"."gfm_media" USING btree ("post_id");
-
 
 DROP TABLE IF EXISTS "gfm_post";
 DROP SEQUENCE IF EXISTS gfm_post_id_seq;
@@ -132,8 +125,6 @@ CREATE TABLE "public"."gfm_user" (
 
 ALTER TABLE ONLY "public"."gfm_comment" ADD CONSTRAINT "gfm_comment_post_fk" FOREIGN KEY (post_id) REFERENCES gfm_post(id) NOT DEFERRABLE;
 ALTER TABLE ONLY "public"."gfm_comment" ADD CONSTRAINT "gfm_comment_user_fk" FOREIGN KEY (user_id) REFERENCES gfm_user(id) NOT DEFERRABLE;
-
-ALTER TABLE ONLY "public"."gfm_media" ADD CONSTRAINT "gfm_media_post_fk" FOREIGN KEY (post_id) REFERENCES gfm_post(id) ON UPDATE CASCADE NOT DEFERRABLE;
 
 ALTER TABLE ONLY "public"."gfm_post" ADD CONSTRAINT "gfm_post_theme_id_fkey" FOREIGN KEY (theme_id) REFERENCES gfm_theme(id) ON UPDATE CASCADE ON DELETE SET NULL NOT DEFERRABLE;
 ALTER TABLE ONLY "public"."gfm_post" ADD CONSTRAINT "gfm_post_user_username_fkey" FOREIGN KEY (user_username) REFERENCES gfm_user(username) ON UPDATE CASCADE NOT DEFERRABLE;

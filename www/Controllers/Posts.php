@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Core\DB;
 use App\Core\View;
+use App\Models\Media;
 use App\Models\Post;
 
 class Posts
@@ -26,6 +27,16 @@ class Posts
         $allowedTags='<p><strong><em><u><h1><h2><h3><h4><h5><h6><img>';
         $allowedTags.='<li><ol><ul><span><div><br><ins><del>';
         $info = "N'oubliez pas de sauvegarder";
+
+        $media = new Media();
+        $medias = $media->getAllData("object");
+        if (count($medias) > 0) {
+            $mediasList = array();
+            foreach ($medias as $media) {
+                $mediasList[] = ['title' => $media->getTitle(), 'value' => $media->getFilepath()];
+            }
+        }
+
 
 
         $post = new Post();
@@ -80,6 +91,7 @@ class Posts
         $newPosts->assign("info", $info);
         $newPosts->assign("post", $post);
         $newPosts->assign("mandatoryFields", $missingFields ?? []);
+        $newPosts->assign("mediasList", $mediasList ?? []);
     }
 
     public function save(): void

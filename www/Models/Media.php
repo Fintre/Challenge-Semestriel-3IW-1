@@ -4,18 +4,11 @@ use App\Core\DB;
 
 class Media extends DB
 {
-    protected $id;
-
-    protected $name;
-    protected $filepath;
-    protected $description;
-
-    protected $type;
-    protected $published;
-    protected $isDeleted;
-    protected $createAt;
-    protected $updatedAt;
-
+    protected ?int $id;
+    protected string $title;
+    protected string $filepath;
+    protected string $description;
+    protected ?string $createAt;
     public function __construct() {
         parent::__construct();
     }
@@ -25,7 +18,9 @@ class Media extends DB
      */
     public function getId()
     {
-        return $this->id;
+        if (isset($this->id)) {
+            return $this->id;
+        }
     }
 
     /**
@@ -39,25 +34,11 @@ class Media extends DB
     /**
      * @return mixed
      */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * @param mixed $name
-     */
-    public function setName($name): void
-    {
-        $this->name = $name;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getFilepath()
     {
-        return $this->filepath;
+        if (isset($this->filepath)) {
+            return $this->filepath;
+        }
     }
 
     /**
@@ -73,7 +54,9 @@ class Media extends DB
      */
     public function getDescription()
     {
-        return $this->description;
+        if (isset($this->description)) {
+            return $this->description;
+        }
     }
 
     /**
@@ -87,57 +70,24 @@ class Media extends DB
     /**
      * @return mixed
      */
-    public function getType()
+    public function getCreatedat()
     {
-        return $this->type;
+        if (isset($this->createdat)) {
+            return $this->createdat;
+        }
     }
 
-    /**
-     * @param mixed $type
-     */
-    public function setType($type): void
+
+    public function getTitle()
     {
-        $this->type = $type;
+        if (isset($this->title)) {
+            return $this->title;
+        }
     }
 
-    /**
-     * @return mixed
-     */
-    public function getPublished()
+    public function setTitle(string $title): void
     {
-        return $this->published;
-    }
-
-    /**
-     * @param mixed $published
-     */
-    public function setPublished($published): void
-    {
-        $this->published = $published;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getIsDeleted()
-    {
-        return $this->isDeleted;
-    }
-
-    /**
-     * @param mixed $isDeleted
-     */
-    public function setIsDeleted($isDeleted): void
-    {
-        $this->isDeleted = $isDeleted;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCreateAt()
-    {
-        return $this->createAt;
+        $this->title = $title;
     }
 
     /**
@@ -147,33 +97,26 @@ class Media extends DB
     {
         $this->createAt = $createAt;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getUpdatedAt()
+    public function validate(): array
     {
-        return $this->updatedAt;
-    }
+        $missingFields = array();
 
-    /**
-     * @param mixed $updatedAt
-     */
-    public function setUpdatedAt($updatedAt): void
-    {
-        $this->updatedAt = $updatedAt;
+        if (empty($this->getTitle())) {
+            $missingFields['title'] = 'Le titre du média est obligatoire';
+        }
+        if (empty($this->getFilepath())) {
+            $missingFields['filePath'] = 'L\'url du média est obligatoire';
+        }
+
+        return $missingFields;
     }
 
     public function __toString() {
-        return "ID: " . $this->id . "\n" .
-            "Name: " . $this->name . "\n" .
-            "Filepath: " . $this->filepath . "\n" .
-            "Description: " . $this->description . "\n" .
-            "Type: " . $this->type . "\n" .
-            "Published: " . $this->published . "\n" .
-            "IsDeleted: " . $this->isDeleted . "\n" .
-            "Created At: " . $this->createAt . "\n" .
-            "Updated At: " . $this->updatedAt . "\n";
+        return "ID: " . $this->getId() . "\n" .
+            "Name: " . $this->getTitle() . "\n" .
+            "Filepath: " . $this->getFilepath() . "\n" .
+            "Description: " . $this->getDescription() . "\n" .
+            "Created At: " . $this->getCreatedat() . "\n" ;
     }
 
     public function getNbElements() {

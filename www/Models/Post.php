@@ -191,9 +191,11 @@ class Post extends DB
             "Slug: " . $this->slug . "\n" .
             "Title: " . $this->title . "\n" .
             "Body: " . $this->body . "\n" .
+            "Type:" . $this->getType() . "\n" .
             "Published: " . $this->getPublished(). "\n" .
             "IsDeleted: " . $this->getIsDeleted() . "\n" .
-            "Created At: " . $this->getCreatedat() . "\n" ;
+            "Created At: " . $this->getCreatedat() . "\n" .
+            "User Name:" . $this->getUserUsername() . "\n" ;
     }
 
     public function setIsdeleted(?int $isdeleted): void
