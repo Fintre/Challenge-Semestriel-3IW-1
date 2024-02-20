@@ -17,8 +17,8 @@
         foreach ($articles as $articleData): ?>
         <div class="one-blog">
             <div class="edit-icon">
-                <a href="/articles/edit-article?article=<?php echo $articleData['id']; ?>" class="link-primary"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                <a href="/articles?action=delete&id=<?php echo $articleData['id']; ?>" class="link-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer l\'article ?');">
+                <a href="/bo/articles/edit-article?article=<?php echo $articleData['id']; ?>" class="link-primary"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                <a href="/bo/articles?action=delete&id=<?php echo $articleData['id']; ?>" class="link-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer l\'article ?');">
                     <i class="fa fa-minus-square-o" aria-hidden="true"></i>
                 </a>
             </div>
@@ -34,8 +34,8 @@
     foreach ($articles as $articleData): ?>
         <div class="one-blog">
             <div class="edit-icon">
-                <a href="/articles/edit-article?article=<?php echo $articleData['id']; ?>" class="link-primary"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                <a href="/articles?action=delete&id=<?php echo $articleData['id']; ?>" class="link-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer l\'article ?');">
+                <a href="/bo/articles/edit-article?article=<?php echo $articleData['id']; ?>" class="link-primary"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                <a href="/bo/articles?action=delete&id=<?php echo $articleData['id']; ?>" class="link-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer l\'article ?');">
                     <i class="fa fa-minus-square-o" aria-hidden="true"></i>
                 </a>
             </div>
@@ -50,8 +50,8 @@
     foreach ($articles as $articleData): ?>
         <div class="one-blog">
             <div class="edit-icon">
-                <a href="/articles/edit-article?article=<?php echo $articleData['id']; ?>" class="link-primary"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                <a href="/articles?action=delete&id=<?php echo $articleData['id']; ?>" class="link-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer l\'article ?');">
+                <a href="/bo/articles/edit-article?article=<?php echo $articleData['id']; ?>" class="link-primary"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                <a href="/bo/articles?action=delete&id=<?php echo $articleData['id']; ?>" class="link-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer l\'article ?');">
                     <i class="fa fa-minus-square-o" aria-hidden="true"></i>
                 </a>
             </div>
@@ -63,5 +63,5 @@
     <?php endforeach; ?>
 </section>
 <section class="section5-page-add">
-    <a href="/articles/add-article"><button class="button button-primary">Ajouter un nouvel article</button></a>
+    <a href="/bo/articles/add-article"><button class="button button-primary">Ajouter un nouvel article</button></a>
 </section>

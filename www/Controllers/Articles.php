@@ -117,7 +117,7 @@ class Articles
         }
 
         $article->saveInpost();
-        header("Location: /articles");
+        header("Location: /bo/articles");
         exit();
     }
 }
