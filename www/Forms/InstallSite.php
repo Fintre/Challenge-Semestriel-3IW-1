@@ -9,12 +9,12 @@ class InstallSite
         return [
             "config"=> [
                 "method"=>"POST",
-                "action"=>"install.php",
+                "action"=>"run",
                 "submit"=>"Installer le site",
                 "class"=>"form"
             ],
             "inputs"=>[
-                "Nom d'utilisateur admin"=>[
+                "admin_username"=>[
                     "type"=>"text",
                     "name" => "admin_username",
                     "class" => "input-form",
@@ -22,7 +22,7 @@ class InstallSite
                     "required"=>true,
                     "error"=>"Le nom d'utilisateur doit faire plus de 2 caractères",
                 ],
-                "Mot de passe admin"=>[
+                "admin_password"=>[
                     "type"=>"password",
                     "name" => "admin_password",
                     "class" => "input-form",
@@ -30,7 +30,7 @@ class InstallSite
                     "required"=>true,
                     "error"=>"Le mot de passe doit être sécurisé",
                 ],
-                "Nom de la base de données"=>[
+                "dbname"=>[
                     "type"=>"text",
                     "name" => "dbname",
                     "class" => "input-form",
@@ -38,7 +38,7 @@ class InstallSite
                     "required"=>true,
                     "error"=>"Veuillez entrer le nom de la base de données",
                 ],
-                "Utilisateur de la base de données"=>[
+                "dbuser"=>[
                     "type"=>"text",
                     "name" => "dbuser",
                     "class" => "input-form",
@@ -46,7 +46,7 @@ class InstallSite
                     "required"=>true,
                     "error"=>"Veuillez entrer l'utilisateur de la base de données",
                 ],
-                "Mot de passe de la base de données"=>[
+                "dbpwd"=>[
                     "type"=>"password",
                     "name" => "dbpassword",
                     "class" => "input-form",
@@ -54,7 +54,7 @@ class InstallSite
                     "required"=>true,
                     "error"=>"Veuillez entrer le mot de passe de la base de données",
                 ],
-                "Hôte de la base de données"=>[
+                "dbhost"=>[
                     "type"=>"text",
                     "name" => "dbhost",
                     "class" => "input-form",
@@ -62,7 +62,7 @@ class InstallSite
                     "required"=>true,
                     "error"=>"Veuillez entrer l'hôte de la base de données",
                 ],
-                "Préfixe des tables de la base de données"=>[
+                "table_prefix"=>[
                     "type"=>"text",
                     "name" => "table_prefix",
                     "class" => "input-form",

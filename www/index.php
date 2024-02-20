@@ -15,18 +15,12 @@ $uri = strtolower($_SERVER["REQUEST_URI"]); // Normalise l'URI
 $uri = strtok($uri, "?"); // Enlève les paramètres GET
 $uri = strlen($uri) > 1 ? rtrim($uri, "/") : $uri; // Nettoie l'URI
 
+
 // Exclut la logique de routage pour /install si config.php n'existe pas
-if ($uri === '/install' && !file_exists('./config.php')) {
-    // Accès direct à install.php sans passer par le système de routage
-    require 'install.php';
-    exit;
-} elseif (!file_exists('./config.php')) {
-    // Si config.php n'existe pas et que nous ne sommes pas sur /install, redirige vers /install
-    header('Location: /install');
-    exit;
-} else {
-    // Inclut config.php si existant
-    require 'config.php';
+if (($uri === '/install' && !file_exists('./config.php')) || !file_exists('./config.php')) {
+    $controller = new \App\Controllers\Install();
+    $controller->run();
+    die();
 }
 
 function myAutoloader(String $class): void

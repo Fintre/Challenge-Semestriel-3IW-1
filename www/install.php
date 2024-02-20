@@ -15,22 +15,23 @@ if ($_SERVER["REQUEST_METHOD"] === $config["config"]["method"]) {
     $verificator = new Verificator();
     if ($verificator->checkForm($config, $_REQUEST, $errors)) {
 
-    $adminUsername = $_POST['admin_username'] ?? '';
-    $adminPassword = $_POST['admin_password'] ?? '';
-    $dbname = $_POST['dbname'] ?? '';
-    $dbuser = $_POST['dbuser'] ?? '';
-    $dbpassword = $_POST['dbpassword'] ?? '';
-    $dbhost = $_POST['dbhost'] ?? 'localhost';
-    $tablePrefix = $_POST['table_prefix'] ?? '';
+        $adminUsername = $_REQUEST['admin_username'] ?? '';
+        $adminPassword = $_POST['admin_password'] ?? '';
+        $dbname = $_POST['dbname'] ?? '';
+        $dbuser = $_POST['dbuser'] ?? '';
+        $dbpassword = $_POST['dbpwd'] ?? '';
+        $dbhost = $_POST['dbhost'] ?? 'localhost';
+        $tablePrefix = $_POST['table_prefix'] ?? '';
 
 
-    $configContent = "<?php\n";
-    $configContent .= "// Configuration de la base de données\n";
-    $configContent .= "define('DB_HOST', '" . addslashes($dbhost) . "');\n";
-    $configContent .= "define('DB_NAME', '" . addslashes($dbname) . "');\n";
-    $configContent .= "define('DB_USER', '" . addslashes($dbuser) . "');\n";
-    $configContent .= "define('DB_PASSWORD', '" . addslashes($dbpassword) . "');\n";
-    $configContent .= "define('TABLE_PREFIX', '" . addslashes($tablePrefix) . "');\n";
+        $configContent = "<?php\n";
+        $configContent .= "// Configuration de la base de données\n";
+        $configContent .= "define('DB_HOST', '" . addslashes($dbhost) . "');\n";
+        $configContent .= "define('DB_NAME', '" . addslashes($dbname) . "');\n";
+        $configContent .= "define('DB_USER', '" . addslashes($dbuser) . "');\n";
+        $configContent .= "define('DB_PASSWORD', '" . addslashes($dbpassword) . "');\n";
+        $configContent .= "define('TABLE_PREFIX', '" . addslashes($tablePrefix) . "');\n";
+        echo $configContent;
 
 
     if (file_put_contents('config.php', $configContent) === false) {
@@ -42,13 +43,12 @@ if ($_SERVER["REQUEST_METHOD"] === $config["config"]["method"]) {
         $pdo = new PDO("pgsql:host=$dbhost;dbname=$dbname", $dbuser, $dbpassword);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        // Charger le script SQL
-        $sqlScript = file_get_contents('chemin/vers/votre_script.sql'); // Assurez-vous que le chemin est correct
+        // script SQL
+        $sqlScript = file_get_contents('./BDD_gfm_current.sql');
 
-        // Remplacer le placeholder {prefix} par le préfixe de table fourni
+
         $sqlScript = str_replace("{prefix}", $tablePrefix, $sqlScript);
 
-        // Découper le script SQL en instructions individuelles
         $sqlStatements = explode(";", $sqlScript);
 
         // Exécuter chaque instruction SQL
@@ -64,8 +64,8 @@ if ($_SERVER["REQUEST_METHOD"] === $config["config"]["method"]) {
     }
 
     // Redirection ou gestion de la suite du processus d'installation
-    header('Location: success.php');
-    exit;
+    echo "ok";
+
     }
 }
 
