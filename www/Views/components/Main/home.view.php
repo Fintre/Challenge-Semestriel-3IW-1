@@ -28,22 +28,22 @@
     <div class="block-card-dashboard">
 	<a href="/bo/medias">
 		<div class="block-card-dashboard-total green">
-			<img src="/Views/styles/dist/images/media.png" alt="media-image">
-			<div class="block-card-dashboard-total-text">
-				<div class="title">Photos</div>
-				<div class="number"><?php echo htmlspecialchars($elementsCount['photos']); ?></div>
-			</div>
-		</div>
-	</a>
-	<a href="/bo/medias">
-		<div class="block-card-dashboard-total green">
 			<img src="/Views/styles/dist/images/video.png" alt="video-image">
 			<div class="block-card-dashboard-total-text">
-				<div class="title">Videos</div>
-				<div class="number"><?php echo htmlspecialchars($elementsCount['videos']); ?></div>
+				<div class="title">Médias</div>
+				<div class="number"><?php echo htmlspecialchars($elementsCount['medias']); ?></div>
 			</div>
 		</div>
 	</a>
+    <a href="/bo/articles">
+        <div class="block-card-dashboard-total green">
+            <img src="/Views/styles/dist/images/comment.png" alt="comment-image">
+            <div class="block-card-dashboard-total-text">
+                <div class="title">Articles</div>
+                <div class="number"><?php echo htmlspecialchars($elementsCount['articles']); ?></div>
+            </div>
+        </div>
+    </a>
 	</div>
     <div class="block-card-dashboard">
 	<a href="/bo/themes">
@@ -52,15 +52,6 @@
 			<div class="block-card-dashboard-total-text">
 				<div class="title">Themes</div>
 				<div class="number"><?php echo htmlspecialchars($elementsCount['themes']); ?></div>
-			</div>
-		</div>
-	</a>
-	<a href="/bo/articles">
-		<div class="block-card-dashboard-total green">
-			<img src="/Views/styles/dist/images/comment.png" alt="comment-image">
-			<div class="block-card-dashboard-total-text">
-				<div class="title">Articles</div>
-				<div class="number"><?php echo htmlspecialchars($elementsCount['articles']); ?></div>
 			</div>
 		</div>
 	</a>
