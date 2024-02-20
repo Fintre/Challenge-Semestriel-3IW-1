@@ -10,13 +10,22 @@ use App\Models\User;
 date_default_timezone_set('Europe/Paris');
 spl_autoload_register("App\myAutoloader"); //pour enregistrer une fonction d'autoload personnalisée
 
-if (!file_exists('./config.php')) {
-    if (basename($_SERVER['PHP_SELF']) != 'install.php') {
-        header('Location: install.php');
-        exit;
-    }
+// Traitement spécial pour la route d'installation
+$uri = strtolower($_SERVER["REQUEST_URI"]); // Normalise l'URI
+$uri = strtok($uri, "?"); // Enlève les paramètres GET
+$uri = strlen($uri) > 1 ? rtrim($uri, "/") : $uri; // Nettoie l'URI
+
+// Exclut la logique de routage pour /install si config.php n'existe pas
+if ($uri === '/install' && !file_exists('./config.php')) {
+    // Accès direct à install.php sans passer par le système de routage
+    require 'install.php';
+    exit;
+} elseif (!file_exists('./config.php')) {
+    // Si config.php n'existe pas et que nous ne sommes pas sur /install, redirige vers /install
+    header('Location: /install');
+    exit;
 } else {
-    // Si config.php existe, l'inclure.
+    // Inclut config.php si existant
     require 'config.php';
 }
 
@@ -33,9 +42,6 @@ function myAutoloader(String $class): void
 }
 
 
-$uri = strtolower($_SERVER["REQUEST_URI"]); //pour récupérer l'uri et la mettre en minuscule
-$uri = strtok($uri, "?"); //pour récupérer l'uri avant le ? (pour enlever les paramètres GET)
-$uri = strlen($uri)>1 ? rtrim($uri, "/"):$uri; //pour supprimer le dernier / de l'uri si elle est supérieure à 1 caractère
 
 if(!file_exists("routes.yaml")){ //pour vérifier si le fichier routes existe
     die("Le fichier de routing n'existe pas");
@@ -44,12 +50,7 @@ $listOfRoutes = yaml_parse_file("routes.yaml"); //pour récupérer le contenu du
 
 
 if( !empty($listOfRoutes[$uri]) ){ // si l'uri existe dans le fichier routes
-    //if security dans routes.yml est true
-    //Security::checkSecurity($listOfRoutes[$uri]); //pour vérifier si la route est sécurisée
-    //if roles dans routing.yml est non vide
-    //Security::checkRoles($listOfRoutes[$uri]); //pour vérifier si l'utilisateur a les rôles nécessaires pour accéder à la route
-    //Security::checkAuth($listOfRoutes[$uri]);
-    //Security::checkRoles($listOfRoutes[$uri]);
+
 
     if (isset($listOfRoutes[$uri]['security']) && $listOfRoutes[$uri]['security'] === true) {
         session_start();
