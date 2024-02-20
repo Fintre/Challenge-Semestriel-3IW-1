@@ -1,20 +1,3 @@
-<script type="text/javascript" src="../../../Shared/tinymce/js/tinymce/tinymce.js"></script>
-<script>
-    tinymce.init({
-        selector: 'textarea#pageContent',
-        auto_focus: 'element1',
-        mode: "textareas",
-        elements : "pageContent",
-        height:"350px",
-        width:"100%",
-        plugins: 'anchor autolink charmap codesample emoticons image link lists searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss preview styleprops',
-        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat preview styleprops',
-        image_list: [
-            {title: 'My image 1', value: 'https://www.example.com/my1.gif'},
-            {title: 'My image 2', value: 'http://www.moxiecode.com/my2.gif'}
-        ]
-    });
-</script>
 <?php
 if (empty($this->data['post']->getId())) {
     echo "<h2>Nouvelle page</h2>";
@@ -28,11 +11,36 @@ $isDeleted = $this->data['post']->getIsDeleted();
 
 echo "<h3>$info</h3>";
 
-if (empty($this->data['mandatoryFields'])) {
+if (!empty($this->data['mandatoryFields'])) {
     $missingFields = implode("<br>", $this->data['mandatoryFields']);
     echo "<div style='color: red'>$missingFields</div>";
 }
 ?>
+<script type="text/javascript" src="../../../Shared/tinymce/js/tinymce/tinymce.js"></script>
+<script>$(document).ready(function(){
+        const imgLists =             [<?php
+            if (!empty($this->data['mediasList'])) {
+                foreach ($this->data['mediasList'] as $media) {
+                    $title = $media['title'];
+                    $value = $media['value'];
+                    echo "{title: '$title', value: '$value'},";
+                }
+            }
+            ?>]
+        tinymce.init({
+            selector: 'textarea#pageContent',
+            auto_focus: 'element1',
+            mode: "textareas",
+            elements : "pageContent",
+            height:"350px",
+            width:"100%",
+            plugins: 'anchor autolink charmap codesample emoticons image link lists searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss preview styleprops',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat preview styleprops',
+            image_list: imgLists
+        });
+
+    })
+</script>
 <section class="new-post-main">
     <div class="section1-new-post-container">
         <div class="section1-new-post-container-wrapper">
@@ -57,13 +65,11 @@ if (empty($this->data['mandatoryFields'])) {
                     </div>
                     <div class="form-group">
                         <label for="pageTitle"></label>
-                        <textarea name="pageTitle" id="pageTitle" class="pageTitle"
-                                  placeholder="Titre de la page ..."><?php echo $this->data['post']->getTitle() ?? '' ?></textarea>
+                        <textarea name="pageTitle" id="pageTitle" class="pageTitle" placeholder="Titre de la page ..."><?php echo $this->data['post']->getTitle() ?? '' ?></textarea>
                     </div>
                     <div class="form-content">
                         <label for="pageContent"></label>
-                        <textarea name="pageContent"
-                                  id="pageContent"><?php echo $this->data['post']->getBody() ?? '' ?></textarea>
+                        <textarea name="pageContent" id="pageContent"><?php echo $this->data['post']->getBody() ?? '' ?></textarea>
                     </div>
                     <div hidden>
                         <input type="number" name="isDeleted" value="<?php echo $isDeleted  ?? '0' ?>"/>
