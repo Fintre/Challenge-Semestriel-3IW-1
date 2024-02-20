@@ -9,6 +9,17 @@ use App\Models\User;
 
 date_default_timezone_set('Europe/Paris');
 spl_autoload_register("App\myAutoloader"); //pour enregistrer une fonction d'autoload personnalisée
+
+if (!file_exists('./config.php')) {
+    if (basename($_SERVER['PHP_SELF']) != 'install.php') {
+        header('Location: install.php');
+        exit;
+    }
+} else {
+    // Si config.php existe, l'inclure.
+    require 'config.php';
+}
+
 function myAutoloader(String $class): void
 {
     //$class = App\Core\View

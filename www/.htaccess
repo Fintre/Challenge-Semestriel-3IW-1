@@ -1,5 +1,9 @@
-#redirect all requests to index.php
 RewriteEngine on
+
+# Exception pour install.php
+RewriteRule ^install$ install.php [L,NC]
+
+# Rediriger toutes les autres requêtes vers index.php
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule . index.php [L,QSA]
