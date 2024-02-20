@@ -19,9 +19,8 @@ class Main
         $elementsCount = [
             'users' => $user->getNbElements(),
             'pages' => $post->getElementsByType('type', 'page'),
-            'photos' => $media->getElementsByType('type', 'photo'),
+            'medias' => $media->getNbElements(),
             'articles' => $post->getElementsByType('type', 'article'),
-            'videos' => $media->getElementsByType('type', 'video'),
             'themes' => $themes->getNbElements(),
             ];
         if(isset($_SESSION['user'])) {
