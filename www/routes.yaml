@@ -85,50 +85,50 @@
 /bo/articles:
   controller: Articles
   action: allArticles
-  # security: true
-  # roles: [admin, editor]
+  security: true
+  roles: [admin, editor]
 
 /bo/articles/add-article:
   controller: Articles
   action: addArticles
-  # security: true
-  # roles: [admin, editor]
+  security: true
+  roles: [admin, editor]
 
 /bo/articles/update-article:
   controller: Articles
   action: updateArticle
-  # security: true
-  # roles: [admin, editor]
+  security: true
+  roles: [admin, editor]
 
 /bo/articles/edit-article:
   controller: Articles
   action: editArticles
-  # security: true
-  # roles: [admin, editor]
+  security: true
+  roles: [admin, editor]
 
 /bo/blogs:
   controller: Blogs
   action: allBlogs
-  # security: true
-  # roles: [admin, editor]
+  security: true
+  roles: [admin, editor]
 
 /bo/blogs/add-blog:
   controller: Blogs
   action: addBlogs
-  # security: true
-  # roles: [admin, editor]
+  security: true
+  roles: [admin, editor]
 
 /bo/blogs/edit-blog:
   controller: Blogs
   action: editBlogs
-  # security: true
-  # roles: [admin, editor]
+  security: true
+  roles: [admin, editor]
 
 /bo/blogs/update-blog:
   controller: Blogs
   action: updateBlog
-  # security: true
-  # roles: [admin, editor]
+  security: true
+  roles: [admin, editor]
 
 /bo/themes:
   controller: Themes

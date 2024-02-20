@@ -16,19 +16,38 @@ class Articles
         $errors = [];
         $success = [];
         $article = new Article();
-        if (isset($_GET['action']) && $_GET['action'] === 'delete' && isset($_GET['id'])) {
+        if (isset($_GET['action']) && isset($_GET['id'])) {
             $articleId = $_GET['id'];
-
-            if ($article->deleteArticlesAndBlogs($articleId)) {
-                $success[] = "L'article a été supprimé avec succès.";
-            } else {
-                $errors[] = "La suppression a échoué.";
+        
+            if ($_GET['action'] === 'delete') {
+                if ($article->deleteArticlesAndBlogs($articleId)) {
+                    $success[] = "L'article a été supprimé avec succès.";
+                } else {
+                    $errors[] = "La suppression a échoué.";
+                }
+            } elseif ($_GET['action'] === 'draft') {
+                if ($article->draftArticlesAndBlogs($articleId)) {
+                    $success[] = "L'article a été restauré avec succès";
+                } else {
+                    $errors[] = "Echoué";
+                }
+            } elseif ($_GET['action'] === 'publish') {
+                if ($article->publishArticlesAndBlogs($articleId)) {
+                    $success[] = "L'article a été publié avec succès";
+                } else {
+                    $errors[] = "Echoué";
+                }
             }
         }
+        
         $allArticles = $article->getAllArticles();
+        $publishArticles = $article->getPublishedArticles();
+        $draftArticles = $article->getDraftArticle();
 
         $myView = new View("Articles/allArticles", "back");
         $myView->assign("articles", $allArticles);
+        $myView->assign("publishArticles", $publishArticles);
+        $myView->assign("draftArticles", $draftArticles);
         $myView->assign("errors", $errors);
         $myView->assign("success", $success);
     }
@@ -41,7 +60,6 @@ class Articles
             $articleId = $_GET['article'];
             $selectedArticle = $article->getArticlesAndBlogs("article", $articleId);
 
-            // Vérifiez si l'article a été trouvé avant d'essayer d'accéder à ses propriétés
             if ($selectedArticle) {
                 $formUpdate = new UpdateArticle();
                 $configUpdate = $formUpdate->getConfig($selectedArticle[0]["title"], $selectedArticle[0]["body"], $selectedArticle[0]["id"]);
@@ -54,7 +72,6 @@ class Articles
                 $myView->assign("errorsForm", $errorsUpdate);
                 $myView->assign("successForm", $successUpdate);
             } else {
-                // Gérer le cas où l'article n'est pas trouvé
                 echo "Article non trouvé.";
             }
         }
@@ -75,6 +92,10 @@ class Articles
 
     public function updateArticle(): void
     {
+        $userSerialized = $_SESSION['user'];
+        $user = unserialize($userSerialized);
+        $username = $user->getUsername();
+
         $formattedDate = date('Y-m-d H:i:s');
 
         $title = $_REQUEST['Titre'];
@@ -91,29 +112,23 @@ class Articles
             $article->setId($_GET['id']);
             $article->setUpdatedAt($formattedDate);
             $article->setCreatedAt($selectedArticle[0]["createdat"]);
-            $article->setDescription($selectedArticle[0]["description"]);
             $article->setIsDeleted($selectedArticle[0]["isdeleted"]);
             $article->setPublished($selectedArticle[0]["published"]);
-            $article->setSiteSettingId($selectedArticle[0]["siteSetting_id"]);
             $article->setSlug($selectedArticle[0]["slug"]);
             $article->setType($selectedArticle[0]["type"]);
-            $article->setUserId($selectedArticle[0]["user_id"]);
+            $article->setUserId($selectedArticle[0]["user_username"]);
             $article->setThemeId($selectedArticle[0]["theme_id"]);
-            $article->setTheme($selectedArticle[0]["theme"]);
 
         }else{
             $article->setUpdatedAt($formattedDate);
             $article->setCreatedAt($formattedDate);
 
-            $article->setDescription("");
             $article->setIsDeleted(0);
-            $article->setPublished(0);
-            $article->setSiteSettingId(1);
+            $article->setPublished(1);
             $article->setSlug("");
             $article->setType("article");
-            $article->setUserId(1);
+            $article->setUserId($username);
             $article->setThemeId(1);
-            $article->setTheme("");
         }
 
         $article->saveInpost();
