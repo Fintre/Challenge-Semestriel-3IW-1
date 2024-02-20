@@ -9,15 +9,12 @@ class Blog extends DB
     protected $title;
     protected $body;
     protected $type;
-    protected $description;
     protected $slug;
-    protected $theme;
     protected $published = 0;
     protected $isDeleted = 0;
     protected $createdat;
     protected $updatedat;
-    protected $user_id;
-    protected $siteSetting_id;
+    protected $user_username;
     protected $theme_id;
 
     public function getId(): ?int
@@ -81,22 +78,6 @@ class Blog extends DB
     /**
      * @return mixed
      */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
-     * @param mixed $description
-     */
-    public function setDescription($description): void
-    {
-        $this->description = $description;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getSlug()
     {
         return $this->slug;
@@ -108,22 +89,6 @@ class Blog extends DB
     public function setSlug($slug): void
     {
         $this->slug = $slug;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTheme()
-    {
-        return $this->theme;
-    }
-
-    /**
-     * @param mixed $theme
-     */
-    public function setTheme($theme): void
-    {
-        $this->theme = $theme;
     }
 
     public function getPublished(): int
@@ -183,31 +148,15 @@ class Blog extends DB
      */
     public function getUserId()
     {
-        return $this->user_id;
+        return $this->user_username;
     }
 
     /**
      * @param mixed $user_id
      */
-    public function setUserId($user_id): void
+    public function setUserId($user_username): void
     {
-        $this->user_id = $user_id;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getSiteSettingId()
-    {
-        return $this->siteSetting_id;
-    }
-
-    /**
-     * @param mixed $siteSetting_id
-     */
-    public function setSiteSettingId($siteSetting_id): void
-    {
-        $this->siteSetting_id = $siteSetting_id;
+        $this->user_username = $user_username;
     }
 
     /**
@@ -228,5 +177,17 @@ class Blog extends DB
 
     public function getAllArticles() {
         return $this->getArticlesAndBlogs("blog");
+    }
+
+    public function getPublishedArticles() {
+        return $this->getPublishedPost("blog");
+    }
+
+    public function getDeletedArticle() {
+        return $this->getDleletedArticlesAndBlogs("blog");
+    }
+
+    public function getDraftArticle() {
+        return $this->getDraftArticlesAndBlogs("blog");
     }
 }
