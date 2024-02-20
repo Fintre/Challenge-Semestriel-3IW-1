@@ -93,6 +93,10 @@ class Blogs
 
     public function updateBlog(): void
     {
+        $userSerialized = $_SESSION['user'];
+        $user = unserialize($userSerialized);
+        $username = $user->getUsername();
+
         $formattedDate = date('Y-m-d H:i:s');
 
         $title = $_REQUEST['Titre'];
@@ -124,7 +128,7 @@ class Blogs
             $article->setPublished(0);
             $article->setSlug("");
             $article->setType("blog");
-            $article->setUserId("Soumaya");
+            $article->setUserId($username);
             $article->setThemeId(1);
         }
 
