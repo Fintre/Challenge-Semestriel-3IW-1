@@ -92,6 +92,10 @@ class Articles
 
     public function updateArticle(): void
     {
+        $userSerialized = $_SESSION['user'];
+        $user = unserialize($userSerialized);
+        $username = $user->getUsername();
+
         $formattedDate = date('Y-m-d H:i:s');
 
         $title = $_REQUEST['Titre'];
@@ -123,7 +127,7 @@ class Articles
             $article->setPublished(1);
             $article->setSlug("");
             $article->setType("article");
-            $article->setUserId("Soumaya");
+            $article->setUserId($username);
             $article->setThemeId(1);
         }
 
