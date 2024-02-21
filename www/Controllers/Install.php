@@ -11,6 +11,7 @@ class Install
 {
     public function run()
     {
+
         $form = new InstallSite();
         $config = $form->getConfig();
         $errors = [];
@@ -31,32 +32,37 @@ class Install
                 // Créer le fichier de configuration
                 $configContent = "<?php\n";
                 $configContent .= "// Configuration de la base de données\n";
-                $configContent .= "define('DB_HOST', 'postgres:5432');\n"; //
+                $configContent .= "define('DB_HOST', 'postgres');\n"; //
                 $configContent .= "define('DB_NAME', '" . addslashes($dbname) . "');\n";
                 $configContent .= "define('DB_USER', '" . addslashes($dbuser) . "');\n";
                 $configContent .= "define('DB_PASSWORD', '" . addslashes($dbpassword) . "');\n";
                 $configContent .= "define('TABLE_PREFIX', '" . addslashes($tablePrefix) . "');\n";
 
-                echo $configContent;
-                file_put_contents('config.php', $configContent);
+                $myfile = fopen("config.php", "w");
 
-            if (file_put_contents('config.php', $configContent) === false) { // Créer le fichier de configuration
-                die('Erreur lors de la création du fichier de configuration.');
-            }
+                fwrite($myfile, $configContent);
+
+                fclose($myfile);
+
+
             // Chemin relatif pour remonter d'un niveau à partir de `www`
-            $envPath = __DIR__ . '/../../.env';
+            $envPath = __DIR__ . '/../.env';
 
             // Assurez-vous de construire votre contenu de .env ici
             $envContent = "POSTGRES_USER={$dbuser}\n";
             $envContent .= "POSTGRES_PASSWORD={$dbpassword}\n";
             $envContent .= "POSTGRES_DB={$dbname}\n";
 
-            // Écriture dans le fichier .env à la racine du projet
-            file_put_contents($envPath, $envContent, FILE_APPEND | LOCK_EX);
+                $myenv = fopen(".env", "w");
+                fwrite($myenv, $envContent);
+                fclose($myenv);
+
+
 
             try {
                 var_dump($dbname);
-                $pdo = new PDO("pgsql:host=postgres;port:5432;dbname=$dbname;user=$dbuser;password=$dbpassword");
+                $pdo = new \PDO("pgsql:host=postgres;port=5432;dbname=$dbname;user=$dbuser;password=$dbpassword");
+
                 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                 $bddPath = __DIR__ . '/../BDD.sql';
@@ -77,7 +83,7 @@ class Install
                 }
 
             } catch (PDOException $e) {
-                die('Erreur lors de l\'exécution du script SQL ou de la connexion à la base de données : ' . $e->getMessage());
+                var_dump('Erreur lors de l\'exécution du script SQL ou de la connexion à la base de données : ' . $e->getMessage());
             }
 
             // Redirection ou gestion de la suite du processus d'installation

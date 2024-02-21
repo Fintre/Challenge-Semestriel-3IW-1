@@ -21,6 +21,7 @@ class InstallSite
                     "placeholder" => "Nom d'utilisateur admin",
                     "required"=>true,
                     "error"=>"Le nom d'utilisateur doit faire plus de 2 caractères",
+                    "value"=>"admin",
                 ],
                 "admin_password"=>[
                     "type"=>"password",
@@ -29,6 +30,7 @@ class InstallSite
                     "placeholder" => "Mot de passe admin",
                     "required"=>true,
                     "error"=>"Le mot de passe doit être sécurisé",
+                    "value"=>"Catalina.2003",
                 ],
                 "dbname"=>[
                     "type"=>"text",
@@ -37,6 +39,7 @@ class InstallSite
                     "placeholder" => "Nom de la base de données",
                     "required"=>true,
                     "error"=>"Veuillez entrer le nom de la base de données",
+                    "value"=>"admin",
                 ],
                 "dbuser"=>[
                     "type"=>"text",
@@ -45,6 +48,7 @@ class InstallSite
                     "placeholder" => "Utilisateur de la base de données",
                     "required"=>true,
                     "error"=>"Veuillez entrer l'utilisateur de la base de données",
+                    "value"=>"admin",
                 ],
                 "dbpwd"=>[
                     "type"=>"password",
@@ -53,6 +57,7 @@ class InstallSite
                     "placeholder" => "Mot de passe de la base de données",
                     "required"=>true,
                     "error"=>"Veuillez entrer le mot de passe de la base de données",
+                    "value"=>"Catalina.2003",
                 ],
                 "table_prefix"=>[
                     "type"=>"text",
@@ -61,6 +66,7 @@ class InstallSite
                     "placeholder" => "Préfixe pour les tables (ex: mysite_)",
                     "required"=>true,
                     "error"=>"Veuillez entrer un préfixe pour les tables de la base de données",
+                    "value"=>"admin",
                 ],
             ]
         ];
