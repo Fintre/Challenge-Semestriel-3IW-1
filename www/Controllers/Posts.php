@@ -26,7 +26,6 @@ class Posts
     public function post(): void
     {
 
-
         $allowedTags='<p><strong><em><u><h1><h2><h3><h4><h5><h6><img>';
         $allowedTags.='<li><ol><ul><span><div><br><ins><del>';
         $info = "N'oubliez pas de sauvegarder";
@@ -42,10 +41,11 @@ class Posts
             }
         }
 
-
-
         $post = new Post();
+        $post->setDefaultBody();
         $theme = new Theme();
+        $retrievedTheme = $theme->getOneBy(['actif' => 1], 'object');
+
         if (isset($_GET['id'])) {
             $retrievedPost = $post->getOneBy(['id' => $_GET['id']], 'object');
             if (!empty($retrievedPost)) {
@@ -66,11 +66,13 @@ class Posts
             $_POST['pageSlug'] = str_replace(' ', '', strtolower($_POST['pageSlug']));
 
             $post->setSlug($_POST['pageSlug']);
+
+
             $post2 = $post->getOneBy(['slug' => $_POST['pageSlug']], 'object');
-            if(!$post2){
+
+            if(!$post2 || $post2->getId() == $post->getId()){
                 $post->setTitle($_POST['pageTitle']);
                 $post->setBody(strip_tags(stripslashes($_POST['pageContent']), $allowedTags));
-                // $post->setIsDeleted($_POST['isDeleted']);
                 $isPublished = 0;
                 if (isset($_POST['isPublished'])) {
                     $isPublished = $_POST['isPublished'] === "on" ? 1 : 0;
@@ -78,14 +80,10 @@ class Posts
                 }
                 $post->setPublished($isPublished);
                 $post->setType('page');
-                $retrievedTheme = $theme->getOneBy(['actif' => TRUE], 'object');
-                $idTheme = $retrievedTheme->getId();
-                $post->setThemeId($idTheme);
                 $user = unserialize($_SESSION['user']);
                 $userUsername = $user->getUsername();
                 $post->setUserUsername($userUsername);
                 $missingFields = $post->validate();
-
 
                 if (count($missingFields) === 0) {
                     $postId = $post->save();
@@ -100,6 +98,7 @@ class Posts
 
         $newPosts = new View("Post/newpost", "back");
         $newPosts->assign("info", $info);
+        $newPosts->assign("theme", $retrievedTheme->getTitre());
         $newPosts->assign("post", $post);
         $newPosts->assign("mandatoryFields", $missingFields ?? []);
         $newPosts->assign("errorSlug", $errorSlug);

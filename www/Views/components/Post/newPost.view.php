@@ -35,7 +35,8 @@ if (!empty($this->data['mandatoryFields'])) {
             width:"100%",
             plugins: 'anchor autolink charmap codesample emoticons image link lists searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss preview styleprops',
             toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat preview styleprops',
-            image_list: imgLists
+            image_list: imgLists,
+            content_css: '/Views/styles/dist/css/mainFront.css'
         });
 
     })
@@ -69,7 +70,7 @@ if (!empty($this->data['mandatoryFields'])) {
                     </div>
                     <div class="form-content">
                         <label for="pageContent"></label>
-                        <textarea name="pageContent" id="pageContent"><?php echo $this->data['post']->getBody() ?? '' ?></textarea>
+                        <textarea name="pageContent" id="pageContent"><div data-theme="<?php echo $this->data['theme'] ?? '' ?>" class="<?php echo $this->data['theme'] ?? '' ?>"><?php echo $this->data['post']->getBody() ?? '' ?></div></textarea>
                     </div>
                     <div hidden>
                         <input type="number" name="isDeleted" value="<?php echo $isDeleted  ?? '0' ?>"/>

@@ -4,38 +4,67 @@ use App\Core\DB;
 
 class Theme extends DB{
     private $id;
-    private $name;
-    private $description;
+    private $titre;
+    private $actif;
 
     public function __construct() {
         parent::__construct();
     }
 
-    // Getters and setters for the properties
-
-    public function getId() {
-        return $this->id;
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        if (isset($this->id)) {
+            return $this->id;
+        }
     }
 
-    public function setId($id) {
+    /**
+     * @param mixed $id
+     */
+    public function setId($id): void
+    {
         $this->id = $id;
     }
 
-    public function getName() {
-        return $this->name;
+    /**
+     * @return mixed
+     */
+    public function getTitre()
+    {
+        if (isset($this->titre)) {
+            return $this->titre;
+        }
     }
 
-    public function setName($name) {
-        $this->name = $name;
+    /**
+     * @param mixed $titre
+     */
+    public function setTitre($titre): void
+    {
+        $this->titre = $titre;
     }
 
-    public function getDescription() {
-        return $this->description;
+    /**
+     * @return mixed
+     */
+    public function getActif()
+    {
+        if (isset($this->actif)) {
+            return $this->actif;
+        }
     }
 
-    public function setDescription($description) {
-        $this->description = $description;
+    /**
+     * @param mixed $actif
+     */
+    public function setActif($actif): void
+    {
+        $this->actif = $actif;
     }
+
 
     public function getNbElements() {
         return $this->countElements();

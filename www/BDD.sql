@@ -69,7 +69,6 @@ CREATE TABLE "public"."{prefix}_post" (
     "createdat" timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL,
     "updatedat" timestamp DEFAULT CURRENT_TIMESTAMP,
     "user_username" character varying(25),
-    "theme_id" integer,
     CONSTRAINT "{prefix}_post_pkey" UNIQUE ("id")
 ) WITH (oids = false);
 
@@ -99,8 +98,7 @@ CREATE SEQUENCE {prefix}_theme_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 2147483647
 CREATE TABLE "public"."{prefix}_theme" (
     "id" integer DEFAULT nextval('{prefix}_theme_id_seq') NOT NULL,
     "titre" character varying(255) NOT NULL,
-    "description" character varying(255),
-    "actif" boolean DEFAULT false NOT NULL,
+    "actif" smallint DEFAULT '0' NOT NULL,
     CONSTRAINT "{prefix}_theme_pkey" PRIMARY KEY ("id")
 ) WITH (oids = false);
 

@@ -1,5 +1,4 @@
 <?php
-echo $this->data['media'];
 if (empty($this->data['media']->getId())) {
     echo "<h2>Nouveau média</h2>";
 } else {

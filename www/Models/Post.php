@@ -236,4 +236,108 @@ class Post extends DB
         }
     }
 
+    public function setDefaultBody()
+    {
+        $this->body = '
+        <div id="div-body" class="div-body no-transition">
+
+        <!-- Page content -->
+        <div class="section1">
+            <div class="container">
+                <div class="">
+                    <h1>Title</h1>
+                    <p><b>Headline</b></p>
+                </div>
+            </div>
+        </div>
+        <div class="section2">
+            <div class="page-content">
+                <!-- service -->
+                <div class="page-content-service" id="service">
+                    <h2>SERVICE</h2>
+                    <p class="page-content-service-desc"><i>Service description</i></p>
+                    <p></p>
+                    <div class="page-content-service-img">
+                    </div>
+                </div>
+
+                <!-- product -->
+                <div class="page-content-product" id="reservation">
+                    <h2>Titre2</h2>
+                    <p class="page-content-product-desc"><i>product description</i></p><br>
+
+                    <ul class="page-content-product-list">
+                        <li>Produit<span class="page-content-product-item sold-out">placeholder1</span></li>
+                        <li>Produit<span class="page-content-product-item sold-out">placeholder2</span></li>
+                        <li>Produit<span class="page-content-product-item sold-out">placeholder3</span></li>
+                    </ul>
+
+                    <div class="page-content-product-express">
+                        <div class="page-content-product-express-item">
+                            <img src="" alt="">
+                            <div class="page-content-product-express-items-info">
+                                <p class="page-content-product-express-item-desc">Description</p>
+                                <button class="page-content-product-express-item-button button-info" onclick="">En savoir plus</button>
+                            </div>
+                        </div>
+                        <div class="page-content-product-express-item">
+                            <img src="" alt="">
+                            <div class="page-content-product-express-items-info">
+                                <p class="page-content-product-express-item-desc">Description</p>
+                                <button class="page-content-product-express-item-button button-info" onclick="">En savoir plus</button>
+                            </div>
+                        </div>
+                        <div class="page-content-product-express-item">
+                            <img src="" alt="">
+                            <div class="page-content-product-express-items-info">
+                                <p class="page-content-product-express-item-desc">Description</p>
+                                <button class="page-content-product-express-item-button button-info" onclick="">En savoir plus</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- contact -->
+                <div class="page-content-contact" id="contact">
+                    <h2>CONTACT</h2>
+                    <p class="page-content-contact-desc"><i>Restons en contact!</i></p>
+                    <div class="page-content-contact-desc-wrapper">
+                        <div class="page-content-contact-desc-info">
+                            <p class="page-content-contact-adress">Paris 14e</p><br>
+                            <p class="page-content-contact-phone">01 01 01 01 01</p><br>
+                            <p class="page-content-contact-mail"> Email: mail@mail.com</p>
+                        </div>
+                        <div class="page-content-contact-form">
+                            <form action="" target="_blank">
+                                <div class="page-content-contact-form-wrapper">
+                                    <input type="text" placeholder="Name" required name="Name" class="form-input">
+                                    <input type="text" placeholder="Email" required name="Email" class="form-input">
+                                    <button type="submit" class="button-submit">ENVOYER</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="page-content-footer">
+            <p class="page-content-footer-info">Powered by <a href="https://gofindme.fr" target="_blank">GoFindMe © 2024. All rights reserved</a></p>
+        </div>
+        <script>
+    window.onload = () => {
+        document.querySelector("#div-body").classList.remove("no-transition");
+    };
+
+            window.onscroll = () => {
+        if (window.scrollY > 0) {
+            document.querySelector("#nav-header").classList.add("sticky");
+        } else {
+            document.querySelector("#nav-header").classList.remove("sticky");
+        }
+    };
+        </script>
+    </div>';
+    }
+
 }
