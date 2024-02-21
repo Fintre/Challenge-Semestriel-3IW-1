@@ -83,6 +83,14 @@ class Security
                 $user->setActivationToken($activationToken);
                 $user->save(); //ajouter toutes les données dans la base de données
                 $success[] = "Votre compte a bien été créé";
+                 // Envoyer l'email de réinitialisation
+                 $emailResult = $this->sendActivationEmail($user->getEmail(), $activationToken);
+
+                 if (isset($emailResult['success'])) {
+                     $success[] = $emailResult['success'];
+                 } elseif (isset($emailResult['error'])) {
+                     $errors[] = $emailResult['error'];
+                 }
 
             }
         }

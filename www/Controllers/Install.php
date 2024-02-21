@@ -30,10 +30,10 @@ class Install
                 $adminUsername = $_REQUEST['Nom_d\'utilisteur'] ?? ''; //recupère la valeur de admin_username
                 $adminPassword = $_REQUEST['Mot_de_passe'] ?? ''; //recupère la valeur de admin_password
                 $adminPasswordConfirm = $_REQUEST['Confirmation_de_mot_de_passe'] ?? ''; //recupère la valeur de admin_password_confirm
-                $dbname = $_REQUEST['dbname'] ?? ''; //recupère la valeur de dbname
-                $dbuser = $_REQUEST['dbuser'] ?? ''; //recupère la valeur de dbuser
-                $dbpassword = $_REQUEST['dbpwd'] ?? ''; //recupère la valeur de dbpassword
-                $tablePrefix = $_REQUEST['table_prefix'] ?? '';    //recupère la valeur de table_prefix
+                $dbname = $_REQUEST['Nom_de_la_BDD'] ?? ''; //recupère la valeur de dbname
+                $dbuser = $_REQUEST['Utilisateur_BDD'] ?? ''; //recupère la valeur de dbuser
+                $dbpassword = $_REQUEST['Mot_de_passe_BDD'] ?? ''; //recupère la valeur de dbpassword
+                $tablePrefix = $_REQUEST['Prefixe_de_la_table'] ?? '';    //recupère la valeur de table_prefix
 
                 // Créer le fichier de configuration
                 $configContent = "<?php\n";
