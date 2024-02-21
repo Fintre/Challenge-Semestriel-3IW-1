@@ -43,6 +43,16 @@ class Install
             if (file_put_contents('config.php', $configContent) === false) { // Créer le fichier de configuration
                 die('Erreur lors de la création du fichier de configuration.');
             }
+            // Chemin relatif pour remonter d'un niveau à partir de `www`
+            $envPath = __DIR__ . '/../../.env';
+
+            // Assurez-vous de construire votre contenu de .env ici
+            $envContent = "POSTGRES_USER={$dbuser}\n";
+            $envContent .= "POSTGRES_PASSWORD={$dbpassword}\n";
+            $envContent .= "POSTGRES_DB={$dbname}\n";
+
+            // Écriture dans le fichier .env à la racine du projet
+            file_put_contents($envPath, $envContent, FILE_APPEND | LOCK_EX);
 
             try {
                 var_dump($dbname);

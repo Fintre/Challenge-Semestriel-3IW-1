@@ -16,9 +16,9 @@ services:
     ports:
       - "5433:5432"
     environment:
-      POSTGRES_USER: defaultuser
-      POSTGRES_PASSWORD: defaultpassword
-      POSTGRES_DB: defaultdb
+      POSTGRES_USER: gofindme
+      POSTGRES_PASSWORD: gfmpwd
+      POSTGRES_DB: gfm
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
