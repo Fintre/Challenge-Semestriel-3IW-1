@@ -6,11 +6,11 @@ use App\Controllers\Error;
 use App\Controllers\Main;
 use App\Controllers\Security;
 use App\Models\User;
+use App\Core\PageBuilder;
 
 date_default_timezone_set('Europe/Paris');
 spl_autoload_register("App\myAutoloader"); //pour enregistrer une fonction d'autoload personnalisée
 
-session_start();
 // Traitement spécial pour la route d'installation
 $uri = strtolower($_SERVER["REQUEST_URI"]); // Normalise l'URI
 $uri = strtok($uri, "?"); // Enlève les paramètres GET
@@ -64,6 +64,7 @@ if( !empty($listOfRoutes[$uri]) ) { // si l'uri existe dans le fichier routes
             require "Controllers/Error.php";
             $error = new Error();
             $error->page403();
+            var_dump($user->getRoles());
             die();
         }
     }
@@ -104,9 +105,9 @@ if( !empty($listOfRoutes[$uri]) ) { // si l'uri existe dans le fichier routes
     }
 }
 else if($uri){
+        session_start();
         $pageBuilder = new PageBuilder();
         $pageBuilder->build($uri);
-
 }
 else{ //si l'uri n'existe pas dans le fichier routes
     require "Controllers/Error.php"; //page 404

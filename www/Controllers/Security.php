@@ -23,7 +23,7 @@ class Security
 
     public function login(): void
     {
-        //session_start();
+        session_start();
         $formLogin = new Login();
         $configLogin = $formLogin->getConfig();
         $errorsLogin = [];

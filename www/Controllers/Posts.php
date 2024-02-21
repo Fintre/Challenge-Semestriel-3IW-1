@@ -79,11 +79,11 @@ class Posts
                 $post->setPublished($isPublished);
                 $post->setType('page');
                 $retrievedTheme = $theme->getOneBy(['actif' => TRUE], 'object');
-                $idTheme = $retrievedTheme->getThemeId();
+                $idTheme = $retrievedTheme->getId();
                 $post->setThemeId($idTheme);
                 $user = unserialize($_SESSION['user']);
-                $userId = $user->getId();
-                $post->setUserId($userId);
+                $userUsername = $user->getUsername();
+                $post->setUserUsername($userUsername);
                 $missingFields = $post->validate();
 
 

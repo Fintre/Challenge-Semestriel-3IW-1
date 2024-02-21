@@ -18,6 +18,8 @@ class Post extends DB
 
     protected ?int $theme_id;
 
+    protected ?string $theme;
+
     protected string $user_username;
 
     public function __construct()
