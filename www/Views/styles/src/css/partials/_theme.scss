@@ -46,9 +46,7 @@
             flex-shrink: 0;
             align-self: stretch;
             background: var(--white);
-            @media (prefers-color-scheme: dark) {
-                background-color: lighten(#262626, 10%);
-            }
+            @include color-theme-dark-bg;
         }
     }
 }

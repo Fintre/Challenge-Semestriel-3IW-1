@@ -227,7 +227,9 @@ class Post extends DB
 
     public function getUserUsername()
     {
-        return $this->user_username;
+        if (isset($this->user_username)) {
+            return $this->user_username;
+        }
     }
 
 }

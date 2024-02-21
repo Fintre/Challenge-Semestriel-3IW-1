@@ -23,9 +23,7 @@
     background-color: var(--bg-hover-color);
     color: var(--bg-text-hover-color);
     border: rem(1) solid var(--bg-hover-border-color);
-    @media (prefers-color-scheme: dark) {
-      background-color: lighten(#262626, 10%);
-    }
+    @include color-theme-dark-button-hover-cover;
   }
 
   /* Modificateurs de couleur */

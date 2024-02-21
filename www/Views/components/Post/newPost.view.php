@@ -6,7 +6,6 @@ if (empty($this->data['post']->getId())) {
 }
 $info = $this->data['info'];
 $isPublished = $this->data['post']->getPublished();
-echo $isPublished;
 $isDeleted = $this->data['post']->getIsDeleted();
 
 echo "<h3>$info</h3>";
@@ -60,12 +59,12 @@ if (!empty($this->data['mandatoryFields'])) {
                 <div class="post-wrapper">
                     <div class="form-group">
                         <label for="pageName"></label>
-                        <textarea name="pageSlug" id="pageName" class="pageName"
-                                  placeholder="Nom de la page ..."><?php echo $this->data['post']->getSlug() ?? '' ?></textarea>
+                        <input name="pageSlug" id="pageName" class="pageName"
+                                  placeholder="Nom de la page ..." value="<?php echo $this->data['post']->getSlug() ?? '' ?>">
                     </div>
                     <div class="form-group">
                         <label for="pageTitle"></label>
-                        <textarea name="pageTitle" id="pageTitle" class="pageTitle" placeholder="Titre de la page ..."><?php echo $this->data['post']->getTitle() ?? '' ?></textarea>
+                        <input name="pageTitle" id="pageTitle" class="pageTitle" placeholder="Titre de la page ..." value="<?php echo $this->data['post']->getTitle() ?? '' ?>">
                     </div>
                     <div class="form-content">
                         <label for="pageContent"></label>
@@ -80,7 +79,7 @@ if (!empty($this->data['mandatoryFields'])) {
                 </div>
                 <div class="post-info">
                     <div class="block-card block-card-custom-page info">
-                        <div class="block-card-custom-page-info-property">Auteur<span class="block-card-custom-page-info-value"></span>
+                        <div class="block-card-custom-page-info-property">Auteur<span class="block-card-custom-page-info-value"><?php echo $this->data['post']->getUserUsername() ?? '' ?></span>
                             <div hidden>
                                 <input type="number" name="id" value="<?php echo $this->data['post']->getId() ?? '' ?>"/>
                             </div>

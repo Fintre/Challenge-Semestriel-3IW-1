@@ -153,9 +153,7 @@ p {
   margin-left: rem(30);
   .status-tab {
     color: black;
-    @media (prefers-color-scheme: dark) {
-      color: white;
-    }
+    @include color-theme-dark-font-color;
     .tab {
       display: flex;
       flex-direction: row;
@@ -174,9 +172,7 @@ p {
           border-bottom: none;
           background-color: transparent;
           color: black;
-          @media (prefers-color-scheme: dark) {
-            color: white;
-          }
+          @include color-theme-dark-font-color;
           &:hover,
           &.active {
             color: var(--blue);
@@ -193,9 +189,7 @@ p {
       box-shadow: var(--box-shadow-base);
       padding: rem(17) rem(19);
       width: rem(500);
-      @media (prefers-color-scheme: dark) {
-        background-color: lighten(#262626, 10%);
-      }
+      @include color-theme-dark-bg;
     }
   }
 }
@@ -212,9 +206,7 @@ p {
   display: block;
   background-color: transparent;
   color: black;
-  @media (prefers-color-scheme: dark) {
-    color: white;
-  }
+  @include color-theme-dark-font-color;
 }
 
 @media (max-width: 768px) {
