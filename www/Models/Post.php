@@ -47,7 +47,9 @@ class Post extends DB
      */
     public function getThemeId()
     {
-        return $this->theme_id;
+        if (isset($this->theme_id)) {
+            return $this->theme_id;
+        }
     }
 
     /**

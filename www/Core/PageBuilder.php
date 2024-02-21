@@ -20,7 +20,7 @@ class PageBuilder
         $requestUrl = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
         $routeFound = false;
         if ($slug === $requestUrl) {
-                $routeFound = true;
+            $routeFound = true;
         }
         if ($routeFound) {
             $View = new View($htmlFile);

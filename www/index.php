@@ -10,6 +10,7 @@ use App\Models\User;
 date_default_timezone_set('Europe/Paris');
 spl_autoload_register("App\myAutoloader"); //pour enregistrer une fonction d'autoload personnalisée
 
+session_start();
 // Traitement spécial pour la route d'installation
 $uri = strtolower($_SERVER["REQUEST_URI"]); // Normalise l'URI
 $uri = strtok($uri, "?"); // Enlève les paramètres GET
@@ -43,7 +44,7 @@ if(!file_exists("routes.yaml")){ //pour vérifier si le fichier routes existe
 $listOfRoutes = yaml_parse_file("routes.yaml"); //pour récupérer le contenu du fichier routes
 
 
-if( !empty($listOfRoutes[$uri]) ){ // si l'uri existe dans le fichier routes
+if( !empty($listOfRoutes[$uri]) ) { // si l'uri existe dans le fichier routes
 
 
     if (isset($listOfRoutes[$uri]['security']) && $listOfRoutes[$uri]['security'] === true) {
@@ -68,43 +69,46 @@ if( !empty($listOfRoutes[$uri]) ){ // si l'uri existe dans le fichier routes
     }
 
 
-
-    if( !empty($listOfRoutes[$uri]['controller']) ){ // si l'uri contient un controller
-        if( !empty($listOfRoutes[$uri]['action']) ){ // si l'uri contient une action
+    if (!empty($listOfRoutes[$uri]['controller'])) { // si l'uri contient un controller
+        if (!empty($listOfRoutes[$uri]['action'])) { // si l'uri contient une action
 
             //on récupère le controller et l'action
             $controller = $listOfRoutes[$uri]['controller'];
             $action = $listOfRoutes[$uri]['action'];
 
-            if(file_exists("Controllers/".$controller.".php")){ //si le fichier controller existe
-                include_once "Controllers/".$controller.".php"; //on l'inclut
-                $controller = "App\\Controllers\\".$controller; //on ajoute le namespace
-                if(class_exists($controller)){ //si la classe du controller existe
+            if (file_exists("Controllers/" . $controller . ".php")) { //si le fichier controller existe
+                include_once "Controllers/" . $controller . ".php"; //on l'inclut
+                $controller = "App\\Controllers\\" . $controller; //on ajoute le namespace
+                if (class_exists($controller)) { //si la classe du controller existe
                     $objectController = new $controller(); //on instancie le controller
 
-                    if(method_exists($objectController, $action)){ //si l'action existe dans le controller
+                    if (method_exists($objectController, $action)) { //si l'action existe dans le controller
                         $objectController->$action();
-                    }else {
+                    } else {
                         die("L'action n'existe pas dans le controller");
                     }
 
-                }else{
+                } else {
                     die("La classe du controller n'existe pas");
                 }
 
-            }else{
+            } else {
                 die("Le fichier controller n'existe pas");
             }
 
-        }else{
+        } else {
             die("La route ne contient pas d'action");
         }
-    }else{
+    } else {
         die("La route ne contient pas de controller");
     }
+}
+else if($uri){
+        $pageBuilder = new PageBuilder();
+        $pageBuilder->build($uri);
 
-
-}else{ //si l'uri n'existe pas dans le fichier routes
+}
+else{ //si l'uri n'existe pas dans le fichier routes
     require "Controllers/Error.php"; //page 404
     $customError = new Error();
     $customError->page404();

@@ -23,7 +23,7 @@ class Security
 
     public function login(): void
     {
-        session_start();
+        //session_start();
         $formLogin = new Login();
         $configLogin = $formLogin->getConfig();
         $errorsLogin = [];
@@ -73,25 +73,30 @@ class Security
         {
             // Ensuite est-ce que les données sont OK
             $verificator = new Verificator();
-            if($verificator->checkForm($config, $_REQUEST, $errors)){
+            if($verificator->checkForm($config, $_REQUEST, $errors)) {
                 $user = new User();
                 $user->setFirstname($_REQUEST['Prénom']);
                 $user->setLastname($_REQUEST['Nom']);
                 $user->setUsername($_REQUEST['Nom_d\'utilisateur']);
                 $user->setEmail($_REQUEST['E-mail']);
-                $user->setPwd($_REQUEST['Mot_de_passe']);
-                $activationToken = bin2hex(random_bytes(16)); // Générer un token d'activation
-                $user->setActivationToken($activationToken);
-                $user->save(); //ajouter toutes les données dans la base de données
-                $success[] = "Votre compte a bien été créé";
+                $user2 = $user->getOneBy(['email' => $_REQUEST['E-mail']]);
+                if ($user2 == false) {
+                    $user->setPwd($_REQUEST['Mot_de_passe']);
+                    $activationToken = bin2hex(random_bytes(16)); // Générer un token d'activation
+                    $user->setActivationToken($activationToken); // Supposons que vous avez une méthode pour cela
+                    $user->save(); //ajouter toutes les données dans la base de données
+                    $success[] = "Votre compte a bien été créé";
 
-                // Envoyer l'email de réinitialisation
-                $emailResult = $this->sendActivationEmail($user->getEmail(), $activationToken);
+                    // Envoyer l'email de réinitialisation
+                    $emailResult = $this->sendActivationEmail($user->getEmail(), $activationToken);
 
-                if (isset($emailResult['success'])) {
-                    $success[] = $emailResult['success'];
-                } elseif (isset($emailResult['error'])) {
-                    $errors[] = $emailResult['error'];
+                    if (isset($emailResult['success'])) {
+                        $success[] = $emailResult['success'];
+                    } elseif (isset($emailResult['error'])) {
+                        $errors[] = $emailResult['error'];
+                    }
+                } else {
+                    $errors[] = "Cette adresse mail est déjà associée à un compte.";
                 }
             }
         }
