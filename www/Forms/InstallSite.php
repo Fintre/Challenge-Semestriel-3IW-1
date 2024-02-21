@@ -14,6 +14,33 @@ class InstallSite
                 "class"=>"form"
             ],
             "inputs"=>[
+                "admin_firstname"=>[
+                    "type"=>"text",
+                    "name" => "admin_firstname",
+                    "class" => "input-form",
+                    "placeholder" => "Prénom de l'admin",
+                    "required"=>true,
+                    "error"=>"Le prénom doit faire plus de 2 caractères",
+                    "value"=>"admin",
+                ],
+                "admin_lastname"=>[
+                    "type"=>"text",
+                    "name" => "admin_lastname",
+                    "class" => "input-form",
+                    "placeholder" => "Nom de l'admin",
+                    "required"=>true,
+                    "error"=>"Le nom doit faire plus de 2 caractères",
+                    "value"=>"admin",
+                ],
+                "admin_email"=>[
+                    "type"=>"email",
+                    "name" => "admin_email",
+                    "class" => "input-form",
+                    "placeholder" => "Email de l'admin",
+                    "required"=>true,
+                    "error"=>"Veuillez entrer un email valide",
+                    "value"=>" ",
+                ],
                 "admin_username"=>[
                     "type"=>"text",
                     "name" => "admin_username",
@@ -30,6 +57,15 @@ class InstallSite
                     "placeholder" => "Mot de passe admin",
                     "required"=>true,
                     "error"=>"Le mot de passe doit être sécurisé",
+                    "value"=>"Catalina.2003",
+                ],
+                ""=>[
+                    "type"=>"text",
+                    "name" => "admin_password_confirm",
+                    "class" => "input-form",
+                    "placeholder" => "Confirmer le mot de passe",
+                    "required"=>true,
+                    "error"=>"Les mots de passe ne correspondent pas",
                     "value"=>"Catalina.2003",
                 ],
                 "dbname"=>[
