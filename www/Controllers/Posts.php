@@ -4,8 +4,11 @@ namespace App\Controllers;
 
 use App\Core\DB;
 use App\Core\View;
-use App\Models\Media;
+use App\Core\PageBuilder;
 use App\Models\Post;
+use App\Models\Theme;
+use App\Models\Media;
+use App\Models\User;
 
 class Posts
 {
@@ -27,8 +30,10 @@ class Posts
         $allowedTags='<p><strong><em><u><h1><h2><h3><h4><h5><h6><img>';
         $allowedTags.='<li><ol><ul><span><div><br><ins><del>';
         $info = "N'oubliez pas de sauvegarder";
+        $errorSlug = "";
 
         $media = new Media();
+        $errorSlug = "";
         $medias = $media->getAllData("object");
         if (count($medias) > 0) {
             $mediasList = array();
@@ -40,7 +45,7 @@ class Posts
 
 
         $post = new Post();
-
+        $theme = new Theme();
         if (isset($_GET['id'])) {
             $retrievedPost = $post->getOneBy(['id' => $_GET['id']], 'object');
             if (!empty($retrievedPost)) {
@@ -58,32 +63,38 @@ class Posts
             if (!empty($_POST['id'])) {
             $post->setId(intval($_POST['id']));
             }
+            $_POST['pageSlug'] = str_replace(' ', '', strtolower($_POST['pageSlug']));
+
             $post->setSlug($_POST['pageSlug']);
-            $post->setTitle($_POST['pageTitle']);
-            $post->setBody(strip_tags(stripslashes($_POST['pageContent']), $allowedTags));
-            $post->setIsDeleted($_POST['isDeleted']);
-            $post->setType('page');
-            $isPublished = 0;
-            if (isset($_POST['isPublished'])) {
-                $isPublished = $_POST['isPublished'] === "on" ? 1 : 0;
+            $post2 = $post->getOneBy(['slug' => $_POST['pageSlug']], 'object');
+            if(!$post2){
+                $post->setTitle($_POST['pageTitle']);
+                $post->setBody(strip_tags(stripslashes($_POST['pageContent']), $allowedTags));
+                // $post->setIsDeleted($_POST['isDeleted']);
+                $isPublished = 0;
+                if (isset($_POST['isPublished'])) {
+                    $isPublished = $_POST['isPublished'] === "on" ? 1 : 0;
 
-            }
-            $post->setPublished($isPublished);
-            if(isset($_SESSION['user'])) {
-                $userSerialized = $_SESSION['user'];
+                }
+                $post->setPublished($isPublished);
+                $post->setType('page');
+                $retrievedTheme = $theme->getOneBy(['actif' => TRUE], 'object');
+                $idTheme = $retrievedTheme->getId();
+                $post->setThemeId($idTheme);
+                $user = unserialize($_SESSION['user']);
+                $userUsername = $user->getUsername();
+                $post->setUserUsername($userUsername);
+                $missingFields = $post->validate();
 
-                $user = unserialize($userSerialized);
-                $post->setUserUsername($user->getUsername());
 
-            }
-            $missingFields = $post->validate();
-
-
-            if (count($missingFields) === 0) {
-                $postId = $post->save();
-                $savedPost = $post->getOneBy(['id' => $postId], 'object');
-                $post = $savedPost;
-                $info = "Page sauvegardée";
+                if (count($missingFields) === 0) {
+                    $postId = $post->save();
+                    $savedPost = $post->getOneBy(['id' => $postId], 'object');
+                    $post = $savedPost;
+                    $info = "Page sauvegardée";
+                }
+            }else{
+                $errorSlug = "Slug déjà existant, veuillez en choisir un autre";
             }
         }
 
@@ -91,6 +102,7 @@ class Posts
         $newPosts->assign("info", $info);
         $newPosts->assign("post", $post);
         $newPosts->assign("mandatoryFields", $missingFields ?? []);
+        $newPosts->assign("errorSlug", $errorSlug);
         $newPosts->assign("mediasList", $mediasList ?? []);
     }
 
