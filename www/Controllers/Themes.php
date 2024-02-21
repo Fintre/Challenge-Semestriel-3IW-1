@@ -9,7 +9,10 @@ class Themes
 
     public function allThemes(): void
     {
+        $theme = new Theme();
+        $allThemes = $theme->getAllData(); // Assurez-vous que ceci retourne un tableau de thèmes avec 'active' comme clé.
         $myView = new View("Themes/allthemes", "back");
+        $myView->assign('themes', $allThemes); // Passer les thèmes à la vue.
     }
 
 
@@ -26,11 +29,6 @@ class Themes
     public function musicTheme(): void
     {
         $newUser = new View("Themes/musicTheme", "front");
-    }
-    public function edit(): void
-    {
-
-        $editUser = new View("Themes/edittheme", "back");
     }
 
 

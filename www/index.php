@@ -18,7 +18,7 @@ $uri = strlen($uri) > 1 ? rtrim($uri, "/") : $uri; // Nettoie l'URI
 
 
 // Exclut la logique de routage pour /install si config.php n'existe pas
-if (($uri === '/install' && !file_exists('./config.php')) || !file_exists('./config.php')) {
+if (!file_exists('./config.php')) {
     $controller = new \App\Controllers\Install();
     $controller->run();
     die();

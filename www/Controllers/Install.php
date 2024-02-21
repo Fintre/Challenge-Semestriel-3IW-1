@@ -5,12 +5,15 @@ namespace App\Controllers;
 use App\Forms\InstallSite;
 use App\Core\View;
 use App\Core\Verificator;
+use App\Models\User;
 use PDO;
 use PDOException;
+use App\Controllers\Security;
 class Install
 {
     public function run()
     {
+
         $form = new InstallSite();
         $config = $form->getConfig();
         $errors = [];
@@ -21,69 +24,86 @@ class Install
             $verificator = new Verificator(); // Créer une instance de la classe Verificator
             if ($verificator->checkForm($config, $_REQUEST, $errors)) { // Vérifier le formulaire
 
-                $adminUsername = $_REQUEST['admin_username'] ?? ''; //recupère la valeur de admin_username
-                $adminPassword = $_POST['admin_password'] ?? ''; //recupère la valeur de admin_password
-                $dbname = $_POST['dbname'] ?? ''; //recupère la valeur de dbname
-                $dbuser = $_POST['dbuser'] ?? ''; //recupère la valeur de dbuser
-                $dbpassword = $_POST['dbpwd'] ?? ''; //recupère la valeur de dbpassword
-                $tablePrefix = $_POST['table_prefix'] ?? '';    //recupère la valeur de table_prefix
+                $adminFirstname = $_REQUEST['Prénom'] ?? ''; //recupère la valeur de admin_firstname
+                $adminLastname = $_REQUEST['Nom'] ?? ''; //recupère la valeur de admin_lastname
+                $adminEmail = $_REQUEST['E-mail'] ?? ''; //recupère la valeur de admin_email
+                $adminUsername = $_REQUEST['Nom_d\'utilisteur'] ?? ''; //recupère la valeur de admin_username
+                $adminPassword = $_REQUEST['Mot_de_passe'] ?? ''; //recupère la valeur de admin_password
+                $adminPasswordConfirm = $_REQUEST['Confirmation_de_mot_de_passe'] ?? ''; //recupère la valeur de admin_password_confirm
+                $dbname = $_REQUEST['Nom_de_la_BDD'] ?? ''; //recupère la valeur de dbname
+                $dbuser = $_REQUEST['Utilisateur_BDD'] ?? ''; //recupère la valeur de dbuser
+                $dbpassword = $_REQUEST['Mot_de_passe_BDD'] ?? ''; //recupère la valeur de dbpassword
+                $tablePrefix = $_REQUEST['Prefixe_de_la_table'] ?? '';    //recupère la valeur de table_prefix
 
                 // Créer le fichier de configuration
                 $configContent = "<?php\n";
                 $configContent .= "// Configuration de la base de données\n";
-                $configContent .= "define('DB_HOST', 'postgres:5432');\n"; //
+                $configContent .= "define('DB_HOST', 'postgres');\n";
+                $configContent .= "define('DB_PORT', '5432');\n";
                 $configContent .= "define('DB_NAME', '" . addslashes($dbname) . "');\n";
                 $configContent .= "define('DB_USER', '" . addslashes($dbuser) . "');\n";
                 $configContent .= "define('DB_PASSWORD', '" . addslashes($dbpassword) . "');\n";
                 $configContent .= "define('TABLE_PREFIX', '" . addslashes($tablePrefix) . "');\n";
 
-                echo $configContent;
-                file_put_contents('config.php', $configContent);
+                $myfile = fopen("config.php", "w");
 
-            if (file_put_contents('config.php', $configContent) === false) { // Créer le fichier de configuration
-                die('Erreur lors de la création du fichier de configuration.');
-            }
-            // Chemin relatif pour remonter d'un niveau à partir de `www`
-            $envPath = __DIR__ . '/../../.env';
+                fwrite($myfile, $configContent);
 
-            // Assurez-vous de construire votre contenu de .env ici
-            $envContent = "POSTGRES_USER={$dbuser}\n";
-            $envContent .= "POSTGRES_PASSWORD={$dbpassword}\n";
-            $envContent .= "POSTGRES_DB={$dbname}\n";
+                fclose($myfile);
 
-            // Écriture dans le fichier .env à la racine du projet
-            file_put_contents($envPath, $envContent, FILE_APPEND | LOCK_EX);
+
+                // Chemin relatif pour remonter d'un niveau à partir de `www`
+                $envPath = __DIR__ . '/../.env';
+
+                // Assurez-vous de construire votre contenu de .env ici
+                $envContent = "POSTGRES_USER={$dbuser}\n";
+                $envContent .= "POSTGRES_PASSWORD={$dbpassword}\n";
+                $envContent .= "POSTGRES_DB={$dbname}\n";
+
+                $myenv = fopen(".env", "w");
+                fwrite($myenv, $envContent);
+                fclose($myenv);
+
 
             try {
-                var_dump($dbname);
-                $pdo = new PDO("pgsql:host=postgres;port:5432;dbname=$dbname;user=$dbuser;password=$dbpassword");
+                $pdo = new \PDO("pgsql:host=postgres;port=5432;dbname=$dbname;user=$dbuser;password=$dbpassword");
+
                 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                $bddPath = __DIR__ . '/../BDD.sql';
-                var_dump($bddPath);
+                $bddPath = './BDD.sql';
                 // script SQL
                 $sqlScript = file_get_contents($bddPath);
 
                 $sqlScript = str_replace("{prefix}", $tablePrefix, $sqlScript);
 
-                $sqlStatements = explode(";", $sqlScript);
+                $sqlStatements = explode(";", $sqlScript); // Séparer chaque instruction SQL
 
                 // Exécuter chaque instruction SQL
                 foreach ($sqlStatements as $statement) {
                     $trimmedStatement = trim($statement);
                     if ($trimmedStatement) {
-                        $pdo->exec($trimmedStatement);
+                        $stmt = $pdo->prepare($trimmedStatement);
+                        $stmt->execute();
                     }
                 }
 
+
             } catch (PDOException $e) {
-                die('Erreur lors de l\'exécution du script SQL ou de la connexion à la base de données : ' . $e->getMessage());
+                var_dump('Erreur lors de l\'exécution du script SQL ou de la connexion à la base de données : ' . $e->getMessage());
             }
-
-            // Redirection ou gestion de la suite du processus d'installation
-            echo "ok";
+            $user = new User();
+                $user->setFirstname($adminFirstname);
+                $user->setLastname($adminLastname);
+                $user->setUsername($adminUsername);
+                $user->setEmail($adminEmail);
+                $user->setPwd($adminPassword);
+                $user->setRoles("admin");
+                $user->setIsActive(true);
+                $user->save(); //ajouter toutes les données dans la base de données
+                $success[] = "Votre compte a bien été créé";
 
             }
+            header("Location: /login");
         }
         // Utiliser votre système de vue pour inclure le formulaire
         $myView = new View("install");
@@ -91,6 +111,7 @@ class Install
         // Pas d'erreurs ou succès initiaux pour l'installation
         $myView->assign("errorsForm", $errors);
         $myView->assign("successForm", $success);
+
 
     }
 
