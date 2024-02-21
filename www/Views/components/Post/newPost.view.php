@@ -63,6 +63,7 @@ if (!empty($this->data['mandatoryFields'])) {
                         <textarea name="pageSlug" id="pageName" class="pageName"
                                   placeholder="Nom de la page ..."><?php echo $this->data['post']->getSlug() ?? '' ?></textarea>
                     </div>
+                    <div style='color: red'><?php echo $errorSlug?></div>
                     <div class="form-group">
                         <label for="pageTitle"></label>
                         <textarea name="pageTitle" id="pageTitle" class="pageTitle" placeholder="Titre de la page ..."><?php echo $this->data['post']->getTitle() ?? '' ?></textarea>

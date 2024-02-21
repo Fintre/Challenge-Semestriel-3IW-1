@@ -138,8 +138,7 @@
 
 /themes/boulangerie-theme:
   controller: Themes
-  action: boulangerietheme
-
+  action: boulangerie
 
 /install:
   controller: Install
@@ -147,4 +146,4 @@
 
 /themes/music-theme:
   controller: Themes
-  action: musictheme
+  action: music
