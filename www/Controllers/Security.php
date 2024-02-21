@@ -21,6 +21,10 @@ date_default_timezone_set('Europe/Paris');
 class Security
 {
 
+    public function homePage(): void
+    {
+        $myView = new View("Security/home", "neutral");
+    }
     public function login(): void
     {
         session_start();
