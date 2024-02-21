@@ -10,20 +10,22 @@ class DB
     private string $table;
 
     public function __construct() {
-        // Utiliser les constantes du fichier de configuration pour la connexion
-        $dsn = "pgsql:host=".DB_HOST.";port=5432;dbname=".DB_NAME.";user=".DB_USER.";password=".DB_PASSWORD;
-        try {
-            $this->pdo = new \PDO($dsn);
-        } catch (\PDOException $e) {
-            echo "Erreur de connexion à la base de données : " . $e->getMessage();
+        $dbname = DB_NAME;
+        $dbuser = DB_USER;
+        $dbpassword = DB_PASSWORD;
+        $dbhost = DB_HOST;
+        $dbport = DB_PORT;
+
+        try{
+            $this->pdo = new \PDO("pgsql:host=$dbhost;port=$dbport;dbname=$dbname;user=$dbuser;password=$dbpassword");
+        }catch (\PDOException $e) {
+            echo "Erreur SQL : ".$e->getMessage();
         }
 
-        // La logique pour déterminer le nom de la table reste inchangée
-        $table = get_called_class();
-        $table = explode("\\", $table);
-        $table = array_pop($table);
-        // Utiliser la constante TABLE_PREFIX du fichier de configuration
-        $this->table = TABLE_PREFIX . "_" . strtolower($table);
+        $table = get_called_class(); //pour récupérer le nom de la classe qui a appelé la méthode
+        $table = explode("\\", $table); //pour séparer le namespace du nom de la classe
+        $table = array_pop($table); //pour récupérer le nom de la classe
+        $this->table = TABLE_PREFIX."_".strtolower($table); //pour mettre le nom de la table en minuscule et ajouter le préfixe gfm_
     }
 
     public static function getInstance(): DB {

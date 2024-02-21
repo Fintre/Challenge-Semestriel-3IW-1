@@ -14,12 +14,12 @@ class InstallSite
                 "class"=>"form"
             ],
             "inputs"=>[
-                "Prénom"=>["type"=>"text", "class"=>"input-form", "id"=>"firstname", "placeholder"=>"Prénom", "minlen"=>2, "required"=>true, "error"=>"Le prénom doit faire plus de 2 caractères", "value"=>"admin"],
-                "Nom"=>["type"=>"text", "class"=>"input-form","id"=>"lastname", "placeholder"=>"Nom", "minlen"=>2, "required"=>true, "error"=>"Le nom doit faire plus de 2 caractères", "value"=>"admin"],
-                "Nom d'utilisateur"=>["type"=>"text", "class"=>"input-form","id"=>"username", "placeholder"=>"Nom d'utilisateur", "minlen"=>2, "required"=>true, "error"=>"Le nom doit faire plus de 2 caractères", "value"=>"admin"],
-                "E-mail"=>["type"=>"email", "class"=>"input-form","id"=>"email", "placeholder"=>"E-mail", "required"=>true, "error"=>"Le format de l'email est incorrect", "value"=>"catalinadanila6@gmail.com"],
-                "Mot de passe"=>["type"=>"password", "class"=>"input-form","id"=>"pwd", "placeholder"=>"Mot de passe", "required"=>true, "error"=>"Votre mot de passe doit faire plus de 8 caractères avec minuscule et chiffre", "value"=>"Catalina.2003"],
-                "Confirmation de mot de passe"=>["type"=>"password", "class"=>"input-form","id"=>"pwdConfirm", "confirm"=>"pwd" ,"placeholder"=>"Confirmation mdp", "required"=>true, "error"=>"Votre mot de passe de confirmation ne correspond pas", "value"=>"Catalina.2003"],
+                "Prénom"=>["type"=>"text", "class"=>"input-form", "id"=>"firstname", "placeholder"=>"Prénom", "minlen"=>2, "required"=>true, "error"=>"Le prénom doit faire plus de 2 caractères" ],
+                "Nom"=>["type"=>"text", "class"=>"input-form","id"=>"lastname", "placeholder"=>"Nom", "minlen"=>2, "required"=>true, "error"=>"Le nom doit faire plus de 2 caractères"],
+                "Nom d'utilisateur"=>["type"=>"text", "class"=>"input-form","id"=>"username", "placeholder"=>"Nom d'utilisateur", "minlen"=>2, "required"=>true, "error"=>"Le nom doit faire plus de 2 caractères"],
+                "E-mail"=>["type"=>"email", "class"=>"input-form","id"=>"email", "placeholder"=>"E-mail", "required"=>true, "error"=>"Le format de l'email est incorrect"],
+                "Mot de passe"=>["type"=>"password", "class"=>"input-form","id"=>"pwd", "placeholder"=>"Mot de passe", "required"=>true, "error"=>"Votre mot de passe doit faire plus de 8 caractères avec minuscule et chiffre"],
+                "Confirmation de mot de passe"=>["type"=>"password", "class"=>"input-form","id"=>"pwdConfirm", "confirm"=>"pwd" ,"placeholder"=>"Confirmation mdp", "required"=>true, "error"=>"Votre mot de passe de confirmation ne correspond pas"],
                 "dbname"=>[
                     "type"=>"text",
                     "name" => "dbname",
@@ -27,7 +27,7 @@ class InstallSite
                     "placeholder" => "Nom de la base de données",
                     "required"=>true,
                     "error"=>"Veuillez entrer le nom de la base de données",
-                    "value"=>"admin",
+
                 ],
                 "dbuser"=>[
                     "type"=>"text",
@@ -36,7 +36,7 @@ class InstallSite
                     "placeholder" => "Utilisateur de la base de données",
                     "required"=>true,
                     "error"=>"Veuillez entrer l'utilisateur de la base de données",
-                    "value"=>"admin",
+
                 ],
                 "dbpwd"=>[
                     "type"=>"password",
@@ -45,7 +45,7 @@ class InstallSite
                     "placeholder" => "Mot de passe de la base de données",
                     "required"=>true,
                     "error"=>"Veuillez entrer le mot de passe de la base de données",
-                    "value"=>"Catalina.2003",
+
                 ],
                 "table_prefix"=>[
                     "type"=>"text",
@@ -54,7 +54,7 @@ class InstallSite
                     "placeholder" => "Préfixe pour les tables (ex: mysite_)",
                     "required"=>true,
                     "error"=>"Veuillez entrer un préfixe pour les tables de la base de données",
-                    "value"=>"admin",
+
                 ],
             ]
         ];

@@ -42,7 +42,6 @@ class Security
                 $user = $userModel->checkUserCredentials($email, $password);
                 if ($user) {
                     // Authentification réussie
-                    var_dump($user);
                     $userSerialized = serialize($user);
                     $_SESSION['user'] = $userSerialized; // Stocker les informations de l'utilisateur dans la session
                     header("Location: /bo/dashboard");

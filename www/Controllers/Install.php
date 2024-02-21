@@ -38,7 +38,8 @@ class Install
                 // Créer le fichier de configuration
                 $configContent = "<?php\n";
                 $configContent .= "// Configuration de la base de données\n";
-                $configContent .= "define('DB_HOST', 'postgres');\n"; //
+                $configContent .= "define('DB_HOST', 'postgres');\n";
+                $configContent .= "define('DB_PORT', '5432');\n";
                 $configContent .= "define('DB_NAME', '" . addslashes($dbname) . "');\n";
                 $configContent .= "define('DB_USER', '" . addslashes($dbuser) . "');\n";
                 $configContent .= "define('DB_PASSWORD', '" . addslashes($dbpassword) . "');\n";
@@ -70,7 +71,6 @@ class Install
                 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                 $bddPath = './BDD.sql';
-                var_dump($bddPath);
                 // script SQL
                 $sqlScript = file_get_contents($bddPath);
 
@@ -84,26 +84,26 @@ class Install
                     if ($trimmedStatement) {
                         $stmt = $pdo->prepare($trimmedStatement);
                         $stmt->execute();
-                        $pdo->exec($trimmedStatement);
                     }
                 }
 
-                $user = new User();
+
+            } catch (PDOException $e) {
+                var_dump('Erreur lors de l\'exécution du script SQL ou de la connexion à la base de données : ' . $e->getMessage());
+            }
+            $user = new User();
                 $user->setFirstname($adminFirstname);
                 $user->setLastname($adminLastname);
                 $user->setUsername($adminUsername);
                 $user->setEmail($adminEmail);
                 $user->setPwd($adminPassword);
                 $user->setRoles("admin");
+                $user->setIsActive(true);
                 $user->save(); //ajouter toutes les données dans la base de données
                 $success[] = "Votre compte a bien été créé";
 
-
-            } catch (PDOException $e) {
-                var_dump('Erreur lors de l\'exécution du script SQL ou de la connexion à la base de données : ' . $e->getMessage());
             }
-
-            }
+            header("Location: /login");
         }
         // Utiliser votre système de vue pour inclure le formulaire
         $myView = new View("install");
