@@ -62,6 +62,7 @@ if (!empty($this->data['mandatoryFields'])) {
                         <input name="pageSlug" id="pageName" class="pageName"
                                   placeholder="Nom de la page ..." value="<?php echo $this->data['post']->getSlug() ?? '' ?>">
                     </div>
+                    <div style='color: red'><?php echo $errorSlug?></div>
                     <div class="form-group">
                         <label for="pageTitle"></label>
                         <input name="pageTitle" id="pageTitle" class="pageTitle" placeholder="Titre de la page ..." value="<?php echo $this->data['post']->getTitle() ?? '' ?>">

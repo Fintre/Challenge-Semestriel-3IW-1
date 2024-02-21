@@ -18,6 +18,8 @@ class Post extends DB
 
     protected ?int $theme_id;
 
+    protected ?string $theme;
+
     protected string $user_username;
 
     public function __construct()
@@ -47,7 +49,9 @@ class Post extends DB
      */
     public function getThemeId()
     {
-        return $this->theme_id;
+        if (isset($this->theme_id)) {
+            return $this->theme_id;
+        }
     }
 
     /**
