@@ -24,7 +24,7 @@
   controller: Security
   action: activateAccount
 
-/login:
+/:
   controller: Security
   action: login
 

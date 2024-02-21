@@ -8,6 +8,7 @@ use App\Core\Verificator;
 use App\Models\User;
 use PDO;
 use PDOException;
+//use App\Controllers\Security;
 class Install
 {
     public function run()
@@ -23,12 +24,16 @@ class Install
             $verificator = new Verificator(); // Créer une instance de la classe Verificator
             if ($verificator->checkForm($config, $_REQUEST, $errors)) { // Vérifier le formulaire
 
-                $adminUsername = $_REQUEST['admin_username'] ?? ''; //recupère la valeur de admin_username
-                $adminPassword = $_POST['admin_password'] ?? ''; //recupère la valeur de admin_password
-                $dbname = $_POST['dbname'] ?? ''; //recupère la valeur de dbname
-                $dbuser = $_POST['dbuser'] ?? ''; //recupère la valeur de dbuser
-                $dbpassword = $_POST['dbpwd'] ?? ''; //recupère la valeur de dbpassword
-                $tablePrefix = $_POST['table_prefix'] ?? '';    //recupère la valeur de table_prefix
+                $adminFirstname = $_REQUEST['Prénom'] ?? ''; //recupère la valeur de admin_firstname
+                $adminLastname = $_REQUEST['Nom'] ?? ''; //recupère la valeur de admin_lastname
+                $adminEmail = $_REQUEST['E-mail'] ?? ''; //recupère la valeur de admin_email
+                $adminUsername = $_REQUEST['Nom_d\'utilisteur'] ?? ''; //recupère la valeur de admin_username
+                $adminPassword = $_REQUEST['Mot_de_passe'] ?? ''; //recupère la valeur de admin_password
+                $adminPasswordConfirm = $_REQUEST['Confirmation_de_mot_de_passe'] ?? ''; //recupère la valeur de admin_password_confirm
+                $dbname = $_REQUEST['dbname'] ?? ''; //recupère la valeur de dbname
+                $dbuser = $_REQUEST['dbuser'] ?? ''; //recupère la valeur de dbuser
+                $dbpassword = $_REQUEST['dbpwd'] ?? ''; //recupère la valeur de dbpassword
+                $tablePrefix = $_REQUEST['table_prefix'] ?? '';    //recupère la valeur de table_prefix
 
                 // Créer le fichier de configuration
                 $configContent = "<?php\n";
@@ -54,10 +59,9 @@ class Install
             $envContent .= "POSTGRES_PASSWORD={$dbpassword}\n";
             $envContent .= "POSTGRES_DB={$dbname}\n";
 
-                $myenv = fopen(".env", "w");
-                fwrite($myenv, $envContent);
-                fclose($myenv);
-
+            $myenv = fopen(".env", "w");
+            fwrite($myenv, $envContent);
+            fclose($myenv);
 
 
             try {
@@ -66,6 +70,7 @@ class Install
                 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                 $bddPath = './BDD.sql';
+                var_dump($bddPath);
                 // script SQL
                 $sqlScript = file_get_contents($bddPath);
 
@@ -78,7 +83,7 @@ class Install
                     $trimmedStatement = trim($statement);
                     if ($trimmedStatement) {
                         $stmt = $pdo->prepare($trimmedStatement);
-                        // Exécuter l'instruction préparée
+
                         $stmt->execute();
                     }
                 }
@@ -87,27 +92,25 @@ class Install
                 var_dump('Erreur lors de l\'exécution du script SQL ou de la connexion à la base de données : ' . $e->getMessage());
             }
 
-            // Redirection ou gestion de la suite du processus d'installation
-            echo "ok";
-
             }
         }
-                /*$user = new User();
-                $user->setFirstname();
-                $user->setLastname($_REQUEST['Nom']);
-                $user->setUsername($_REQUEST['Nom_d\'utilisateur']);
-                $user->setEmail($_REQUEST['E-mail']);
-                $user->setPwd($_REQUEST['Mot_de_passe']);
-                $activationToken = bin2hex(random_bytes(16)); // Générer un token d'activation
-                $user->setActivationToken($activationToken);
-                $user->save(); //ajouter toutes les données dans la base de données
-                $success[] = "Votre compte a bien été créé";*/
-        // Utiliser votre système de vue pour inclure le formulaire
-        $myView = new View("install");
-        $myView->assign("configForm", $config);
-        // Pas d'erreurs ou succès initiaux pour l'installation
-        $myView->assign("errorsForm", $errors);
-        $myView->assign("successForm", $success);
+            $user = new User();
+            $user->setFirstname($adminFirstname);
+            $user->setLastname($adminLastname);
+            $user->setUsername($adminUsername);
+            $user->setEmail($adminEmail);
+            $user->setPwd($adminPassword);
+            $user->setRoles("admin");
+            $activationToken = bin2hex(random_bytes(16)); // Générer un token d'activation
+            $user->setActivationToken($activationToken);
+            $user->save(); //ajouter toutes les données dans la base de données
+            $success[] = "Votre compte a bien été créé";
+            // Utiliser votre système de vue pour inclure le formulaire
+            $myView = new View("install");
+            $myView->assign("configForm", $config);
+            // Pas d'erreurs ou succès initiaux pour l'installation
+            $myView->assign("errorsForm", $errors);
+            $myView->assign("successForm", $success);
 
     }
 

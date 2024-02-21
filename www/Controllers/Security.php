@@ -79,25 +79,12 @@ class Security
                 $user->setLastname($_REQUEST['Nom']);
                 $user->setUsername($_REQUEST['Nom_d\'utilisateur']);
                 $user->setEmail($_REQUEST['E-mail']);
-                $user2 = $user->getOneBy(['email' => $_REQUEST['E-mail']]);
-                if ($user2 == false) {
-                    $user->setPwd($_REQUEST['Mot_de_passe']);
-                    $activationToken = bin2hex(random_bytes(16)); // Générer un token d'activation
-                    $user->setActivationToken($activationToken); // Supposons que vous avez une méthode pour cela
-                    $user->save(); //ajouter toutes les données dans la base de données
-                    $success[] = "Votre compte a bien été créé";
+                $user->setPwd($_REQUEST['Mot_de_passe']);
+                $activationToken = bin2hex(random_bytes(16)); // Générer un token d'activation
+                $user->setActivationToken($activationToken);
+                $user->save(); //ajouter toutes les données dans la base de données
+                $success[] = "Votre compte a bien été créé";
 
-                    // Envoyer l'email de réinitialisation
-                    $emailResult = $this->sendActivationEmail($user->getEmail(), $activationToken);
-
-                    if (isset($emailResult['success'])) {
-                        $success[] = $emailResult['success'];
-                    } elseif (isset($emailResult['error'])) {
-                        $errors[] = $emailResult['error'];
-                    }
-                } else {
-                    $errors[] = "Cette adresse mail est déjà associée à un compte.";
-                }
             }
         }
 
