@@ -1,20 +1,5 @@
 -- Adminer 4.8.1 PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) dump
 
-
-DROP TABLE IF EXISTS "{prefix}_categorie";
-DROP SEQUENCE IF EXISTS {prefix}_categorie_id_seq;
-CREATE SEQUENCE {prefix}_categorie_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1;
-
-CREATE TABLE "public"."{prefix}_categorie" (
-    "id" integer DEFAULT nextval('{prefix}_categorie_id_seq') NOT NULL,
-    "description" character varying(255) NOT NULL,
-    "createdat" timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    "updatedat" timestamp DEFAULT CURRENT_TIMESTAMP,
-    "isDeleted" smallint DEFAULT '0' NOT NULL,
-    CONSTRAINT "{prefix}_categorie_pkey" UNIQUE ("id")
-) WITH (oids = false);
-
-
 DROP TABLE IF EXISTS "{prefix}_comment";
 DROP SEQUENCE IF EXISTS {prefix}_comment_id_seq;
 CREATE SEQUENCE {prefix}_comment_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1;

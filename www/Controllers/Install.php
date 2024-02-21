@@ -8,7 +8,7 @@ use App\Core\Verificator;
 use App\Models\User;
 use PDO;
 use PDOException;
-//use App\Controllers\Security;
+use App\Controllers\Security;
 class Install
 {
     public function run()
@@ -51,17 +51,17 @@ class Install
                 fclose($myfile);
 
 
-            // Chemin relatif pour remonter d'un niveau à partir de `www`
-            $envPath = __DIR__ . '/../.env';
+                // Chemin relatif pour remonter d'un niveau à partir de `www`
+                $envPath = __DIR__ . '/../.env';
 
-            // Assurez-vous de construire votre contenu de .env ici
-            $envContent = "POSTGRES_USER={$dbuser}\n";
-            $envContent .= "POSTGRES_PASSWORD={$dbpassword}\n";
-            $envContent .= "POSTGRES_DB={$dbname}\n";
+                // Assurez-vous de construire votre contenu de .env ici
+                $envContent = "POSTGRES_USER={$dbuser}\n";
+                $envContent .= "POSTGRES_PASSWORD={$dbpassword}\n";
+                $envContent .= "POSTGRES_DB={$dbname}\n";
 
-            $myenv = fopen(".env", "w");
-            fwrite($myenv, $envContent);
-            fclose($myenv);
+                $myenv = fopen(".env", "w");
+                fwrite($myenv, $envContent);
+                fclose($myenv);
 
 
             try {
@@ -76,17 +76,28 @@ class Install
 
                 $sqlScript = str_replace("{prefix}", $tablePrefix, $sqlScript);
 
-                $sqlStatements = explode(";", $sqlScript);
+                $sqlStatements = explode(";", $sqlScript); // Séparer chaque instruction SQL
 
                 // Exécuter chaque instruction SQL
                 foreach ($sqlStatements as $statement) {
                     $trimmedStatement = trim($statement);
                     if ($trimmedStatement) {
                         $stmt = $pdo->prepare($trimmedStatement);
-
                         $stmt->execute();
+                        $pdo->exec($trimmedStatement);
                     }
                 }
+
+                $user = new User();
+                $user->setFirstname($adminFirstname);
+                $user->setLastname($adminLastname);
+                $user->setUsername($adminUsername);
+                $user->setEmail($adminEmail);
+                $user->setPwd($adminPassword);
+                $user->setRoles("admin");
+                $user->save(); //ajouter toutes les données dans la base de données
+                $success[] = "Votre compte a bien été créé";
+
 
             } catch (PDOException $e) {
                 var_dump('Erreur lors de l\'exécution du script SQL ou de la connexion à la base de données : ' . $e->getMessage());
@@ -94,23 +105,13 @@ class Install
 
             }
         }
-            $user = new User();
-            $user->setFirstname($adminFirstname);
-            $user->setLastname($adminLastname);
-            $user->setUsername($adminUsername);
-            $user->setEmail($adminEmail);
-            $user->setPwd($adminPassword);
-            $user->setRoles("admin");
-            $activationToken = bin2hex(random_bytes(16)); // Générer un token d'activation
-            $user->setActivationToken($activationToken);
-            $user->save(); //ajouter toutes les données dans la base de données
-            $success[] = "Votre compte a bien été créé";
-            // Utiliser votre système de vue pour inclure le formulaire
-            $myView = new View("install");
-            $myView->assign("configForm", $config);
-            // Pas d'erreurs ou succès initiaux pour l'installation
-            $myView->assign("errorsForm", $errors);
-            $myView->assign("successForm", $success);
+        // Utiliser votre système de vue pour inclure le formulaire
+        $myView = new View("install");
+        $myView->assign("configForm", $config);
+        // Pas d'erreurs ou succès initiaux pour l'installation
+        $myView->assign("errorsForm", $errors);
+        $myView->assign("successForm", $success);
+
 
     }
 

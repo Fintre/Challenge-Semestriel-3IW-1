@@ -140,7 +140,7 @@
   controller: Themes
   action: boulangerie
 
-/install:
+/run:
   controller: Install
   action: run
 
