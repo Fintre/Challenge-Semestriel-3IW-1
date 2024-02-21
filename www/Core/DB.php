@@ -1,17 +1,23 @@
 <?php
 namespace App\Core;
 date_default_timezone_set('Europe/Paris');
+
+require __DIR__ . '/../config.php';
 class DB
 {
     private static ?DB $instance = null;
     private \PDO $pdo;
     private string $table;
 
-    public function __construct()
-    {
-        //connexion à la bdd via pdo
+    public function __construct() {
+        $dbname = DB_NAME;
+        $dbuser = DB_USER;
+        $dbpassword = DB_PASSWORD;
+        $dbhost = DB_HOST;
+        $dbport = DB_PORT;
+
         try{
-            $this->pdo = new \PDO("pgsql:host=postgres;port=5432;dbname=gfm;user=gofindme;password=gfmpwd");
+            $this->pdo = new \PDO("pgsql:host=$dbhost;port=$dbport;dbname=$dbname;user=$dbuser;password=$dbpassword");
         }catch (\PDOException $e) {
             echo "Erreur SQL : ".$e->getMessage();
         }
@@ -19,7 +25,7 @@ class DB
         $table = get_called_class(); //pour récupérer le nom de la classe qui a appelé la méthode
         $table = explode("\\", $table); //pour séparer le namespace du nom de la classe
         $table = array_pop($table); //pour récupérer le nom de la classe
-        $this->table = "gfm_".strtolower($table); //pour mettre le nom de la table en minuscule et ajouter le préfixe gfm_
+        $this->table = TABLE_PREFIX."_".strtolower($table); //pour mettre le nom de la table en minuscule et ajouter le préfixe gfm_
     }
 
     public static function getInstance(): DB {

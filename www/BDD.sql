@@ -1,39 +1,3 @@
--- Adminer 4.8.1 PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) dump
-
-
-DROP TABLE IF EXISTS "{prefix}_categorie";
-DROP SEQUENCE IF EXISTS {prefix}_categorie_id_seq;
-CREATE SEQUENCE {prefix}_categorie_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1;
-
-CREATE TABLE "public"."{prefix}_categorie" (
-    "id" integer DEFAULT nextval('{prefix}_categorie_id_seq') NOT NULL,
-    "description" character varying(255) NOT NULL,
-    "createdat" timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    "updatedat" timestamp DEFAULT CURRENT_TIMESTAMP,
-    "isDeleted" smallint DEFAULT '0' NOT NULL,
-    CONSTRAINT "{prefix}_categorie_pkey" UNIQUE ("id")
-) WITH (oids = false);
-
-
-DROP TABLE IF EXISTS "{prefix}_comment";
-DROP SEQUENCE IF EXISTS {prefix}_comment_id_seq;
-CREATE SEQUENCE {prefix}_comment_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1;
-
-CREATE TABLE "public"."{prefix}_comment" (
-    "id" integer DEFAULT nextval('{prefix}_comment_id_seq') NOT NULL,
-    "commentText" character varying(255) NOT NULL,
-    "createdat" timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    "updatedat" timestamp DEFAULT CURRENT_TIMESTAMP,
-    "user_id" integer NOT NULL,
-    "post_id" integer NOT NULL,
-    CONSTRAINT "{prefix}_comment_pkey" UNIQUE ("id")
-) WITH (oids = false);
-
-CREATE INDEX "{prefix}_comment_post_id" ON "public"."{prefix}_comment" USING btree ("post_id");
-
-CREATE INDEX "{prefix}_comment_user_id" ON "public"."{prefix}_comment" USING btree ("user_id");
-
-
 DROP TABLE IF EXISTS "{prefix}_media";
 DROP SEQUENCE IF EXISTS {prefix}_media_id_seq;
 CREATE SEQUENCE {prefix}_media_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1;
@@ -128,13 +92,7 @@ CREATE TABLE "public"."{prefix}_user" (
     CONSTRAINT "{prefix}_user_username" UNIQUE ("username")
 ) WITH (oids = false);
 
-
-ALTER TABLE ONLY "public"."{prefix}_comment" ADD CONSTRAINT "{prefix}_comment_post_fk" FOREIGN KEY (post_id) REFERENCES {prefix}_post(id) NOT DEFERRABLE;
-ALTER TABLE ONLY "public"."{prefix}_comment" ADD CONSTRAINT "{prefix}_comment_user_fk" FOREIGN KEY (user_id) REFERENCES {prefix}_user(id) NOT DEFERRABLE;
-
 ALTER TABLE ONLY "public"."{prefix}_media" ADD CONSTRAINT "{prefix}_media_post_fk" FOREIGN KEY (post_id) REFERENCES {prefix}_post(id) ON UPDATE CASCADE NOT DEFERRABLE;
 
 ALTER TABLE ONLY "public"."{prefix}_post" ADD CONSTRAINT "{prefix}_post_theme_id_fkey" FOREIGN KEY (theme_id) REFERENCES {prefix}_theme(id) ON UPDATE CASCADE ON DELETE SET NULL NOT DEFERRABLE;
 ALTER TABLE ONLY "public"."{prefix}_post" ADD CONSTRAINT "{prefix}_post_user_username_fkey" FOREIGN KEY (user_username) REFERENCES {prefix}_user(username) ON UPDATE CASCADE NOT DEFERRABLE;
-
--- 2024-02-19 20:20:10.165302+00

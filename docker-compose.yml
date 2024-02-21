@@ -6,6 +6,7 @@ services:
      - "80:80"
     volumes:
      - ./www:/var/www/html/
+     - ./.env:/var/www/html/.env
      - ./server/000-default.conf:/etc/apache2/sites-available/000-default.conf
      - ./server/apache2.conf:/etc/apache2/apache2.conf
      - ./server/php.ini:/usr/local/etc/php/php.ini
@@ -16,11 +17,12 @@ services:
     ports:
       - "5433:5432"
     environment:
-      POSTGRES_USER: gofindme
-      POSTGRES_PASSWORD: gfmpwd
-      POSTGRES_DB: gfm
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     volumes:
       - postgres_data:/var/lib/postgresql/data
+
 
 
   adminer:

@@ -21,6 +21,10 @@ date_default_timezone_set('Europe/Paris');
 class Security
 {
 
+    public function homePage(): void
+    {
+        $myView = new View("Security/home", "neutral");
+    }
     public function login(): void
     {
         session_start();
@@ -42,7 +46,6 @@ class Security
                 $user = $userModel->checkUserCredentials($email, $password);
                 if ($user) {
                     // Authentification réussie
-                    var_dump($user);
                     $userSerialized = serialize($user);
                     $_SESSION['user'] = $userSerialized; // Stocker les informations de l'utilisateur dans la session
                     header("Location: /bo/dashboard");
@@ -79,25 +82,20 @@ class Security
                 $user->setLastname($_REQUEST['Nom']);
                 $user->setUsername($_REQUEST['Nom_d\'utilisateur']);
                 $user->setEmail($_REQUEST['E-mail']);
-                $user2 = $user->getOneBy(['email' => $_REQUEST['E-mail']]);
-                if ($user2 == false) {
-                    $user->setPwd($_REQUEST['Mot_de_passe']);
-                    $activationToken = bin2hex(random_bytes(16)); // Générer un token d'activation
-                    $user->setActivationToken($activationToken); // Supposons que vous avez une méthode pour cela
-                    $user->save(); //ajouter toutes les données dans la base de données
-                    $success[] = "Votre compte a bien été créé";
+                $user->setPwd($_REQUEST['Mot_de_passe']);
+                $activationToken = bin2hex(random_bytes(16)); // Générer un token d'activation
+                $user->setActivationToken($activationToken);
+                $user->save(); //ajouter toutes les données dans la base de données
+                $success[] = "Votre compte a bien été créé";
+                 // Envoyer l'email de réinitialisation
+                 $emailResult = $this->sendActivationEmail($user->getEmail(), $activationToken);
 
-                    // Envoyer l'email de réinitialisation
-                    $emailResult = $this->sendActivationEmail($user->getEmail(), $activationToken);
+                 if (isset($emailResult['success'])) {
+                     $success[] = $emailResult['success'];
+                 } elseif (isset($emailResult['error'])) {
+                     $errors[] = $emailResult['error'];
+                 }
 
-                    if (isset($emailResult['success'])) {
-                        $success[] = $emailResult['success'];
-                    } elseif (isset($emailResult['error'])) {
-                        $errors[] = $emailResult['error'];
-                    }
-                } else {
-                    $errors[] = "Cette adresse mail est déjà associée à un compte.";
-                }
             }
         }
 
