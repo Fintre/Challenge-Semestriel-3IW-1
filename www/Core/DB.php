@@ -7,26 +7,19 @@ class DB
     private \PDO $pdo;
     private string $table;
 
-    private function __construct() {
-        // Chargement des paramètres de connexion depuis config.php
-        if (file_exists('../config.php')) {
-            require '../config.php';
-            $dsn = "pgsql:host=" . DB_HOST . ";dbname=" . DB_NAME;
-            try {
-                $this->pdo = new \PDO($dsn, DB_USER, DB_PASSWORD);
-                $this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-            } catch (\PDOException $e) {
-                die("Erreur de connexion à la base de données : " . $e->getMessage());
-            }
-        } else {
-            die("Le fichier de configuration de la base de données est manquant.");
+    public function __construct()
+    {
+        //connexion à la bdd via pdo
+        try{
+            $this->pdo = new \PDO("pgsql:host=postgres;port=5432;dbname=gfm;user=gofindme;password=gfmpwd");
+        }catch (\PDOException $e) {
+            echo "Erreur SQL : ".$e->getMessage();
         }
 
-        // Gestion du préfixe des tables
-        $className = get_called_class();
-        $className = explode("\\", $className);
-        $className = array_pop($className);
-        $this->table = TABLE_PREFIX . strtolower($className);
+        $table = get_called_class(); //pour récupérer le nom de la classe qui a appelé la méthode
+        $table = explode("\\", $table); //pour séparer le namespace du nom de la classe
+        $table = array_pop($table); //pour récupérer le nom de la classe
+        $this->table = "gfm_".strtolower($table); //pour mettre le nom de la table en minuscule et ajouter le préfixe gfm_
     }
 
     public static function getInstance(): DB {
@@ -35,6 +28,7 @@ class DB
         }
         return self::$instance;
     }
+
 
     // Empêcher le clonage de l'instance
     private function __clone() {}
