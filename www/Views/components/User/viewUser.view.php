@@ -9,7 +9,7 @@
             <p class="text"><strong>Créé le :</strong> <?= date('d/m/Y à H:i', strtotime($userData['createdat'])) ?></p>
             <p class="text"><strong>Dernière mise à jour :</strong> <?= $userData['updatedat'] ? date('d/m/Y à H:i', strtotime($userData['updatedat'])) : 'N/A' ?></p>
             <p class="text"><strong>Actif :</strong> <?= $userData['is_active'] ? 'Oui' : 'Non' ?></p>
-            <button class="button button-primary">Modifier</button>
+            <a href="/bo/user/edit-user?id=<?php echo $userData['id']; ?>"><button class="button button-primary">Modifier</button></a>
         </div>
 </section>
 

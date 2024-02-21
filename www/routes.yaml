@@ -1,3 +1,7 @@
+/:
+  controller: Security
+  action: home
+
 /bo/dashboard:
   controller: Main
   action: home

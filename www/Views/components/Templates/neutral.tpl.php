@@ -11,7 +11,7 @@
 </head>
 <body>
     <header id="header" class="bo-connexion-header">
-        <p>Accedez au back office du gofindme.fr</p>
+        <p>Accedez au back office</p>
     </header>
         <main class="bo-connexion-content">
             <?php include $this->viewName;?>
