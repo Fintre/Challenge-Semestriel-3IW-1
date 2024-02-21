@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Forms\InstallSite;
 use App\Core\View;
 use App\Core\Verificator;
+use App\Models\User;
 use PDO;
 use PDOException;
 class Install
@@ -60,13 +61,11 @@ class Install
 
 
             try {
-                var_dump($dbname);
                 $pdo = new \PDO("pgsql:host=postgres;port=5432;dbname=$dbname;user=$dbuser;password=$dbpassword");
 
                 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                $bddPath = __DIR__ . '/../BDD.sql';
-                var_dump($bddPath);
+                $bddPath = './BDD.sql';
                 // script SQL
                 $sqlScript = file_get_contents($bddPath);
 
@@ -78,7 +77,9 @@ class Install
                 foreach ($sqlStatements as $statement) {
                     $trimmedStatement = trim($statement);
                     if ($trimmedStatement) {
-                        $pdo->exec($trimmedStatement);
+                        $stmt = $pdo->prepare($trimmedStatement);
+                        // Exécuter l'instruction préparée
+                        $stmt->execute();
                     }
                 }
 
@@ -91,6 +92,16 @@ class Install
 
             }
         }
+                /*$user = new User();
+                $user->setFirstname();
+                $user->setLastname($_REQUEST['Nom']);
+                $user->setUsername($_REQUEST['Nom_d\'utilisateur']);
+                $user->setEmail($_REQUEST['E-mail']);
+                $user->setPwd($_REQUEST['Mot_de_passe']);
+                $activationToken = bin2hex(random_bytes(16)); // Générer un token d'activation
+                $user->setActivationToken($activationToken);
+                $user->save(); //ajouter toutes les données dans la base de données
+                $success[] = "Votre compte a bien été créé";*/
         // Utiliser votre système de vue pour inclure le formulaire
         $myView = new View("install");
         $myView->assign("configForm", $config);
