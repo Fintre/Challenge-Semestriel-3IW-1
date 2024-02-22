@@ -18,7 +18,7 @@ class Articles
         $article = new Article();
         if (isset($_GET['action']) && isset($_GET['id'])) {
             $articleId = $_GET['id'];
-        
+
             if ($_GET['action'] === 'delete') {
                 if ($article->deleteArticlesAndBlogs($articleId)) {
                     $success[] = "L'article a été supprimé avec succès.";
@@ -39,7 +39,7 @@ class Articles
                 }
             }
         }
-        
+
         $allArticles = $article->getAllArticles();
         $publishArticles = $article->getPublishedArticles();
         $draftArticles = $article->getDraftArticle();
@@ -117,7 +117,7 @@ class Articles
             $article->setSlug($selectedArticle[0]["slug"]);
             $article->setType($selectedArticle[0]["type"]);
             $article->setUserId($selectedArticle[0]["user_username"]);
-            $article->setThemeId($selectedArticle[0]["theme_id"]);
+
 
         }else{
             $article->setUpdatedAt($formattedDate);
@@ -128,7 +128,7 @@ class Articles
             $article->setSlug("");
             $article->setType("article");
             $article->setUserId($username);
-            $article->setThemeId(1);
+
         }
 
         $article->saveInpost();

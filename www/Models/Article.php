@@ -16,7 +16,6 @@ class Article extends DB
     protected $createdat;
     protected $updatedat;
     protected $user_username;
-    protected $theme_id;
 
     public function getId(): ?int
     {
