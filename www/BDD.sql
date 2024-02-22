@@ -4,14 +4,10 @@ CREATE SEQUENCE {prefix}_media_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 2147483647
 
 CREATE TABLE "public"."{prefix}_media" (
     "id" integer DEFAULT nextval('{prefix}_media_id_seq') NOT NULL,
-    "tag" character varying(15) NOT NULL,
+    "title" character varying(15) NOT NULL,
     "filepath" character varying(100) NOT NULL,
     "description" character varying(255) NOT NULL,
     "createdat" timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    "updatedat" timestamp DEFAULT CURRENT_TIMESTAMP,
-    "isDeleted" smallint DEFAULT '0' NOT NULL,
-    "post_id" integer NOT NULL,
-    "type" character varying(15) NOT NULL,
     CONSTRAINT "{prefix}_media_pkey" UNIQUE ("id")
 ) WITH (oids = false);
 
@@ -91,8 +87,6 @@ CREATE TABLE "public"."{prefix}_user" (
     CONSTRAINT "{prefix}_user_pkey" UNIQUE ("id"),
     CONSTRAINT "{prefix}_user_username" UNIQUE ("username")
 ) WITH (oids = false);
-
-ALTER TABLE ONLY "public"."{prefix}_media" ADD CONSTRAINT "{prefix}_media_post_fk" FOREIGN KEY (post_id) REFERENCES {prefix}_post(id) ON UPDATE CASCADE NOT DEFERRABLE;
 
 ALTER TABLE ONLY "public"."{prefix}_post" ADD CONSTRAINT "{prefix}_post_user_username_fkey" FOREIGN KEY (user_username) REFERENCES {prefix}_user(username) ON UPDATE CASCADE NOT DEFERRABLE;
 
