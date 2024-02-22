@@ -94,5 +94,7 @@ CREATE TABLE "public"."{prefix}_user" (
 
 ALTER TABLE ONLY "public"."{prefix}_media" ADD CONSTRAINT "{prefix}_media_post_fk" FOREIGN KEY (post_id) REFERENCES {prefix}_post(id) ON UPDATE CASCADE NOT DEFERRABLE;
 
-ALTER TABLE ONLY "public"."{prefix}_post" ADD CONSTRAINT "{prefix}_post_theme_id_fkey" FOREIGN KEY (theme_id) REFERENCES {prefix}_theme(id) ON UPDATE CASCADE ON DELETE SET NULL NOT DEFERRABLE;
 ALTER TABLE ONLY "public"."{prefix}_post" ADD CONSTRAINT "{prefix}_post_user_username_fkey" FOREIGN KEY (user_username) REFERENCES {prefix}_user(username) ON UPDATE CASCADE NOT DEFERRABLE;
+
+INSERT INTO public.gfm_theme (id, titre, actif) VALUES (1, 'music-template', '0');
+INSERT INTO public.gfm_theme (id, titre, actif) VALUES (2, 'boulangerie-template', '1');
