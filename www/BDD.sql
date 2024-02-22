@@ -11,9 +11,6 @@ CREATE TABLE "public"."{prefix}_media" (
     CONSTRAINT "{prefix}_media_pkey" UNIQUE ("id")
 ) WITH (oids = false);
 
-CREATE INDEX "{prefix}_media_post_id" ON "public"."{prefix}_media" USING btree ("post_id");
-
-
 DROP TABLE IF EXISTS "{prefix}_post";
 DROP SEQUENCE IF EXISTS {prefix}_post_id_seq;
 CREATE SEQUENCE {prefix}_post_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1;
