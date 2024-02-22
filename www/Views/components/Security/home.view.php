@@ -1,3 +1,8 @@
 <h1>Bienvenue sur la page d'accueil</h1>
-<button class="button button-primary">Faire un compte</button>
-<button class="button button-primary">Se connecter</button>
+<a href="/register">
+    <button class="button button-primary">Faire un compte</button>
+</a>
+
+<a href="/login">
+    <button class="button button-primary">Se connecter</button>
+</a>
