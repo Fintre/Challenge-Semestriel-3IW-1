@@ -11,7 +11,7 @@
 </head>
 <body>
     <header id="header" class="bo-connexion-header">
-        <p>Accedez au back office</p>
+        <p>Accedez au site</p>
     </header>
         <main class="bo-connexion-content">
             <?php include $this->viewName;?>

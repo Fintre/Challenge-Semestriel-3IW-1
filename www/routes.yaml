@@ -1,6 +1,6 @@
 /:
   controller: Security
-  action: home
+  action: homePage
 
 /bo/dashboard:
   controller: Main
