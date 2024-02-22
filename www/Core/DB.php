@@ -309,5 +309,14 @@ class DB
         return $queryPrepared->fetchColumn();
     }
 
+        public function emailExists($email): bool {
+            $sql = "SELECT COUNT(*) FROM " . $this->table . " WHERE email = :email";
+            $queryPrepared = $this->pdo->prepare($sql);
+            $queryPrepared->execute(['email' => $email]);
+            $number = $queryPrepared->fetchColumn();
+
+            return $number > 0;
+        }
+
 
 }

@@ -77,25 +77,29 @@ class Security
             // Ensuite est-ce que les données sont OK
             $verificator = new Verificator();
             if($verificator->checkForm($config, $_REQUEST, $errors)) {
+
                 $user = new User();
-                $user->setFirstname($_REQUEST['Prénom']);
-                $user->setLastname($_REQUEST['Nom']);
-                $user->setUsername($_REQUEST['Nom_d\'utilisateur']);
-                $user->setEmail($_REQUEST['E-mail']);
-                $user->setPwd($_REQUEST['Mot_de_passe']);
-                $activationToken = bin2hex(random_bytes(16)); // Générer un token d'activation
-                $user->setActivationToken($activationToken);
-                $user->save(); //ajouter toutes les données dans la base de données
-                $success[] = "Votre compte a bien été créé";
-                 // Envoyer l'email de réinitialisation
-                 $emailResult = $this->sendActivationEmail($user->getEmail(), $activationToken);
+                if ($user->emailExists($_REQUEST['E-mail'])) {
+                    $errors[] = "L'email est déjà utilisé par un autre compte.";
+                } else {
+                    $user->setFirstname($_REQUEST['Prénom']);
+                    $user->setLastname($_REQUEST['Nom']);
+                    $user->setUsername($_REQUEST['Nom_d\'utilisateur']);
+                    $user->setEmail($_REQUEST['E-mail']);
+                    $user->setPwd($_REQUEST['Mot_de_passe']);
+                    $activationToken = bin2hex(random_bytes(16)); // Générer un token d'activation
+                    $user->setActivationToken($activationToken);
+                    $user->save(); //ajouter toutes les données dans la base de données
+                    $success[] = "Votre compte a bien été créé";
+                    // Envoyer l'email de réinitialisation
+                    $emailResult = $this->sendActivationEmail($user->getEmail(), $activationToken);
 
-                 if (isset($emailResult['success'])) {
-                     $success[] = $emailResult['success'];
-                 } elseif (isset($emailResult['error'])) {
-                     $errors[] = $emailResult['error'];
-                 }
-
+                    if (isset($emailResult['success'])) {
+                        $success[] = $emailResult['success'];
+                    } elseif (isset($emailResult['error'])) {
+                        $errors[] = $emailResult['error'];
+                    }
+                }
             }
         }
 
