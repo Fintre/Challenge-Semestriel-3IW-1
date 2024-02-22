@@ -191,7 +191,7 @@ class Security
             $mail->Subject = 'Recuperation de mot de passe GoFindMe';
 
 
-            $resetLink = "http://localhost/reset-password?token=" . $resetToken;
+            $resetLink = "http://gofindme.fr/reset-password?token=" . $resetToken;
             $mail->Body = 'Cliquez sur ce lien pour réinitialiser votre mot de passe: ' . $resetLink;
 
             $mail->send();
@@ -218,7 +218,7 @@ class Security
             $mail->Subject = 'Activation de votre compte GoFindMe';
 
 
-            $activationLink = "http://localhost/activate-account?token=" . $activationToken;
+            $activationLink = "http://gofindme.fr/activate-account?token=" . $activationToken;
             $mail->Body = 'Veuillez cliquer sur ce lien pour activer votre compte: ' . $activationLink;
 
             $mail->send();
