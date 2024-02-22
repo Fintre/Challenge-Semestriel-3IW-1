@@ -25,7 +25,7 @@ class Medias
     {
 
         $media = new Media();
-        $info = "changeMe";
+        $info = "N'OUBLIEZ PAS DE SAUVEGARDER";
 
         if (isset($_GET['id'])) {
             $retrievedMedia = $media->getOneBy(['id' => $_GET['id']], 'object');

@@ -12,9 +12,7 @@
 		h6 {
 			text-align: center;
 			color: var(--black);
-			@media (prefers-color-scheme: dark) {
-				color: var(--white);
-			}
+			@include color-theme-dark-font-color;
 		}
         color: var(--blue);
 		margin: auto;
@@ -22,9 +20,7 @@
 		background-color: var(--white);
 		padding: rem(16);
 		border-radius: var(--main-radius);
-		@media (prefers-color-scheme: dark) {
-			background-color: lighten(#262626, 10%);
-		}
+		@include color-theme-dark-bg;
         a {
 			color: var(--black);
             text-decoration: none;

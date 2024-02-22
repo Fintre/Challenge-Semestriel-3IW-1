@@ -8,7 +8,6 @@
                     <th class="tab-item active"><a href="#">Tous</a></th>
                     <th class="tab-item"><a href="#">Publiées</a></th>
                     <th class="tab-item"><a href="#">Brouillon</a></th>
-                    <th class="tab-item"><a href="#">Corbeille</a></th>
                 </tr>
             </thead>
         </table>

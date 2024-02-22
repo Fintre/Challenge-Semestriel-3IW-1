@@ -9,8 +9,6 @@ $cols: 12;
     display: flex;
     justify-content: space-around;
     background-color: white;
-    @media (prefers-color-scheme: dark) {
-      background-color: lighten(#262626, 10%);
-    }
+    @include color-theme-dark-bg;
   }
 }

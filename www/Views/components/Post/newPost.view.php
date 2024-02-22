@@ -6,7 +6,6 @@ if (empty($this->data['post']->getId())) {
 }
 $info = $this->data['info'];
 $isPublished = $this->data['post']->getPublished();
-echo $isPublished;
 $isDeleted = $this->data['post']->getIsDeleted();
 
 echo "<h3>$info</h3>";
@@ -36,7 +35,8 @@ if (!empty($this->data['mandatoryFields'])) {
             width:"100%",
             plugins: 'anchor autolink charmap codesample emoticons image link lists searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss preview styleprops',
             toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat preview styleprops',
-            image_list: imgLists
+            image_list: imgLists,
+            content_css: '/Views/styles/dist/css/mainFront.css'
         });
 
     })
@@ -60,17 +60,17 @@ if (!empty($this->data['mandatoryFields'])) {
                 <div class="post-wrapper">
                     <div class="form-group">
                         <label for="pageName"></label>
-                        <textarea name="pageSlug" id="pageName" class="pageName"
-                                  placeholder="Nom de la page ..."><?php echo $this->data['post']->getSlug() ?? '' ?></textarea>
+                        <input name="pageSlug" id="pageName" class="pageName"
+                                  placeholder="Nom de la page ..." value="<?php echo $this->data['post']->getSlug() ?? '' ?>">
                     </div>
                     <div style='color: red'><?php echo $errorSlug?></div>
                     <div class="form-group">
                         <label for="pageTitle"></label>
-                        <textarea name="pageTitle" id="pageTitle" class="pageTitle" placeholder="Titre de la page ..."><?php echo $this->data['post']->getTitle() ?? '' ?></textarea>
+                        <input name="pageTitle" id="pageTitle" class="pageTitle" placeholder="Titre de la page ..." value="<?php echo $this->data['post']->getTitle() ?? '' ?>">
                     </div>
                     <div class="form-content">
                         <label for="pageContent"></label>
-                        <textarea name="pageContent" id="pageContent"><?php echo $this->data['post']->getBody() ?? '' ?></textarea>
+                        <textarea name="pageContent" id="pageContent"><div data-theme="<?php echo $this->data['theme'] ?? '' ?>" class="<?php echo $this->data['theme'] ?? '' ?>"><?php echo $this->data['post']->getBody() ?? '' ?></div></textarea>
                     </div>
                     <div hidden>
                         <input type="number" name="isDeleted" value="<?php echo $isDeleted  ?? '0' ?>"/>
@@ -81,7 +81,7 @@ if (!empty($this->data['mandatoryFields'])) {
                 </div>
                 <div class="post-info">
                     <div class="block-card block-card-custom-page info">
-                        <div class="block-card-custom-page-info-property">Auteur<span class="block-card-custom-page-info-value"></span>
+                        <div class="block-card-custom-page-info-property">Auteur<span class="block-card-custom-page-info-value"><?php echo $this->data['post']->getUserUsername() ?? '' ?></span>
                             <div hidden>
                                 <input type="number" name="id" value="<?php echo $this->data['post']->getId() ?? '' ?>"/>
                             </div>

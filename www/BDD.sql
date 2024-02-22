@@ -33,7 +33,6 @@ CREATE TABLE "public"."{prefix}_post" (
     "createdat" timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL,
     "updatedat" timestamp DEFAULT CURRENT_TIMESTAMP,
     "user_username" character varying(25),
-    "theme_id" integer,
     CONSTRAINT "{prefix}_post_pkey" UNIQUE ("id")
 ) WITH (oids = false);
 
@@ -63,8 +62,7 @@ CREATE SEQUENCE {prefix}_theme_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 2147483647
 CREATE TABLE "public"."{prefix}_theme" (
     "id" integer DEFAULT nextval('{prefix}_theme_id_seq') NOT NULL,
     "titre" character varying(255) NOT NULL,
-    "description" character varying(255),
-    "actif" boolean DEFAULT false NOT NULL,
+    "actif" smallint DEFAULT '0' NOT NULL,
     CONSTRAINT "{prefix}_theme_pkey" PRIMARY KEY ("id")
 ) WITH (oids = false);
 
@@ -96,5 +94,7 @@ CREATE TABLE "public"."{prefix}_user" (
 
 ALTER TABLE ONLY "public"."{prefix}_media" ADD CONSTRAINT "{prefix}_media_post_fk" FOREIGN KEY (post_id) REFERENCES {prefix}_post(id) ON UPDATE CASCADE NOT DEFERRABLE;
 
-ALTER TABLE ONLY "public"."{prefix}_post" ADD CONSTRAINT "{prefix}_post_theme_id_fkey" FOREIGN KEY (theme_id) REFERENCES {prefix}_theme(id) ON UPDATE CASCADE ON DELETE SET NULL NOT DEFERRABLE;
 ALTER TABLE ONLY "public"."{prefix}_post" ADD CONSTRAINT "{prefix}_post_user_username_fkey" FOREIGN KEY (user_username) REFERENCES {prefix}_user(username) ON UPDATE CASCADE NOT DEFERRABLE;
+
+INSERT INTO public.gfm_theme (id, titre, actif) VALUES (1, 'music-template', '0');
+INSERT INTO public.gfm_theme (id, titre, actif) VALUES (2, 'boulangerie-template', '1');

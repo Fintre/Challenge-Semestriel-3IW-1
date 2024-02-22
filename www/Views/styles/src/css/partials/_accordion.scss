@@ -112,9 +112,7 @@
 						color: var(--black);
 						text-align: center;
 						padding: rem(4);
-						@media (prefers-color-scheme: dark) {
-							color: white;
-						}
+						@include color-theme-dark-font-color;
 					}
 				}
 			}
@@ -132,9 +130,7 @@
 					border-right: 2px solid #4169E1;
 					height: 100%;
 					gap: rem(30);
-					@media (prefers-color-scheme: dark) {
-						background-color: lighten(#262626, 10%);
-					}
+					@include color-theme-dark-bg;
 				}
 				ul {
 					flex-direction: column;
@@ -157,9 +153,7 @@
 									font-family: var(--text-font);
 									color: var(--black);
 									text-align: left;
-									@media (prefers-color-scheme: dark) {
-										color: white;
-									}
+									@include color-theme-dark-font-color;
 								}
 
 								&-icon {

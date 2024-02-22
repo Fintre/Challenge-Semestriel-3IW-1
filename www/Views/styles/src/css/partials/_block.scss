@@ -7,9 +7,7 @@
   padding: rem(17) rem(19);
   align-items: flex-start;
   width: rem(500);
-  @media (prefers-color-scheme: dark) {
-    background-color: lighten(#262626, 10%);
-  }
+  @include color-theme-dark-bg;
 
 
   .search-input {
@@ -18,9 +16,7 @@
     outline: none;
     width: 100%;
     font-family: 'Lato', sans-serif;
-    @media (prefers-color-scheme: dark) {
-      background-color: lighten(#262626, 10%);
-    }
+    @include color-theme-dark-bg;
   }
 
 }
@@ -75,9 +71,7 @@
     flex-direction: column;
     padding: rem(5) rem(20);
     text-align: center;
-    @media (prefers-color-scheme: dark) {
-      background-color: lighten(#262626, 10%);
-    }
+    @include color-theme-dark-bg;
     &.color {
       .block-card-custom-page-color-wrapper {
         display: inline-flex;
@@ -209,9 +203,7 @@
         font-family: var(--text-font);
         align-self: stretch;
         color: var(--black);
-        @media (prefers-color-scheme: dark) {
-          color: white;
-        }
+        @include color-theme-dark-font-color;
       }
     }
 
@@ -245,9 +237,7 @@
       border-radius: rem(15);
       background: var(--white);
       box-shadow: rem(0) rem(4) rem(4) rem(0) rgba(0, 0, 0, 0.25);
-    @media (prefers-color-scheme: dark) {
-      background-color: lighten(#262626, 10%);
-    }
+      @include color-theme-dark-bg;
       &.blue {
         border: rem(1) solid var(--blue);
       }
@@ -289,9 +279,7 @@
           font-family: var(--text-font);
           align-self: stretch;
           color: rgba(0, 0, 0, 0.75);
-          @media (prefers-color-scheme: dark) {
-            color: white;
-          }
+          @include color-theme-dark-font-color;
         }
 
         .number {
@@ -304,9 +292,7 @@
           font-family: var(--text-font);
           align-self: stretch;
           color: var(--black);
-          @media (prefers-color-scheme: dark) {
-            color: white;
-          }
+          @include color-theme-dark-font-color;
         }
       }
 
@@ -323,10 +309,7 @@
   gap: rem(20);
   border: var(--blue) solid rem(1);
   background-color: var(--white);
-  @media (prefers-color-scheme: dark) {
-    background-color: lighten(#262626, 10%);
-  }
-
+  @include color-theme-dark-bg;
 }
 
 .user-profile img {

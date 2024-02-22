@@ -1,5 +1,4 @@
 <?php
-echo $this->data['media'];
 if (empty($this->data['media']->getId())) {
     echo "<h2>Nouveau média</h2>";
 } else {
@@ -29,8 +28,7 @@ echo "<h3>$info</h3>";
                     <input type="number" name="isDeleted" value="1"/>
                 </div>
                 <div <?php echo empty($this->data['media']->getId()) ? 'hidden' : '' ?> class="button-deleted">
-                    <button type="submit" class="button button-danger button-lg" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce média ?');">Supprimer
-                    </button>
+                    <button type="submit" class="button button-danger button-lg" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce média ?');">Supprimer</button>
                 </div>
             </form>
             <form method="post" action="<?= $_SERVER['REQUEST_URI'] ?>">
@@ -39,13 +37,13 @@ echo "<h3>$info</h3>";
                         <label for="mediaTitle"></label>
                         <input type="text" name="mediaTitle" id="mediaTitle" class="mediaTitle" placeholder="Titre du média ..." value="<?php echo $this->data['media']->getTitle() ?? '' ?>">
                     </div>
-                    <div class="form-content">
+                    <div class="form-group">
                         <label for="mediaContent"></label>
-                        <input type="text" name="mediaContent" id="mediaContent" value="<?php echo $this->data['media']->getDescription() ?? '' ?>">
+                        <input type="text" name="mediaContent" id="mediaContent" class="mediaDesc" placeholder="Description du média ..." value="<?php echo $this->data['media']->getDescription() ?? '' ?>">
                     </div>
-                    <div class="form-content">
-                        <label for="url">URL</label>
-                        <input type="text" name="url" id="url" value="<?php echo $this->data['media']->getFilepath() ?? '' ?>" onchange="loadPreview()">
+                    <div class="form-group">
+                        <label for="url"></label>
+                        <input type="text" name="url" id="url" class="mediaURL" placeholder="URL ..." value="<?php echo $this->data['media']->getFilepath() ?? '' ?>" onchange="loadPreview()">
                     </div>
 
                     <div>
@@ -63,14 +61,9 @@ echo "<h3>$info</h3>";
                 </div>
                 <div class="media-info">
                     <div class="block-card block-card-custom-page info">
-                        <div class="block-card-custom-page-info-property">Auteur<span class="block-card-custom-page-info-value"></span>
-                            <div hidden>
-                                <input type="number" name="id" value="<?php echo $this->data['media']->getId() ?? '' ?>"/>
-                            </div>
+                        <div>
+                            <div class="block-card-custom-page-info-property">Date<span class="block-card-custom-page-info-value"><?php echo (new DateTime($this->data['media']->getCreatedat()))->format('Y-m-d') ?? '' ?></span>
                         </div>
-
-                        </div>
-                        <div class="block-card-custom-page-info-property">Date<span class="block-card-custom-page-info-value"><?php echo (new DateTime($this->data['media']->getCreatedat()))->format('Y-m-d') ?? '' ?></span>
                     </div>
                     <div class="button-new-page">
                         <div>

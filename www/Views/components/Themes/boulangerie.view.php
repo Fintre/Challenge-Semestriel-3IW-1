@@ -1,7 +1,7 @@
 <div data-theme="boulangerie-template" class="boulangerie-template">
     <div id="div-body" class="div-body no-transition">
         <!-- Navbar -->
-        <nav id="nav-header" class="nav-header">
+        <div id="nav-header" class="nav-header">
             <div class="nav-header-wrapper">
                 <ul>
                     <li><a href="#" class="">Home</a></li>
@@ -10,10 +10,10 @@
                     <li><a href="#" class="">Contact</a></li>
                 </ul>
             </div>
-        </nav>
+        </div>
 
         <!-- Page content -->
-        <section class="section1">
+        <div class="section1">
             <div class="container">
                 <img src="" style="">
                 <div class="">
@@ -21,14 +21,14 @@
                     <p><b>Bien mieux que Cyril Lignac!</b></p>
                 </div>
             </div>
-        </section>
-        <section class="section2">
+        </div>
+        <div class="section2">
             <div class="page-content">
                 <!-- service -->
                 <div class="page-content-service" id="service">
                     <h2>SERVICE</h2>
                     <p class="page-content-service-desc"><i>Découvrez nos différents services</i></p>
-                    <p><?php echo $body; ?></p>
+                    <p></p>
                     <div class="page-content-service-img">
                         <img src="" alt="Random Name">
                         <img src="" alt="Random Name">
@@ -86,7 +86,6 @@
                                 <div class="page-content-contact-form-wrapper">
                                     <input type="text" placeholder="Name" required name="Name" class="form-input">
                                     <input type="text" placeholder="Email" required name="Email" class="form-input">
-                                    <textarea placeholder="Message" required name="Message" class="form-textarea"></textarea>
                                     <button type="submit" class="button-submit">ENVOYER</button>
                                 </div>
                             </form>
@@ -94,12 +93,12 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
         <!-- Footer -->
-        <footer class="page-content-footer">
+        <div class="page-content-footer">
             <p class="page-content-footer-info">Powered by <a href="https://gofindme.fr" target="_blank">GoFindMe © 2024. All rights reserved</a></p>
-        </footer>
+        </div>
         <script>
             window.onload = () => {
                 document.querySelector("#div-body").classList.remove("no-transition");
