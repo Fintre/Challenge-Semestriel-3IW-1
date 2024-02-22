@@ -18,7 +18,7 @@ class Blogs
         $blog = new Blog();
         if (isset($_GET['action']) && isset($_GET['id'])) {
             $blogId = $_GET['id'];
-        
+
             if ($_GET['action'] === 'delete') {
                 if ($blog->deleteArticlesAndBlogs($blogId)) {
                     $success[] = "Le blog a été supprimé avec succès.";
@@ -75,7 +75,7 @@ class Blogs
                 echo "Blog non trouvé.";
             }
         }
-       
+
     }
 
     public function addBlogs(): void
@@ -118,7 +118,6 @@ class Blogs
             $article->setSlug($selectedArticle[0]["slug"]);
             $article->setType($selectedArticle[0]["type"]);
             $article->setUserId($selectedArticle[0]["user_username"]);
-            $article->setThemeId($selectedArticle[0]["theme_id"]);
 
         }else{
             $article->setUpdatedAt($formattedDate);
@@ -129,7 +128,6 @@ class Blogs
             $article->setSlug("");
             $article->setType("blog");
             $article->setUserId($username);
-            $article->setThemeId(1);
         }
 
         $article->saveInpost();

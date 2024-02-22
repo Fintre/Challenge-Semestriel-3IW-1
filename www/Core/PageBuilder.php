@@ -14,12 +14,12 @@ class PageBuilder
         $slugTrim = str_replace('/', '', $slug);
         $arraySlug = ["slug"=> $slugTrim];
         $post = $db->getOneBy($arraySlug);
-        $template = $post["theme_id"];
-        $theme = $theme->getOneBy(["id" => $template]);
-        $page = $theme["titre"];
+        //$template = $post["theme_id"];
+        //$theme = $theme->getOneBy(["id" => $template]);
+        //$page = $theme["titre"];
         $body = $post["body"];
         $title = $post["title"];
-        $htmlFile = "Themes/{$page}";
+        $htmlFile = "Themes/{$slugTrim}";
 
         $requestUrl = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
         $routeFound = false;

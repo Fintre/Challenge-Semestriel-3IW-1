@@ -64,7 +64,6 @@ if( !empty($listOfRoutes[$uri]) ) { // si l'uri existe dans le fichier routes
             require "Controllers/Error.php";
             $error = new Error();
             $error->page403();
-            var_dump($user->getRoles());
             die();
         }
     }
